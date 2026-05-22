@@ -68,3 +68,41 @@ export interface RingSample {
   KE: number   // kinetic energy at t (per unit mass)
   PE: number   // potential energy at t (per unit mass)
 }
+
+// ---------------------------------------------------------------------------
+// Rotating bar simulator (/bar)
+// ---------------------------------------------------------------------------
+
+export interface BarParams {
+  omega: number       // bar angular velocity ω in rad/s, range [0.5, 5]
+  r0: number          // initial radial position r₀ in world units, range [10, 80]
+  rDot0: number       // initial radial velocity ṙ₀ in world units/s, range [-100, 100]
+  barLength: number   // bar half-length L in world units, range [80, 160]
+  mass: number        // normalised mass m, fixed at 1 (display only)
+}
+
+export interface BarVisibility {
+  showRadialAcc: boolean          // aᵣ vector (= 0 — illustrates the constraint)
+  showCoriolisAcc: boolean        // aₒ = 2ṙω vector
+  showNormalForce: boolean        // N = 2mṙω (transverse, applied by the bar)
+  showVelocityComponents: boolean // ṙ·eᵣ and rω·eₒ vectors
+  showTrace: boolean              // particle trail in lab frame
+  showRotatingFrame: boolean      // ghost bar history over the last half-revolution
+}
+
+export interface BarKinematicState {
+  t: number          // elapsed time (s)
+  theta: number      // current bar angle (rad)
+  r: number          // current radial position
+  rDot: number       // current radial velocity ṙ
+  ar: number         // radial polar acceleration = r̈ − r·ω² (≈ 0 by construction)
+  ao: number         // transverse polar acceleration = 2·ṙ·ω (Coriolis)
+  N: number          // normal force from bar = m·ao  (m = 1)
+  vr: number         // radial velocity component = ṙ
+  vt: number         // transverse velocity component = r·ω
+  v: number          // total speed = √(ṙ² + r²ω²)
+  px: number         // particle world X
+  py: number         // particle world Y
+  isOnBar: boolean   // r ≤ barLength
+  ejected: boolean   // r > barLength
+}

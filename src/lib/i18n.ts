@@ -73,12 +73,16 @@ export const translations = {
     'nav.aria_label': 'Simulators',
     'nav.polar': 'Polar',
     'nav.ring':  'Ring',
+    'nav.bar':   'Bar',
 
     // Polar page — meta
     'polar.page.canvas_aria': 'Polar coordinates simulator — animated circular motion',
 
     // Ring page — meta
     'ring.page.canvas_aria': 'Vertical ring simulator — particle on the inside of a smooth ring',
+
+    // Bar page — meta
+    'bar.page.canvas_aria': 'Rotating bar simulator — particle sliding freely along a bar that spins at constant ω',
 
     // Ring — metrics
     'ring.metrics.heading':     'Live Metrics',
@@ -149,6 +153,75 @@ export const translations = {
     // Ring — energy strip chart
     'ring.chart.energy.title': 'Energy partitioning vs. time',
     'ring.chart.energy.empty': 'Set v₀ > 0 to record the energy timeline.',
+
+    // Bar — metrics
+    'bar.metrics.heading':   'Live Metrics',
+    'bar.metrics.r':         'r  (radial position)',
+    'bar.metrics.r_dot':     'ṙ  (radial velocity)',
+    'bar.metrics.theta':     'θ  (bar angle)',
+    'bar.metrics.v':         'v  (total speed)',
+    'bar.metrics.ar':        'aᵣ  (net radial)',
+    'bar.metrics.ao':        'aₒ  (Coriolis)',
+    'bar.metrics.n':         'N  (force from bar)',
+    'bar.metrics.t':         't  (elapsed time)',
+    'bar.metrics.ar_note':   'Net radial force = 0 (no friction)',
+    'bar.metrics.ejection':  'Ejection at',
+    'bar.metrics.never':     'never reaches L (with current ICs)',
+    'bar.metrics.bar_length':'Bar length',
+    'bar.metrics.ejected':   'Particle has left the bar',
+
+    // Bar — controls
+    'bar.controls.section.bar':         'Bar',
+    'bar.controls.section.dynamics':    'Initial conditions',
+    'bar.controls.section.visibility':  'Visibility',
+    'bar.controls.section.info':        'Reference',
+    'bar.controls.slider.omega':        'Angular velocity ω',
+    'bar.controls.slider.length':       'Bar length L',
+    'bar.controls.slider.r0':           'Initial position r₀',
+    'bar.controls.slider.rdot0':        'Initial radial vel. ṙ₀',
+    'bar.controls.toggle.ar':           'Radial acceleration aᵣ (= 0)',
+    'bar.controls.toggle.ao':           'Coriolis acceleration aₒ',
+    'bar.controls.toggle.n':            'Normal force N from bar',
+    'bar.controls.toggle.vcomp':        'Velocity components (ṙ, rω)',
+    'bar.controls.toggle.trace':        'Particle trail',
+    'bar.controls.toggle.ghost':        'Bar rotation history',
+    'bar.controls.btn.reset':           'Reset',
+    'bar.controls.btn.pause':           'Pause',
+    'bar.controls.btn.resume':          'Resume',
+    'bar.controls.info.solution':       'Solution',
+    'bar.controls.info.ejection':       'Ejection time',
+    'bar.controls.info.coriolis':       'Coriolis force',
+
+    // Bar — legend
+    'bar.legend.heading': 'Legend',
+    'bar.legend.bar':     'rotating bar',
+    'bar.legend.r':       'r  (pivot → P)',
+    'bar.legend.vr':      'ṙ · eᵣ  (radial velocity)',
+    'bar.legend.vt':      'r·ω · eₒ  (transverse velocity)',
+    'bar.legend.ao':      'aₒ = 2·ṙ·ω  (Coriolis)',
+    'bar.legend.n':       'N  (normal force from bar)',
+    'bar.legend.ar':      'aᵣ = 0  (no friction)',
+    'bar.legend.ejection':'ejection velocity (lab frame)',
+
+    // Bar — equations panel
+    'bar.equations.heading':             'Equations',
+    'bar.equations.section.radial':      'Equation of motion (radial)',
+    'bar.equations.section.normal':      'Normal force (transverse)',
+    'bar.equations.section.solution':    'Exact analytical solution',
+    'bar.equations.section.insight':     'Key insight',
+    'bar.equations.note.radial':
+      'No radial force (smooth bar). The particle accelerates outward purely ' +
+      'because of the rotation — this is the centrifugal effect in the lab frame.',
+    'bar.equations.note.normal':
+      'The bar must push the particle transversally to keep it co-rotating. ' +
+      'This is the Coriolis term 2·ṙ·ω — it grows as the particle speeds up radially.',
+    'bar.equations.note.solution':
+      'Unlike the ring simulation (which needs RK4), this ODE has a closed-form ' +
+      'solution. The simulator evaluates it exactly each frame — no numerical drift.',
+    'bar.equations.note.insight':
+      'The net radial acceleration is zero. The particle "falls outward" not because ' +
+      'a force pushes it, but because there is no inward force to keep it in circular ' +
+      'motion. Compare with the ring: there, N prevents this outward drift.',
 
     // Units note (shared on both pages)
     'units.note':
@@ -233,12 +306,16 @@ export const translations = {
     'nav.aria_label': 'Simuladores',
     'nav.polar': 'Polar',
     'nav.ring':  'Anillo',
+    'nav.bar':   'Barra',
 
     // Polar page — meta
     'polar.page.canvas_aria': 'Simulador de coordenadas polares — movimiento circular animado',
 
     // Ring page — meta
     'ring.page.canvas_aria': 'Simulador del anillo vertical — partícula dentro de un anillo liso',
+
+    // Bar page — meta
+    'bar.page.canvas_aria': 'Simulador de barra rotante — partícula que desliza libremente sobre una barra con ω constante',
 
     // Ring — metrics
     'ring.metrics.heading':     'Métricas en vivo',
@@ -309,6 +386,75 @@ export const translations = {
     // Ring — energy strip chart
     'ring.chart.energy.title': 'Reparto de energía vs. tiempo',
     'ring.chart.energy.empty': 'Ajusta v₀ > 0 para registrar la línea temporal de energía.',
+
+    // Bar — metrics
+    'bar.metrics.heading':   'Métricas en vivo',
+    'bar.metrics.r':         'r  (posición radial)',
+    'bar.metrics.r_dot':     'ṙ  (velocidad radial)',
+    'bar.metrics.theta':     'θ  (ángulo de la barra)',
+    'bar.metrics.v':         'v  (rapidez total)',
+    'bar.metrics.ar':        'aᵣ  (radial neta)',
+    'bar.metrics.ao':        'aₒ  (Coriolis)',
+    'bar.metrics.n':         'N  (fuerza de la barra)',
+    'bar.metrics.t':         't  (tiempo transcurrido)',
+    'bar.metrics.ar_note':   'Fuerza radial neta = 0 (sin rozamiento)',
+    'bar.metrics.ejection':  'Eyección en',
+    'bar.metrics.never':     'no alcanza L (con estas CIs)',
+    'bar.metrics.bar_length':'Largo de la barra',
+    'bar.metrics.ejected':   'La partícula salió de la barra',
+
+    // Bar — controls
+    'bar.controls.section.bar':         'Barra',
+    'bar.controls.section.dynamics':    'Condiciones iniciales',
+    'bar.controls.section.visibility':  'Visibilidad',
+    'bar.controls.section.info':        'Referencia',
+    'bar.controls.slider.omega':        'Velocidad angular ω',
+    'bar.controls.slider.length':       'Largo de la barra L',
+    'bar.controls.slider.r0':           'Posición inicial r₀',
+    'bar.controls.slider.rdot0':        'Vel. radial inicial ṙ₀',
+    'bar.controls.toggle.ar':           'Aceleración radial aᵣ (= 0)',
+    'bar.controls.toggle.ao':           'Aceleración de Coriolis aₒ',
+    'bar.controls.toggle.n':            'Fuerza normal N de la barra',
+    'bar.controls.toggle.vcomp':        'Componentes de velocidad (ṙ, rω)',
+    'bar.controls.toggle.trace':        'Trayectoria de la partícula',
+    'bar.controls.toggle.ghost':        'Historial de la barra',
+    'bar.controls.btn.reset':           'Reiniciar',
+    'bar.controls.btn.pause':           'Pausar',
+    'bar.controls.btn.resume':          'Reanudar',
+    'bar.controls.info.solution':       'Solución',
+    'bar.controls.info.ejection':       'Tiempo de eyección',
+    'bar.controls.info.coriolis':       'Fuerza de Coriolis',
+
+    // Bar — legend
+    'bar.legend.heading': 'Leyenda',
+    'bar.legend.bar':     'barra rotante',
+    'bar.legend.r':       'r  (pivote → P)',
+    'bar.legend.vr':      'ṙ · eᵣ  (velocidad radial)',
+    'bar.legend.vt':      'r·ω · eₒ  (velocidad transversal)',
+    'bar.legend.ao':      'aₒ = 2·ṙ·ω  (Coriolis)',
+    'bar.legend.n':       'N  (fuerza normal de la barra)',
+    'bar.legend.ar':      'aᵣ = 0  (sin rozamiento)',
+    'bar.legend.ejection':'velocidad de eyección (marco lab.)',
+
+    // Bar — equations panel
+    'bar.equations.heading':             'Ecuaciones',
+    'bar.equations.section.radial':      'Ecuación de movimiento (radial)',
+    'bar.equations.section.normal':      'Fuerza normal (transversal)',
+    'bar.equations.section.solution':    'Solución analítica exacta',
+    'bar.equations.section.insight':     'Idea clave',
+    'bar.equations.note.radial':
+      'No hay fuerza radial (barra lisa). La partícula se acelera hacia afuera ' +
+      'únicamente por la rotación — es el efecto centrífugo visto desde el marco del laboratorio.',
+    'bar.equations.note.normal':
+      'La barra debe empujar a la partícula transversalmente para mantenerla girando con ella. ' +
+      'Ese es el término de Coriolis 2·ṙ·ω — crece a medida que la partícula acelera radialmente.',
+    'bar.equations.note.solution':
+      'A diferencia del anillo (que necesita RK4), esta EDO tiene solución cerrada. ' +
+      'El simulador la evalúa exactamente en cada cuadro — sin deriva numérica.',
+    'bar.equations.note.insight':
+      'La aceleración radial neta es cero. La partícula «cae hacia afuera» no porque ' +
+      'una fuerza la empuje, sino porque no hay fuerza hacia adentro que la mantenga en ' +
+      'movimiento circular. Compara con el anillo: allí N evita ese alejamiento radial.',
 
     // Units note (shared on both pages)
     'units.note':
