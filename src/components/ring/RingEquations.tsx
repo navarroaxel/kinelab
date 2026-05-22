@@ -51,6 +51,9 @@ export const RingEquations = memo(function RingEquations() {
           <p>E = ½·m·v² + m·g·h = const</p>
           <p>KE = ½·m·R²·θ̇²</p>
           <p>PE = m·g·R·(1 − cos θ)</p>
+          <p className="text-gray-400 dark:text-gray-500 font-sans text-[10px] leading-relaxed">
+            {t('ring.equations.note.energy')}
+          </p>
 
           <p className="mt-2 text-[10px] font-sans text-gray-500 dark:text-gray-500 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
             {t('units.note')}
