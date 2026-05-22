@@ -38,6 +38,8 @@ export default function Home() {
     traceRef,
     tRef,
     samplesRef,
+    tickListenersRef,
+    subscribeTick,
     paused,
     togglePause,
   } = useSimulator()
@@ -58,6 +60,7 @@ export default function Home() {
             traceRef={traceRef}
             tRef={tRef}
             samplesRef={samplesRef}
+            tickListenersRef={tickListenersRef}
             onMetrics={setMetrics}
             paused={paused}
           />
@@ -68,6 +71,7 @@ export default function Home() {
             series={VELOCITY_SERIES}
             samplesRef={samplesRef}
             tRef={tRef}
+            subscribeTick={subscribeTick}
           />
           <StripChart
             titleKey="chart.accel.title"
@@ -76,6 +80,7 @@ export default function Home() {
             series={ACCEL_SERIES}
             samplesRef={samplesRef}
             tRef={tRef}
+            subscribeTick={subscribeTick}
           />
         </div>
 

@@ -26,6 +26,7 @@ interface Props {
   series: readonly StripChartSeries[]
   samplesRef: MutableRefObject<Sample[]>
   tRef: MutableRefObject<number>
+  subscribeTick: (fn: () => void) => () => void
 }
 
 export const StripChart = memo(function StripChart({
@@ -35,12 +36,12 @@ export const StripChart = memo(function StripChart({
   series,
   samplesRef,
   tRef,
+  subscribeTick,
 }: Props) {
   const { t } = useLanguage()
   const title = t(titleKey)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const yMaxRef = useRef(minScale)
-  const rafIdRef = useRef<number>(0)
 
   // DPR scaling on mount
   useEffect(() => {
@@ -70,7 +71,7 @@ export const StripChart = memo(function StripChart({
     return () => ro.disconnect()
   }, [])
 
-  // Own RAF loop: reads from the shared samplesRef and renders
+  // Subscribe to the shared main-loop tick; no per-chart RAF.
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -82,7 +83,7 @@ export const StripChart = memo(function StripChart({
 
     const fields = series.map(s => s.key)
 
-    function frame() {
+    function draw() {
       const dpr = window.devicePixelRatio || 1
       const W = canvas!.width / dpr
       const H = canvas!.height / dpr
@@ -99,13 +100,12 @@ export const StripChart = memo(function StripChart({
       for (const s of series) {
         drawChartSeries(ctx!, samples, s.key, s.color, tNow, yMax, W, H)
       }
-
-      rafIdRef.current = requestAnimationFrame(frame)
     }
 
-    rafIdRef.current = requestAnimationFrame(frame)
-    return () => cancelAnimationFrame(rafIdRef.current)
-  }, [series, minScale, yUnit, samplesRef, tRef])
+    // Render an initial empty frame so the panel isn't blank before the first tick.
+    draw()
+    return subscribeTick(draw)
+  }, [series, minScale, yUnit, samplesRef, tRef, subscribeTick])
 
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-2 bg-white dark:bg-gray-900">

@@ -38,6 +38,14 @@ export function useSimulator() {
   const tRef = useRef(0)
   const samplesRef = useRef<Sample[]>([])
 
+  // Single shared RAF tick: the main animation loop invokes every listener
+  // each frame, so strip charts and other consumers don't each spawn their own.
+  const tickListenersRef = useRef<Set<() => void>>(new Set())
+  const subscribeTick = useCallback((fn: () => void) => {
+    tickListenersRef.current.add(fn)
+    return () => { tickListenersRef.current.delete(fn) }
+  }, [])
+
   // Update a single parameter; clear trace when the pole moves
   const setParam = useCallback(
     <K extends keyof SimulatorParams>(key: K, value: SimulatorParams[K]) => {
@@ -86,6 +94,8 @@ export function useSimulator() {
     traceRef,
     tRef,
     samplesRef,
+    tickListenersRef,
+    subscribeTick,
     paused,
     togglePause,
   }
