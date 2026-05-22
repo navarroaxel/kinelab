@@ -13,15 +13,18 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 overflow-hidden">
       <button
+        type="button"
         onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-controls="equations-panel-content"
         className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
       >
         <span>Equations</span>
-        <span className="text-gray-400">{open ? '▲' : '▼'}</span>
+        <span aria-hidden="true" className="text-gray-400">{open ? '▲' : '▼'}</span>
       </button>
 
       {open && (
-        <div className="px-3 pb-3 flex flex-col gap-1.5 text-xs font-mono text-gray-700 dark:text-gray-300">
+        <div id="equations-panel-content" className="px-3 pb-3 flex flex-col gap-1.5 text-xs font-mono text-gray-700 dark:text-gray-300">
           <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">Position &amp; r vector</p>
           <p>r = √[(x−x₀)² + (y−y₀)²]</p>
           <p>θ = atan2(y−y₀, x−x₀)</p>

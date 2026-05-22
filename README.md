@@ -63,7 +63,7 @@ r = √[(x−x₀)² + (y−y₀)²]
 Projecting the Cartesian velocity onto the polar unit vectors eᵣ and eₒ:
 
 ```
-ṙ    = R·ω·sin(φ − θ)
+ṙ    = R·ω·sin(θ − φ)
 rθ̇   = R·ω·cos(φ − θ)
 ```
 
