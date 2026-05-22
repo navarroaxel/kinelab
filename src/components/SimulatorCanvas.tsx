@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, type MutableRefObject } from 'react'
 import { useAnimationLoop } from '@/hooks/useAnimationLoop'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { Sample } from '@/lib/strip-chart'
 import type { KinematicState, SimulatorParams, VisibilityState } from '@/types/simulator'
 
@@ -31,6 +32,7 @@ export function SimulatorCanvas({
   paused,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const { t } = useLanguage()
 
   // Apply DPR scaling once on mount
   useEffect(() => {
@@ -67,7 +69,7 @@ export function SimulatorCanvas({
       ref={canvasRef}
       style={{ width: '100%', aspectRatio: '4 / 3' }}
       className="rounded-xl border border-gray-200 dark:border-gray-700"
-      aria-label="Polar coordinates simulator — animated circular motion"
+      aria-label={t('polar.page.canvas_aria')}
     />
   )
 }

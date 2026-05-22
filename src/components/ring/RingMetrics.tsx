@@ -23,8 +23,13 @@ function normalizeDeg(rad: number) {
 export const RingMetrics = memo(function RingMetrics({ state, params }: Props) {
   const { t } = useLanguage()
   const vMin = computeVMin(params.gravity, params.radius)
-  const ratio = vMin > 0 ? Math.min(params.initialSpeed / vMin, 2) : 0
-  const ratioPct = Math.round(ratio * 100)
+  // vRatio = v₀ / v_min — used for the "X% of v_min" text (uncapped).
+  // barFillPct maps [0, 2·v_min] linearly to [0%, 100%] of the bar width so
+  // that the threshold marker sits at the centre and crossing it visually
+  // means crossing v_min.
+  const vRatio = vMin > 0 ? params.initialSpeed / vMin : 0
+  const ratioPct = Math.round(vRatio * 100)
+  const barFillPct = Math.min(Math.max(vRatio / 2, 0), 1) * 100
 
   const lostContact = !state.hasContact
   const cards = [
@@ -73,9 +78,9 @@ export const RingMetrics = memo(function RingMetrics({ state, params }: Props) {
         <div className="relative h-1.5 rounded bg-gray-100 dark:bg-gray-800 overflow-hidden">
           <div
             className="absolute inset-y-0 left-0 bg-amber-400 dark:bg-amber-500"
-            style={{ width: `${Math.min(ratioPct, 100)}%` }}
+            style={{ width: `${barFillPct}%` }}
           />
-          {/* Threshold marker at 100% (=v_min) */}
+          {/* Threshold marker at 50% of the bar (= v_min on the [0, 2·v_min] scale) */}
           <div className="absolute inset-y-0" style={{ left: '50%', width: '1px', background: 'currentColor', opacity: 0.4 }} />
         </div>
         <div className="flex justify-between mt-1">

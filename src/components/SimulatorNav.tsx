@@ -16,7 +16,7 @@ export const SimulatorNav = memo(function SimulatorNav() {
   const { t } = useLanguage()
 
   return (
-    <nav aria-label="Simulators" className="inline-flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <nav aria-label={t('nav.aria_label')} className="inline-flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
       {ITEMS.map(item => {
         const active = pathname === item.href
         return (

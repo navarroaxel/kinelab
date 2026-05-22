@@ -70,8 +70,12 @@ export const translations = {
     'chart.accel.title':    'Tangential acceleration vs. time',
 
     // Navigation between simulators
+    'nav.aria_label': 'Simulators',
     'nav.polar': 'Polar',
     'nav.ring':  'Ring',
+
+    // Polar page — meta
+    'polar.page.canvas_aria': 'Polar coordinates simulator — animated circular motion',
 
     // Ring page — meta
     'ring.page.canvas_aria': 'Vertical ring simulator — particle on the inside of a smooth ring',
@@ -124,6 +128,8 @@ export const translations = {
     'ring.energy.total':         'E',
     'ring.energy.drift_warning': 'Numerical drift detected',
     'ring.energy.empty':         'Set v₀ > 0 to see energy partitioning.',
+    'ring.energy.ke_share_aria': 'Kinetic energy share',
+    'ring.energy.pe_share_aria': 'Potential energy share',
 
     // Ring — equations panel
     'ring.equations.heading':         'Equations',
@@ -218,8 +224,12 @@ export const translations = {
     'chart.accel.title':    'Aceleración tangencial vs. tiempo',
 
     // Navigation between simulators
+    'nav.aria_label': 'Simuladores',
     'nav.polar': 'Polar',
     'nav.ring':  'Anillo',
+
+    // Polar page — meta
+    'polar.page.canvas_aria': 'Simulador de coordenadas polares — movimiento circular animado',
 
     // Ring page — meta
     'ring.page.canvas_aria': 'Simulador del anillo vertical — partícula dentro de un anillo liso',
@@ -272,6 +282,8 @@ export const translations = {
     'ring.energy.total':         'E',
     'ring.energy.drift_warning': 'Deriva numérica detectada',
     'ring.energy.empty':         'Ajusta v₀ > 0 para ver la repartición de energía.',
+    'ring.energy.ke_share_aria': 'Proporción de energía cinética',
+    'ring.energy.pe_share_aria': 'Proporción de energía potencial',
 
     // Ring — equations panel
     'ring.equations.heading':         'Ecuaciones',

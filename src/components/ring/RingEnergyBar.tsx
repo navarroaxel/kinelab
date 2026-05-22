@@ -43,12 +43,12 @@ export const RingEnergyBar = memo(function RingEnergyBar({ state, params }: Prop
             <div
               className="h-full bg-amber-400 dark:bg-amber-500"
               style={{ width: `${(keFrac * 100).toFixed(2)}%` }}
-              aria-label="KE share"
+              aria-label={t('ring.energy.ke_share_aria')}
             />
             <div
               className="h-full bg-purple-500 dark:bg-purple-400"
               style={{ width: `${(peFrac * 100).toFixed(2)}%` }}
-              aria-label="PE share"
+              aria-label={t('ring.energy.pe_share_aria')}
             />
           </div>
           <div className="mt-1.5 flex justify-between text-[10px] font-mono text-gray-600 dark:text-gray-400">
