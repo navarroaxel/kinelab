@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react'
 import type { SimulatorParams, VisibilityState } from '@/types/simulator'
+import type { Sample } from '@/lib/oscilloscope'
 
 export function useSimulator() {
   const [params, setParams] = useState<SimulatorParams>({
@@ -31,6 +32,11 @@ export function useSimulator() {
 
   // Accumulated trace points in screen coordinates
   const traceRef = useRef<{ x: number; y: number }[]>([])
+
+  // Elapsed simulation time (s) and rolling sample buffer for oscilloscopes.
+  // Both keep advancing across parameter changes so transients are visible.
+  const tRef = useRef(0)
+  const samplesRef = useRef<Sample[]>([])
 
   // Update a single parameter; clear trace when the pole moves
   const setParam = useCallback(
@@ -78,6 +84,8 @@ export function useSimulator() {
     phiRef,
     omegaRef,
     traceRef,
+    tRef,
+    samplesRef,
     paused,
     togglePause,
   }

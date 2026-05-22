@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, type MutableRefObject } from 'react'
 import { useAnimationLoop } from '@/hooks/useAnimationLoop'
+import type { Sample } from '@/lib/oscilloscope'
 import type { KinematicState, SimulatorParams, VisibilityState } from '@/types/simulator'
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
   phiRef: MutableRefObject<number>
   omegaRef: MutableRefObject<number>
   traceRef: MutableRefObject<{ x: number; y: number }[]>
+  tRef: MutableRefObject<number>
+  samplesRef: MutableRefObject<Sample[]>
   onMetrics: (state: KinematicState) => void
   paused: boolean
 }
@@ -20,6 +23,8 @@ export function SimulatorCanvas({
   phiRef,
   omegaRef,
   traceRef,
+  tRef,
+  samplesRef,
   onMetrics,
   paused,
 }: Props) {
@@ -53,7 +58,7 @@ export function SimulatorCanvas({
     return () => ro.disconnect()
   }, [])
 
-  useAnimationLoop(canvasRef, params, visibility, phiRef, omegaRef, traceRef, onMetrics, paused)
+  useAnimationLoop(canvasRef, params, visibility, phiRef, omegaRef, traceRef, tRef, samplesRef, onMetrics, paused)
 
   return (
     <canvas
