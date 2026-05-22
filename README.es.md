@@ -1,7 +1,5 @@
 # Kinelab — Simulador de coordenadas polares
 
-[English](README.md) | [Español](README.es.md)
-
 Un simulador interactivo en el navegador que muestra, en tiempo real, la relación entre las coordenadas cartesianas y polares de un punto que describe un movimiento circular uniforme.
 
 La idea clave que hace visible: mueve el polo (origen del sistema polar) lejos del centro del círculo y observa cómo la velocidad radial ṙ y la velocidad transversal rθ̇ dejan de ser cero — aunque la trayectoria siga siendo un círculo perfecto.

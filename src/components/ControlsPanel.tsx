@@ -104,12 +104,12 @@ export function ControlsPanel({
       <section>
         <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">{t('controls.section.visibility')}</h3>
         <div className="flex flex-col gap-2">
-          <Toggle id="showVelocity"     label={t('controls.toggle.polar_velocity')} checked={visibility.showVelocity}     onChange={() => onToggle('showVelocity')} />
-          <Toggle id="showCartesian"    label={t('controls.toggle.cartesian')}      checked={visibility.showCartesian}    onChange={() => onToggle('showCartesian')} />
-          <Toggle id="showRVector"      label={t('controls.toggle.r_vector')}       checked={visibility.showRVector}      onChange={() => onToggle('showRVector')} />
-          <Toggle id="showAcceleration" label={t('controls.toggle.polar_accel')}    checked={visibility.showAcceleration} onChange={() => onToggle('showAcceleration')} />
-          <Toggle id="showNormalAccel"  label={t('controls.toggle.normal_accel')}   checked={visibility.showNormalAccel}  onChange={() => onToggle('showNormalAccel')} />
-          <Toggle id="showTrace"        label={t('controls.toggle.trace')}          checked={visibility.showTrace}        onChange={() => onToggle('showTrace')} />
+          <Toggle id="showVelocity" label={t('controls.toggle.polar_velocity')} checked={visibility.showVelocity}     onChange={() => onToggle('showVelocity')} />
+          <Toggle id="showCartesian" label={t('controls.toggle.cartesian')} checked={visibility.showCartesian} onChange={() => onToggle('showCartesian')} />
+          <Toggle id="showRVector" label={t('controls.toggle.r_vector')} checked={visibility.showRVector} onChange={() => onToggle('showRVector')} />
+          <Toggle id="showAcceleration" label={t('controls.toggle.polar_accel')} checked={visibility.showAcceleration} onChange={() => onToggle('showAcceleration')} />
+          <Toggle id="showNormalAccel" label={t('controls.toggle.normal_accel')} checked={visibility.showNormalAccel}  onChange={() => onToggle('showNormalAccel')} />
+          <Toggle id="showTrace" label={t('controls.toggle.trace')} checked={visibility.showTrace} onChange={() => onToggle('showTrace')} />
         </div>
       </section>
 
