@@ -54,12 +54,24 @@ export function useRingAnimationLoop(
     const isDark = matchMedia('(prefers-color-scheme: dark)').matches
     const colors: ColorPalette = isDark ? COLORS_DARK : COLORS
 
+    // Paused: render a single static frame from the frozen state, fan out
+    // ticks once so the energy chart picks up any deps-driven changes
+    // (params, visibility), then exit without arming RAF. The effect re-runs
+    // on any dep change — including paused flipping back to false — so the
+    // loop restarts naturally on resume.
+    if (paused) {
+      const state = computeRingState(thetaRef.current, thetaDotRef.current, params)
+      renderRing(ctx, canvas, state, params, visibility, traceRef.current, colors)
+      for (const listener of tickListenersRef.current) listener()
+      onMetrics(state)
+      return
+    }
+
     function frame(now: number) {
-      const raw =
+      const dt =
         lastTimeRef.current !== null
           ? Math.min((now - lastTimeRef.current) / 1000, 0.05)
           : 0
-      const dt = paused ? 0 : raw
       lastTimeRef.current = now
 
       // RK4 integration of θ̈ = −(g/R)·sin θ
