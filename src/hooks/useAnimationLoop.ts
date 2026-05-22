@@ -10,6 +10,7 @@ export function useAnimationLoop(
   params: SimulatorParams,
   visibility: VisibilityState,
   phiRef: MutableRefObject<number>,
+  omegaRef: MutableRefObject<number>,
   traceRef: MutableRefObject<{ x: number; y: number }[]>,
   onMetrics: (state: KinematicState) => void,
   paused: boolean
@@ -36,10 +37,12 @@ export function useAnimationLoop(
       const dt = paused ? 0 : raw
       lastTimeRef.current = now
 
-      const omega = (params.angularVelocity * Math.PI) / 180
-      phiRef.current += omega * dt
+      // Semi-implicit Euler: update ω from α, then advance φ with the new ω
+      omegaRef.current += params.angularAcceleration * dt
+      const omegaRad = (omegaRef.current * Math.PI) / 180
+      phiRef.current += omegaRad * dt
 
-      const state = computeKinematics(phiRef.current, params)
+      const state = computeKinematics(phiRef.current, omegaRef.current, params)
 
       if (visibility.showTrace) {
         const sc = worldToScreen(state.ptx, state.pty, canvas!)

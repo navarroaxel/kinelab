@@ -8,16 +8,28 @@ import { PolarMetrics } from '@/components/PolarMetrics'
 import { ControlsPanel } from '@/components/ControlsPanel'
 import { VectorLegend } from '@/components/VectorLegend'
 import { EquationsPanel } from '@/components/EquationsPanel'
+import { GitHubLink } from '@/components/GitHubLink'
 import type { KinematicState } from '@/types/simulator'
 
-const INITIAL_PARAMS = { poleX: 0, poleY: 0, angularVelocity: 60, circleRadius: 100 } as const
+const INITIAL_PARAMS = { poleX: 0, poleY: 0, angularVelocity: 60, angularAcceleration: 0, circleRadius: 100 } as const
 
 export default function Home() {
-  const { params, setParam, visibility, toggleVisibility, resetPole, phiRef, traceRef, paused, togglePause } =
-    useSimulator()
+  const {
+    params,
+    setParam,
+    visibility,
+    toggleVisibility,
+    resetPole,
+    resetAlpha,
+    phiRef,
+    omegaRef,
+    traceRef,
+    paused,
+    togglePause,
+  } = useSimulator()
 
   const [metrics, setMetrics] = useState<KinematicState>(() =>
-    computeKinematics(0, INITIAL_PARAMS)
+    computeKinematics(0, INITIAL_PARAMS.angularVelocity, INITIAL_PARAMS)
   )
 
   return (
@@ -26,12 +38,16 @@ export default function Home() {
         params={params}
         visibility={visibility}
         phiRef={phiRef}
+        omegaRef={omegaRef}
         traceRef={traceRef}
         onMetrics={setMetrics}
         paused={paused}
       />
 
       <aside className="flex flex-col gap-3">
+        <div className="flex justify-end">
+          <GitHubLink />
+        </div>
         <PolarMetrics state={metrics} />
         <ControlsPanel
           params={params}
@@ -39,6 +55,7 @@ export default function Home() {
           onSetParam={setParam}
           onToggle={toggleVisibility}
           onResetPole={resetPole}
+          onResetAlpha={resetAlpha}
           paused={paused}
           onTogglePause={togglePause}
         />

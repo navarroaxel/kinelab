@@ -31,6 +31,7 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
               <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">Polar velocity</p>
               <p>ṙ  = R · ω · sin(θ − φ)</p>
               <p>rθ̇ = R · ω · cos(φ − θ)</p>
+              <p className="text-gray-400 dark:text-gray-500">ω̇ = α  (non-uniform when α ≠ 0)</p>
             </>
           )}
 
@@ -39,6 +40,8 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
               <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">Polar acceleration</p>
               <p>aᵣ = r̈ − r · θ̇²</p>
               <p>aₒ = r · θ̈ + 2 · ṙ · θ̇</p>
+              <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">Tangential acceleration</p>
+              <p>aₜ = R · α   (∥ v)</p>
             </>
           )}
 
@@ -53,6 +56,7 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
             Pole at center → ṙ = 0, rθ̇ = R·ω = const.
             Move the pole off-center → both components become non-zero
             even though the path remains a perfect circle.
+            Set α ≠ 0 → ω varies in time and the motion is non-uniform.
           </p>
         </div>
       )}

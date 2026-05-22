@@ -13,10 +13,12 @@ function toDeg(rad: number) {
 
 export const PolarMetrics = memo(function PolarMetrics({ state }: Props) {
   const cards = [
-    { label: 'r  (magnitude)',        value: state.r.toFixed(1),              unit: 'u',   green: false },
-    { label: 'θ  (polar angle)',      value: toDeg(state.theta).toFixed(1),   unit: '°',   green: false },
-    { label: 'ṙ  (radial vel.)',      value: state.rDot.toFixed(1),           unit: 'u/s', green: Math.abs(state.rDot) < 1 },
-    { label: 'rθ̇  (transverse vel.)', value: state.rThetaDot.toFixed(1),      unit: 'u/s', green: false },
+    { label: 'r  (magnitude)',        value: state.r.toFixed(1),              unit: 'u',     green: false },
+    { label: 'θ  (polar angle)',      value: toDeg(state.theta).toFixed(1),   unit: '°',     green: false },
+    { label: 'ṙ  (radial vel.)',      value: state.rDot.toFixed(1),           unit: 'u/s',   green: Math.abs(state.rDot) < 1 },
+    { label: 'rθ̇  (transverse vel.)', value: state.rThetaDot.toFixed(1),      unit: 'u/s',   green: false },
+    { label: 'ω  (current)',          value: state.omega.toFixed(1),          unit: '°/s',   green: Math.abs(state.omega) < 1 },
+    { label: 'aₜ  (tangential)',      value: state.at.toFixed(1),             unit: 'u/s²',  green: Math.abs(state.at) < 0.1 },
   ]
 
   return (

@@ -8,6 +8,7 @@ export function useSimulator() {
     poleX: 0,
     poleY: 0,
     angularVelocity: 60,
+    angularAcceleration: 0,
     circleRadius: 100,
   })
 
@@ -25,6 +26,9 @@ export function useSimulator() {
   // phi is advanced inside the RAF loop — ref avoids re-renders on every frame
   const phiRef = useRef(0)
 
+  // Live ω (deg/s), integrated from α each frame. Slider writes here directly.
+  const omegaRef = useRef(60)
+
   // Accumulated trace points in screen coordinates
   const traceRef = useRef<{ x: number; y: number }[]>([])
 
@@ -34,6 +38,9 @@ export function useSimulator() {
       setParams(prev => ({ ...prev, [key]: value }))
       if (key === 'poleX' || key === 'poleY') {
         traceRef.current = []
+      }
+      if (key === 'angularVelocity') {
+        omegaRef.current = value as number
       }
     },
     []
@@ -54,6 +61,11 @@ export function useSimulator() {
     traceRef.current = []
   }, [])
 
+  // Restore uniform motion (α = 0) while keeping the current ω
+  const resetAlpha = useCallback(() => {
+    setParams(prev => ({ ...prev, angularAcceleration: 0 }))
+  }, [])
+
   const togglePause = useCallback(() => setPaused(p => !p), [])
 
   return {
@@ -62,7 +74,9 @@ export function useSimulator() {
     visibility,
     toggleVisibility,
     resetPole,
+    resetAlpha,
     phiRef,
+    omegaRef,
     traceRef,
     paused,
     togglePause,
