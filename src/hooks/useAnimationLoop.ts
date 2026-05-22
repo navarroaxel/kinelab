@@ -3,6 +3,7 @@
 import { useRef, useEffect, type RefObject, type MutableRefObject } from 'react'
 import { computeKinematics } from '@/lib/kinematics'
 import { renderFrame, worldToScreen, COLORS, COLORS_DARK, type ColorPalette } from '@/lib/drawing'
+import { WINDOW_SECONDS, MAX_SAMPLES, type Sample } from '@/lib/strip-chart'
 import type { SimulatorParams, VisibilityState, KinematicState } from '@/types/simulator'
 
 export function useAnimationLoop(
@@ -12,6 +13,9 @@ export function useAnimationLoop(
   phiRef: MutableRefObject<number>,
   omegaRef: MutableRefObject<number>,
   traceRef: MutableRefObject<{ x: number; y: number }[]>,
+  tRef: MutableRefObject<number>,
+  samplesRef: MutableRefObject<Sample[]>,
+  tickListenersRef: MutableRefObject<Set<() => void>>,
   onMetrics: (state: KinematicState) => void,
   paused: boolean
 ): void {
@@ -50,7 +54,28 @@ export function useAnimationLoop(
         if (traceRef.current.length > 400) traceRef.current.shift()
       }
 
+      // Strip chart sampling: only when time is advancing
+      if (dt > 0) {
+        tRef.current += dt
+        samplesRef.current.push({
+          t: tRef.current,
+          rDot: state.rDot,
+          rThetaDot: state.rThetaDot,
+          at: state.at,
+        })
+        const cutoff = tRef.current - WINDOW_SECONDS
+        while (samplesRef.current.length > 0 && samplesRef.current[0].t < cutoff) {
+          samplesRef.current.shift()
+        }
+        if (samplesRef.current.length > MAX_SAMPLES) samplesRef.current.shift()
+      }
+
       renderFrame(ctx!, canvas!, state, params, visibility, traceRef.current, colors)
+
+      // Drive subscribed renderers (strip charts, etc.) from this single tick.
+      for (const listener of tickListenersRef.current) {
+        listener()
+      }
 
       if (now - lastMetricUpdate.current > 66) {
         onMetrics(state)

@@ -64,6 +64,10 @@ export const translations = {
       'Move the pole off-center → both components become non-zero ' +
       'even though the path remains a perfect circle. ' +
       'Set α ≠ 0 → ω varies in time and the motion is non-uniform.',
+
+    // Strip chart panels
+    'chart.velocity.title': 'Polar velocity vs. time',
+    'chart.accel.title':    'Tangential acceleration vs. time',
   },
   es: {
     // GitHubLink
@@ -126,6 +130,10 @@ export const translations = {
       'Mueve el polo fuera del centro → ambas componentes se vuelven ' +
       'distintas de cero aunque la trayectoria sigue siendo un círculo perfecto. ' +
       'Si α ≠ 0 → ω varía en el tiempo y el movimiento no es uniforme.',
+
+    // Strip charts
+    'chart.velocity.title': 'Velocidad polar vs. tiempo',
+    'chart.accel.title':    'Aceleración tangencial vs. tiempo',
   },
 } as const
 

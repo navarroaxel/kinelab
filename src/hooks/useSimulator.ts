@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react'
 import type { SimulatorParams, VisibilityState } from '@/types/simulator'
+import type { Sample } from '@/lib/strip-chart'
 
 export function useSimulator() {
   const [params, setParams] = useState<SimulatorParams>({
@@ -31,6 +32,19 @@ export function useSimulator() {
 
   // Accumulated trace points in screen coordinates
   const traceRef = useRef<{ x: number; y: number }[]>([])
+
+  // Elapsed simulation time (s) and rolling sample buffer for strip charts.
+  // Both keep advancing across parameter changes so transients are visible.
+  const tRef = useRef(0)
+  const samplesRef = useRef<Sample[]>([])
+
+  // Single shared RAF tick: the main animation loop invokes every listener
+  // each frame, so strip charts and other consumers don't each spawn their own.
+  const tickListenersRef = useRef<Set<() => void>>(new Set())
+  const subscribeTick = useCallback((fn: () => void) => {
+    tickListenersRef.current.add(fn)
+    return () => { tickListenersRef.current.delete(fn) }
+  }, [])
 
   // Update a single parameter; clear trace when the pole moves
   const setParam = useCallback(
@@ -78,6 +92,10 @@ export function useSimulator() {
     phiRef,
     omegaRef,
     traceRef,
+    tRef,
+    samplesRef,
+    tickListenersRef,
+    subscribeTick,
     paused,
     togglePause,
   }
