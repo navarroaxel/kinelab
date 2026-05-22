@@ -139,6 +139,12 @@ export const translations = {
     'ring.equations.section.energy':  'Energy conservation',
     'ring.equations.note.pendulum':   'Same form as a pendulum — nonlinear, solved with RK4.',
     'ring.equations.note.contact':    'Contact is maintained while N ≥ 0.',
+    'ring.equations.note.energy':
+      'The normal force N is always perpendicular to the velocity, so it does no work. ' +
+      'Gravity is the only force doing work, and it is conservative — therefore the total ' +
+      'mechanical energy E = KE + PE is conserved. Kinetic energy turns into potential energy ' +
+      'on the way up and back into kinetic energy on the way down. Any drift you see in E ' +
+      'comes from the numerical integrator, not from the physics.',
 
     // Ring — energy strip chart
     'ring.chart.energy.title': 'Energy partitioning vs. time',
@@ -293,6 +299,12 @@ export const translations = {
     'ring.equations.section.energy':  'Conservación de la energía',
     'ring.equations.note.pendulum':   'Misma forma que un péndulo — no lineal, resuelta con RK4.',
     'ring.equations.note.contact':    'El contacto se mantiene mientras N ≥ 0.',
+    'ring.equations.note.energy':
+      'La fuerza normal N es siempre perpendicular a la velocidad, por lo que no realiza trabajo. ' +
+      'La gravedad es la única fuerza que hace trabajo, y es conservativa — por lo tanto la energía ' +
+      'mecánica total E = EC + EP se conserva. La energía cinética se transforma en potencial al ' +
+      'subir y vuelve a ser cinética al bajar. Cualquier deriva visible en E proviene del integrador ' +
+      'numérico, no de la física.',
 
     // Ring — energy strip chart
     'ring.chart.energy.title': 'Reparto de energía vs. tiempo',
