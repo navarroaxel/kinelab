@@ -75,11 +75,12 @@ export function useBarAnimationLoop(
       if (dt > 0) tRef.current += dt
       let state = computeBarState(tRef.current, params)
 
-      // Freeze at the ejection moment: roll back the just-applied dt and
-      // re-evaluate, then keep tRef pinned to this value.
+      // Freeze at the ejection moment: roll back the just-applied dt so the
+      // particle stays at the last valid in-bar position, but keep ejected=true
+      // so the EJECTED overlay renders.
       if (state.ejected && dt > 0) {
         tRef.current -= dt
-        state = computeBarState(tRef.current, params)
+        state = { ...computeBarState(tRef.current, params), ejected: true }
       }
 
       // Lab-frame trace
@@ -106,7 +107,9 @@ export function useBarAnimationLoop(
         lastMetricUpdate.current = now
       }
 
-      rafIdRef.current = requestAnimationFrame(frame)
+      if (!state.ejected) {
+        rafIdRef.current = requestAnimationFrame(frame)
+      }
     }
 
     rafIdRef.current = requestAnimationFrame(frame)
