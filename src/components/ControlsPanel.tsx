@@ -8,6 +8,7 @@ interface Props {
   onSetParam: <K extends keyof SimulatorParams>(key: K, value: SimulatorParams[K]) => void
   onToggle: (key: keyof VisibilityState) => void
   onResetPole: () => void
+  onResetAlpha: () => void
   paused: boolean
   onTogglePause: () => void
 }
@@ -71,6 +72,7 @@ export function ControlsPanel({
   onSetParam,
   onToggle,
   onResetPole,
+  onResetAlpha,
   paused,
   onTogglePause,
 }: Props) {
@@ -89,7 +91,10 @@ export function ControlsPanel({
       {/* Dynamics */}
       <section>
         <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Dynamics</h3>
-        <Slider label="ω (°/s)" id="angularVelocity" min={0} max={200} step={5} value={params.angularVelocity} onChange={v => onSetParam('angularVelocity', v)} />
+        <div className="flex flex-col gap-3">
+          <Slider label="ω (°/s)"  id="angularVelocity"     min={-200} max={200} step={5} value={params.angularVelocity}     onChange={v => onSetParam('angularVelocity', v)} />
+          <Slider label="α (°/s²)" id="angularAcceleration" min={-100} max={100} step={5} value={params.angularAcceleration} onChange={v => onSetParam('angularAcceleration', v)} />
+        </div>
       </section>
 
       {/* Visibility */}
@@ -112,6 +117,12 @@ export function ControlsPanel({
           className="flex-1 text-xs px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
         >
           Pole to center
+        </button>
+        <button
+          onClick={onResetAlpha}
+          className="flex-1 text-xs px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
+        >
+          Reset α
         </button>
         <button
           onClick={onTogglePause}

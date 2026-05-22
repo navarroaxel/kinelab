@@ -434,7 +434,7 @@ export function renderFrame(
 
   // ── Normal (centripetal) acceleration vector ──────────────────────────────
   if (visibility.showNormalAccel) {
-    const omega = (params.angularVelocity * Math.PI) / 180
+    const omega = (state.omega * Math.PI) / 180
     const aMag = params.circleRadius * omega ** 2 // |aₙ| = R·ω²
     const ascale = accScale(params.circleRadius)
     // Direction: P → O (circle centre) in screen space
