@@ -1,6 +1,7 @@
 'use client'
 
 import { memo } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { KinematicState } from '@/types/simulator'
 
 interface Props {
@@ -12,19 +13,21 @@ function toDeg(rad: number) {
 }
 
 export const PolarMetrics = memo(function PolarMetrics({ state }: Props) {
+  const { t } = useLanguage()
+
   const cards = [
-    { label: 'r  (magnitude)',        value: state.r.toFixed(1),              unit: 'u',     green: false },
-    { label: 'θ  (polar angle)',      value: toDeg(state.theta).toFixed(1),   unit: '°',     green: false },
-    { label: 'ṙ  (radial vel.)',      value: state.rDot.toFixed(1),           unit: 'u/s',   green: Math.abs(state.rDot) < 1 },
-    { label: 'rθ̇  (transverse vel.)', value: state.rThetaDot.toFixed(1),      unit: 'u/s',   green: false },
-    { label: 'ω  (current)',          value: state.omega.toFixed(1),          unit: '°/s',   green: Math.abs(state.omega) < 1 },
-    { label: 'aₜ  (tangential)',      value: state.at.toFixed(1),             unit: 'u/s²',  green: Math.abs(state.at) < 0.1 },
+    { label: t('metrics.r'),           value: state.r.toFixed(1),              unit: 'u',     green: false },
+    { label: t('metrics.theta'),       value: toDeg(state.theta).toFixed(1),   unit: '°',     green: false },
+    { label: t('metrics.r_dot'),       value: state.rDot.toFixed(1),           unit: 'u/s',   green: Math.abs(state.rDot) < 1 },
+    { label: t('metrics.r_theta_dot'), value: state.rThetaDot.toFixed(1),      unit: 'u/s',   green: false },
+    { label: t('metrics.omega'),       value: state.omega.toFixed(1),          unit: '°/s',   green: Math.abs(state.omega) < 1 },
+    { label: t('metrics.at'),          value: state.at.toFixed(1),             unit: 'u/s²',  green: Math.abs(state.at) < 0.1 },
   ]
 
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-900">
       <h2 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
-        Live Metrics
+        {t('metrics.heading')}
       </h2>
       <div className="grid grid-cols-2 gap-2">
         {cards.map(card => (
