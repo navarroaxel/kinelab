@@ -60,6 +60,9 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
           <p className="mt-2 text-[10px] font-sans text-gray-500 dark:text-gray-500 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
             {t('equations.footer')}
           </p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-500 leading-relaxed">
+            {t('units.note')}
+          </p>
         </div>
       )}
     </div>

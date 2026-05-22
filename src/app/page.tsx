@@ -11,6 +11,8 @@ import { VectorLegend } from '@/components/VectorLegend'
 import { EquationsPanel } from '@/components/EquationsPanel'
 import { GitHubLink } from '@/components/GitHubLink'
 import { LanguageToggle } from '@/components/LanguageToggle'
+import { SimulatorNav } from '@/components/SimulatorNav'
+import { ProjectCredits } from '@/components/ProjectCredits'
 import { StripChart, type StripChartSeries } from '@/components/StripChart'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import type { KinematicState } from '@/types/simulator'
@@ -86,6 +88,7 @@ export default function Home() {
 
         <aside className="flex flex-col gap-3">
           <div className="flex justify-end gap-2">
+            <SimulatorNav />
             <LanguageToggle />
             <GitHubLink />
           </div>
@@ -102,6 +105,7 @@ export default function Home() {
           />
           <VectorLegend />
           <EquationsPanel visibility={visibility} />
+          <ProjectCredits />
         </aside>
       </main>
     </LanguageProvider>
