@@ -29,7 +29,7 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
           {visibility.showVelocity && (
             <>
               <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">Polar velocity</p>
-              <p>ṙ  = R · ω · sin(φ − θ)</p>
+              <p>ṙ  = R · ω · sin(θ − φ)</p>
               <p>rθ̇ = R · ω · cos(φ − θ)</p>
             </>
           )}
