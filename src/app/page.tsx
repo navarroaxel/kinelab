@@ -21,7 +21,7 @@ export default function Home() {
   )
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-5xl mx-auto min-h-screen items-start">
+    <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-7xl mx-auto min-h-screen items-start">
       <SimulatorCanvas
         params={params}
         visibility={visibility}

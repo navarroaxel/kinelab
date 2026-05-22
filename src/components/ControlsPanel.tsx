@@ -1,0 +1,129 @@
+'use client'
+
+import type { SimulatorParams, VisibilityState } from '@/types/simulator'
+
+interface Props {
+  params: SimulatorParams
+  visibility: VisibilityState
+  onSetParam: <K extends keyof SimulatorParams>(key: K, value: SimulatorParams[K]) => void
+  onToggle: (key: keyof VisibilityState) => void
+  onResetPole: () => void
+  paused: boolean
+  onTogglePause: () => void
+}
+
+interface SliderProps {
+  label: string
+  id: string
+  min: number
+  max: number
+  step: number
+  value: number
+  onChange: (value: number) => void
+}
+
+function Slider({ label, id, min, max, step, value, onChange }: SliderProps) {
+  return (
+    <div className="flex flex-col gap-1">
+      <label htmlFor={id} className="flex justify-between text-xs text-gray-600 dark:text-gray-400">
+        <span>{label}</span>
+        <span className="font-mono text-gray-400">{value}</span>
+      </label>
+      <input
+        type="range"
+        id={id}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={e => onChange(Number(e.target.value))}
+        className="w-full accent-blue-500"
+      />
+    </div>
+  )
+}
+
+interface ToggleProps {
+  id: string
+  label: string
+  checked: boolean
+  onChange: () => void
+}
+
+function Toggle({ id, label, checked, onChange }: ToggleProps) {
+  return (
+    <label htmlFor={id} className="flex items-center gap-2 cursor-pointer">
+      <input
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={onChange}
+        className="w-3.5 h-3.5 accent-blue-500"
+      />
+      <span className="text-xs text-gray-700 dark:text-gray-300">{label}</span>
+    </label>
+  )
+}
+
+export function ControlsPanel({
+  params,
+  visibility,
+  onSetParam,
+  onToggle,
+  onResetPole,
+  paused,
+  onTogglePause,
+}: Props) {
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 flex flex-col gap-4">
+      {/* Geometry */}
+      <section>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Geometry</h3>
+        <div className="flex flex-col gap-3">
+          <Slider label="Pole X"  id="poleX"        min={-120} max={120} step={1}  value={params.poleX}        onChange={v => onSetParam('poleX', v)} />
+          <Slider label="Pole Y"  id="poleY"        min={-120} max={120} step={1}  value={params.poleY}        onChange={v => onSetParam('poleY', v)} />
+          <Slider label="Radius"  id="circleRadius" min={40}   max={140} step={5}  value={params.circleRadius} onChange={v => onSetParam('circleRadius', v)} />
+        </div>
+      </section>
+
+      {/* Dynamics */}
+      <section>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Dynamics</h3>
+        <Slider label="ω (°/s)" id="angularVelocity" min={0} max={200} step={5} value={params.angularVelocity} onChange={v => onSetParam('angularVelocity', v)} />
+      </section>
+
+      {/* Visibility */}
+      <section>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Visibility</h3>
+        <div className="flex flex-col gap-2">
+          <Toggle id="showVelocity"     label="Polar velocity (ṙ, rθ̇)"       checked={visibility.showVelocity}     onChange={() => onToggle('showVelocity')} />
+          <Toggle id="showCartesian"    label="Cartesian coords (x, y)"       checked={visibility.showCartesian}    onChange={() => onToggle('showCartesian')} />
+          <Toggle id="showRVector"      label="Vector r"                      checked={visibility.showRVector}      onChange={() => onToggle('showRVector')} />
+          <Toggle id="showAcceleration" label="Polar acceleration (aᵣ, aₒ)"  checked={visibility.showAcceleration} onChange={() => onToggle('showAcceleration')} />
+          <Toggle id="showNormalAccel"  label="Normal acceleration (aₙ)"     checked={visibility.showNormalAccel}  onChange={() => onToggle('showNormalAccel')} />
+          <Toggle id="showTrace"        label="Path trace"                    checked={visibility.showTrace}        onChange={() => onToggle('showTrace')} />
+        </div>
+      </section>
+
+      {/* Actions */}
+      <div className="flex gap-2">
+        <button
+          onClick={onResetPole}
+          className="flex-1 text-xs px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
+        >
+          Pole to center
+        </button>
+        <button
+          onClick={onTogglePause}
+          className={`flex-1 text-xs px-2 py-1.5 rounded-lg border transition-colors ${
+            paused
+              ? 'border-blue-300 bg-blue-50 text-blue-700 dark:border-blue-700 dark:bg-blue-950 dark:text-blue-300'
+              : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+          }`}
+        >
+          {paused ? 'Resume' : 'Pause'}
+        </button>
+      </div>
+    </div>
+  )
+}

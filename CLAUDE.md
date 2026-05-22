@@ -66,7 +66,7 @@ ptx = R·cos(φ),  pty = R·sin(φ)          point position on circle
 dx  = ptx − poleX,  dy = pty − poleY
 r   = √(dx² + dy²),  θ = atan2(dy, dx)
 
-ṙ    = vx·cos θ + vy·sin θ  =  R·ω·sin(φ − θ)
+ṙ    = vx·cos θ + vy·sin θ  =  R·ω·sin(θ − φ)
 rθ̇   = −vx·sin θ + vy·cos θ  =  R·ω·cos(φ − θ)
 ```
 
