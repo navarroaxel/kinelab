@@ -1,11 +1,18 @@
+'use client'
+
+import { useLanguage } from '@/contexts/LanguageContext'
+
 export function GitHubLink() {
+  const { t } = useLanguage()
+  const label = t('github.aria')
+
   return (
     <a
       href="https://github.com/navarroaxel/kinelab"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="View source on GitHub"
-      title="View source on GitHub"
+      aria-label={label}
+      title={label}
       className="inline-flex items-center gap-1.5 rounded-md border border-blue-300 bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
     >
       <svg aria-hidden viewBox="0 0 16 16" fill="currentColor" className="size-3.5">

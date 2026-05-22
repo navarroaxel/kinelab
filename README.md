@@ -1,5 +1,7 @@
 # Kinelab — Polar Coordinates Simulator
 
+[English](README.md) | [Español](README.es.md)
+
 An interactive browser simulator that shows, in real time, the relationship between Cartesian and polar coordinates for a point undergoing uniform circular motion.
 
 The key insight it makes visible: move the pole (origin of the polar frame) away from the circle centre and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.

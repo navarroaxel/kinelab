@@ -1,5 +1,6 @@
 'use client'
 
+import { useLanguage } from '@/contexts/LanguageContext'
 import type { SimulatorParams, VisibilityState } from '@/types/simulator'
 
 interface Props {
@@ -76,21 +77,23 @@ export function ControlsPanel({
   paused,
   onTogglePause,
 }: Props) {
+  const { t } = useLanguage()
+
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-3 bg-white dark:bg-gray-900 flex flex-col gap-4">
       {/* Geometry */}
       <section>
-        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Geometry</h3>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">{t('controls.section.geometry')}</h3>
         <div className="flex flex-col gap-3">
-          <Slider label="Pole X"  id="poleX"        min={-120} max={120} step={1}  value={params.poleX}        onChange={v => onSetParam('poleX', v)} />
-          <Slider label="Pole Y"  id="poleY"        min={-120} max={120} step={1}  value={params.poleY}        onChange={v => onSetParam('poleY', v)} />
-          <Slider label="Radius"  id="circleRadius" min={40}   max={140} step={5}  value={params.circleRadius} onChange={v => onSetParam('circleRadius', v)} />
+          <Slider label={t('controls.slider.pole_x')} id="poleX"        min={-120} max={120} step={1}  value={params.poleX}        onChange={v => onSetParam('poleX', v)} />
+          <Slider label={t('controls.slider.pole_y')} id="poleY"        min={-120} max={120} step={1}  value={params.poleY}        onChange={v => onSetParam('poleY', v)} />
+          <Slider label={t('controls.slider.radius')} id="circleRadius" min={40}   max={140} step={5}  value={params.circleRadius} onChange={v => onSetParam('circleRadius', v)} />
         </div>
       </section>
 
       {/* Dynamics */}
       <section>
-        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Dynamics</h3>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">{t('controls.section.dynamics')}</h3>
         <div className="flex flex-col gap-3">
           <Slider label="ω (°/s)"  id="angularVelocity"     min={-200} max={200} step={5} value={params.angularVelocity}     onChange={v => onSetParam('angularVelocity', v)} />
           <Slider label="α (°/s²)" id="angularAcceleration" min={-100} max={100} step={5} value={params.angularAcceleration} onChange={v => onSetParam('angularAcceleration', v)} />
@@ -99,14 +102,14 @@ export function ControlsPanel({
 
       {/* Visibility */}
       <section>
-        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">Visibility</h3>
+        <h3 className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">{t('controls.section.visibility')}</h3>
         <div className="flex flex-col gap-2">
-          <Toggle id="showVelocity"     label="Polar velocity (ṙ, rθ̇)"       checked={visibility.showVelocity}     onChange={() => onToggle('showVelocity')} />
-          <Toggle id="showCartesian"    label="Cartesian coords (x, y)"       checked={visibility.showCartesian}    onChange={() => onToggle('showCartesian')} />
-          <Toggle id="showRVector"      label="Vector r"                      checked={visibility.showRVector}      onChange={() => onToggle('showRVector')} />
-          <Toggle id="showAcceleration" label="Polar acceleration (aᵣ, aₒ)"  checked={visibility.showAcceleration} onChange={() => onToggle('showAcceleration')} />
-          <Toggle id="showNormalAccel"  label="Normal acceleration (aₙ)"     checked={visibility.showNormalAccel}  onChange={() => onToggle('showNormalAccel')} />
-          <Toggle id="showTrace"        label="Path trace"                    checked={visibility.showTrace}        onChange={() => onToggle('showTrace')} />
+          <Toggle id="showVelocity"     label={t('controls.toggle.polar_velocity')} checked={visibility.showVelocity}     onChange={() => onToggle('showVelocity')} />
+          <Toggle id="showCartesian"    label={t('controls.toggle.cartesian')}      checked={visibility.showCartesian}    onChange={() => onToggle('showCartesian')} />
+          <Toggle id="showRVector"      label={t('controls.toggle.r_vector')}       checked={visibility.showRVector}      onChange={() => onToggle('showRVector')} />
+          <Toggle id="showAcceleration" label={t('controls.toggle.polar_accel')}    checked={visibility.showAcceleration} onChange={() => onToggle('showAcceleration')} />
+          <Toggle id="showNormalAccel"  label={t('controls.toggle.normal_accel')}   checked={visibility.showNormalAccel}  onChange={() => onToggle('showNormalAccel')} />
+          <Toggle id="showTrace"        label={t('controls.toggle.trace')}          checked={visibility.showTrace}        onChange={() => onToggle('showTrace')} />
         </div>
       </section>
 
@@ -116,13 +119,13 @@ export function ControlsPanel({
           onClick={onResetPole}
           className="flex-1 text-xs px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
         >
-          Pole to center
+          {t('controls.btn.pole_center')}
         </button>
         <button
           onClick={onResetAlpha}
           className="flex-1 text-xs px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
         >
-          Reset α
+          {t('controls.btn.reset_alpha')}
         </button>
         <button
           onClick={onTogglePause}
@@ -132,7 +135,7 @@ export function ControlsPanel({
               : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
           }`}
         >
-          {paused ? 'Resume' : 'Pause'}
+          {paused ? t('controls.btn.resume') : t('controls.btn.pause')}
         </button>
       </div>
     </div>
