@@ -5,15 +5,15 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { COLORS, COLORS_DARK, type ColorPalette } from '@/lib/drawing'
 import type { TranslationKey } from '@/lib/i18n'
 import {
-  drawScopeFrame,
-  drawScopeSeries,
+  drawChartFrame,
+  drawChartSeries,
   maxAbsValue,
   updateYMax,
   type Sample,
   type SampleField,
-} from '@/lib/oscilloscope'
+} from '@/lib/strip-chart'
 
-export interface OscilloscopeSeries {
+export interface StripChartSeries {
   key: SampleField
   color: string
   label: string
@@ -23,12 +23,12 @@ interface Props {
   titleKey: TranslationKey
   yUnit: string
   minScale: number
-  series: readonly OscilloscopeSeries[]
+  series: readonly StripChartSeries[]
   samplesRef: MutableRefObject<Sample[]>
   tRef: MutableRefObject<number>
 }
 
-export const Oscilloscope = memo(function Oscilloscope({
+export const StripChart = memo(function StripChart({
   titleKey,
   yUnit,
   minScale,
@@ -95,9 +95,9 @@ export const Oscilloscope = memo(function Oscilloscope({
       const yMax = yMaxRef.current
 
       ctx!.clearRect(0, 0, W, H)
-      drawScopeFrame(ctx!, W, H, tNow, yMax, yUnit, colors)
+      drawChartFrame(ctx!, W, H, tNow, yMax, yUnit, colors)
       for (const s of series) {
-        drawScopeSeries(ctx!, samples, s.key, s.color, tNow, yMax, W, H)
+        drawChartSeries(ctx!, samples, s.key, s.color, tNow, yMax, W, H)
       }
 
       rafIdRef.current = requestAnimationFrame(frame)

@@ -3,7 +3,7 @@
 import { useRef, useEffect, type RefObject, type MutableRefObject } from 'react'
 import { computeKinematics } from '@/lib/kinematics'
 import { renderFrame, worldToScreen, COLORS, COLORS_DARK, type ColorPalette } from '@/lib/drawing'
-import { WINDOW_SECONDS, MAX_SAMPLES, type Sample } from '@/lib/oscilloscope'
+import { WINDOW_SECONDS, MAX_SAMPLES, type Sample } from '@/lib/strip-chart'
 import type { SimulatorParams, VisibilityState, KinematicState } from '@/types/simulator'
 
 export function useAnimationLoop(
@@ -53,7 +53,7 @@ export function useAnimationLoop(
         if (traceRef.current.length > 400) traceRef.current.shift()
       }
 
-      // Oscilloscope sampling: only when time is advancing
+      // Strip chart sampling: only when time is advancing
       if (dt > 0) {
         tRef.current += dt
         samplesRef.current.push({

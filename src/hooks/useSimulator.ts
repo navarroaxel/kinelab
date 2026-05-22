@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react'
 import type { SimulatorParams, VisibilityState } from '@/types/simulator'
-import type { Sample } from '@/lib/oscilloscope'
+import type { Sample } from '@/lib/strip-chart'
 
 export function useSimulator() {
   const [params, setParams] = useState<SimulatorParams>({
@@ -33,7 +33,7 @@ export function useSimulator() {
   // Accumulated trace points in screen coordinates
   const traceRef = useRef<{ x: number; y: number }[]>([])
 
-  // Elapsed simulation time (s) and rolling sample buffer for oscilloscopes.
+  // Elapsed simulation time (s) and rolling sample buffer for strip charts.
   // Both keep advancing across parameter changes so transients are visible.
   const tRef = useRef(0)
   const samplesRef = useRef<Sample[]>([])

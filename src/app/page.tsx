@@ -11,17 +11,17 @@ import { VectorLegend } from '@/components/VectorLegend'
 import { EquationsPanel } from '@/components/EquationsPanel'
 import { GitHubLink } from '@/components/GitHubLink'
 import { LanguageToggle } from '@/components/LanguageToggle'
-import { Oscilloscope, type OscilloscopeSeries } from '@/components/Oscilloscope'
+import { StripChart, type StripChartSeries } from '@/components/StripChart'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import type { KinematicState } from '@/types/simulator'
 
 const INITIAL_PARAMS = { poleX: 0, poleY: 0, angularVelocity: 60, angularAcceleration: 0, circleRadius: 100 } as const
 
-const VELOCITY_SERIES: readonly OscilloscopeSeries[] = [
+const VELOCITY_SERIES: readonly StripChartSeries[] = [
   { key: 'rDot',      color: COLORS.radialVelocity,     label: 'ṙ' },
   { key: 'rThetaDot', color: COLORS.transverseVelocity, label: 'rθ̇' },
 ]
-const ACCEL_SERIES: readonly OscilloscopeSeries[] = [
+const ACCEL_SERIES: readonly StripChartSeries[] = [
   { key: 'at', color: COLORS.acceleration, label: 'aₜ' },
 ]
 
@@ -61,16 +61,16 @@ export default function Home() {
             onMetrics={setMetrics}
             paused={paused}
           />
-          <Oscilloscope
-            titleKey="scope.velocity.title"
+          <StripChart
+            titleKey="chart.velocity.title"
             yUnit="u/s"
             minScale={20}
             series={VELOCITY_SERIES}
             samplesRef={samplesRef}
             tRef={tRef}
           />
-          <Oscilloscope
-            titleKey="scope.accel.title"
+          <StripChart
+            titleKey="chart.accel.title"
             yUnit="u/s²"
             minScale={2}
             series={ACCEL_SERIES}

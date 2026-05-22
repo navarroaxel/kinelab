@@ -65,9 +65,9 @@ export const translations = {
       'even though the path remains a perfect circle. ' +
       'Set α ≠ 0 → ω varies in time and the motion is non-uniform.',
 
-    // Oscilloscope panels
-    'scope.velocity.title': 'Polar velocity vs. time',
-    'scope.accel.title':    'Tangential acceleration vs. time',
+    // Strip chart panels
+    'chart.velocity.title': 'Polar velocity vs. time',
+    'chart.accel.title':    'Tangential acceleration vs. time',
   },
   es: {
     // GitHubLink
@@ -131,9 +131,9 @@ export const translations = {
       'distintas de cero aunque la trayectoria sigue siendo un círculo perfecto. ' +
       'Si α ≠ 0 → ω varía en el tiempo y el movimiento no es uniforme.',
 
-    // Osciloscopios
-    'scope.velocity.title': 'Velocidad polar vs. tiempo',
-    'scope.accel.title':    'Aceleración tangencial vs. tiempo',
+    // Strip charts
+    'chart.velocity.title': 'Velocidad polar vs. tiempo',
+    'chart.accel.title':    'Aceleración tangencial vs. tiempo',
   },
 } as const
 

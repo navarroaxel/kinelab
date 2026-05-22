@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, type MutableRefObject } from 'react'
 import { useAnimationLoop } from '@/hooks/useAnimationLoop'
-import type { Sample } from '@/lib/oscilloscope'
+import type { Sample } from '@/lib/strip-chart'
 import type { KinematicState, SimulatorParams, VisibilityState } from '@/types/simulator'
 
 interface Props {

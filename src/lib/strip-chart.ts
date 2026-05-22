@@ -44,7 +44,7 @@ function project(
 }
 
 /** Draw axes, grid lines (every 1s on X, ±yMax/2 on Y), and Y/X tick labels. */
-export function drawScopeFrame(
+export function drawChartFrame(
   ctx: CanvasRenderingContext2D,
   W: number, H: number,
   tNow: number, yMax: number,
@@ -111,7 +111,7 @@ export function drawScopeFrame(
  * Draw one series: filled area toward y=0 (single closed polygon — lobes
  * above and below the axis are filled naturally), then stroke the curve.
  */
-export function drawScopeSeries(
+export function drawChartSeries(
   ctx: CanvasRenderingContext2D,
   samples: Sample[],
   field: SampleField,
