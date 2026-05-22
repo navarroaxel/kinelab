@@ -1,29 +1,33 @@
 'use client'
 
 import { useRef, useEffect, type MutableRefObject } from 'react'
-import { useAnimationLoop } from '@/hooks/useAnimationLoop'
+import { useRingAnimationLoop } from '@/hooks/useRingAnimationLoop'
 import { useLanguage } from '@/contexts/LanguageContext'
-import type { Sample } from '@/lib/strip-chart'
-import type { KinematicState, SimulatorParams, VisibilityState } from '@/types/simulator'
+import type {
+  RingKinematicState,
+  RingParams,
+  RingSample,
+  RingVisibility,
+} from '@/types/simulator'
 
 interface Props {
-  params: SimulatorParams
-  visibility: VisibilityState
-  phiRef: MutableRefObject<number>
-  omegaRef: MutableRefObject<number>
+  params: RingParams
+  visibility: RingVisibility
+  thetaRef: MutableRefObject<number>
+  thetaDotRef: MutableRefObject<number>
   traceRef: MutableRefObject<{ x: number; y: number }[]>
   tRef: MutableRefObject<number>
-  samplesRef: MutableRefObject<Sample[]>
+  samplesRef: MutableRefObject<RingSample[]>
   tickListenersRef: MutableRefObject<Set<() => void>>
-  onMetrics: (state: KinematicState) => void
+  onMetrics: (state: RingKinematicState) => void
   paused: boolean
 }
 
-export function SimulatorCanvas({
+export function RingCanvas({
   params,
   visibility,
-  phiRef,
-  omegaRef,
+  thetaRef,
+  thetaDotRef,
   traceRef,
   tRef,
   samplesRef,
@@ -34,7 +38,7 @@ export function SimulatorCanvas({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { t } = useLanguage()
 
-  // Apply DPR scaling once on mount
+  // Initial DPR scaling
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -45,7 +49,7 @@ export function SimulatorCanvas({
     canvas.getContext('2d')?.scale(dpr, dpr)
   }, [])
 
-  // Re-scale whenever the container resizes
+  // Rescale on layout changes
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -62,14 +66,26 @@ export function SimulatorCanvas({
     return () => ro.disconnect()
   }, [])
 
-  useAnimationLoop(canvasRef, params, visibility, phiRef, omegaRef, traceRef, tRef, samplesRef, tickListenersRef, onMetrics, paused)
+  useRingAnimationLoop(
+    canvasRef,
+    params,
+    visibility,
+    thetaRef,
+    thetaDotRef,
+    traceRef,
+    tRef,
+    samplesRef,
+    tickListenersRef,
+    onMetrics,
+    paused,
+  )
 
   return (
     <canvas
       ref={canvasRef}
       style={{ width: '100%', aspectRatio: '4 / 3' }}
       className="rounded-xl border border-gray-200 dark:border-gray-700"
-      aria-label={t('polar.page.canvas_aria')}
+      aria-label={t('ring.page.canvas_aria')}
     />
   )
 }

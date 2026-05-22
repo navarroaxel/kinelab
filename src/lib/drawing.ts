@@ -16,6 +16,15 @@ export interface ColorPalette {
   trajectory: string
   grid: string
   axes: string
+  // Ring simulator
+  weight: string
+  normalForce: string
+  velocity: string
+  energyKE: string
+  energyPE: string
+  ring: string
+  contactLost: string
+  criticalSpeed: string
 }
 
 export const COLORS: ColorPalette = {
@@ -30,6 +39,15 @@ export const COLORS: ColorPalette = {
   trajectory:         'rgba(0,0,0,0.12)',
   grid:               'rgba(0,0,0,0.04)',
   axes:               'rgba(0,0,0,0.25)',
+  // Ring simulator
+  weight:             '#E8593C',
+  normalForce:        '#3B8BD4',
+  velocity:           '#1D9E75',
+  energyKE:           '#F5A623',
+  energyPE:           '#9B59B6',
+  ring:               'rgba(0,0,0,0.25)',
+  contactLost:        'rgba(232,89,60,0.15)',
+  criticalSpeed:      '#F5A623',
 }
 
 export const COLORS_DARK: ColorPalette = {
@@ -44,6 +62,15 @@ export const COLORS_DARK: ColorPalette = {
   trajectory:         'rgba(255,255,255,0.15)',
   grid:               'rgba(255,255,255,0.05)',
   axes:               'rgba(255,255,255,0.30)',
+  // Ring simulator
+  weight:             '#F0997B',
+  normalForce:        '#85B7EB',
+  velocity:           '#5DCAA5',
+  energyKE:           '#FCD34D',
+  energyPE:           '#C7A6F0',
+  ring:               'rgba(255,255,255,0.30)',
+  contactLost:        'rgba(240,153,123,0.20)',
+  criticalSpeed:      '#FCD34D',
 }
 
 // ---------------------------------------------------------------------------
@@ -460,4 +487,139 @@ export function renderFrame(
 
   drawDot(ctx, pt.x, pt.y, 7, colors.point, '#fff')
   drawLabel(ctx, 'P', pt.x + 10, pt.y - 10, colors.point)
+}
+
+// ---------------------------------------------------------------------------
+// Ring simulator drawing helpers
+// ---------------------------------------------------------------------------
+
+/** Scale force vectors (weight, normal) relative to gravity so they stay readable. */
+export const forceScale = (g: number) => 60 / Math.max(g, 1)
+
+/** Draws the ring as a solid circle outline. */
+export function drawRing(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  radius: number,
+  color: string,
+): void {
+  ctx.save()
+  ctx.strokeStyle = color
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.arc(cx, cy, radius, 0, 2 * Math.PI)
+  ctx.stroke()
+  ctx.restore()
+}
+
+/** Draws the weight vector (mg) as a downward arrow from the particle. */
+export function drawWeightVector(
+  ctx: CanvasRenderingContext2D,
+  px: number,
+  py: number,
+  g: number,
+  scale: number,
+  color: string,
+): void {
+  // Screen Y down ⇒ "down" is +y. Length proportional to g.
+  const length = g * scale
+  drawArrow(ctx, px, py, px, py + length, color, 2)
+  drawLabel(ctx, 'mg', px + 8, py + length + 8, color)
+}
+
+/**
+ * Draws the normal-force vector pointing from the particle toward the ring
+ * centre. When N < 0 (constraint violated) the shaft is dashed.
+ */
+export function drawNormalVector(
+  ctx: CanvasRenderingContext2D,
+  px: number,
+  py: number,
+  cx: number,
+  cy: number,
+  N: number,
+  scale: number,
+  color: string,
+): void {
+  const dx = cx - px
+  const dy = cy - py
+  const dist = Math.hypot(dx, dy)
+  if (dist < 0.5) return
+  const nx = dx / dist
+  const ny = dy / dist
+  const length = Math.abs(N) * scale
+  const endX = px + nx * length
+  const endY = py + ny * length
+
+  if (N < 0) {
+    // Lost contact — draw a dashed shaft to flag the constraint violation.
+    ctx.save()
+    ctx.setLineDash([4, 4])
+    ctx.strokeStyle = color
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(px, py)
+    ctx.lineTo(endX, endY)
+    ctx.stroke()
+    ctx.restore()
+  } else {
+    drawArrow(ctx, px, py, endX, endY, color, 2)
+  }
+  drawLabel(ctx, 'N', endX + 8, endY - 6, color)
+}
+
+/**
+ * Draws the velocity vector tangent to the ring at the particle.
+ * Tangent direction is +(cos θ, sin θ) in world coords (Y up) for CCW motion;
+ * we flip sign with θ̇.
+ */
+export function drawVelocityVector(
+  ctx: CanvasRenderingContext2D,
+  px: number,
+  py: number,
+  theta: number,
+  thetaDot: number,
+  R: number,
+  scale: number,
+  color: string,
+): void {
+  const speed = R * Math.abs(thetaDot)
+  if (speed < 0.5) return
+  const dir = Math.sign(thetaDot) || 1
+  // World-space tangent = (cos θ, sin θ); screen Y flips, so screen tangent = (cos θ, −sin θ).
+  const tx = dir *  Math.cos(theta)
+  const ty = dir * -Math.sin(theta)
+  const length = speed * scale
+  const endX = px + tx * length
+  const endY = py + ty * length
+  drawArrow(ctx, px, py, endX, endY, color, 2)
+  drawLabel(ctx, 'v', endX + 6, endY - 6, color)
+}
+
+/**
+ * Highlights the segment of the ring around the current angle with a soft red
+ * fill when contact is lost (N < 0). Drawn as a tinted band over the ring arc.
+ */
+export function drawContactWarning(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  radius: number,
+  theta: number,
+  fillColor: string,
+): void {
+  // Convert world angle (from bottom, CCW) to screen angle (from +x, CW).
+  // World position of particle: (R sin θ, −R cos θ).
+  // Screen angle relative to centre: atan2(screenY − cy, screenX − cx)
+  //   = atan2(R cos θ, R sin θ) — since worldToScreen flips Y.
+  const screenAng = Math.atan2(Math.cos(theta), Math.sin(theta))
+  const span = Math.PI / 6 // 30° arc band
+  ctx.save()
+  ctx.lineWidth = 10
+  ctx.strokeStyle = fillColor
+  ctx.beginPath()
+  ctx.arc(cx, cy, radius, screenAng - span / 2, screenAng + span / 2)
+  ctx.stroke()
+  ctx.restore()
 }
