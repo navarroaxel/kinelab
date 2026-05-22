@@ -73,7 +73,9 @@ export function useAnimationLoop(
       renderFrame(ctx!, canvas!, state, params, visibility, traceRef.current, colors)
 
       // Drive subscribed renderers (strip charts, etc.) from this single tick.
-      for (const listener of tickListenersRef.current) listener()
+      for (const listener of tickListenersRef.current) {
+        listener()
+      }
 
       if (now - lastMetricUpdate.current > 66) {
         onMetrics(state)
