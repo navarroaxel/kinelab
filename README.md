@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kinelab — Polar Coordinates Simulator
 
-## Getting Started
+An interactive browser simulator that shows, in real time, the relationship between Cartesian and polar coordinates for a point undergoing uniform circular motion.
 
-First, run the development server:
+The key insight it makes visible: move the pole (origin of the polar frame) away from the circle centre and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.
+
+## Features
+
+- **Animated canvas** — point moves at a configurable angular velocity
+- **Freely movable pole** — drag via sliders; polar vectors update instantly
+- **Polar velocity vectors** — ṙ·eᵣ (radial) and rθ̇·eₒ (transverse) drawn from the point
+- **Polar acceleration vectors** — aᵣ and aₒ (toggle on)
+- **Cartesian coordinate display** — dashed projection lines + live x/y labels
+- **r vector + θ arc** — pole-to-point vector with angle indicator
+- **Path trace** — fades trail of the point across the polar frame
+- **Live metrics panel** — r, θ, ṙ, rθ̇ updating at ~15 fps
+- **Equations panel** — collapsible, shows only the formulas relevant to active layers
+- **Dark mode** — automatic via `prefers-color-scheme`
+- **Retina-sharp** — DPR-aware canvas scaling + ResizeObserver
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # type-checks + produces optimised output
+npm run start   # serve the production build locally
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Zero-config deploy to Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx vercel
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+No environment variables required — the app is entirely client-side.
 
-## Deploy on Vercel
+## Physics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A point P moves on a circle of radius R centred at the origin:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+x(t) = R·cos(φ(t))
+y(t) = R·sin(φ(t))     φ̇ = ω (constant)
+```
+
+Given a pole O′ at (x₀, y₀), the polar vector r points from O′ to P:
+
+```
+r = √[(x−x₀)² + (y−y₀)²]
+θ = atan2(y−y₀, x−x₀)
+```
+
+Projecting the Cartesian velocity onto the polar unit vectors eᵣ and eₒ:
+
+```
+ṙ    = R·ω·sin(φ − θ)
+rθ̇   = R·ω·cos(φ − θ)
+```
+
+When the pole coincides with the circle centre: θ = φ, so ṙ = 0 and rθ̇ = R·ω = constant. Move the pole off-centre and both components become time-varying, illustrating that "constant speed on a circle" does not mean "constant polar velocity components".
+
+## Tech stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5 (strict) |
+| Styles | Tailwind CSS v4 |
+| Animation | Native `requestAnimationFrame` |
+| State | `useState` + `useReducer`-style reducer |
+| Runtime | Node ≥ 20 |
