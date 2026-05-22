@@ -25,6 +25,16 @@ export interface ColorPalette {
   ring: string
   contactLost: string
   criticalSpeed: string
+  // Bar simulator
+  bar: string
+  rVectorBar: string
+  radialVel: string
+  transVel: string
+  coriolisAcc: string
+  normalForceBar: string
+  ghostBar: string
+  ejection: string
+  arZero: string
 }
 
 export const COLORS: ColorPalette = {
@@ -48,6 +58,16 @@ export const COLORS: ColorPalette = {
   ring:               'rgba(0,0,0,0.25)',
   contactLost:        'rgba(232,89,60,0.15)',
   criticalSpeed:      '#F5A623',
+  // Bar simulator
+  bar:                '#5F5E5A',
+  rVectorBar:         '#3B8BD4',
+  radialVel:          '#1D9E75',
+  transVel:           '#E8593C',
+  coriolisAcc:        '#E8593C',
+  normalForceBar:     '#3B8BD4',
+  ghostBar:           'rgba(0,0,0,0.07)',
+  ejection:           '#EAB308', // yellow-500
+  arZero:             '#1D9E75',
 }
 
 export const COLORS_DARK: ColorPalette = {
@@ -71,6 +91,16 @@ export const COLORS_DARK: ColorPalette = {
   ring:               'rgba(255,255,255,0.30)',
   contactLost:        'rgba(240,153,123,0.20)',
   criticalSpeed:      '#FCD34D',
+  // Bar simulator
+  bar:                '#B4B2A9',
+  rVectorBar:         '#85B7EB',
+  radialVel:          '#5DCAA5',
+  transVel:           '#F0997B',
+  coriolisAcc:        '#F0997B',
+  normalForceBar:     '#85B7EB',
+  ghostBar:           'rgba(255,255,255,0.08)',
+  ejection:           '#FACC15', // yellow-400
+  arZero:             '#5DCAA5',
 }
 
 // ---------------------------------------------------------------------------
@@ -622,4 +652,153 @@ export function drawContactWarning(
   ctx.arc(cx, cy, radius, screenAng - span / 2, screenAng + span / 2)
   ctx.stroke()
   ctx.restore()
+}
+
+// ---------------------------------------------------------------------------
+// Rotating bar simulator drawing helpers
+// ---------------------------------------------------------------------------
+
+/** Velocity scale for the bar simulator — same convention as the polar one. */
+export const barVelScale = (barLength: number) => barLength / 150
+
+/** Coriolis acceleration / Coriolis-force scale (per-unit-mass world units). */
+export const barAccScale = (barLength: number) => barLength / 280
+
+/**
+ * Draws the rotating bar as a full line from −L to +L through the pivot,
+ * tilted by screenTheta (already in screen-space radians, CW positive).
+ */
+export function drawBar(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  screenTheta: number,
+  length: number,
+  color: string,
+): void {
+  const cosT = Math.cos(screenTheta)
+  const sinT = Math.sin(screenTheta)
+  ctx.save()
+  ctx.strokeStyle = color
+  ctx.lineWidth = 6
+  ctx.lineCap = 'round'
+  ctx.beginPath()
+  ctx.moveTo(cx - length * cosT, cy - length * sinT)
+  ctx.lineTo(cx + length * cosT, cy + length * sinT)
+  ctx.stroke()
+  ctx.restore()
+}
+
+/** Dashed line from the pivot to the particle, used to highlight the r vector. */
+export function drawRVector(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  px: number,
+  py: number,
+  color: string,
+): void {
+  ctx.save()
+  ctx.setLineDash([4, 4])
+  ctx.strokeStyle = color
+  ctx.lineWidth = 1.5
+  ctx.globalAlpha = 0.8
+  ctx.beginPath()
+  ctx.moveTo(cx, cy)
+  ctx.lineTo(px, py)
+  ctx.stroke()
+  ctx.restore()
+}
+
+/**
+ * Draws ghost bars at previous angles (screen-space, CW positive). Faintest at
+ * the oldest entry, fully opaque at the most recent.
+ */
+export function drawGhostBars(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  screenAngles: number[],
+  length: number,
+  color: string,
+): void {
+  if (screenAngles.length === 0) return
+  ctx.save()
+  ctx.strokeStyle = color
+  ctx.lineCap = 'round'
+  const n = screenAngles.length
+  for (let i = 0; i < n; i++) {
+    const fade = (i + 1) / n // 1/n at the oldest, 1 at the newest
+    ctx.globalAlpha = 0.25 + fade * 0.35
+    ctx.lineWidth = 2 + fade * 2
+    const a = screenAngles[i]
+    const c = Math.cos(a)
+    const s = Math.sin(a)
+    ctx.beginPath()
+    ctx.moveTo(cx - length * c, cy - length * s)
+    ctx.lineTo(cx + length * c, cy + length * s)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+/**
+ * Draws the post-ejection trajectory as a long dashed ray from the ejection
+ * point, in the direction of the lab-frame velocity v_lab = ṙ·eᵣ + r·ω·eₒ.
+ * The particle has no force on it after leaving the bar, so its trajectory
+ * is a straight line. `scale` controls where the arrowhead lands.
+ */
+export function drawEjectionVector(
+  ctx: CanvasRenderingContext2D,
+  px: number,
+  py: number,
+  theta: number,
+  vr: number,
+  vt: number,
+  scale: number,
+  color: string,
+): void {
+  // World-space velocity components, then flip Y for screen.
+  const cosT = Math.cos(theta)
+  const sinT = Math.sin(theta)
+  // World v = vr·(cosθ, sinθ) + vt·(−sinθ, cosθ)
+  const vWorldX = vr * cosT - vt * sinT
+  const vWorldY = vr * sinT + vt * cosT
+  const speed = Math.hypot(vWorldX, vWorldY)
+  if (speed < 1e-3) return
+
+  // Screen-space unit direction of the trajectory.
+  const dirX = vWorldX / speed
+  const dirY = -vWorldY / speed // screen Y flip
+
+  // Arrowhead lands at a velocity-scaled distance; the trajectory dashed line
+  // extends much further (effectively across the canvas).
+  const arrowDist = speed * scale
+  const arrowEndX = px + dirX * arrowDist
+  const arrowEndY = py + dirY * arrowDist
+
+  const RAY_LEN = 3000
+  const rayEndX = px + dirX * RAY_LEN
+  const rayEndY = py + dirY * RAY_LEN
+
+  ctx.save()
+  ctx.setLineDash([6, 5])
+  ctx.strokeStyle = color
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.moveTo(px, py)
+  ctx.lineTo(rayEndX, rayEndY)
+  ctx.stroke()
+  ctx.restore()
+
+  // Solid arrowhead at the velocity-magnitude point for emphasis.
+  drawArrow(
+    ctx,
+    arrowEndX - dirX * 0.5,
+    arrowEndY - dirY * 0.5,
+    arrowEndX,
+    arrowEndY,
+    color,
+    0,
+  )
 }
