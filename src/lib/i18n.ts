@@ -69,6 +69,13 @@ export const translations = {
     'chart.velocity.title': 'Polar velocity vs. time',
     'chart.accel.title':    'Tangential acceleration vs. time',
 
+    // Phasor diagrams
+    'phasor.velocity.title':     'Velocity phasor',
+    'phasor.acceleration.title': 'Acceleration phasor',
+    'phasor.basis.intrinsic':    'Intrinsic (t, n)',
+    'phasor.basis.polar':        'Polar (r, θ)',
+    'phasor.vn.zero':            'vₙ = 0 (v ⊥ R)',
+
     // Navigation between simulators
     'nav.aria_label': 'Simulators',
     'nav.polar': 'Polar',
@@ -228,6 +235,13 @@ export const translations = {
     // Strip charts
     'chart.velocity.title': 'Velocidad polar vs. tiempo',
     'chart.accel.title':    'Aceleración tangencial vs. tiempo',
+
+    // Phasor diagrams
+    'phasor.velocity.title':     'Diagrama fasorial — velocidad',
+    'phasor.acceleration.title': 'Diagrama fasorial — aceleración',
+    'phasor.basis.intrinsic':    'Intrínseca (t, n)',
+    'phasor.basis.polar':        'Polar (r, θ)',
+    'phasor.vn.zero':            'vₙ = 0 (v ⊥ R)',
 
     // Navigation between simulators
     'nav.aria_label': 'Simuladores',

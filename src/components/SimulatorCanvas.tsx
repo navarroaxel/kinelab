@@ -14,6 +14,7 @@ interface Props {
   traceRef: MutableRefObject<{ x: number; y: number }[]>
   tRef: MutableRefObject<number>
   samplesRef: MutableRefObject<Sample[]>
+  latestStateRef: MutableRefObject<KinematicState | null>
   tickListenersRef: MutableRefObject<Set<() => void>>
   onMetrics: (state: KinematicState) => void
   paused: boolean
@@ -27,6 +28,7 @@ export function SimulatorCanvas({
   traceRef,
   tRef,
   samplesRef,
+  latestStateRef,
   tickListenersRef,
   onMetrics,
   paused,
@@ -62,7 +64,7 @@ export function SimulatorCanvas({
     return () => ro.disconnect()
   }, [])
 
-  useAnimationLoop(canvasRef, params, visibility, phiRef, omegaRef, traceRef, tRef, samplesRef, tickListenersRef, onMetrics, paused)
+  useAnimationLoop(canvasRef, params, visibility, phiRef, omegaRef, traceRef, tRef, samplesRef, latestStateRef, tickListenersRef, onMetrics, paused)
 
   return (
     <canvas

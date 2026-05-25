@@ -27,40 +27,40 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
 
       {open && (
         <div id="equations-panel-content" className="px-3 pb-3 flex flex-col gap-1.5 text-xs font-mono text-gray-700 dark:text-gray-300">
-          <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.position')}</p>
+          <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.position')}</p>
           <p>r = √[(x−x₀)² + (y−y₀)²]</p>
           <p>θ = atan2(y−y₀, x−x₀)</p>
 
           {visibility.showVelocity && (
             <>
-              <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.polar_velocity')}</p>
+              <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.polar_velocity')}</p>
               <p>ṙ  = R · ω · sin(θ − φ)</p>
               <p>rθ̇ = R · ω · cos(φ − θ)</p>
-              <p className="text-gray-400 dark:text-gray-500">{t('equations.note.omega_dot')}</p>
+              <p className="text-gray-400 dark:text-gray-300">{t('equations.note.omega_dot')}</p>
             </>
           )}
 
           {visibility.showAcceleration && (
             <>
-              <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.polar_accel')}</p>
+              <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.polar_accel')}</p>
               <p>aᵣ = r̈ − r · θ̇²</p>
               <p>aₒ = r · θ̈ + 2 · ṙ · θ̇</p>
-              <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.tangential')}</p>
+              <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.tangential')}</p>
               <p>aₜ = R · α   (∥ v)</p>
             </>
           )}
 
           {visibility.showNormalAccel && (
             <>
-              <p className="text-gray-500 dark:text-gray-500 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.normal')}</p>
+              <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.section.normal')}</p>
               <p>aₙ = R · ω²  (→ O)</p>
             </>
           )}
 
-          <p className="mt-2 text-[10px] font-sans text-gray-500 dark:text-gray-500 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
+          <p className="mt-2 text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
             {t('equations.footer')}
           </p>
-          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-500 leading-relaxed">
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
             {t('units.note')}
           </p>
         </div>

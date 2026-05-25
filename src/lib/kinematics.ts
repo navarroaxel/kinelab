@@ -44,5 +44,8 @@ export function computeKinematics(
   // Tangential acceleration magnitude (signed along v direction)
   const at = R * alpha
 
-  return { phi, r, theta, omega: angularVelocity, at, rDot, rThetaDot, ar, aTheta, vx, vy, ptx, pty }
+  // Normal (centripetal) acceleration magnitude — always ≥ 0, direction is P → O
+  const aN = R * omega ** 2
+
+  return { phi, r, theta, omega: angularVelocity, at, rDot, rThetaDot, ar, aTheta, vx, vy, ax, ay, aN, ptx, pty }
 }

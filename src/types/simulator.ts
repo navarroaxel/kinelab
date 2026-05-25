@@ -27,6 +27,9 @@ export interface KinematicState {
   aTheta: number       // transverse polar acceleration
   vx: number           // Cartesian velocity X
   vy: number           // Cartesian velocity Y
+  ax: number           // Cartesian acceleration X (tangential + centripetal combined)
+  ay: number           // Cartesian acceleration Y
+  aN: number           // |aₙ| = R·ω²  — normal/centripetal magnitude (≥ 0, points toward O)
   ptx: number          // point world X
   pty: number          // point world Y
 }

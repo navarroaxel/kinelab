@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import type { SimulatorParams, VisibilityState } from '@/types/simulator'
+import type { SimulatorParams, VisibilityState, KinematicState } from '@/types/simulator'
 import type { Sample } from '@/lib/strip-chart'
 
 export function useSimulator() {
@@ -37,6 +37,11 @@ export function useSimulator() {
   // Both keep advancing across parameter changes so transients are visible.
   const tRef = useRef(0)
   const samplesRef = useRef<Sample[]>([])
+
+  // Latest live KinematicState, published every animation frame. Phasor diagrams
+  // (and any other 60fps consumer) read this directly — the metrics setState is
+  // throttled to ~15fps and would visibly lag the canvas.
+  const latestStateRef = useRef<KinematicState | null>(null)
 
   // Single shared RAF tick: the main animation loop invokes every listener
   // each frame, so strip charts and other consumers don't each spawn their own.
@@ -94,6 +99,7 @@ export function useSimulator() {
     traceRef,
     tRef,
     samplesRef,
+    latestStateRef,
     tickListenersRef,
     subscribeTick,
     paused,

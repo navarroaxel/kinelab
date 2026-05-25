@@ -25,7 +25,7 @@ export const VectorLegend = memo(function VectorLegend() {
               style={{ background: item.color }}
               className="w-3 h-3 rounded-full shrink-0"
             />
-            <span className="text-xs text-gray-600 dark:text-gray-400">{t(item.key)}</span>
+            <span className="text-xs text-gray-600 dark:text-gray-300">{t(item.key)}</span>
           </li>
         ))}
       </ul>
