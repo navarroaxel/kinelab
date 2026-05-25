@@ -64,6 +64,33 @@ export const translations = {
       'Move the pole off-center → both components become non-zero ' +
       'even though the path remains a perfect circle. ' +
       'Set α ≠ 0 → ω varies in time and the motion is non-uniform.',
+    'equations.section.decomp_heading': 'Two decompositions of a',
+    'equations.decomp.intro':
+      'The acceleration vector a is a single physical quantity, but it can be projected ' +
+      'onto two different orthogonal bases. Each basis answers a different question.',
+    'equations.decomp.intrinsic_heading': 'Intrinsic basis (t, n)',
+    'equations.decomp.at':
+      'aₜ (tangential) lies along the velocity. Its sign tells you whether the particle ' +
+      'is speeding up (aₜ > 0) or slowing down (aₜ < 0). For uniform circular motion ' +
+      '(α = 0) it vanishes — only a non-zero angular acceleration α can change |v|.',
+    'equations.decomp.an':
+      'aₙ (normal or centripetal) always points from P toward the geometric centre O. ' +
+      'It bends the trajectory but never changes |v|. It is non-zero whenever ω ≠ 0; ' +
+      'for circular motion |aₙ| = R·ω², independent of α.',
+    'equations.decomp.polar_heading': 'Polar basis (r, θ)',
+    'equations.decomp.ar':
+      'aᵣ is the component along eᵣ, the unit vector from the pole toward P. It already ' +
+      'includes the centripetal-like term −r·θ̇², so it is generally negative even when ' +
+      'the distance r is not changing, because eᵣ itself rotates with the particle.',
+    'equations.decomp.atheta':
+      'a₀ is the component along eₒ, perpendicular to eᵣ in the direction of increasing θ. ' +
+      'It contains the Coriolis-like term 2·ṙ·θ̇ that couples radial and angular motion. ' +
+      'With the pole at the centre, ṙ = r̈ = 0 and a₀ = R·α reduces to the tangential acceleration.',
+    'equations.decomp.relation':
+      'Both pairs add up to the same physical vector: aₜ·eₜ + aₙ·eₙ = aᵣ·eᵣ + a₀·eₒ. ' +
+      'The intrinsic basis is tied to the trajectory (it follows the particle), while the ' +
+      'polar basis is tied to the chosen pole. Moving the pole changes aᵣ and a₀ but leaves ' +
+      'aₜ and aₙ untouched.',
 
     // Strip chart panels
     'chart.velocity.title': 'Polar velocity vs. time',
@@ -231,6 +258,33 @@ export const translations = {
       'Mueve el polo fuera del centro → ambas componentes se vuelven ' +
       'distintas de cero aunque la trayectoria sigue siendo un círculo perfecto. ' +
       'Si α ≠ 0 → ω varía en el tiempo y el movimiento no es uniforme.',
+    'equations.section.decomp_heading': 'Dos descomposiciones de a',
+    'equations.decomp.intro':
+      'El vector aceleración a es una única magnitud física, pero puede proyectarse ' +
+      'sobre dos bases ortogonales distintas. Cada base responde a una pregunta diferente.',
+    'equations.decomp.intrinsic_heading': 'Base intrínseca (t, n)',
+    'equations.decomp.at':
+      'aₜ (tangencial) está sobre la dirección de la velocidad. Su signo indica si la ' +
+      'partícula acelera (aₜ > 0) o frena (aₜ < 0). En movimiento circular uniforme ' +
+      '(α = 0) se anula — sólo una aceleración angular α ≠ 0 puede cambiar |v|.',
+    'equations.decomp.an':
+      'aₙ (normal o centrípeta) apunta siempre desde P hacia el centro geométrico O. ' +
+      'Curva la trayectoria pero no cambia |v|. Es no nula siempre que ω ≠ 0; para ' +
+      'movimiento circular |aₙ| = R·ω², independientemente de α.',
+    'equations.decomp.polar_heading': 'Base polar (r, θ)',
+    'equations.decomp.ar':
+      'aᵣ es la componente según eᵣ, el versor que va del polo hacia P. Ya incluye el ' +
+      'término tipo centrípeto −r·θ̇², por lo que suele ser negativa aun cuando la distancia ' +
+      'r no cambie, porque eᵣ rota junto con la partícula.',
+    'equations.decomp.atheta':
+      'a₀ es la componente según eₒ, perpendicular a eᵣ en el sentido de θ creciente. ' +
+      'Contiene el término tipo Coriolis 2·ṙ·θ̇ que acopla el movimiento radial con el angular. ' +
+      'Con el polo en el centro, ṙ = r̈ = 0 y a₀ = R·α se reduce a la aceleración tangencial.',
+    'equations.decomp.relation':
+      'Ambos pares suman el mismo vector físico: aₜ·eₜ + aₙ·eₙ = aᵣ·eᵣ + a₀·eₒ. ' +
+      'La base intrínseca está atada a la trayectoria (acompaña a la partícula), mientras ' +
+      'que la base polar está atada al polo elegido. Mover el polo cambia aᵣ y a₀ pero no ' +
+      'altera aₜ ni aₙ.',
 
     // Strip charts
     'chart.velocity.title': 'Velocidad polar vs. tiempo',

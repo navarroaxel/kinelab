@@ -57,6 +57,30 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
             </>
           )}
 
+          <p className="mt-2 text-gray-500 dark:text-gray-300 font-sans text-[10px] mb-0.5 border-t border-gray-100 dark:border-gray-800 pt-2">
+            {t('equations.section.decomp_heading')}
+          </p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.intro')}
+          </p>
+          <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.decomp.intrinsic_heading')}</p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.at')}
+          </p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.an')}
+          </p>
+          <p className="text-gray-500 dark:text-gray-300 font-sans text-[10px] mt-1 mb-0.5">{t('equations.decomp.polar_heading')}</p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.ar')}
+          </p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.atheta')}
+          </p>
+          <p className="text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed">
+            {t('equations.decomp.relation')}
+          </p>
+
           <p className="mt-2 text-[10px] font-sans text-gray-500 dark:text-gray-300 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
             {t('equations.footer')}
           </p>
