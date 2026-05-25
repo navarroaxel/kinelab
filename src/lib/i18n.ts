@@ -241,7 +241,7 @@ export const translations = {
     'phasor.acceleration.title': 'Diagrama fasorial — aceleración',
     'phasor.basis.intrinsic':    'Intrínseca (t, n)',
     'phasor.basis.polar':        'Polar (r, θ)',
-    'phasor.vn.zero':            'vₙ = 0 (v ⊥ a R)',
+    'phasor.vn.zero':            'vₙ = 0 (v ⊥ R)',
 
     // Navigation between simulators
     'nav.aria_label': 'Simuladores',
