@@ -15,6 +15,7 @@ export function useAnimationLoop(
   traceRef: MutableRefObject<{ x: number; y: number }[]>,
   tRef: MutableRefObject<number>,
   samplesRef: MutableRefObject<Sample[]>,
+  latestStateRef: MutableRefObject<KinematicState | null>,
   tickListenersRef: MutableRefObject<Set<() => void>>,
   onMetrics: (state: KinematicState) => void,
   paused: boolean
@@ -47,6 +48,7 @@ export function useAnimationLoop(
       phiRef.current += omegaRad * dt
 
       const state = computeKinematics(phiRef.current, omegaRef.current, params)
+      latestStateRef.current = state
 
       if (visibility.showTrace) {
         const sc = worldToScreen(state.ptx, state.pty, canvas!)

@@ -14,6 +14,7 @@ import { LanguageToggle } from '@/components/LanguageToggle'
 import { SimulatorNav } from '@/components/SimulatorNav'
 import { ProjectCredits } from '@/components/ProjectCredits'
 import { StripChart, type StripChartSeries } from '@/components/StripChart'
+import { PhasorDiagram } from '@/components/PhasorDiagram'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import type { KinematicState } from '@/types/simulator'
 
@@ -40,6 +41,7 @@ export default function Home() {
     traceRef,
     tRef,
     samplesRef,
+    latestStateRef,
     tickListenersRef,
     subscribeTick,
     paused,
@@ -62,6 +64,7 @@ export default function Home() {
             traceRef={traceRef}
             tRef={tRef}
             samplesRef={samplesRef}
+            latestStateRef={latestStateRef}
             tickListenersRef={tickListenersRef}
             onMetrics={setMetrics}
             paused={paused}
@@ -84,6 +87,20 @@ export default function Home() {
             tRef={tRef}
             subscribeTick={subscribeTick}
           />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <PhasorDiagram
+              kind="velocity"
+              titleKey="phasor.velocity.title"
+              latestStateRef={latestStateRef}
+              subscribeTick={subscribeTick}
+            />
+            <PhasorDiagram
+              kind="acceleration"
+              titleKey="phasor.acceleration.title"
+              latestStateRef={latestStateRef}
+              subscribeTick={subscribeTick}
+            />
+          </div>
         </div>
 
         <aside className="flex flex-col gap-3">
