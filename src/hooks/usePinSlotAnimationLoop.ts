@@ -37,10 +37,8 @@ export function usePinSlotAnimationLoop(
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const isDark = matchMedia('(prefers-color-scheme: dark)').matches
-    const colors: ColorPalette = isDark ? COLORS_DARK : COLORS
-
     if (paused) {
+      const colors: ColorPalette = document.documentElement.classList.contains('dark') ? COLORS_DARK : COLORS
       const state = computePinSlotState(params, phiRef.current)
       renderPinSlot(ctx, canvas, state, params, visibility, colors)
       onMetrics(state)
@@ -48,6 +46,7 @@ export function usePinSlotAnimationLoop(
     }
 
     function frame(now: number) {
+      const colors: ColorPalette = document.documentElement.classList.contains('dark') ? COLORS_DARK : COLORS
       const dt =
         lastTimeRef.current !== null
           ? Math.min((now - lastTimeRef.current) / 1000, 0.05)

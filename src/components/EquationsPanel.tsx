@@ -44,7 +44,7 @@ export const EquationsPanel = memo(function EquationsPanel({ visibility }: Props
             <>
               <p className="text-gray-500 dark:text-gray-300 font-sans text-xs mt-1 mb-0.5">{t('equations.section.polar_accel')}</p>
               <p>aᵣ = r̈ − r · θ̇²</p>
-              <p>aₒ = r · θ̈ + 2 · ṙ · θ̇</p>
+              <p>aθ = r · θ̈ + 2 · ṙ · θ̇</p>
               <p className="text-gray-500 dark:text-gray-300 font-sans text-xs mt-1 mb-0.5">{t('equations.section.tangential')}</p>
               <p>aₜ = R · α   (∥ v)</p>
             </>

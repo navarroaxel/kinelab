@@ -30,7 +30,7 @@ export interface ColorPalette {
 export const COLORS: ColorPalette = {
   rVector:            '#3B8BD4', // blue   — pole→point vector r
   radialVelocity:     '#1D9E75', // green  — radial component ṙ·eᵣ
-  transverseVelocity: '#E8593C', // coral  — transverse component rθ̇·eₒ
+  transverseVelocity: '#E8593C', // coral  — transverse component rθ̇·eθ
   acceleration:       '#9B59B6', // purple — polar acceleration components
   normalAccel:        '#D97706', // amber  — centripetal (normal) acceleration
   pole:               '#888780', // gray   — pole marker O'
@@ -421,7 +421,7 @@ export function renderFrame(
       drawLabel(ctx, 'ṙ', rDotEnd.x + 5, rDotEnd.y - 5, colors.radialVelocity)
     }
 
-    // rθ̇ · eₒ  — screen: eₒ = (−sinT, −cosT)
+    // rθ̇ · eθ  — screen: eθ = (−sinT, −cosT)
     const rThetaDotEnd = {
       x: pt.x + state.rThetaDot * vscale * (-sinT),
       y: pt.y - state.rThetaDot * vscale * cosT,
@@ -448,14 +448,14 @@ export function renderFrame(
       drawLabel(ctx, 'aᵣ', arEnd.x + 5, arEnd.y - 5, colors.acceleration)
     }
 
-    // aₒ · eₒ
+    // aθ · eθ
     const aoEnd = {
       x: pt.x + state.aTheta * ascale * (-sinT),
       y: pt.y - state.aTheta * ascale * cosT,
     }
     drawArrow(ctx, pt.x, pt.y, aoEnd.x, aoEnd.y, colors.acceleration, 2)
     if (Math.abs(state.aTheta) > 1) {
-      drawLabel(ctx, 'aₒ', aoEnd.x + 5, aoEnd.y - 5, colors.acceleration)
+      drawLabel(ctx, 'aθ', aoEnd.x + 5, aoEnd.y - 5, colors.acceleration)
     }
   }
 
@@ -516,6 +516,36 @@ export function worldToScreenPS(
   return {
     x: W * 0.28 + worldX * scale,
     y: H * 0.50 - worldY * scale,
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Quick-return mechanism simulator helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the pixel scale factor for the quick-return mechanism so that the
+ * full vertical extent L1*1.2 maps to 85% of the canvas height.
+ */
+export function quickReturnScale(W: number, H: number, L1: number): number {
+  return (H * 0.85) / (L1 * 1.2)
+}
+
+/**
+ * Maps quick-return world coords to screen coords.
+ * O (fixed pivot) is placed at (W×0.45, H×0.75).
+ * scale comes from quickReturnScale().
+ */
+export function worldToScreenQR(
+  worldX: number,
+  worldY: number,
+  W: number,
+  H: number,
+  scale: number,
+): { x: number; y: number } {
+  return {
+    x: W * 0.45 + worldX * scale,
+    y: H * 0.75 - worldY * scale,
   }
 }
 
