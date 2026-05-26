@@ -10,9 +10,7 @@ import { RingEnergyBar } from '@/components/ring/RingEnergyBar'
 import { RingEnergyChart } from '@/components/ring/RingEnergyChart'
 import { RingLegend } from '@/components/ring/RingLegend'
 import { RingEquations } from '@/components/ring/RingEquations'
-import { SimulatorNav } from '@/components/SimulatorNav'
-import { LanguageToggle } from '@/components/LanguageToggle'
-import { GitHubLink } from '@/components/GitHubLink'
+import { SimulatorHeader } from '@/components/SimulatorHeader'
 import { ProjectCredits } from '@/components/ProjectCredits'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { computeVMin } from '@/lib/ringKinematics'
@@ -73,11 +71,7 @@ export default function RingPage() {
         </div>
 
         <aside className="flex flex-col gap-3">
-          <div className="flex justify-end gap-2">
-            <SimulatorNav />
-            <LanguageToggle />
-            <GitHubLink />
-          </div>
+          <SimulatorHeader />
           <RingMetrics state={metrics} params={params} />
           <RingControls
             params={params}

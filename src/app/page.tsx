@@ -9,9 +9,7 @@ import { PolarMetrics } from '@/components/PolarMetrics'
 import { ControlsPanel } from '@/components/ControlsPanel'
 import { VectorLegend } from '@/components/VectorLegend'
 import { EquationsPanel } from '@/components/EquationsPanel'
-import { GitHubLink } from '@/components/GitHubLink'
-import { LanguageToggle } from '@/components/LanguageToggle'
-import { SimulatorNav } from '@/components/SimulatorNav'
+import { SimulatorHeader } from '@/components/SimulatorHeader'
 import { ProjectCredits } from '@/components/ProjectCredits'
 import { StripChart, type StripChartSeries } from '@/components/StripChart'
 import { PhasorDiagram } from '@/components/PhasorDiagram'
@@ -104,11 +102,7 @@ export default function Home() {
         </div>
 
         <aside className="flex flex-col gap-3">
-          <div className="flex justify-end gap-2">
-            <SimulatorNav />
-            <LanguageToggle />
-            <GitHubLink />
-          </div>
+          <SimulatorHeader />
           <PolarMetrics state={metrics} />
           <ControlsPanel
             params={params}

@@ -7,9 +7,10 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import type { TranslationKey } from '@/lib/i18n'
 
 const ITEMS: { href: string; key: TranslationKey }[] = [
-  { href: '/',          key: 'nav.polar' },
-  { href: '/ring',      key: 'nav.ring' },
-  { href: '/pin-slot',  key: 'nav.pin_slot' },
+  { href: '/',             key: 'nav.polar' },
+  { href: '/ring',         key: 'nav.ring' },
+  { href: '/pin-slot',     key: 'nav.pin_slot' },
+  { href: '/quick-return', key: 'nav.quick_return' },
 ]
 
 export const SimulatorNav = memo(function SimulatorNav() {

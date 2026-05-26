@@ -30,10 +30,8 @@ export function useAnimationLoop(
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const isDark = matchMedia('(prefers-color-scheme: dark)').matches
-    const colors: ColorPalette = isDark ? COLORS_DARK : COLORS
-
     function frame(now: number) {
+      const colors: ColorPalette = document.documentElement.classList.contains('dark') ? COLORS_DARK : COLORS
       const raw =
         lastTimeRef.current !== null
           ? Math.min((now - lastTimeRef.current) / 1000, 0.05)

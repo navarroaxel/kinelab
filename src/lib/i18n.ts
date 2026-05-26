@@ -4,6 +4,12 @@ export const LANGUAGES: Language[] = ['en', 'es']
 
 export const translations = {
   en: {
+    // ThemeToggle
+    'theme.aria':  'Theme',
+    'theme.auto':  'Auto',
+    'theme.light': 'Light',
+    'theme.dark':  'Dark',
+
     // GitHubLink
     'github.aria': 'View source on GitHub',
 
@@ -24,7 +30,7 @@ export const translations = {
     'controls.toggle.polar_velocity': 'Polar velocity (ṙ, rθ̇)',
     'controls.toggle.cartesian': 'Cartesian coords (x, y)',
     'controls.toggle.r_vector': 'Vector r',
-    'controls.toggle.polar_accel': 'Polar acceleration (aᵣ, aₒ)',
+    'controls.toggle.polar_accel': 'Polar acceleration (aᵣ, aθ)',
     'controls.toggle.normal_accel': 'Normal acceleration (aₙ)',
     'controls.toggle.trace': 'Path trace',
 
@@ -47,8 +53,8 @@ export const translations = {
     'legend.heading': 'Legend',
     'legend.r': 'r  (pole → P)',
     'legend.r_dot': 'ṙ · eᵣ  (radial velocity)',
-    'legend.r_theta_dot': 'rθ̇ · eₒ  (transverse velocity)',
-    'legend.polar_accel': 'Polar acceleration (aᵣ, aₒ)',
+    'legend.r_theta_dot': 'rθ̇ · eθ  (transverse velocity)',
+    'legend.polar_accel': 'Polar acceleration (aᵣ, aθ)',
     'legend.normal_accel': 'Normal acceleration aₙ',
 
     // EquationsPanel
@@ -79,7 +85,7 @@ export const translations = {
       'Contains the Coriolis-like term 2·ṙ·θ̇, which couples radial and angular motion.',
     'equations.decomp.relation':
       'Both pairs add up to the same vector a. The intrinsic basis follows the trajectory; ' +
-      'the polar one depends on the chosen pole. Moving the pole changes aᵣ and aₒ but ' +
+      'the polar one depends on the chosen pole. Moving the pole changes aᵣ and aθ but ' +
       'leaves aₜ and aₙ untouched.',
 
     // Strip chart panels
@@ -94,10 +100,11 @@ export const translations = {
     'phasor.vn.zero':            'vₙ = 0 (v ⊥ R)',
 
     // Navigation between simulators
-    'nav.aria_label': 'Simulators',
-    'nav.polar':      'Polar',
-    'nav.ring':       'Ring',
-    'nav.pin_slot':   'Pin–Slot',
+    'nav.aria_label':    'Simulators',
+    'nav.polar':         'Polar',
+    'nav.ring':          'Ring',
+    'nav.pin_slot':      'Pin–Slot',
+    'nav.quick_return':  'Quick-Return',
 
     // Polar page — meta
     'polar.page.canvas_aria': 'Polar coordinates simulator — animated circular motion',
@@ -230,6 +237,66 @@ export const translations = {
       'The total speed of the pin is constant (V₀), so the radial and transverse ' +
       'components always satisfy Vᵣ² + V⊥² = V₀².',
 
+    // Quick-return page — meta
+    'quick-return.page.canvas_aria': 'Quick-return mechanism simulator — crank AB drives oscillating bar OQ and tool slider P',
+
+    // Quick-return — metrics
+    'quick-return.metrics.heading':        'Live Metrics',
+    'quick-return.metrics.phi':            'φ  (crank angle)',
+    'quick-return.metrics.x':             'x(t)  (tool position)',
+    'quick-return.metrics.v':             'v(t)  (tool velocity)',
+    'quick-return.metrics.a':             'a(t)  (tool acceleration)',
+    'quick-return.metrics.derived_heading':'Derived Results',
+    'quick-return.metrics.ratio_label':   'Quick-return ratio',
+    'quick-return.metrics.ratio_note':    'Cutting and return strokes take unequal time',
+    'quick-return.metrics.alpha':         'α = arccos(r / L₂)',
+    'quick-return.metrics.xmax':          'x_max (extreme positions)',
+    'quick-return.metrics.v_phi0':        'v at φ = 0 (fast pass)',
+    'quick-return.metrics.v_phi_pi':      'v at φ = π (slow pass)',
+
+    // Quick-return — controls
+    'quick-return.controls.section.geometry':   'Geometry',
+    'quick-return.controls.section.dynamics':   'Kinematics',
+    'quick-return.controls.section.visibility': 'Visibility',
+    'quick-return.controls.slider.r':           'Crank length r (u)',
+    'quick-return.controls.slider.L2':          'Crank-center height L₂ (u)',
+    'quick-return.controls.slider.L1':          'Slot height L₁ (u)',
+    'quick-return.controls.slider.omega':        'Crank speed ω (rad/s)',
+    'quick-return.controls.toggle.velocity':    'v  (tool velocity)',
+    'quick-return.controls.toggle.acceleration':'a  (tool acceleration)',
+    'quick-return.controls.toggle.trace':       'Tool path trace',
+    'quick-return.controls.toggle.guides':      'Guide circle & axis',
+    'quick-return.controls.constraint.ok':      'L₂ > r ✓',
+    'quick-return.controls.constraint.warn':    '⚠ L₂ must be > r',
+    'quick-return.controls.btn.reset':          'Reset to φ = 0',
+    'quick-return.controls.btn.pause':          'Pause',
+    'quick-return.controls.btn.resume':         'Resume',
+    'quick-return.controls.info.xB':            'Crank pin B',
+    'quick-return.controls.info.xP':            'Tool slider P',
+    'quick-return.controls.info.constraint':    'Hard constraint',
+
+    // Quick-return — legend
+    'quick-return.legend.heading':      'Legend',
+    'quick-return.legend.crank':        'Crank AB',
+    'quick-return.legend.bar':          'Oscillating bar OQ',
+    'quick-return.legend.sliderB':      'Slider B (crank pin)',
+    'quick-return.legend.sliderP':      'Slider P (tool)',
+    'quick-return.legend.velocity':     'v  (tool velocity)',
+    'quick-return.legend.acceleration': 'a  (tool acceleration)',
+
+    // Quick-return — equations panel
+    'quick-return.equations.heading':           'Equations',
+    'quick-return.equations.section.geometry':  'Geometry (O at origin, A = (0, L₂))',
+    'quick-return.equations.section.kinematics':'Tool kinematics',
+    'quick-return.equations.section.extremes':  'Extreme positions & quick-return ratio',
+    'quick-return.equations.section.center':    'Center-crossing speeds (x = 0)',
+    'quick-return.equations.note.ratio':
+      'The crank sweeps (2π − 2α) for one stroke and 2α for the other. ' +
+      'Since ω is constant the time ratio equals the angle ratio.',
+    'quick-return.equations.note.center':
+      'The tool crosses x = 0 twice per revolution at different speeds — ' +
+      'the asymmetry is the signature of the quick-return mechanism.',
+
     // Units note (shared on both pages)
     'units.note':
       '"u" is a generic length unit — pick any (metres, cm, pixels). ' +
@@ -246,6 +313,12 @@ export const translations = {
       'Curious about RLC circuits in AC? Visit',
   },
   es: {
+    // ThemeToggle
+    'theme.aria':  'Tema',
+    'theme.auto':  'Auto',
+    'theme.light': 'Claro',
+    'theme.dark':  'Oscuro',
+
     // GitHubLink
     'github.aria': 'Ver código en GitHub',
 
@@ -266,7 +339,7 @@ export const translations = {
     'controls.toggle.polar_velocity': 'Velocidad polar (ṙ, rθ̇)',
     'controls.toggle.cartesian': 'Coordenadas cartesianas (x, y)',
     'controls.toggle.r_vector': 'Vector r',
-    'controls.toggle.polar_accel': 'Aceleración polar (aᵣ, aₒ)',
+    'controls.toggle.polar_accel': 'Aceleración polar (aᵣ, aθ)',
     'controls.toggle.normal_accel': 'Aceleración normal (aₙ)',
     'controls.toggle.trace': 'Trayectoria',
 
@@ -289,8 +362,8 @@ export const translations = {
     'legend.heading': 'Leyenda',
     'legend.r': 'r  (polo → P)',
     'legend.r_dot': 'ṙ · eᵣ  (velocidad radial)',
-    'legend.r_theta_dot': 'rθ̇ · eₒ  (velocidad transversal)',
-    'legend.polar_accel': 'Aceleración polar (aᵣ, aₒ)',
+    'legend.r_theta_dot': 'rθ̇ · eθ  (velocidad transversal)',
+    'legend.polar_accel': 'Aceleración polar (aᵣ, aθ)',
     'legend.normal_accel': 'Aceleración normal aₙ',
 
     // EquationsPanel
@@ -321,7 +394,7 @@ export const translations = {
       'Contiene el término tipo Coriolis 2·ṙ·θ̇, que acopla el movimiento radial con el angular.',
     'equations.decomp.relation':
       'Ambos pares suman el mismo vector a. La base intrínseca acompaña a la trayectoria; ' +
-      'la polar depende del polo elegido. Mover el polo cambia aᵣ y aₒ pero deja aₜ y aₙ intactas.',
+      'la polar depende del polo elegido. Mover el polo cambia aᵣ y aθ pero deja aₜ y aₙ intactas.',
 
     // Strip charts
     'chart.velocity.title': 'Velocidad polar vs. tiempo',
@@ -335,10 +408,11 @@ export const translations = {
     'phasor.vn.zero':            'vₙ = 0 (v ⊥ R)',
 
     // Navigation between simulators
-    'nav.aria_label': 'Simuladores',
-    'nav.polar':      'Polar',
-    'nav.ring':       'Anillo',
-    'nav.pin_slot':   'Pasador',
+    'nav.aria_label':    'Simuladores',
+    'nav.polar':         'Polar',
+    'nav.ring':          'Anillo',
+    'nav.pin_slot':      'Pasador',
+    'nav.quick_return':  'Retorno Rápido',
 
     // Polar page — meta
     'polar.page.canvas_aria': 'Simulador de coordenadas polares — movimiento circular animado',
@@ -470,6 +544,66 @@ export const translations = {
     'pin-slot.equations.note.invariant':
       'La rapidez del pasador es constante (V₀), por lo que las componentes radial y ' +
       'transversal siempre satisfacen Vᵣ² + V⊥² = V₀².',
+
+    // Quick-return page — meta
+    'quick-return.page.canvas_aria': 'Simulador de mecanismo de retorno rápido — la manivela AB mueve la barra oscilante OQ y el carro herramienta P',
+
+    // Quick-return — metrics
+    'quick-return.metrics.heading':        'Métricas en vivo',
+    'quick-return.metrics.phi':            'φ  (ángulo de manivela)',
+    'quick-return.metrics.x':             'x(t)  (posición de herramienta)',
+    'quick-return.metrics.v':             'v(t)  (velocidad de herramienta)',
+    'quick-return.metrics.a':             'a(t)  (aceleración de herramienta)',
+    'quick-return.metrics.derived_heading':'Resultados derivados',
+    'quick-return.metrics.ratio_label':   'Relación de retorno rápido',
+    'quick-return.metrics.ratio_note':    'Los tiempos de avance y retorno son distintos',
+    'quick-return.metrics.alpha':         'α = arccos(r / L₂)',
+    'quick-return.metrics.xmax':          'x_max (posiciones extremas)',
+    'quick-return.metrics.v_phi0':        'v en φ = 0 (paso rápido)',
+    'quick-return.metrics.v_phi_pi':      'v en φ = π (paso lento)',
+
+    // Quick-return — controls
+    'quick-return.controls.section.geometry':   'Geometría',
+    'quick-return.controls.section.dynamics':   'Cinemática',
+    'quick-return.controls.section.visibility': 'Visibilidad',
+    'quick-return.controls.slider.r':           'Longitud de manivela r (u)',
+    'quick-return.controls.slider.L2':          'Altura del centro de manivela L₂ (u)',
+    'quick-return.controls.slider.L1':          'Altura de la ranura L₁ (u)',
+    'quick-return.controls.slider.omega':        'Velocidad de manivela ω (rad/s)',
+    'quick-return.controls.toggle.velocity':    'v  (velocidad de herramienta)',
+    'quick-return.controls.toggle.acceleration':'a  (aceleración de herramienta)',
+    'quick-return.controls.toggle.trace':       'Trayectoria de herramienta',
+    'quick-return.controls.toggle.guides':      'Círculo guía y eje',
+    'quick-return.controls.constraint.ok':      'L₂ > r ✓',
+    'quick-return.controls.constraint.warn':    '⚠ L₂ debe ser > r',
+    'quick-return.controls.btn.reset':          'Reiniciar a φ = 0',
+    'quick-return.controls.btn.pause':          'Pausar',
+    'quick-return.controls.btn.resume':         'Reanudar',
+    'quick-return.controls.info.xB':            'Pasador de manivela B',
+    'quick-return.controls.info.xP':            'Carro herramienta P',
+    'quick-return.controls.info.constraint':    'Restricción dura',
+
+    // Quick-return — legend
+    'quick-return.legend.heading':      'Leyenda',
+    'quick-return.legend.crank':        'Manivela AB',
+    'quick-return.legend.bar':          'Barra oscilante OQ',
+    'quick-return.legend.sliderB':      'Carro B (pasador de manivela)',
+    'quick-return.legend.sliderP':      'Carro P (herramienta)',
+    'quick-return.legend.velocity':     'v  (velocidad de herramienta)',
+    'quick-return.legend.acceleration': 'a  (aceleración de herramienta)',
+
+    // Quick-return — equations panel
+    'quick-return.equations.heading':           'Ecuaciones',
+    'quick-return.equations.section.geometry':  'Geometría (O en el origen, A = (0, L₂))',
+    'quick-return.equations.section.kinematics':'Cinemática de la herramienta',
+    'quick-return.equations.section.extremes':  'Posiciones extremas y relación de retorno rápido',
+    'quick-return.equations.section.center':    'Velocidades al cruzar el centro (x = 0)',
+    'quick-return.equations.note.ratio':
+      'La manivela barre (2π − 2α) en un recorrido y 2α en el otro. ' +
+      'Como ω es constante, la relación de tiempos es igual a la relación de ángulos.',
+    'quick-return.equations.note.center':
+      'La herramienta cruza x = 0 dos veces por revolución a distintas velocidades — ' +
+      'la asimetría es la firma del mecanismo de retorno rápido.',
 
     // Units note (shared on both pages)
     'units.note':
