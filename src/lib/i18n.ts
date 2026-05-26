@@ -186,6 +186,8 @@ export const translations = {
       'circular motion, within the Mecánica Técnica course at UTN – FRBA.',
     'footer.related.prefix':
       'Curious about the electric field and the relaxation method? Visit',
+    'footer.rlc.prefix':
+      'Curious about RLC circuits in AC? Visit',
   },
   es: {
     // GitHubLink
@@ -370,6 +372,8 @@ export const translations = {
       'de la UTN – FRBA.',
     'footer.related.prefix':
       '¿Querés ver también el campo eléctrico y el método de relajación? Pasá por',
+    'footer.rlc.prefix':
+      '¿Querés explorar los circuitos RLC en CA? Pasá por',
   },
 } as const
 
