@@ -22,7 +22,7 @@ export const QuickReturnEquations = memo(function QuickReturnEquations() {
 
       {open && (
         <div id="qr-equations-content" className="px-3 pb-3 flex flex-col gap-1.5 text-xs font-mono text-gray-700 dark:text-gray-300">
-          <p className="text-gray-500 dark:text-gray-500 font-sans text-xs mt-1 mb-0.5">
+          <p className="text-gray-500 dark:text-gray-400 font-sans text-xs mt-1 mb-0.5">
             {t('quick-return.equations.section.geometry')}
           </p>
           <p>O = (0, 0),  A = (0, L₂)</p>
@@ -31,33 +31,33 @@ export const QuickReturnEquations = memo(function QuickReturnEquations() {
           <p>y_B = L₂ − r·cos φ</p>
           <p>x_P = L₁·x_B / y_B</p>
 
-          <p className="text-gray-500 dark:text-gray-500 font-sans text-xs mt-2 mb-0.5">
+          <p className="text-gray-500 dark:text-gray-400 font-sans text-xs mt-2 mb-0.5">
             {t('quick-return.equations.section.kinematics')}
           </p>
           <p>x(t) = L₁·r·sin φ / (L₂ − r·cos φ)</p>
           <p>v(t) = ω·L₁·r·(L₂·cos φ − r) / (L₂ − r·cos φ)²</p>
           <p className="leading-tight">a(t) = −ω²·L₁·r·sin φ·(L₂² + r·L₂·cos φ − 2r²) / (L₂ − r·cos φ)³</p>
 
-          <p className="text-gray-500 dark:text-gray-500 font-sans text-xs mt-2 mb-0.5">
+          <p className="text-gray-500 dark:text-gray-400 font-sans text-xs mt-2 mb-0.5">
             {t('quick-return.equations.section.extremes')}
           </p>
           <p>α = arccos(r / L₂)</p>
           <p>x_max = ± L₁·r / √(L₂² − r²)</p>
           <p>ratio = (2π − 2α) / (2α)</p>
-          <p className="text-gray-400 dark:text-gray-500 font-sans text-xs leading-relaxed">
+          <p className="text-gray-400 dark:text-gray-400 font-sans text-xs leading-relaxed">
             {t('quick-return.equations.note.ratio')}
           </p>
 
-          <p className="text-gray-500 dark:text-gray-500 font-sans text-xs mt-2 mb-0.5">
+          <p className="text-gray-500 dark:text-gray-400 font-sans text-xs mt-2 mb-0.5">
             {t('quick-return.equations.section.center')}
           </p>
           <p>v(φ=0)  = +ω·L₁·r / (L₂ − r)  <span className="text-gray-400">(fast)</span></p>
           <p>v(φ=π)  = −ω·L₁·r / (L₂ + r)  <span className="text-gray-400">(slow)</span></p>
-          <p className="text-gray-400 dark:text-gray-500 font-sans text-xs">
+          <p className="text-gray-400 dark:text-gray-400 font-sans text-xs">
             {t('quick-return.equations.note.center')}
           </p>
 
-          <p className="mt-2 text-xs font-sans text-gray-500 dark:text-gray-500 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
+          <p className="mt-2 text-xs font-sans text-gray-500 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-2">
             {t('units.note')}
           </p>
         </div>
