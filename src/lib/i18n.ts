@@ -79,7 +79,7 @@ export const translations = {
       'Contains the Coriolis-like term 2·ṙ·θ̇, which couples radial and angular motion.',
     'equations.decomp.relation':
       'Both pairs add up to the same vector a. The intrinsic basis follows the trajectory; ' +
-      'the polar one depends on the chosen pole. Moving the pole changes aᵣ and a₀ but ' +
+      'the polar one depends on the chosen pole. Moving the pole changes aᵣ and aₒ but ' +
       'leaves aₜ and aₙ untouched.',
 
     // Strip chart panels
@@ -263,7 +263,7 @@ export const translations = {
       'Contiene el término tipo Coriolis 2·ṙ·θ̇, que acopla el movimiento radial con el angular.',
     'equations.decomp.relation':
       'Ambos pares suman el mismo vector a. La base intrínseca acompaña a la trayectoria; ' +
-      'la polar depende del polo elegido. Mover el polo cambia aᵣ y a₀ pero deja aₜ y aₙ intactas.',
+      'la polar depende del polo elegido. Mover el polo cambia aᵣ y aₒ pero deja aₜ y aₙ intactas.',
 
     // Strip charts
     'chart.velocity.title': 'Velocidad polar vs. tiempo',
