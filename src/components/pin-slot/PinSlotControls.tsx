@@ -108,7 +108,7 @@ export function PinSlotControls({
             onChange={v => onSetParam('d', v)}
           />
           <p className="text-[10px] text-gray-500 dark:text-gray-400 font-mono">
-            d &gt; r: {params.d > params.r ? '✓' : '⚠ d must be > r'}
+            {params.d > params.r ? t('pin-slot.controls.constraint.ok') : t('pin-slot.controls.constraint.warn')}
           </p>
         </div>
       </section>

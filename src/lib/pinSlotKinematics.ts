@@ -1,20 +1,6 @@
-export interface PinSlotParams {
-  r: number   // slot radius (world units)
-  d: number   // O-A center-to-center distance (world units)
-  v0: number  // pin speed on the slot (world units/s), constant
-}
+import type { PinSlotParams, PinSlotState } from '@/types/simulator'
 
-export interface PinSlotState {
-  phi: number    // pin angle on the slot at center A (rad)
-  bx: number    // pin B world X
-  by: number    // pin B world Y
-  rho: number   // |OB|
-  theta: number // bar OC angle from positive X axis (rad)
-  vr: number    // radial velocity component along bar (positive = away from O)
-  vPerp: number // transverse velocity component (positive = CCW)
-  omega: number // bar angular velocity (rad/s)
-  gamma: number // bar angular acceleration (rad/s²)
-}
+export type { PinSlotParams, PinSlotState }
 
 /** Constant angular rate of the pin on the slot: Φ̇ = V0 / r */
 export function pinOmega(params: PinSlotParams): number {
