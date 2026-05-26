@@ -490,6 +490,115 @@ export function renderFrame(
 }
 
 // ---------------------------------------------------------------------------
+// Pin-in-slot simulator helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the pixel scale factor so that the full extent (d + r) * margin
+ * maps to 65% of the canvas width, keeping proportions intact.
+ */
+export function pinSlotScale(W: number, d: number, r: number): number {
+  const maxExtent = (d + r) * 1.5
+  return (W * 0.65) / maxExtent
+}
+
+/**
+ * Maps pin-slot world coords to screen coords with O (pivot) at (W×0.28, H×0.50).
+ * scale comes from pinSlotScale().
+ */
+export function worldToScreenPS(
+  worldX: number,
+  worldY: number,
+  W: number,
+  H: number,
+  scale: number,
+): { x: number; y: number } {
+  return {
+    x: W * 0.28 + worldX * scale,
+    y: H * 0.50 - worldY * scale,
+  }
+}
+
+/**
+ * Draws a hinge symbol: a filled circle with a small triangle below it,
+ * representing a pinned pivot fixed to ground.
+ */
+export function drawHinge(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  color: string,
+): void {
+  const r = 6
+  ctx.save()
+  ctx.fillStyle = color
+  ctx.strokeStyle = color
+  ctx.lineWidth = 1.5
+
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, 2 * Math.PI)
+  ctx.fill()
+
+  // Small ground triangle below
+  const h = 8
+  ctx.beginPath()
+  ctx.moveTo(x, y + r)
+  ctx.lineTo(x - h, y + r + h)
+  ctx.lineTo(x + h, y + r + h)
+  ctx.closePath()
+  ctx.stroke()
+
+  // Hatching lines under triangle
+  ctx.lineWidth = 1
+  for (let i = -h; i <= h; i += 4) {
+    ctx.beginPath()
+    ctx.moveTo(x + i - 3, y + r + h)
+    ctx.lineTo(x + i,     y + r + h + 4)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+/**
+ * Draws a circular arc representing an angle from startAngle to endAngle
+ * (both in screen/canvas space, i.e. 0 = right, CW positive).
+ * Used for the Phi arc at A and the theta arc at O.
+ */
+export function drawAngleArc(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  arcRadius: number,
+  startAngle: number,
+  endAngle: number,
+  color: string,
+  label: string,
+): void {
+  const span = endAngle - startAngle
+  if (Math.abs(span) < 0.02) return
+
+  ctx.save()
+  ctx.strokeStyle = color
+  ctx.lineWidth = 1.5
+  ctx.setLineDash([3, 3])
+  ctx.beginPath()
+  ctx.arc(cx, cy, arcRadius, startAngle, endAngle, span < 0)
+  ctx.stroke()
+  ctx.restore()
+
+  // Label at arc midpoint
+  const midAngle = startAngle + span / 2
+  const labelR = arcRadius + 12
+  drawLabel(
+    ctx,
+    label,
+    cx + labelR * Math.cos(midAngle),
+    cy + labelR * Math.sin(midAngle),
+    color,
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Ring simulator drawing helpers
 // ---------------------------------------------------------------------------
 
