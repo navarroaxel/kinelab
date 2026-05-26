@@ -21,9 +21,9 @@ export const PinSlotMetrics = memo(function PinSlotMetrics({ state }: Props) {
   const cards = [
     { label: t('pin-slot.metrics.phi'),   value: toDeg(state.phi).toFixed(1),    unit: '°',      highlight: false },
     { label: t('pin-slot.metrics.theta'), value: toDeg(state.theta).toFixed(1),  unit: '°',      highlight: false },
-    { label: t('pin-slot.metrics.rho'),   value: state.rho.toFixed(2),           unit: 'cm',     highlight: false },
-    { label: t('pin-slot.metrics.vr'),    value: state.vr.toFixed(3),            unit: 'cm/s',   highlight: vrNearZero },
-    { label: t('pin-slot.metrics.vperp'), value: state.vPerp.toFixed(3),         unit: 'cm/s',   highlight: false },
+    { label: t('pin-slot.metrics.rho'),   value: state.rho.toFixed(2),           unit: 'u',     highlight: false },
+    { label: t('pin-slot.metrics.vr'),    value: state.vr.toFixed(3),            unit: 'u/s',   highlight: vrNearZero },
+    { label: t('pin-slot.metrics.vperp'), value: state.vPerp.toFixed(3),         unit: 'u/s',   highlight: false },
     { label: t('pin-slot.metrics.omega'), value: state.omega.toFixed(4),         unit: 'rad/s',  highlight: false },
     { label: t('pin-slot.metrics.gamma'), value: state.gamma.toFixed(4),         unit: 'rad/s²', highlight: gammaNearZero },
   ]

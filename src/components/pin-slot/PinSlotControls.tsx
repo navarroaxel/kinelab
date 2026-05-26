@@ -94,7 +94,7 @@ export function PinSlotControls({
             max={40}
             step={0.5}
             value={params.r}
-            unit="cm"
+            unit="u"
             onChange={v => onSetParam('r', v)}
           />
           <Slider
@@ -104,7 +104,7 @@ export function PinSlotControls({
             max={80}
             step={1}
             value={params.d}
-            unit="cm"
+            unit="u"
             onChange={v => onSetParam('d', v)}
           />
           <p className="text-[10px] text-gray-500 dark:text-gray-400 font-mono">
@@ -125,7 +125,7 @@ export function PinSlotControls({
           max={50}
           step={0.5}
           value={params.v0}
-          unit="cm/s"
+          unit="u/s"
           onChange={v => onSetParam('v0', v)}
         />
         <p className="mt-1.5 text-[10px] text-gray-500 dark:text-gray-400 font-mono">
