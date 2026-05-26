@@ -4,6 +4,7 @@ import { memo } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const RELAX_URL = 'https://relax-method-viz.vercel.app'
+const RLC_URL   = 'https://resonara-phi.vercel.app'
 
 export const ProjectCredits = memo(function ProjectCredits() {
   const { t } = useLanguage()
@@ -21,6 +22,17 @@ export const ProjectCredits = memo(function ProjectCredits() {
           className="text-blue-600 dark:text-blue-400 hover:underline break-all"
         >
           relax-method-viz.vercel.app
+        </a>
+      </p>
+      <p className="text-[11px] leading-relaxed text-gray-600 dark:text-gray-300">
+        {t('footer.rlc.prefix')}{' '}
+        <a
+          href={RLC_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline break-all"
+        >
+          resonara-phi.vercel.app
         </a>
       </p>
     </div>

@@ -64,6 +64,23 @@ export const translations = {
       'Move the pole off-center → both components become non-zero ' +
       'even though the path remains a perfect circle. ' +
       'Set α ≠ 0 → ω varies in time and the motion is non-uniform.',
+    'equations.section.decomp_heading': 'Two decompositions of a',
+    'equations.decomp.intrinsic_heading': 'Intrinsic basis (t, n)',
+    'equations.decomp.at':
+      'Measures the change in speed: aₜ > 0 speeds up, aₜ < 0 slows down. ' +
+      'Vanishes in uniform circular motion.',
+    'equations.decomp.an':
+      'Bends the trajectory without changing |v|. Never vanishes while the particle is turning.',
+    'equations.decomp.polar_heading': 'Polar basis (r, θ)',
+    'equations.decomp.ar':
+      'Includes the term −r·θ̇², which is why it is generally negative even when r is not ' +
+      'changing: the unit vector eᵣ rotates with the particle.',
+    'equations.decomp.atheta':
+      'Contains the Coriolis-like term 2·ṙ·θ̇, which couples radial and angular motion.',
+    'equations.decomp.relation':
+      'Both pairs add up to the same vector a. The intrinsic basis follows the trajectory; ' +
+      'the polar one depends on the chosen pole. Moving the pole changes aᵣ and aₒ but ' +
+      'leaves aₜ and aₙ untouched.',
 
     // Strip chart panels
     'chart.velocity.title': 'Polar velocity vs. time',
@@ -169,6 +186,8 @@ export const translations = {
       'circular motion, within the Mecánica Técnica course at UTN – FRBA.',
     'footer.related.prefix':
       'Curious about the electric field and the relaxation method? Visit',
+    'footer.rlc.prefix':
+      'Curious about RLC circuits in AC? Visit',
   },
   es: {
     // GitHubLink
@@ -231,6 +250,22 @@ export const translations = {
       'Mueve el polo fuera del centro → ambas componentes se vuelven ' +
       'distintas de cero aunque la trayectoria sigue siendo un círculo perfecto. ' +
       'Si α ≠ 0 → ω varía en el tiempo y el movimiento no es uniforme.',
+    'equations.section.decomp_heading': 'Dos descomposiciones de a',
+    'equations.decomp.intrinsic_heading': 'Base intrínseca (t, n)',
+    'equations.decomp.at':
+      'Mide el cambio de rapidez: aₜ > 0 acelera, aₜ < 0 frena. ' +
+      'Se anula en movimiento circular uniforme.',
+    'equations.decomp.an':
+      'Curva la trayectoria sin cambiar |v|. Nunca se anula mientras la partícula gire.',
+    'equations.decomp.polar_heading': 'Base polar (r, θ)',
+    'equations.decomp.ar':
+      'Incluye el término −r·θ̇², por eso suele ser negativa aun cuando r no cambia: ' +
+      'el versor eᵣ rota con la partícula.',
+    'equations.decomp.atheta':
+      'Contiene el término tipo Coriolis 2·ṙ·θ̇, que acopla el movimiento radial con el angular.',
+    'equations.decomp.relation':
+      'Ambos pares suman el mismo vector a. La base intrínseca acompaña a la trayectoria; ' +
+      'la polar depende del polo elegido. Mover el polo cambia aᵣ y aₒ pero deja aₜ y aₙ intactas.',
 
     // Strip charts
     'chart.velocity.title': 'Velocidad polar vs. tiempo',
@@ -337,6 +372,8 @@ export const translations = {
       'de la UTN – FRBA.',
     'footer.related.prefix':
       '¿Querés ver también el campo eléctrico y el método de relajación? Pasá por',
+    'footer.rlc.prefix':
+      '¿Querés explorar los circuitos RLC en CA? Pasá por',
   },
 } as const
 

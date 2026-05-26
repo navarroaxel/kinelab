@@ -13,7 +13,7 @@ Switch between them via the tab nav in the top-right of either page.
 
 ### `/` Polar coordinates
 
-The key insight it makes visible: move the pole (origin of the polar frame) away from the circle centre and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.
+The key insight it makes visible: move the pole (origin of the polar frame) away from the circle center and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.
 
 - Animated canvas with configurable angular velocity ω and angular acceleration α
 - Freely movable pole via sliders; polar vectors update instantly
@@ -71,7 +71,7 @@ No environment variables required — both pages are entirely client-side.
 
 ### Polar simulator
 
-A point P moves on a circle of radius R centred at the origin:
+A point P moves on a circle of radius R centered at the origin:
 
 ```
 x(t) = R·cos(φ(t))
@@ -92,7 +92,7 @@ Projecting Cartesian velocity onto the polar unit vectors:
 rθ̇   = R·ω·cos(φ − θ)
 ```
 
-When the pole coincides with the circle centre: θ = φ, so ṙ = 0 and rθ̇ = R·ω = constant. Move the pole off-centre and both components become time-varying.
+When the pole coincides with the circle center: θ = φ, so ṙ = 0 and rθ̇ = R·ω = constant. Move the pole off-center and both components become time-varying.
 
 ### Ring simulator
 
