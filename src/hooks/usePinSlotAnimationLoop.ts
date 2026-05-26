@@ -25,6 +25,7 @@ export function usePinSlotAnimationLoop(
   phiRef: MutableRefObject<number>,
   onMetrics: (state: PinSlotState) => void,
   paused: boolean,
+  resetCount: number,
 ): void {
   const lastTimeRef      = useRef<number | null>(null)
   const rafIdRef         = useRef<number>(0)
@@ -78,7 +79,7 @@ export function usePinSlotAnimationLoop(
       cancelAnimationFrame(rafIdRef.current)
       lastTimeRef.current = null
     }
-  }, [params, visibility, paused]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [params, visibility, paused, resetCount]) // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 function renderPinSlot(

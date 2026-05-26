@@ -23,6 +23,7 @@ export default function PinSlotPage() {
     paused,
     togglePause,
     reset,
+    resetCount,
     phiRef,
   } = usePinSlotSimulator()
 
@@ -36,6 +37,7 @@ export default function PinSlotPage() {
             phiRef={phiRef}
             onMetrics={setMetrics}
             paused={paused}
+            resetCount={resetCount}
           />
         </div>
 

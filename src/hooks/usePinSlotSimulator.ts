@@ -24,6 +24,7 @@ export function usePinSlotSimulator() {
   const [params, setParams] = useState<PinSlotParams>(INITIAL_PARAMS)
   const [visibility, setVisibility] = useState<PinSlotVisibility>(INITIAL_VISIBILITY)
   const [paused, setPaused] = useState(false)
+  const [resetCount, setResetCount] = useState(0)
 
   // High-frequency state in refs — no re-render per frame
   const phiRef = useRef(0)
@@ -59,6 +60,9 @@ export function usePinSlotSimulator() {
 
   const reset = useCallback(() => {
     phiRef.current = 0
+    // Bump resetCount so the animation-loop effect re-runs even while paused,
+    // forcing the canvas and metrics to refresh to φ = 0 immediately.
+    setResetCount(n => n + 1)
   }, [])
 
   const togglePause = useCallback(() => setPaused(p => !p), [])
@@ -73,6 +77,7 @@ export function usePinSlotSimulator() {
     paused,
     togglePause,
     reset,
+    resetCount,
     phiRef,
   }
 }

@@ -11,9 +11,10 @@ interface Props {
   phiRef: React.MutableRefObject<number>
   onMetrics: (state: PinSlotState) => void
   paused: boolean
+  resetCount: number
 }
 
-export function PinSlotCanvas({ params, visibility, phiRef, onMetrics, paused }: Props) {
+export function PinSlotCanvas({ params, visibility, phiRef, onMetrics, paused, resetCount }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { t } = useLanguage()
 
@@ -45,7 +46,7 @@ export function PinSlotCanvas({ params, visibility, phiRef, onMetrics, paused }:
     return () => ro.disconnect()
   }, [])
 
-  usePinSlotAnimationLoop(canvasRef, params, visibility, phiRef, onMetrics, paused)
+  usePinSlotAnimationLoop(canvasRef, params, visibility, phiRef, onMetrics, paused, resetCount)
 
   return (
     <canvas
