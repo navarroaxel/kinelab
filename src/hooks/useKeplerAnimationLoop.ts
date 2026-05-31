@@ -1,6 +1,8 @@
 'use client'
 
 import { useRef, useEffect, type RefObject, type MutableRefObject } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import type { TranslationKey } from '@/lib/i18n'
 import {
   orbitPosition,
   orbitRadius,
@@ -52,6 +54,10 @@ export function useKeplerAnimationLoop(
   paused: boolean,
   resetCount: number,
 ): void {
+  const { t } = useLanguage()
+  const tRef = useRef(t)
+  useEffect(() => { tRef.current = t }, [t])
+
   const lastTimeRef      = useRef<number | null>(null)
   const rafIdRef         = useRef<number>(0)
   const lastMetricUpdate = useRef(0)
@@ -74,7 +80,7 @@ export function useKeplerAnimationLoop(
       const r     = orbitRadius(orbit, nuRef.current)
       const pos   = orbitPosition(orbit, nuRef.current)
       renderKepler(ctx, canvas, pos, r, phaseRef.current, m, params, visibility,
-        traceRef.current, sweepRef.current)
+        traceRef.current, sweepRef.current, tRef.current)
       onMetrics(buildMetrics(phaseRef.current, r, orbit, m))
       return
     }
@@ -147,7 +153,7 @@ export function useKeplerAnimationLoop(
       }
 
       renderKepler(ctx!, canvas!, pos, r2, phase2, missionRef.current, params, visibility,
-        traceRef.current, sweepRef.current)
+        traceRef.current, sweepRef.current, tRef.current)
 
       if (now - lastMetricUpdate.current > 66) {
         onMetrics(buildMetrics(phase2, r2, orbit2, missionRef.current))
@@ -202,6 +208,7 @@ function renderKepler(
   visibility: KeplerVisibility,
   trace: TracePoint[],
   sweep: TracePoint[],
+  t: (key: TranslationKey) => string,
 ): void {
   const dpr  = window.devicePixelRatio || 1
   const W    = canvas.width  / dpr
@@ -338,7 +345,12 @@ function renderKepler(
   drawDot(ctx, spSc.x, spSc.y, 4, dark ? '#FFE45A' : '#FFD700', '#fff')
 
   // ── Phase banner ──────────────────────────────────────────────────────────
-  const phaseLabels = ['Circular orbit', 'Transfer orbit 1', 'Transfer orbit 2', 'Escape trajectory']
+  const phaseLabels = [
+    t('kepler.phase.circular'),
+    t('kepler.phase.transfer1'),
+    t('kepler.phase.transfer2'),
+    t('kepler.phase.escape'),
+  ]
   const phaseColors = [
     dark ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.10)',
     dark ? 'rgba(100,160,245,0.25)' : 'rgba(59,139,212,0.20)',
