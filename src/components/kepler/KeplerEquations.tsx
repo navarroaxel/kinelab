@@ -107,6 +107,14 @@ export const KeplerEquations = memo(function KeplerEquations() {
               v<sub>f</sub> = v<sub>C</sub> + Δv<sub>C</sub> ≈ 5.001 km/s
             </div>
           </Section>
+
+          <Section
+            title={t('kepler.equations.section.impulsive')}
+            note={t('kepler.equations.note.impulsive')}
+          >
+            <Eq>Δt → 0,  Δs ≈ 0  during each burn</Eq>
+            <Eq>position fixed at A, B, C  →  only v changes</Eq>
+          </Section>
         </div>
       )}
     </section>

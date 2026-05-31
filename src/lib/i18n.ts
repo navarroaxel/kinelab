@@ -384,6 +384,21 @@ export const translations = {
       'Angular-momentum chain: h = r × v_⊥ is conserved within each orbit. ' +
       'Knowing any r and the tangential speed uniquely determines the entire orbit.',
 
+    // Kepler — impulsive maneuver approximation
+    'kepler.equations.section.impulsive': 'Impulsive maneuver approximation',
+    'kepler.equations.note.impulsive':
+      'Each Δv is modelled as an instantaneous impulse: the burn time Δt → 0 ' +
+      'and the arc flown during the burn Δs ≈ 0. ' +
+      'As a result, the spacecraft\'s position is fixed at A, B, or C during the maneuver — ' +
+      'only the velocity vector changes. ' +
+      'This is why the solution chains angular momenta directly at each point ' +
+      'without integrating the trajectory during the burn. ' +
+      'The approximation is valid when the burn duration is negligible compared to the ' +
+      'orbital period (here T₁ ≈ 107 h vs. a burn of seconds or minutes). ' +
+      'When that ratio is not small, a finite-burn model is required: the thrust force, ' +
+      'the varying mass (Tsiolkovsky equation), and the arc actually flown must all be ' +
+      'integrated — the result is no longer analytic.',
+
     // Units note (shared on both pages)
     'units.note':
       '"u" is a generic length unit — pick any (metres, cm, pixels). ' +
@@ -754,7 +769,7 @@ export const translations = {
     'kepler.equations.section.kepler3':     '3.ª Ley de Kepler',
     'kepler.equations.section.vis_viva':    'Ecuación vis-viva',
     'kepler.equations.section.circ':        'Rapidez en órbita circular',
-    'kepler.equations.section.mission':     'Solución del ejercicio',
+    'kepler.equations.section.mission':     'Solución de la Misión',
     'kepler.equations.note.kepler1':
       'Todas las órbitas son secciones cónicas con el cuerpo atractor en uno de los focos. ' +
       'Un círculo (e = 0) es el caso especial de una elipse donde ambos focos coinciden ' +
@@ -780,6 +795,21 @@ export const translations = {
     'kepler.equations.note.mission':
       'Cadena de momento angular: h = r × v_⊥ se conserva dentro de cada órbita. ' +
       'Conociendo cualquier r y la rapidez tangencial, la órbita queda determinada.',
+
+    // Kepler — aproximación de maniobra impulsiva
+    'kepler.equations.section.impulsive': 'Aproximación de maniobra impulsiva',
+    'kepler.equations.note.impulsive':
+      'Cada Δv se modela como un impulso instantáneo: el tiempo de quema Δt → 0 ' +
+      'y el arco recorrido durante la quema Δs ≈ 0. ' +
+      'En consecuencia, la posición del vehículo se mantiene fija en A, B o C durante la maniobra — ' +
+      'solo cambia el vector velocidad. ' +
+      'Por eso la solución encadena directamente los momentos angulares en cada punto ' +
+      'sin integrar la trayectoria durante la aceleración. ' +
+      'La aproximación es válida cuando el tiempo de quema es despreciable frente al ' +
+      'período orbital (aquí T₁ ≈ 107 h frente a una quema de segundos o minutos). ' +
+      'Cuando esa relación no es pequeña, se requiere un modelo de empuje finito: la fuerza de empuje, ' +
+      'la masa variable (ecuación de Tsiolkovsky) y el arco real recorrido deben integrarse — ' +
+      'el resultado ya no es analítico.',
 
     // Units note (shared on both pages)
     'units.note':
