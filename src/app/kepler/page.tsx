@@ -1,49 +1,46 @@
 'use client'
 
-import { usePinSlotSimulator } from '@/hooks/usePinSlotSimulator'
-import { PinSlotCanvas } from '@/components/pin-slot/PinSlotCanvas'
-import { PinSlotMetrics } from '@/components/pin-slot/PinSlotMetrics'
-import { PinSlotControls } from '@/components/pin-slot/PinSlotControls'
-import { PinSlotLegend } from '@/components/pin-slot/PinSlotLegend'
-import { PinSlotEquations } from '@/components/pin-slot/PinSlotEquations'
+import { useKeplerSimulator } from '@/hooks/useKeplerSimulator'
+import { KeplerCanvas }    from '@/components/kepler/KeplerCanvas'
+import { KeplerMetrics }   from '@/components/kepler/KeplerMetrics'
+import { KeplerControls }  from '@/components/kepler/KeplerControls'
+import { KeplerLegend }    from '@/components/kepler/KeplerLegend'
+import { KeplerEquations } from '@/components/kepler/KeplerEquations'
 import { SimulatorHeader } from '@/components/SimulatorHeader'
-import { ProjectCredits } from '@/components/ProjectCredits'
+import { ProjectCredits }  from '@/components/ProjectCredits'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
-export default function PinSlotPage() {
+export default function KeplerPage() {
   const {
-    params,
-    setParam,
-    visibility,
-    toggleVisibility,
-    metrics,
-    setMetrics,
-    paused,
-    togglePause,
-    reset,
-    resetCount,
-    phiRef,
-  } = usePinSlotSimulator()
+    params, setParam,
+    visibility, toggleVisibility,
+    paused, togglePause,
+    resetCount, reset,
+    metrics, setMetrics,
+    nuRef, phaseRef, missionRef,
+  } = useKeplerSimulator()
 
   return (
     <LanguageProvider>
       <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-7xl mx-auto min-h-screen items-start">
         <div className="flex flex-col gap-3">
           <SimulatorHeader />
-          <PinSlotCanvas
+          <KeplerCanvas
             params={params}
             visibility={visibility}
-            phiRef={phiRef}
+            nuRef={nuRef}
+            phaseRef={phaseRef}
+            missionRef={missionRef}
             onMetrics={setMetrics}
             paused={paused}
             resetCount={resetCount}
           />
-          <PinSlotEquations />
+          <KeplerEquations />
         </div>
 
         <aside className="flex flex-col gap-3">
-          <PinSlotMetrics state={metrics} />
-          <PinSlotControls
+          <KeplerMetrics metrics={metrics} />
+          <KeplerControls
             params={params}
             visibility={visibility}
             onSetParam={setParam}
@@ -52,7 +49,7 @@ export default function PinSlotPage() {
             paused={paused}
             onTogglePause={togglePause}
           />
-          <PinSlotLegend />
+          <KeplerLegend />
         </aside>
         <ProjectCredits />
       </main>

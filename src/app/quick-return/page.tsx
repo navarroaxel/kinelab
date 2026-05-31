@@ -29,6 +29,7 @@ export default function QuickReturnPage() {
     <LanguageProvider>
       <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-7xl mx-auto min-h-screen items-start">
         <div className="flex flex-col gap-3">
+          <SimulatorHeader />
           <QuickReturnCanvas
             params={params}
             visibility={visibility}
@@ -37,10 +38,10 @@ export default function QuickReturnPage() {
             paused={paused}
             resetCount={resetCount}
           />
+          <QuickReturnEquations />
         </div>
 
         <aside className="flex flex-col gap-3">
-          <SimulatorHeader />
           <QuickReturnMetrics state={metrics} params={params} />
           <QuickReturnControls
             params={params}
@@ -52,9 +53,8 @@ export default function QuickReturnPage() {
             onTogglePause={togglePause}
           />
           <QuickReturnLegend />
-          <QuickReturnEquations />
-          <ProjectCredits />
         </aside>
+        <ProjectCredits />
       </main>
     </LanguageProvider>
   )

@@ -50,6 +50,7 @@ export default function RingPage() {
     <LanguageProvider>
       <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-7xl mx-auto min-h-screen items-start">
         <div className="flex flex-col gap-3">
+          <SimulatorHeader />
           <RingCanvas
             params={params}
             visibility={visibility}
@@ -71,7 +72,6 @@ export default function RingPage() {
         </div>
 
         <aside className="flex flex-col gap-3">
-          <SimulatorHeader />
           <RingMetrics state={metrics} params={params} />
           <RingControls
             params={params}
@@ -85,8 +85,8 @@ export default function RingPage() {
           {visibility.showEnergyBar && <RingEnergyBar state={metrics} params={params} />}
           <RingLegend />
           <RingEquations />
-          <ProjectCredits />
         </aside>
+        <ProjectCredits />
       </main>
     </LanguageProvider>
   )
