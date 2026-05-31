@@ -11,6 +11,7 @@ const ITEMS: { href: string; key: TranslationKey }[] = [
   { href: '/ring',         key: 'nav.ring' },
   { href: '/pin-slot',     key: 'nav.pin_slot' },
   { href: '/quick-return', key: 'nav.quick_return' },
+  { href: '/kepler',       key: 'nav.kepler' },
 ]
 
 export const SimulatorNav = memo(function SimulatorNav() {

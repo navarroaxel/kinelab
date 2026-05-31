@@ -629,6 +629,36 @@ export function drawAngleArc(
 }
 
 // ---------------------------------------------------------------------------
+// Kepler / orbital mechanics simulator helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the pixel scale factor for the Kepler simulator.
+ * Maps the apoapsis distance R_B = 103 400 km to 87% of the canvas width,
+ * placing Mars at 92% from the left so that point B is near the left edge.
+ */
+export function keplerScale(W: number): number {
+  return (W * 0.87) / 103_400
+}
+
+/**
+ * Maps Kepler world coords (km, Y up, Mars at origin) to screen coords.
+ * Mars centre is placed at (W × 0.92, H × 0.50).
+ */
+export function worldToScreenKepler(
+  worldX: number,
+  worldY: number,
+  W: number,
+  H: number,
+  scale: number,
+): { x: number; y: number } {
+  return {
+    x: W * 0.92 + worldX * scale,
+    y: H * 0.50 - worldY * scale,
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Ring simulator drawing helpers
 // ---------------------------------------------------------------------------
 
