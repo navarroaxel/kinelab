@@ -112,8 +112,8 @@ export const KeplerEquations = memo(function KeplerEquations() {
             title={t('kepler.equations.section.impulsive')}
             note={t('kepler.equations.note.impulsive')}
           >
-            <Eq>Δt → 0,  Δs ≈ 0  during each burn</Eq>
-            <Eq>position fixed at A, B, C  →  only v changes</Eq>
+            <Eq>{t('kepler.equations.impulsive.burn')}</Eq>
+            <Eq>{t('kepler.equations.impulsive.position')}</Eq>
           </Section>
         </div>
       )}

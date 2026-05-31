@@ -386,6 +386,8 @@ export const translations = {
 
     // Kepler — impulsive maneuver approximation
     'kepler.equations.section.impulsive': 'Impulsive maneuver approximation',
+    'kepler.equations.impulsive.burn':     'Δt → 0,  Δs ≈ 0  during each burn',
+    'kepler.equations.impulsive.position': 'position fixed at A, B, C  →  only v changes',
     'kepler.equations.note.impulsive':
       'Each Δv is modelled as an instantaneous impulse: the burn time Δt → 0 ' +
       'and the arc flown during the burn Δs ≈ 0. ' +
@@ -798,6 +800,8 @@ export const translations = {
 
     // Kepler — aproximación de maniobra impulsiva
     'kepler.equations.section.impulsive': 'Aproximación de maniobra impulsiva',
+    'kepler.equations.impulsive.burn':     'Δt → 0,  Δs ≈ 0  por quema',
+    'kepler.equations.impulsive.position': 'posición fija en A, B, C  →  solo v cambia',
     'kepler.equations.note.impulsive':
       'Cada Δv se modela como un impulso instantáneo: el tiempo de quema Δt → 0 ' +
       'y el arco recorrido durante la quema Δs ≈ 0. ' +
