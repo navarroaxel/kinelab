@@ -64,7 +64,7 @@ export const KeplerEquations = memo(function KeplerEquations() {
           >
             <Eq>L = r × mv            (angular momentum)</Eq>
             <Eq>τ = r × F = 0        (central force → τ = 0 → L = const)</Eq>
-            <Eq>h = L/m = r × v⊥ = const  (specific ang. momentum)</Eq>
+            <Eq>h = L/m = r × v<sub>⊥</sub> = const  (specific ang. momentum)</Eq>
             <Eq>dA/dt = h / 2        (areal velocity — constant)</Eq>
             <Eq>dν/dt = h / r²       (faster near periapsis)</Eq>
           </Section>
