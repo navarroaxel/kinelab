@@ -71,13 +71,15 @@ export const KeplerMetrics = memo(function KeplerMetrics({ metrics }: Props) {
 
       <button
         onClick={() => setShowDerived(s => !s)}
+        aria-expanded={showDerived}
+        aria-controls="kepler-derived-metrics"
         className="text-left text-[10px] text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 mt-1"
       >
         {t('kepler.metrics.derived')} {showDerived ? '▲' : '▼'}
       </button>
 
       {showDerived && (
-        <div className="flex flex-col gap-1.5">
+        <div id="kepler-derived-metrics" className="flex flex-col gap-1.5">
           <MetricCard
             label={t('kepler.metrics.orbit1_T')}
             value={metrics.orbit1THr.toFixed(1)}
