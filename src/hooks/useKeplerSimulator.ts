@@ -50,17 +50,20 @@ export function useKeplerSimulator() {
   const phaseRef   = useRef(0)
   const missionRef = useRef(computeMission(INITIAL_PARAMS.dvA, INITIAL_PARAMS.dvB, INITIAL_PARAMS.dvC))
 
-  // Recompute mission and restart when manoeuvre params change
+  // Recompute mission refs when manoeuvre params change (ref-only — no setState)
   useEffect(() => {
     missionRef.current = computeMission(params.dvA, params.dvB, params.dvC)
     nuRef.current    = 0
     phaseRef.current = 0
-    setResetCount(n => n + 1)
   }, [params.dvA, params.dvB, params.dvC])
 
   const setParam = useCallback(
     <K extends keyof KeplerParams>(key: K, value: KeplerParams[K]) => {
       setParams(prev => ({ ...prev, [key]: value }))
+      // Signal animation loop to restart buffers when a burn value changes
+      if (key === 'dvA' || key === 'dvB' || key === 'dvC') {
+        setResetCount(n => n + 1)
+      }
     },
     [],
   )

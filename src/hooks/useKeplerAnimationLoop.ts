@@ -92,7 +92,7 @@ export function useKeplerAnimationLoop(
       lastTimeRef.current = now
 
       const m     = missionRef.current
-      let phase   = phaseRef.current
+      const phase = phaseRef.current
       let nu      = nuRef.current
       const orbit = currentOrbit(phase, m)
 
