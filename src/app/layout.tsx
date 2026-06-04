@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default function RootLayout({
         {/* Inline script runs before React hydrates to prevent theme flash */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){var s=localStorage.getItem('kinelab-theme');if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')})()` }} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
