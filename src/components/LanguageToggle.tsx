@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { useLanguage } from '@/contexts/LanguageContext'
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function LanguageToggle() {
-  const { language, toggle, t } = useLanguage()
-  const target = language === 'en' ? 'ES' : 'EN'
-  const aria = t('language.switch_aria')
+  const { language, toggle, t } = useLanguage();
+  const target = language === "en" ? "ES" : "EN";
+  const aria = t("language.switch_aria");
 
   return (
     <button
@@ -17,5 +17,5 @@ export function LanguageToggle() {
     >
       {target}
     </button>
-  )
+  );
 }
