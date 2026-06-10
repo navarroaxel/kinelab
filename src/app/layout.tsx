@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Polar Coordinates Simulator",
-  description: "Interactive simulator showing the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
+  description:
+    "Interactive simulator showing the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
 };
 
 export default function RootLayout({
@@ -28,9 +29,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         {/* Inline script runs before React hydrates to prevent theme flash */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var s=localStorage.getItem('kinelab-theme');if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')})()` }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var s=localStorage.getItem('kinelab-theme');if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')})()`,
+          }}
+        />
         {children}
         <Analytics />
       </body>

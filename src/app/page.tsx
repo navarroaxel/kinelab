@@ -1,30 +1,36 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useSimulator } from '@/hooks/useSimulator'
-import { computeKinematics } from '@/lib/kinematics'
-import { COLORS } from '@/lib/drawing'
-import { SimulatorCanvas } from '@/components/SimulatorCanvas'
-import { PolarMetrics } from '@/components/PolarMetrics'
-import { ControlsPanel } from '@/components/ControlsPanel'
-import { VectorLegend } from '@/components/VectorLegend'
-import { EquationsPanel } from '@/components/EquationsPanel'
-import { SimulatorHeader } from '@/components/SimulatorHeader'
-import { ProjectCredits } from '@/components/ProjectCredits'
-import { StripChart, type StripChartSeries } from '@/components/StripChart'
-import { PhasorDiagram } from '@/components/PhasorDiagram'
-import { LanguageProvider } from '@/contexts/LanguageContext'
-import type { KinematicState } from '@/types/simulator'
+import { useState } from "react";
+import { useSimulator } from "@/hooks/useSimulator";
+import { computeKinematics } from "@/lib/kinematics";
+import { COLORS } from "@/lib/drawing";
+import { SimulatorCanvas } from "@/components/SimulatorCanvas";
+import { PolarMetrics } from "@/components/PolarMetrics";
+import { ControlsPanel } from "@/components/ControlsPanel";
+import { VectorLegend } from "@/components/VectorLegend";
+import { EquationsPanel } from "@/components/EquationsPanel";
+import { SimulatorHeader } from "@/components/SimulatorHeader";
+import { ProjectCredits } from "@/components/ProjectCredits";
+import { StripChart, type StripChartSeries } from "@/components/StripChart";
+import { PhasorDiagram } from "@/components/PhasorDiagram";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import type { KinematicState } from "@/types/simulator";
 
-const INITIAL_PARAMS = { poleX: 0, poleY: 0, angularVelocity: 60, angularAcceleration: 0, circleRadius: 100 } as const
+const INITIAL_PARAMS = {
+  poleX: 0,
+  poleY: 0,
+  angularVelocity: 60,
+  angularAcceleration: 0,
+  circleRadius: 100,
+} as const;
 
 const VELOCITY_SERIES: readonly StripChartSeries[] = [
-  { key: 'rDot',      color: COLORS.radialVelocity,     label: 'ṙ' },
-  { key: 'rThetaDot', color: COLORS.transverseVelocity, label: 'rθ̇' },
-]
+  { key: "rDot", color: COLORS.radialVelocity, label: "ṙ" },
+  { key: "rThetaDot", color: COLORS.transverseVelocity, label: "rθ̇" },
+];
 const ACCEL_SERIES: readonly StripChartSeries[] = [
-  { key: 'at', color: COLORS.acceleration, label: 'aₜ' },
-]
+  { key: "at", color: COLORS.acceleration, label: "aₜ" },
+];
 
 export default function Home() {
   const {
@@ -44,15 +50,15 @@ export default function Home() {
     subscribeTick,
     paused,
     togglePause,
-  } = useSimulator()
+  } = useSimulator();
 
   const [metrics, setMetrics] = useState<KinematicState>(() =>
-    computeKinematics(0, INITIAL_PARAMS.angularVelocity, INITIAL_PARAMS)
-  )
+    computeKinematics(0, INITIAL_PARAMS.angularVelocity, INITIAL_PARAMS),
+  );
 
   return (
     <LanguageProvider>
-      <main className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-4 p-4 max-w-7xl mx-auto min-h-screen items-start">
+      <main className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start gap-4 p-4 md:grid-cols-[1fr_300px]">
         <div className="flex flex-col gap-3">
           <SimulatorHeader />
           <SimulatorCanvas
@@ -68,7 +74,7 @@ export default function Home() {
             onMetrics={setMetrics}
             paused={paused}
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <PhasorDiagram
               kind="velocity"
               titleKey="phasor.velocity.title"
@@ -120,5 +126,5 @@ export default function Home() {
         <ProjectCredits />
       </main>
     </LanguageProvider>
-  )
+  );
 }
