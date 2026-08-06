@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Polar Coordinates Simulator",
+  title: "Kinelab — Interactive Physics Simulators",
   description:
-    "Interactive simulator showing the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
+    "A browser-based set of small, focused physics simulators built with Next.js and Canvas — each one isolates a single concept in classical mechanics and animates it in real time.",
 };
 
 export default function RootLayout({

@@ -18,12 +18,14 @@ Core simulators:
 
 | Route             | Concept |
 |-------------------|---------|
-| `/`               | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
+| `/polar`          | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | `/ring`           | Vertical ring — particle inside a smooth vertical ring, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold |
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
 | `/kepler`         | Orbital mechanics — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva |
 
 Plus a grouped section, **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, browsable via a section index and an exercise nav (prev/next, jump-to dropdown). See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route table.
+
+`/` itself is a landing page — a card index linking to the four core simulators above plus the Particle Kinematics section (`src/components/HomeIndexClient.tsx`).
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 
@@ -33,7 +35,8 @@ Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind C
 src/
 ├── app/
 │   ├── layout.tsx                    # Root layout, Geist fonts, metadata
-│   ├── page.tsx                      # / — polar simulator (client component, inline composition)
+│   ├── page.tsx                      # / — home landing page (server component + metadata)
+│   ├── polar/page.tsx                # /polar — polar simulator (client component, inline composition)
 │   ├── ring/page.tsx                 # /ring — vertical ring simulator
 │   ├── quick-return/page.tsx         # /quick-return — quick-return mechanism
 │   ├── kepler/page.tsx               # /kepler — orbital mechanics / Mars transfer
@@ -50,7 +53,8 @@ src/
 │   ├── EquationsPanel.tsx      # Polar collapsible formula panel (React.memo)
 │   ├── StripChart.tsx          # Rolling real-time strip chart (React.memo)
 │   ├── FunctionPlot.tsx        # Static function plotter: axes, markers, shading, hover (React.memo)
-│   ├── SimulatorNav.tsx        # Grouped top nav: core tabs + one Particle Kinematics entry, mobile menu
+│   ├── SimulatorNav.tsx        # Grouped top nav: Home + core tabs + one Particle Kinematics entry, mobile menu
+│   ├── HomeIndexClient.tsx     # / — landing page card grid (core simulators + CPM section)
 │   ├── LanguageToggle.tsx      # EN ↔ ES switch
 │   ├── GitHubLink.tsx          # Repo icon link
 │   ├── ring/                   # Ring-only aside panels (RingCanvas, RingControls, RingMetrics, …)
@@ -120,7 +124,7 @@ npx eslint src/
 
 ## Physics quick reference
 
-### Polar (`/`)
+### Polar (`/polar`)
 
 ```
 ptx = R·cos(φ),  pty = R·sin(φ)          point position on circle

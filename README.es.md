@@ -6,7 +6,8 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 
 | Ruta | Título | Concepto |
 |---|---|---|
-| [`/`](http://localhost:3000/)        | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
+| [`/`](http://localhost:3000/) | **Inicio** | Página de bienvenida — un índice de tarjetas que enlaza a cada simulador |
+| [`/polar`](http://localhost:3000/polar) | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
 | [`/ring`](http://localhost:3000/ring) | **Anillo vertical**     | Partícula dentro de un anillo liso vertical — integración RK4 de `θ̈ = −(g/R)·sin θ`, fuerza normal y umbral de vuelta `v_min = √(5gR)` |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Mecanismo de retorno rápido** | La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos |
 | [`/kepler`](http://localhost:3000/kepler) | **Mecánica orbital de Kepler** | Trayectoria de transferencia del vehículo de retorno de Marte — leyes de Kepler, vis-viva, maniobras Δv impulsivas |
@@ -33,7 +34,7 @@ Un conjunto navegable de los diez ejercicios del TP N°1, con navegación anteri
 
 Los diez ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 
-### `/` Coordenadas polares
+### `/polar` Coordenadas polares
 
 La idea clave que hace visible: mueve el polo (origen del sistema polar) lejos del centro del círculo y observa cómo la velocidad radial ṙ y la velocidad transversal rθ̇ dejan de ser cero — aunque la trayectoria siga siendo un círculo perfecto.
 

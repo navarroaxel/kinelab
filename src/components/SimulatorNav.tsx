@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { coreSimulators } from "@/lib/simulators";
 
+const HOME_HREF = "/";
 const CPM_SECTION_HREF = "/particle-kinematics";
 
 const pillClass = (active: boolean) =>
@@ -34,6 +35,7 @@ export const SimulatorNav = memo(function SimulatorNav() {
   const cpmActive = pathname.startsWith(CPM_SECTION_HREF);
 
   const allItems = [
+    { href: HOME_HREF, key: "nav.home" as const },
     ...items,
     { href: CPM_SECTION_HREF, key: "nav.particle_kinematics" as const },
   ];

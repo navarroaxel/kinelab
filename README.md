@@ -6,7 +6,8 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 
 | Route | Title | Concept |
 |---|---|---|
-| [`/`](http://localhost:3000/)        | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
+| [`/`](http://localhost:3000/) | **Home** | Landing page — a card index linking to every simulator below |
+| [`/polar`](http://localhost:3000/polar) | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | [`/ring`](http://localhost:3000/ring) | **Vertical ring**     | Particle on the inside of a smooth vertical ring — RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, and the loop threshold `v_min = √(5gR)` |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
 | [`/kepler`](http://localhost:3000/kepler) | **Kepler orbital mechanics** | Mars return vehicle transfer trajectory — Kepler's laws, vis-viva, impulsive Δv maneuvers |
@@ -33,7 +34,7 @@ A browsable set of the ten exercises from TP N°1, with prev/next navigation, a 
 
 All ten exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
-### `/` Polar coordinates
+### `/polar` Polar coordinates
 
 The key insight it makes visible: move the pole (origin of the polar frame) away from the circle center and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.
 
