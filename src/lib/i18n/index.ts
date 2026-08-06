@@ -12,6 +12,7 @@ import { stoppingDistance } from "./cpm/stopping-distance";
 import { circularOrbit } from "./cpm/circular-orbit";
 import { parabolicTrack } from "./cpm/parabolic-track";
 import { cableBlocks } from "./cpm/cable-blocks";
+import { radarTracking } from "./cpm/radar-tracking";
 
 export type Language = "en" | "es";
 
@@ -33,6 +34,7 @@ export const translations = {
     ...circularOrbit.en,
     ...parabolicTrack.en,
     ...cableBlocks.en,
+    ...radarTracking.en,
   },
   es: {
     ...common.es,
@@ -49,6 +51,7 @@ export const translations = {
     ...circularOrbit.es,
     ...parabolicTrack.es,
     ...cableBlocks.es,
+    ...radarTracking.es,
   },
 } as const;
 
