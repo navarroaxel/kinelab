@@ -124,7 +124,7 @@ npx eslint src/
 
 ## Physics quick reference
 
-### Polar (`/`)
+### Polar (`/polar`)
 
 ```
 ptx = R·cos(φ),  pty = R·sin(φ)          point position on circle
