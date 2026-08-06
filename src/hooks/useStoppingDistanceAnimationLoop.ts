@@ -223,12 +223,18 @@ function render(
     ctx.stroke();
     ctx.restore();
 
-    drawLabel(
-      ctx,
+    // Left-aligned (not drawLabel's centered anchor) so all three car labels
+    // share the same left edge regardless of string length.
+    ctx.save();
+    ctx.font = "12px sans-serif";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = color;
+    ctx.fillText(
       `${c.speedKmh} km/h${stopped ? " ■" : ""}`,
       MARGIN_X + 30,
       y - 16,
-      color,
     );
+    ctx.restore();
   });
 }
