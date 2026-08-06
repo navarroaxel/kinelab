@@ -10,6 +10,8 @@ import { dragDescent } from "./cpm/drag-descent";
 import { motionGraphs } from "./cpm/motion-graphs";
 import { stoppingDistance } from "./cpm/stopping-distance";
 import { circularOrbit } from "./cpm/circular-orbit";
+import { parabolicTrack } from "./cpm/parabolic-track";
+import { cableBlocks } from "./cpm/cable-blocks";
 
 export type Language = "en" | "es";
 
@@ -29,6 +31,8 @@ export const translations = {
     ...motionGraphs.en,
     ...stoppingDistance.en,
     ...circularOrbit.en,
+    ...parabolicTrack.en,
+    ...cableBlocks.en,
   },
   es: {
     ...common.es,
@@ -43,6 +47,8 @@ export const translations = {
     ...motionGraphs.es,
     ...stoppingDistance.es,
     ...circularOrbit.es,
+    ...parabolicTrack.es,
+    ...cableBlocks.es,
   },
 } as const;
 

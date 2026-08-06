@@ -7,3 +7,5 @@ export * from "./drag-descent";
 export * from "./motion-graphs";
 export * from "./stopping-distance";
 export * from "./circular-orbit";
+export * from "./parabolic-track";
+export * from "./cable-blocks";
