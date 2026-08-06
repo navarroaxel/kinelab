@@ -49,7 +49,7 @@ export const ParabolicTrackEquations = memo(function ParabolicTrackEquations({
               {t("parabolic-track.equations.section.formulas")}
             </p>
             <p>y = x²/k, y′ = x/(k/2), y″ = 2/k</p>
-            <p>R_c = (1 + y′²)^(3/2) / |y″|</p>
+            <p>{withSubscripts("R_c")} = (1 + y′²)^(3/2) / |y″|</p>
             <p>{withSubscripts("a_n")} = v² / R_c</p>
             <p>
               |a| = √({withSubscripts("a_t")}² + {withSubscripts("a_n")}²)
@@ -64,16 +64,17 @@ export const ParabolicTrackEquations = memo(function ParabolicTrackEquations({
               {t("parabolic-track.equations.section.reference")}
             </p>
             <p className="font-mono">
-              R_c = {state.Rc.toFixed(2)} m, aₙ = {state.an.toFixed(3)} m/s²,
-              |a| = {state.a.toFixed(3)} m/s², β = {state.betaDeg.toFixed(1)}°
+              {withSubscripts("R_c")} = {state.Rc.toFixed(2)} m, aₙ ={" "}
+              {state.an.toFixed(3)} m/s², |a| = {state.a.toFixed(3)} m/s², β ={" "}
+              {state.betaDeg.toFixed(1)}°
             </p>
             <p className="font-sans leading-relaxed text-gray-500 dark:text-gray-400">
-              {t("parabolic-track.equations.note.reference")}
+              {withSubscripts(t("parabolic-track.equations.note.reference"))}
             </p>
           </div>
 
           <p className="font-sans leading-relaxed text-gray-500 dark:text-gray-400">
-            {t("parabolic-track.equations.note.sign")}
+            {withSubscripts(t("parabolic-track.equations.note.sign"))}
           </p>
 
           <p className="mt-1 border-t border-gray-100 pt-2 font-sans text-xs leading-relaxed text-gray-500 dark:border-gray-800 dark:text-gray-400">

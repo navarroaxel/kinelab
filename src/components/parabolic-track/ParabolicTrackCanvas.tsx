@@ -165,7 +165,7 @@ export function ParabolicTrackCanvas({ params, state, visibility }: Props) {
         colors.acceleration,
         2,
       );
-      drawLabel(ctx, "a_t", atTip.x + 6, atTip.y - 6, colors.acceleration);
+      drawLabel(ctx, "aₜ", atTip.x + 6, atTip.y - 6, colors.acceleration);
       drawArrow(
         ctx,
         skater.x,
@@ -175,7 +175,7 @@ export function ParabolicTrackCanvas({ params, state, visibility }: Props) {
         colors.normalAccel,
         2,
       );
-      drawLabel(ctx, "a_n", anTip.x + 6, anTip.y - 6, colors.normalAccel);
+      drawLabel(ctx, "aₙ", anTip.x + 6, anTip.y - 6, colors.normalAccel);
       drawArrow(ctx, skater.x, skater.y, aTip.x, aTip.y, colors.point, 2.5);
       drawLabel(ctx, "a", aTip.x + 8, aTip.y - 8, colors.point);
     }

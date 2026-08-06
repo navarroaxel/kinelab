@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type {
   ParabolicTrackParams,
   ParabolicTrackVisibility,
@@ -18,7 +19,7 @@ interface Props {
 }
 
 interface SliderProps {
-  label: string;
+  label: React.ReactNode;
   id: string;
   min: number;
   max: number;
@@ -112,7 +113,7 @@ export function ParabolicTrackControls({
             onChange={(k) => onSetParam("coeff", 1 / k)}
           />
           <Slider
-            label={t("parabolic-track.controls.slider.xa")}
+            label={withSubscripts(t("parabolic-track.controls.slider.xa"))}
             id="xA"
             min={-30}
             max={30}
@@ -132,7 +133,7 @@ export function ParabolicTrackControls({
             onChange={(v) => onSetParam("v", v)}
           />
           <Slider
-            label={t("parabolic-track.controls.slider.vdot")}
+            label={withSubscripts(t("parabolic-track.controls.slider.vdot"))}
             id="vDot"
             min={-10}
             max={10}
