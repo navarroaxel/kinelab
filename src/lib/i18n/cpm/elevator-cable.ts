@@ -47,7 +47,7 @@ export const elevatorCable = {
   },
   es: {
     "elevator-cable.page.canvas_aria":
-      "Simulador de ascensor y polea — un carro desciende mientras un tambor desenrolla cable a velocidad constante",
+      "Simulador de ascensor y polea — un carro desciende mientras un carrete desenrolla cable a velocidad constante",
 
     "elevator-cable.controls.section.parameters": "Parámetros",
     "elevator-cable.controls.section.visibility": "Visibilidad",
@@ -55,7 +55,7 @@ export const elevatorCable = {
     "elevator-cable.controls.slider.v0": "Velocidad de desenrollado v₀",
     "elevator-cable.controls.slider.x0": "Posición inicial x₀",
     "elevator-cable.controls.toggle.velocity": "Indicador de velocidad",
-    "elevator-cable.controls.toggle.drum": "Tambor C",
+    "elevator-cable.controls.toggle.drum": "Carrete C",
     "elevator-cable.controls.toggle.trace": "Estela del carro",
     "elevator-cable.controls.btn.reset": "Reiniciar a t = 0",
     "elevator-cable.controls.btn.pause": "Pausar",
@@ -72,12 +72,12 @@ export const elevatorCable = {
     "elevator-cable.legend.heading": "Leyenda",
     "elevator-cable.legend.cable": "Cable A–B",
     "elevator-cable.legend.car": "Carro (ascensor)",
-    "elevator-cable.legend.drum": "Tambor C",
+    "elevator-cable.legend.drum": "Carrete C",
 
     "elevator-cable.equations.heading": "Ecuaciones",
     "elevator-cable.equations.section.statement": "Enunciado",
     "elevator-cable.equations.statement.text":
-      "El cable se desenrolla del tambor C a v₀ constante. Hallar la velocidad y aceleración del ascensor en función del tiempo.",
+      "El cable se desenrolla del carrete C a v₀ constante. Hallar la velocidad y aceleración del ascensor en función del tiempo.",
     "elevator-cable.equations.section.formulas": "Fórmulas",
     "elevator-cable.equations.section.singularity":
       "Singularidad en t = 0 (x₀ = 0)",
