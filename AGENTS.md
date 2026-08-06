@@ -24,7 +24,7 @@ Core simulators:
 Plus two grouped sections:
 
 - **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, all implemented, browsable via a section index and an exercise nav (prev/next, jump-to dropdown).
-- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; two are implemented so far — PD 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold) and PD 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva). The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
+- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; three are implemented so far — PD 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold), PD 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva), and PD 12 (`/particle-dynamics/escalator`, three-phase motor + escalator efficiency — closed-form P_elec = √3·V·I·cos φ vs. P_mech = n·m·g·h/t, no ODE). The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
 
 See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route tables.
 
@@ -49,7 +49,8 @@ src/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-dynamics — section index (card grid, incl. disabled stubs)
 │   │   ├── ring/page.tsx             # /particle-dynamics/ring — PD 3 (moved from the former core /ring)
-│   │   └── kepler/page.tsx           # /particle-dynamics/kepler — PD 6 (moved from the former core /kepler)
+│   │   ├── kepler/page.tsx           # /particle-dynamics/kepler — PD 6 (moved from the former core /kepler)
+│   │   └── escalator/page.tsx        # /particle-dynamics/escalator — PD 12 (three-phase motor efficiency)
 │   └── globals.css                   # Tailwind v4 import + CSS variables
 ├── components/
 │   ├── SimulatorCanvas.tsx     # Polar canvas: ResizeObserver + DPR + RAF wiring

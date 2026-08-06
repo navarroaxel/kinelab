@@ -243,14 +243,13 @@ export const SIMULATORS: SimulatorEntry[] = [
     disabled: true,
   },
   {
-    id: "pd12",
-    href: "/particle-dynamics",
+    id: "escalator",
+    href: "/particle-dynamics/escalator",
     navKey: "pd.exercises.pd12.title",
     titleKey: "pd.exercises.pd12.title",
     summaryKey: "pd.exercises.pd12.summary",
     group: "particle-dynamics",
     pd: 12,
-    disabled: true,
   },
   {
     id: "pd13",
