@@ -9,6 +9,7 @@ import { cpmExercisesI18n } from "./cpm/exercises";
 import { dragDescent } from "./cpm/drag-descent";
 import { motionGraphs } from "./cpm/motion-graphs";
 import { stoppingDistance } from "./cpm/stopping-distance";
+import { circularOrbit } from "./cpm/circular-orbit";
 
 export type Language = "en" | "es";
 
@@ -27,6 +28,7 @@ export const translations = {
     ...dragDescent.en,
     ...motionGraphs.en,
     ...stoppingDistance.en,
+    ...circularOrbit.en,
   },
   es: {
     ...common.es,
@@ -40,6 +42,7 @@ export const translations = {
     ...dragDescent.es,
     ...motionGraphs.es,
     ...stoppingDistance.es,
+    ...circularOrbit.es,
   },
 } as const;
 
