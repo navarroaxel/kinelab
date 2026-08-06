@@ -128,9 +128,11 @@ export function PinSlotControls({
             onChange={(v) => onSetParam("d", v)}
           />
           <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400">
-            {params.d > params.r
-              ? t("pin-slot.controls.constraint.ok")
-              : t("pin-slot.controls.constraint.warn")}
+            {Math.abs(params.d - params.r) < 1e-6
+              ? t("pin-slot.controls.constraint.degenerate")
+              : params.d > params.r
+                ? t("pin-slot.controls.constraint.ok")
+                : t("pin-slot.controls.constraint.warn")}
           </p>
         </div>
       </section>

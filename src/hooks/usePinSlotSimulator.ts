@@ -7,6 +7,7 @@ import type {
   PinSlotVisibility,
 } from "@/types/simulator";
 import { computePinSlotState } from "@/lib/pinSlotKinematics";
+import { usePreset } from "@/hooks/usePreset";
 
 // Default reference-case values (proportions match r=12.5, d=30, V0=10 cm/s).
 // World units here are cm — the canvas renderer auto-scales to fit.
@@ -14,6 +15,11 @@ const INITIAL_PARAMS: PinSlotParams = {
   r: 12.5,
   d: 30,
   v0: 10,
+};
+
+// CPM 4: the circular guide passes through O (d = r) — see AGENTS.md 3.9.
+const PRESETS: Record<string, PinSlotParams> = {
+  cpm4: { r: 12.5, d: 12.5, v0: 10 },
 };
 
 const INITIAL_VISIBILITY: PinSlotVisibility = {
@@ -25,7 +31,8 @@ const INITIAL_VISIBILITY: PinSlotVisibility = {
 };
 
 export function usePinSlotSimulator() {
-  const [params, setParams] = useState<PinSlotParams>(INITIAL_PARAMS);
+  const presetParams = usePreset(PRESETS, INITIAL_PARAMS);
+  const [params, setParams] = useState<PinSlotParams>(presetParams);
   const [visibility, setVisibility] =
     useState<PinSlotVisibility>(INITIAL_VISIBILITY);
   const [paused, setPaused] = useState(false);
@@ -36,7 +43,7 @@ export function usePinSlotSimulator() {
 
   // Metrics state (throttled ~15 fps)
   const [metrics, setMetrics] = useState<PinSlotState>(() =>
-    computePinSlotState(INITIAL_PARAMS, 0),
+    computePinSlotState(presetParams, 0),
   );
 
   // Reset phi when params change — old trajectory is no longer meaningful
@@ -48,10 +55,11 @@ export function usePinSlotSimulator() {
     <K extends keyof PinSlotParams>(key: K, value: PinSlotParams[K]) => {
       setParams((prev) => {
         const next = { ...prev, [key]: value };
-        // Clamp d > r + epsilon so O always lies outside the slot circle
-        if (next.d <= next.r + 1) {
-          if (key === "d") next.d = next.r + 1;
-          if (key === "r") next.r = next.d - 1;
+        // Clamp d >= r so O never ends up strictly inside the slot circle.
+        // d === r is the CPM 4 degenerate case and is explicitly allowed.
+        if (next.d < next.r) {
+          if (key === "d") next.d = next.r;
+          if (key === "r") next.r = next.d;
         }
         return next;
       });

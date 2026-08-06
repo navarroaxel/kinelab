@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePinSlotSimulator } from "@/hooks/usePinSlotSimulator";
 import { PinSlotCanvas } from "@/components/pin-slot/PinSlotCanvas";
 import { PinSlotMetrics } from "@/components/pin-slot/PinSlotMetrics";
@@ -9,7 +10,7 @@ import { PinSlotEquations } from "@/components/pin-slot/PinSlotEquations";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 
-export default function PinSlotPage() {
+function PinSlotPageContent() {
   const {
     params,
     setParam,
@@ -36,7 +37,7 @@ export default function PinSlotPage() {
           paused={paused}
           resetCount={resetCount}
         />
-        <PinSlotEquations />
+        <PinSlotEquations params={params} />
       </div>
 
       <aside className="flex flex-col gap-3">
@@ -54,5 +55,13 @@ export default function PinSlotPage() {
       </aside>
       <ProjectCredits />
     </main>
+  );
+}
+
+export default function PinSlotPage() {
+  return (
+    <Suspense fallback={null}>
+      <PinSlotPageContent />
+    </Suspense>
   );
 }

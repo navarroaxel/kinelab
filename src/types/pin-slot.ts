@@ -26,4 +26,5 @@ export interface PinSlotState {
   vPerp: number; // transverse velocity component
   omega: number; // bar angular velocity (rad/s)
   gamma: number; // bar angular acceleration (rad/s²)
+  singular: boolean; // true when ρ ≈ 0 (only reachable when d = r, at Φ = π) — vr/omega/vPerp/gamma are frozen at 0 rather than NaN/Infinity that frame
 }

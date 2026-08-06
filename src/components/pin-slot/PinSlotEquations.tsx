@@ -2,10 +2,18 @@
 
 import { memo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import type { PinSlotParams } from "@/types/simulator";
 
-export const PinSlotEquations = memo(function PinSlotEquations() {
+interface Props {
+  params: PinSlotParams;
+}
+
+export const PinSlotEquations = memo(function PinSlotEquations({
+  params,
+}: Props) {
   const [open, setOpen] = useState(true);
   const { t } = useLanguage();
+  const isDegenerate = Math.abs(params.d - params.r) < 1e-6;
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
@@ -48,13 +56,37 @@ export const PinSlotEquations = memo(function PinSlotEquations() {
           <p>γ = θ̈ = Vᵣ·(Ω − 2ω) / ρ</p>
           <p>V⊥ = ρ·ω</p>
 
-          <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
-            {t("pin-slot.equations.section.swing")}
-          </p>
-          <p>|θ|_max = arcsin(r / d)</p>
-          <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
-            {t("pin-slot.equations.note.swing")}
-          </p>
+          {isDegenerate ? (
+            <>
+              <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
+                {t("pin-slot.equations.section.cpm4")}
+              </p>
+              <p>ρ = 2r·cos(Φ/2)</p>
+              <p>θ = Φ/2</p>
+              <p>|v| = 2·ω·r</p>
+              <p>|a| = 4·ω²·r</p>
+              <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
+                {t("pin-slot.equations.note.cpm4")}
+              </p>
+
+              <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
+                {t("pin-slot.equations.section.swing_degenerate")}
+              </p>
+              <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
+                {t("pin-slot.equations.note.swing_degenerate")}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
+                {t("pin-slot.equations.section.swing")}
+              </p>
+              <p>|θ|_max = arcsin(r / d)</p>
+              <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
+                {t("pin-slot.equations.note.swing")}
+              </p>
+            </>
+          )}
 
           <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
             {t("pin-slot.equations.section.invariant")}
