@@ -21,9 +21,10 @@ export const SIMULATORS: SimulatorEntry[] = [
   // Core simulators — flat tabs in the top nav
   {
     id: "polar",
-    href: "/",
+    href: "/polar",
     navKey: "nav.polar",
     titleKey: "nav.polar",
+    summaryKey: "home.summary.polar",
     group: "core",
   },
   {
@@ -31,6 +32,7 @@ export const SIMULATORS: SimulatorEntry[] = [
     href: "/ring",
     navKey: "nav.ring",
     titleKey: "nav.ring",
+    summaryKey: "home.summary.ring",
     group: "core",
   },
   {
@@ -38,6 +40,7 @@ export const SIMULATORS: SimulatorEntry[] = [
     href: "/quick-return",
     navKey: "nav.quick_return",
     titleKey: "nav.quick_return",
+    summaryKey: "home.summary.quick_return",
     group: "core",
   },
   {
@@ -45,6 +48,7 @@ export const SIMULATORS: SimulatorEntry[] = [
     href: "/kepler",
     navKey: "nav.kepler",
     titleKey: "nav.kepler",
+    summaryKey: "home.summary.kepler",
     group: "core",
   },
 
