@@ -6,6 +6,7 @@ import {
   type RefObject,
   type MutableRefObject,
 } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { angularVelocity } from "@/lib/circularOrbitKinematics";
 import {
   drawArrow,
@@ -36,6 +37,12 @@ export function useCircularOrbitAnimationLoop(
   paused: boolean,
   resetCount: number,
 ): void {
+  const { t } = useLanguage();
+  const translateRef = useRef(t);
+  useEffect(() => {
+    translateRef.current = t;
+  }, [t]);
+
   const lastTimeRef = useRef<number | null>(null);
   const rafIdRef = useRef<number>(0);
   const traceRef = useRef<number[]>([]);
@@ -63,6 +70,7 @@ export function useCircularOrbitAnimationLoop(
         thetaRef.current,
         traceRef.current,
         colors,
+        translateRef.current("circular-orbit.canvas.warn.not_possible"),
       );
       return;
     }
@@ -100,6 +108,7 @@ export function useCircularOrbitAnimationLoop(
         thetaRef.current,
         traceRef.current,
         colors,
+        translateRef.current("circular-orbit.canvas.warn.not_possible"),
       );
 
       rafIdRef.current = requestAnimationFrame(frame);
@@ -124,6 +133,7 @@ function render(
   theta: number,
   trace: number[],
   colors: ColorPalette,
+  notPossibleLabel: string,
 ): void {
   const dpr = window.devicePixelRatio || 1;
   const W = canvas.width / dpr;
@@ -233,7 +243,7 @@ function render(
     ctx.fillStyle = colors.point;
     ctx.font = "bold 12px ui-sans-serif, system-ui, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("r ≤ R — orbit not possible", cx, H - 12);
+    ctx.fillText(notPossibleLabel, cx, H - 12);
     ctx.restore();
   }
 }

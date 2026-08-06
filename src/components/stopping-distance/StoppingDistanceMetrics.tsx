@@ -77,9 +77,9 @@ export const StoppingDistanceMetrics = memo(function StoppingDistanceMetrics({
             </tr>
           </thead>
           <tbody>
-            {state.cases.map((c) => (
+            {state.cases.map((c, i) => (
               <tr
-                key={c.speedKmh}
+                key={`${c.speedKmh}-${i}`}
                 className={
                   c.exceedsObstacle ? "bg-rose-50 dark:bg-rose-950" : undefined
                 }

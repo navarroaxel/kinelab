@@ -18,6 +18,7 @@ export const circularOrbit = {
     "circular-orbit.controls.btn.resume": "Resume",
     "circular-orbit.controls.warn.surface":
       "⚠ At this speed r ≤ R — the satellite would hit the surface, not orbit it",
+    "circular-orbit.canvas.warn.not_possible": "r ≤ R — orbit not possible",
 
     "circular-orbit.metrics.heading": "Live Metrics",
     "circular-orbit.metrics.v": "v  (orbital speed)",
@@ -64,6 +65,7 @@ export const circularOrbit = {
     "circular-orbit.controls.btn.resume": "Reanudar",
     "circular-orbit.controls.warn.surface":
       "⚠ A esta rapidez r ≤ R — el satélite chocaría contra la superficie, no orbitaría",
+    "circular-orbit.canvas.warn.not_possible": "r ≤ R — órbita no posible",
 
     "circular-orbit.metrics.heading": "Métricas en vivo",
     "circular-orbit.metrics.v": "v  (rapidez orbital)",

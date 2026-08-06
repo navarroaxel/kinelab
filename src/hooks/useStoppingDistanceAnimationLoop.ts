@@ -6,6 +6,7 @@ import {
   type RefObject,
   type MutableRefObject,
 } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   computeAllCases,
   positionAtTime,
@@ -35,6 +36,12 @@ export function useStoppingDistanceAnimationLoop(
   paused: boolean,
   resetCount: number,
 ): void {
+  const { t } = useLanguage();
+  const translateRef = useRef(t);
+  useEffect(() => {
+    translateRef.current = t;
+  }, [t]);
+
   const lastTimeRef = useRef<number | null>(null);
   const rafIdRef = useRef<number>(0);
   const lastMetricUpdate = useRef(0);
@@ -68,6 +75,7 @@ export function useStoppingDistanceAnimationLoop(
         visibility,
         tracesRef.current,
         colors,
+        translateRef.current("stopping-distance.legend.obstacle"),
       );
       onMetrics({ cases, t: tRef.current });
       return;
@@ -110,6 +118,7 @@ export function useStoppingDistanceAnimationLoop(
         visibility,
         tracesRef.current,
         colors,
+        translateRef.current("stopping-distance.legend.obstacle"),
       );
 
       if (now - lastMetricUpdate.current > 66) {
@@ -143,6 +152,7 @@ function render(
   visibility: StoppingDistanceVisibility,
   traces: number[][],
   colors: ColorPalette,
+  obstacleLabel: string,
 ): void {
   const dpr = window.devicePixelRatio || 1;
   const W = canvas.width / dpr;
@@ -187,7 +197,7 @@ function render(
     ctx.lineTo(ox, H - 20);
     ctx.stroke();
     ctx.restore();
-    drawLabel(ctx, "obstacle", ox + 4, 10, colors.axes);
+    drawLabel(ctx, obstacleLabel, ox + 4, 10, colors.axes);
   }
 
   cases.forEach((c, i) => {
