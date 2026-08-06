@@ -5,3 +5,4 @@ export * from "./kepler";
 export * from "./quick-return";
 export * from "./drag-descent";
 export * from "./motion-graphs";
+export * from "./stopping-distance";
