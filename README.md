@@ -8,10 +8,9 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 |---|---|---|
 | [`/`](http://localhost:3000/) | **Home** | Landing page — a card index linking to every simulator below |
 | [`/polar`](http://localhost:3000/polar) | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
-| [`/ring`](http://localhost:3000/ring) | **Vertical ring**     | Particle on the inside of a smooth vertical ring — RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, and the loop threshold `v_min = √(5gR)` |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
-| [`/kepler`](http://localhost:3000/kepler) | **Kepler orbital mechanics** | Mars return vehicle transfer trajectory — Kepler's laws, vis-viva, impulsive Δv maneuvers |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
+| [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 
 Switch between them via the tab nav in the top-right of any page; on narrow screens it collapses into a menu button.
 
@@ -34,6 +33,29 @@ A browsable set of the ten exercises from TP N°1, with prev/next navigation, a 
 
 All ten exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
+### Particle Dynamics section (`/particle-dynamics`)
+
+A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. DPM 3 (the vertical ring, moved here from the former `/ring` route) and DPM 6 (Kepler orbital mechanics, moved here from the former `/kepler` route) have working simulators; the rest show as "coming soon" cards until built.
+
+| Exercise | Route |
+|---|---|
+| DPM 1 — Bullet through a viscous plate | *not yet implemented* |
+| DPM 2 — Parachutist with linear drag | *not yet implemented* |
+| DPM 3 — Particle in a vertical ring | `/particle-dynamics/ring` |
+| DPM 4 — Atwood machine | *not yet implemented* |
+| DPM 5 — Sphere on a parabolic track | *not yet implemented* |
+| DPM 6 — Orbital transfer thrust factors | `/particle-dynamics/kepler` |
+| DPM 7 — Elevator and counterweight power | *not yet implemented* |
+| DPM 8 — Spring-stopped package on an incline | *not yet implemented* |
+| DPM 9 — Pulleys and blocks with friction | *not yet implemented* |
+| DPM 10 — Vehicle resistance and power | *not yet implemented* |
+| DPM 11 — Hoist motor efficiency | *not yet implemented* |
+| DPM 12 — Escalator motor efficiency | *not yet implemented* |
+| DPM 13 — Rail car coupling | *not yet implemented* |
+| DPM 14 — Staged rocket launch | *not yet implemented* |
+
+See `src/lib/simulators.ts` for the registry driving this table.
+
 ### `/polar` Polar coordinates
 
 The key insight it makes visible: move the pole (origin of the polar frame) away from the circle center and watch the radial velocity ṙ and transverse velocity rθ̇ become non-zero — even though the path is still a perfect circle.
@@ -46,7 +68,7 @@ The key insight it makes visible: move the pole (origin of the polar frame) away
 - Strip charts: polar velocity vs. time, tangential acceleration vs. time
 - Live metrics: r, θ, ṙ, rθ̇, ω, aₜ
 
-### `/ring` Vertical ring
+### `/particle-dynamics/ring` Vertical ring (DPM 3)
 
 A particle constrained to slide on the inside of a smooth ring of radius R in a uniform gravitational field. The simulation integrates `θ̈ = −(g/R)·sin θ` with 4th-order Runge–Kutta and surfaces the dynamics in real time:
 

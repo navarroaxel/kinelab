@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { withSubscripts } from "@/components/Subscript";
-import { coreSimulators } from "@/lib/simulators";
+import { coreSimulators, findByHref } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 import { HomePolarPreview } from "@/components/HomePolarPreview";
@@ -15,9 +15,17 @@ const CPM_SECTION_CARD = {
   summaryKey: "cpm.section.subtitle",
 } as const;
 
+const DPM_SECTION_CARD = {
+  href: "/particle-dynamics",
+  titleKey: "home.card.tp2.title",
+  summaryKey: "dpm.section.subtitle",
+} as const;
+
+const KEPLER_HOME_CARD = findByHref("/particle-dynamics/kepler")!;
+
 function HomeIndexContent() {
   const { t } = useLanguage();
-  const simulators = coreSimulators();
+  const simulators = [...coreSimulators(), KEPLER_HOME_CARD];
 
   return (
     <main className="mx-auto max-w-7xl p-4">
@@ -49,22 +57,20 @@ function HomeIndexContent() {
             </span>
           </Link>
 
-          <div className="flex cursor-default flex-col gap-1.5 rounded-xl border border-dashed border-gray-200 bg-white p-6 opacity-60 dark:border-gray-700 dark:bg-gray-900">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                TP N°2
-              </span>
-              <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium tracking-wide text-gray-500 uppercase dark:bg-gray-800 dark:text-gray-400">
-                {t("home.badge.coming_soon")}
-              </span>
-            </div>
+          <Link
+            href={DPM_SECTION_CARD.href}
+            className="flex flex-col gap-1.5 rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
+          >
+            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+              TP N°2
+            </span>
             <span className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-              {t("home.card.tp2.title")}
+              {t(DPM_SECTION_CARD.titleKey)}
             </span>
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              {t("home.card.tp2.summary")}
+              {withSubscripts(t(DPM_SECTION_CARD.summaryKey))}
             </span>
-          </div>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">

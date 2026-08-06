@@ -12,7 +12,6 @@ import { RingLegend } from "@/components/ring/RingLegend";
 import { RingEquations } from "@/components/ring/RingEquations";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
-import { LanguageProvider } from "@/contexts/LanguageContext";
 import { computeVMin } from "@/lib/ringKinematics";
 import type { RingKinematicState, RingParams } from "@/types/simulator";
 
@@ -51,49 +50,47 @@ export default function RingPage() {
   );
 
   return (
-    <LanguageProvider>
-      <main className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start gap-4 p-4 md:grid-cols-[1fr_300px]">
-        <div className="flex flex-col gap-3">
-          <SimulatorHeader />
-          <RingCanvas
-            params={params}
-            visibility={visibility}
-            thetaRef={thetaRef}
-            thetaDotRef={thetaDotRef}
-            traceRef={traceRef}
-            tRef={tRef}
-            samplesRef={samplesRef}
-            tickListenersRef={tickListenersRef}
-            onMetrics={setMetrics}
-            paused={paused}
-          />
-          <RingEnergyChart
-            params={params}
-            samplesRef={samplesRef}
-            tRef={tRef}
-            subscribeTick={subscribeTick}
-          />
-        </div>
+    <main className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-start gap-4 p-4 md:grid-cols-[1fr_300px]">
+      <div className="flex flex-col gap-3">
+        <SimulatorHeader />
+        <RingCanvas
+          params={params}
+          visibility={visibility}
+          thetaRef={thetaRef}
+          thetaDotRef={thetaDotRef}
+          traceRef={traceRef}
+          tRef={tRef}
+          samplesRef={samplesRef}
+          tickListenersRef={tickListenersRef}
+          onMetrics={setMetrics}
+          paused={paused}
+        />
+        <RingEnergyChart
+          params={params}
+          samplesRef={samplesRef}
+          tRef={tRef}
+          subscribeTick={subscribeTick}
+        />
+      </div>
 
-        <aside className="flex flex-col gap-3">
-          <RingMetrics state={metrics} params={params} />
-          <RingControls
-            params={params}
-            visibility={visibility}
-            onSetParam={setParam}
-            onToggle={toggleVisibility}
-            onReset={reset}
-            paused={paused}
-            onTogglePause={togglePause}
-          />
-          {visibility.showEnergyBar && (
-            <RingEnergyBar state={metrics} params={params} />
-          )}
-          <RingLegend />
-          <RingEquations />
-        </aside>
-        <ProjectCredits />
-      </main>
-    </LanguageProvider>
+      <aside className="flex flex-col gap-3">
+        <RingMetrics state={metrics} params={params} />
+        <RingControls
+          params={params}
+          visibility={visibility}
+          onSetParam={setParam}
+          onToggle={toggleVisibility}
+          onReset={reset}
+          paused={paused}
+          onTogglePause={togglePause}
+        />
+        {visibility.showEnergyBar && (
+          <RingEnergyBar state={metrics} params={params} />
+        )}
+        <RingLegend />
+        <RingEquations />
+      </aside>
+      <ProjectCredits />
+    </main>
   );
 }

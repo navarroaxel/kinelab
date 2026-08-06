@@ -19,13 +19,16 @@ Core simulators:
 | Route             | Concept |
 |-------------------|---------|
 | `/polar`          | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
-| `/ring`           | Vertical ring — particle inside a smooth vertical ring, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold |
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
-| `/kepler`         | Orbital mechanics — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva |
 
-Plus a grouped section, **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, browsable via a section index and an exercise nav (prev/next, jump-to dropdown). See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route table.
+Plus two grouped sections:
 
-`/` itself is a landing page — a card index linking to the four core simulators above plus the Particle Kinematics section (`src/components/HomeIndexClient.tsx`).
+- **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, all implemented, browsable via a section index and an exercise nav (prev/next, jump-to dropdown).
+- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; two are implemented so far — DPM 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold) and DPM 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva). The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
+
+See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route tables.
+
+`/` itself is a landing page — a card index linking to the two core simulators above plus both TP sections (`src/components/HomeIndexClient.tsx`).
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 
@@ -37,13 +40,16 @@ src/
 │   ├── layout.tsx                    # Root layout, Geist fonts, metadata
 │   ├── page.tsx                      # / — home landing page (server component + metadata)
 │   ├── polar/page.tsx                # /polar — polar simulator (client component, inline composition)
-│   ├── ring/page.tsx                 # /ring — vertical ring simulator
 │   ├── quick-return/page.tsx         # /quick-return — quick-return mechanism
-│   ├── kepler/page.tsx               # /kepler — orbital mechanics / Mars transfer
 │   ├── particle-kinematics/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-kinematics — section index (card grid)
 │   │   └── pin-slot/page.tsx         # /particle-kinematics/pin-slot — CPM 6 (moved from /pin-slot)
+│   ├── particle-dynamics/
+│   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
+│   │   ├── page.tsx                  # /particle-dynamics — section index (card grid, incl. disabled stubs)
+│   │   ├── ring/page.tsx             # /particle-dynamics/ring — DPM 3 (moved from the former core /ring)
+│   │   └── kepler/page.tsx           # /particle-dynamics/kepler — DPM 6 (moved from the former core /kepler)
 │   └── globals.css                   # Tailwind v4 import + CSS variables
 ├── components/
 │   ├── SimulatorCanvas.tsx     # Polar canvas: ResizeObserver + DPR + RAF wiring
@@ -53,16 +59,19 @@ src/
 │   ├── EquationsPanel.tsx      # Polar collapsible formula panel (React.memo)
 │   ├── StripChart.tsx          # Rolling real-time strip chart (React.memo)
 │   ├── FunctionPlot.tsx        # Static function plotter: axes, markers, shading, hover (React.memo)
-│   ├── SimulatorNav.tsx        # Grouped top nav: Home + core tabs + one Particle Kinematics entry, mobile menu
-│   ├── HomeIndexClient.tsx     # / — landing page card grid (core simulators + CPM section)
+│   ├── SimulatorNav.tsx        # Grouped top nav: Home + core tabs + Particle Kinematics + Particle Dynamics, mobile menu
+│   ├── HomeIndexClient.tsx     # / — landing page card grid (core simulators + both TP sections)
 │   ├── LanguageToggle.tsx      # EN ↔ ES switch
 │   ├── GitHubLink.tsx          # Repo icon link
 │   ├── ring/                   # Ring-only aside panels (RingCanvas, RingControls, RingMetrics, …)
 │   ├── pin-slot/                # Pin-slot-only aside panels
 │   ├── quick-return/           # Quick-return-only aside panels
-│   └── cpm/
-│       ├── ExerciseNav.tsx     # Prev/next + jump-to dropdown + position, rendered by the section layout
-│       └── ParticleKinematicsIndexClient.tsx  # Section index card grid
+│   ├── cpm/
+│   │   ├── ExerciseNav.tsx     # Prev/next + jump-to dropdown + position, rendered by the section layout
+│   │   └── ParticleKinematicsIndexClient.tsx  # Section index card grid
+│   └── dpm/
+│       ├── ExerciseNav.tsx     # Same shape as cpm's, but prev/next/jump-to skip `disabled` stub exercises
+│       └── ParticleDynamicsIndexClient.tsx  # Section index card grid; renders `disabled` entries as non-clickable stubs
 ├── contexts/
 │   └── LanguageContext.tsx     # EN / ES context, localStorage-backed, cross-tab sync
 ├── hooks/
@@ -70,7 +79,7 @@ src/
 │   ├── useRingSimulator.ts / useRingAnimationLoop.ts # Ring state + RAF loop (RK4)
 │   ├── usePinSlotSimulator.ts / usePinSlotAnimationLoop.ts
 │   ├── useQuickReturnSimulator.ts / useQuickReturnAnimationLoop.ts
-│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts
+│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts   # Kepler state + RAF loop (DPM 6)
 │   └── usePreset.ts            # Reads shared `?preset=<id>` convention; falls back silently
 ├── lib/
 │   ├── kinematics.ts, ringKinematics.ts, pinSlotKinematics.ts, quickReturnKinematics.ts, keplerKinematics.ts
@@ -81,9 +90,12 @@ src/
 │   └── i18n/                    # Translation modules — see below
 │       ├── index.ts             # Merges all modules; exports Language, translations, TranslationKey
 │       ├── common.ts, polar.ts, ring.ts, pin-slot.ts, quick-return.ts, kepler.ts
-│       └── cpm/
+│       ├── cpm/
+│       │   ├── section.ts       # Section index / exercise-nav strings
+│       │   └── exercises.ts     # CPM 1–10 titles + one-line summaries
+│       └── dpm/
 │           ├── section.ts       # Section index / exercise-nav strings
-│           └── exercises.ts     # CPM 1–10 titles + one-line summaries
+│           └── exercises.ts     # DPM 1–14 titles + one-line summaries
 └── types/
     ├── simulator.ts             # Barrel: re-exports everything below — import path unchanged
     └── polar.ts, ring.ts, pin-slot.ts, kepler.ts, quick-return.ts
@@ -99,9 +111,10 @@ src/
 - Metrics are throttled to ~15 fps (`66ms` gate on `lastMetricUpdate`) to avoid saturating React's reconciler.
 - The polar loop is **semi-implicit Euler** (good enough for kinematics-only). The ring loop is **4th-order Runge–Kutta** on `[θ, θ̇]` because the pendulum-form ODE is nonlinear and we need energy conservation visible to the user. Don't downgrade it.
 - i18n: every user-facing string goes through `t(key)` from `LanguageContext`. Add new keys to both the `en` and `es` blocks of the relevant module under `src/lib/i18n/` simultaneously; `TranslationKey` is derived from the merged `en` in `src/lib/i18n/index.ts`. The public import path `@/lib/i18n` never changes — only add a new module file and wire it into `index.ts`.
-- Navigation is registry-driven: `src/lib/simulators.ts` is the single source of truth. `SimulatorNav`, the particle-kinematics section index, and `ExerciseNav` all read `SIMULATORS`/`coreSimulators()`/`cpmExercises()` from there — adding or reordering a simulator should only ever touch this file plus its own slice.
+- Navigation is registry-driven: `src/lib/simulators.ts` is the single source of truth. `SimulatorNav`, both section indices, and both `ExerciseNav`s all read `SIMULATORS`/`coreSimulators()`/`cpmExercises()`/`dpmExercises()` from there — adding or reordering a simulator should only ever touch this file plus its own slice.
 - Adding a **core** simulator: add an entry to `SIMULATORS` with `group: "core"`, create `app/<name>/page.tsx` as a client component, and follow the standard split (one pure physics module, one state hook, one RAF hook, one canvas component, one or more aside panels).
 - Adding a **particle-kinematics** exercise: add an entry with `group: "particle-kinematics"` and a `cpm` number, create `app/particle-kinematics/<name>/page.tsx` (no need to re-declare `LanguageProvider` or `ExerciseNav` — the section `layout.tsx` provides both), and add its title/summary keys to `src/lib/i18n/cpm/exercises.ts`.
+- Adding a **particle-dynamics** exercise: same shape, under `group: "particle-dynamics"` with a `dpm` number, route `app/particle-dynamics/<name>/page.tsx`, keys in `src/lib/i18n/dpm/exercises.ts`. Registry entries not yet built keep `disabled: true` and `href: "/particle-dynamics"` — flip `disabled` off and point `href` at the real route once the page exists; the section index and `ExerciseNav` pick this up automatically.
 - Shared `?preset=<id>` query-string convention: `usePreset(presets, fallback)` (`src/hooks/usePreset.ts`) reads it via `useSearchParams`, so any component calling it (directly or through a `use<Name>Simulator` hook) must render under a `<Suspense>` boundary. Unknown preset ids fall back silently.
 - `FunctionPlot` (`src/components/FunctionPlot.tsx` + `src/lib/plot.ts`) is for **static** function/analytic plots (v(t), x(t), phase portraits …) — axes, ticks, markers, dashed reference lines, area shading, hover cursor. `StripChart` is for **rolling real-time** samples. Don't use one for the other's job.
 
@@ -137,7 +150,7 @@ rθ̇   = −vx·sin θ + vy·cos θ  =  R·ω·cos(φ − θ)
 
 Special case — pole at (0, 0): `ṙ = 0` and `rθ̇ = R·ω` (pure rotation).
 
-### Ring (`/ring`)
+### Ring (`/particle-dynamics/ring`, DPM 3)
 
 θ measured from the bottom, CCW positive. Mass normalised to 1 throughout.
 
