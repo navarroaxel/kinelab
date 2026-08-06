@@ -10,12 +10,16 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Client-side educational simulators. Each route isolates one concept and animates it in a Canvas-driven page. The architecture deliberately repeats the same shape across simulators so that adding a new one is a matter of cloning a small, well-defined slice.
 
-Currently two simulators:
+Core simulators:
 
-| Route   | Concept |
-|---------|---------|
-| `/`     | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
-| `/ring` | Vertical ring — particle inside a smooth vertical ring, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold |
+| Route             | Concept |
+|-------------------|---------|
+| `/`               | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
+| `/ring`           | Vertical ring — particle inside a smooth vertical ring, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold |
+| `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
+| `/kepler`         | Orbital mechanics — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva |
+
+Plus a grouped section, **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, browsable via a section index and an exercise nav (prev/next, jump-to dropdown). `/pin-slot` now lives here as CPM 6, at `/particle-kinematics/pin-slot` (permanent redirect from the old path). See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route table.
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 
@@ -24,43 +28,57 @@ Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind C
 ```
 src/
 ├── app/
-│   ├── layout.tsx              # Root layout, Geist fonts, metadata
-│   ├── page.tsx                # / — polar simulator (client component, inline composition)
-│   ├── ring/
-│   │   └── page.tsx            # /ring — vertical ring simulator (client component, inline)
-│   └── globals.css             # Tailwind v4 import + CSS variables
+│   ├── layout.tsx                    # Root layout, Geist fonts, metadata
+│   ├── page.tsx                      # / — polar simulator (client component, inline composition)
+│   ├── ring/page.tsx                 # /ring — vertical ring simulator
+│   ├── quick-return/page.tsx         # /quick-return — quick-return mechanism
+│   ├── kepler/page.tsx               # /kepler — orbital mechanics / Mars transfer
+│   ├── particle-kinematics/
+│   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
+│   │   ├── page.tsx                  # /particle-kinematics — section index (card grid)
+│   │   └── pin-slot/page.tsx         # /particle-kinematics/pin-slot — CPM 6 (moved from /pin-slot)
+│   └── globals.css                   # Tailwind v4 import + CSS variables
 ├── components/
 │   ├── SimulatorCanvas.tsx     # Polar canvas: ResizeObserver + DPR + RAF wiring
 │   ├── ControlsPanel.tsx       # Polar sliders + visibility toggles
 │   ├── PolarMetrics.tsx        # Polar live cards (React.memo)
 │   ├── VectorLegend.tsx        # Polar colour legend (React.memo)
 │   ├── EquationsPanel.tsx      # Polar collapsible formula panel (React.memo)
-│   ├── StripChart.tsx          # Time-series strip chart (polar only) (React.memo)
-│   ├── SimulatorNav.tsx        # Cross-page tab nav (Polar / Ring)
+│   ├── StripChart.tsx          # Rolling real-time strip chart (React.memo)
+│   ├── FunctionPlot.tsx        # Static function plotter: axes, markers, shading, hover (React.memo)
+│   ├── SimulatorNav.tsx        # Grouped top nav: core tabs + one Particle Kinematics entry, mobile menu
 │   ├── LanguageToggle.tsx      # EN ↔ ES switch
 │   ├── GitHubLink.tsx          # Repo icon link
-│   └── ring/
-│       ├── RingCanvas.tsx      # Ring canvas: ResizeObserver + DPR + RAF wiring
-│       ├── RingControls.tsx    # Ring sliders + toggles + reset / pause
-│       ├── RingMetrics.tsx     # Ring live cards + v_min indicator (React.memo)
-│       ├── RingEnergyBar.tsx   # Stacked KE / PE bar with drift warning (React.memo)
-│       ├── RingLegend.tsx      # Ring colour legend (React.memo)
-│       └── RingEquations.tsx   # Ring collapsible formula panel (React.memo)
+│   ├── ring/                   # Ring-only aside panels (RingCanvas, RingControls, RingMetrics, …)
+│   ├── pin-slot/                # Pin-slot-only aside panels
+│   ├── quick-return/           # Quick-return-only aside panels
+│   └── cpm/
+│       ├── ExerciseNav.tsx     # Prev/next + jump-to dropdown + position, rendered by the section layout
+│       └── ParticleKinematicsIndexClient.tsx  # Section index card grid
 ├── contexts/
 │   └── LanguageContext.tsx     # EN / ES context, localStorage-backed, cross-tab sync
 ├── hooks/
-│   ├── useSimulator.ts         # Polar state: params, visibility, refs, paused
-│   ├── useAnimationLoop.ts     # Polar RAF loop (semi-implicit Euler), metrics throttle
-│   ├── useRingSimulator.ts     # Ring state: params, visibility, integration refs
-│   └── useRingAnimationLoop.ts # Ring RAF loop (RK4), direct render
+│   ├── useSimulator.ts / useAnimationLoop.ts        # Polar state + RAF loop (semi-implicit Euler)
+│   ├── useRingSimulator.ts / useRingAnimationLoop.ts # Ring state + RAF loop (RK4)
+│   ├── usePinSlotSimulator.ts / usePinSlotAnimationLoop.ts
+│   ├── useQuickReturnSimulator.ts / useQuickReturnAnimationLoop.ts
+│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts
+│   └── usePreset.ts            # Reads shared `?preset=<id>` convention; falls back silently
 ├── lib/
-│   ├── kinematics.ts           # Pure physics: computeKinematics()
-│   ├── ringKinematics.ts       # Pure physics: rk4Step, computeRingState, computeVMin, speedToThetaDot, classifyMotion
-│   ├── drawing.ts              # Canvas helpers, COLORS/COLORS_DARK palettes, renderFrame (polar) + ring helpers
-│   ├── strip-chart.ts          # Strip-chart drawing + sample buffer
-│   └── i18n.ts                 # Translation table + Language type + TranslationKey type
+│   ├── kinematics.ts, ringKinematics.ts, pinSlotKinematics.ts, quickReturnKinematics.ts, keplerKinematics.ts
+│   ├── drawing.ts               # Canvas helpers, COLORS/COLORS_DARK palettes, renderFrame (polar) + shared helpers
+│   ├── strip-chart.ts           # Rolling real-time sample buffer + drawing
+│   ├── plot.ts                  # Static-plot helpers (scales, ticks, interpolation) backing FunctionPlot
+│   ├── simulators.ts            # SIMULATORS registry — single source of truth for all navigation
+│   └── i18n/                    # Translation modules — see below
+│       ├── index.ts             # Merges all modules; exports Language, translations, TranslationKey
+│       ├── common.ts, polar.ts, ring.ts, pin-slot.ts, quick-return.ts, kepler.ts
+│       └── cpm/
+│           ├── section.ts       # Section index / exercise-nav strings
+│           └── exercises.ts     # CPM 1–10 titles + one-line summaries
 └── types/
-    └── simulator.ts            # Polar + ring shared types
+    ├── simulator.ts             # Barrel: re-exports everything below — import path unchanged
+    └── polar.ts, ring.ts, pin-slot.ts, kepler.ts, quick-return.ts
 ```
 
 ## Key conventions
@@ -72,8 +90,12 @@ src/
 - Frame-rate state is held in **refs** (`phiRef`, `omegaRef`, `thetaRef`, `thetaDotRef`, `traceRef`) so that the animation loop never triggers a re-render.
 - Metrics are throttled to ~15 fps (`66ms` gate on `lastMetricUpdate`) to avoid saturating React's reconciler.
 - The polar loop is **semi-implicit Euler** (good enough for kinematics-only). The ring loop is **4th-order Runge–Kutta** on `[θ, θ̇]` because the pendulum-form ODE is nonlinear and we need energy conservation visible to the user. Don't downgrade it.
-- i18n: every user-facing string goes through `t(key)` from `LanguageContext`. Add new keys to both `en` and `es` blocks of `src/lib/i18n.ts` simultaneously; `TranslationKey` is derived from `en`.
-- Adding a new simulator: add a route to `SimulatorNav.ts`'s `ITEMS`, create `app/<name>/page.tsx` as a client component, and follow the polar/ring split (one pure physics module, one state hook, one RAF hook, one canvas component, one or more aside panels).
+- i18n: every user-facing string goes through `t(key)` from `LanguageContext`. Add new keys to both the `en` and `es` blocks of the relevant module under `src/lib/i18n/` simultaneously; `TranslationKey` is derived from the merged `en` in `src/lib/i18n/index.ts`. The public import path `@/lib/i18n` never changes — only add a new module file and wire it into `index.ts`.
+- Navigation is registry-driven: `src/lib/simulators.ts` is the single source of truth. `SimulatorNav`, the particle-kinematics section index, and `ExerciseNav` all read `SIMULATORS`/`coreSimulators()`/`cpmExercises()` from there — adding or reordering a simulator should only ever touch this file plus its own slice.
+- Adding a **core** simulator: add an entry to `SIMULATORS` with `group: "core"`, create `app/<name>/page.tsx` as a client component, and follow the standard split (one pure physics module, one state hook, one RAF hook, one canvas component, one or more aside panels).
+- Adding a **particle-kinematics** exercise: add an entry with `group: "particle-kinematics"` and a `cpm` number, create `app/particle-kinematics/<name>/page.tsx` (no need to re-declare `LanguageProvider` or `ExerciseNav` — the section `layout.tsx` provides both), and add its title/summary keys to `src/lib/i18n/cpm/exercises.ts`.
+- Shared `?preset=<id>` query-string convention: `usePreset(presets, fallback)` (`src/hooks/usePreset.ts`) reads it via `useSearchParams`, so any component calling it (directly or through a `use<Name>Simulator` hook) must render under a `<Suspense>` boundary. Unknown preset ids fall back silently.
+- `FunctionPlot` (`src/components/FunctionPlot.tsx` + `src/lib/plot.ts`) is for **static** function/analytic plots (v(t), x(t), phase portraits …) — axes, ticks, markers, dashed reference lines, area shading, hover cursor. `StripChart` is for **rolling real-time** samples. Don't use one for the other's job.
 
 ## Common tasks
 
