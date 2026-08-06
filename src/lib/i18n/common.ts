@@ -29,8 +29,8 @@ export const common = {
 
     // Footer attribution (shown on every page)
     "footer.attribution":
-      "Interactive simulator developed as didactic support for visualizing " +
-      "circular motion, within the Mecánica Técnica course at UTN – FRBA.",
+      "Interactive simulators developed as didactic support for Prof. Ing. " +
+      "Jorge Alejandro Vitaliti's Mecánica Técnica course at UTN – FRBA.",
     "footer.related.prefix":
       "Curious about the electric field and the relaxation method? Visit",
     "footer.rlc.prefix": "Curious about RLC circuits in AC? Visit",
@@ -67,8 +67,8 @@ export const common = {
 
     // Footer attribution (shown on every page)
     "footer.attribution":
-      "Simulador interactivo desarrollado como apoyo didáctico para visualizar " +
-      "la trayectoria circular, en el marco de la cátedra de Mecánica Técnica " +
+      "Simuladores interactivos desarrollados como apoyo didáctico para la " +
+      "cátedra de Mecánica Técnica del Prof. Ing. Jorge Alejandro Vitaliti " +
       "de la UTN – FRBA.",
     "footer.related.prefix":
       "¿Querés ver también el campo eléctrico y el método de relajación? Pasá por",

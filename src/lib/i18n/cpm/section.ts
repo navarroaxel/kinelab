@@ -3,7 +3,7 @@ export const cpmSection = {
     "cpm.nav.aria_label": "Particle Kinematics exercises",
     "cpm.section.index_title": "Particle Kinematics — TP N°1",
     "cpm.section.subtitle":
-      "Cinemática del Punto Material — ten exercises from Mecánica Técnica, UTN FRBA. Browse and open any of them below.",
+      "Simulators to understand the aspects of rectilinear, curvilinear, and constrained motion in particle kinematics.",
     "cpm.nav.back_to_index": "Index",
     "cpm.nav.prev": "Prev",
     "cpm.nav.next": "Next",
@@ -13,7 +13,7 @@ export const cpmSection = {
     "cpm.nav.aria_label": "Ejercicios de Cinemática del Punto Material",
     "cpm.section.index_title": "Cinemática del Punto Material — TP N°1",
     "cpm.section.subtitle":
-      "Diez ejercicios de Mecánica Técnica, UTN FRBA. Explorá y abrí cualquiera de ellos a continuación.",
+      "Simuladores para entender los aspectos de movimiento rectilíneo, curvilíneo y vinculado en la cinemática del punto material.",
     "cpm.nav.back_to_index": "Índice",
     "cpm.nav.prev": "Anterior",
     "cpm.nav.next": "Siguiente",
