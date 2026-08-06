@@ -8,8 +8,30 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 |---|---|---|
 | [`/`](http://localhost:3000/)        | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
 | [`/ring`](http://localhost:3000/ring) | **Anillo vertical**     | Partícula dentro de un anillo liso vertical — integración RK4 de `θ̈ = −(g/R)·sin θ`, fuerza normal y umbral de vuelta `v_min = √(5gR)` |
+| [`/quick-return`](http://localhost:3000/quick-return) | **Mecanismo de retorno rápido** | La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos |
+| [`/kepler`](http://localhost:3000/kepler) | **Mecánica orbital de Kepler** | Trayectoria de transferencia del vehículo de retorno de Marte — leyes de Kepler, vis-viva, maniobras Δv impulsivas |
+| [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 
-Cambia entre ellos usando las pestañas en la esquina superior derecha de cada página.
+Cambia entre ellos usando las pestañas en la esquina superior derecha de cada página; en pantallas angostas se colapsa en un botón de menú.
+
+### Sección de Cinemática del Punto Material (`/particle-kinematics`)
+
+Un conjunto navegable de los diez ejercicios del TP N°1, con navegación anterior/siguiente, un desplegable para saltar a cualquier ejercicio, y un índice de sección con una tarjeta por ejercicio.
+
+| Ejercicio | Ruta |
+|---|---|
+| CPM 1 — Ciclista con resistencia del aire | `/particle-kinematics/drag-descent` |
+| CPM 2 — Distancia de frenado | `/particle-kinematics/stopping-distance` |
+| CPM 3 — Patinador sobre perfil parabólico | `/particle-kinematics/parabolic-track` |
+| CPM 4 — Pasador en ranura, caso degenerado (d = r) | `/particle-kinematics/pin-slot?preset=cpm4` |
+| CPM 5 — Constructor de gráficos de movimiento | `/particle-kinematics/motion-graphs` |
+| CPM 6 — Pasador en ranura circular | `/particle-kinematics/pin-slot` |
+| CPM 7 — Cable, poleas y bloques | `/particle-kinematics/cable-blocks` |
+| CPM 8 — Aeronave rastreada por radar | `/particle-kinematics/radar-tracking` |
+| CPM 9 — Satélite en órbita circular | `/particle-kinematics/circular-orbit` |
+| CPM 10 — Ascensor y polea | `/particle-kinematics/elevator-cable` |
+
+Los diez ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 
 ### `/` Coordenadas polares
 

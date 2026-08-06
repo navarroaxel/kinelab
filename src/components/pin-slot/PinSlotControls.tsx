@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type { PinSlotParams, PinSlotVisibility } from "@/types/simulator";
 
 interface Props {
@@ -128,9 +129,11 @@ export function PinSlotControls({
             onChange={(v) => onSetParam("d", v)}
           />
           <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400">
-            {params.d > params.r
-              ? t("pin-slot.controls.constraint.ok")
-              : t("pin-slot.controls.constraint.warn")}
+            {Math.abs(params.d - params.r) < 1e-6
+              ? t("pin-slot.controls.constraint.degenerate")
+              : params.d > params.r
+                ? t("pin-slot.controls.constraint.ok")
+                : t("pin-slot.controls.constraint.warn")}
           </p>
         </div>
       </section>
@@ -154,7 +157,7 @@ export function PinSlotControls({
           Ω = V₀/r = {(params.v0 / params.r).toFixed(3)} rad/s
         </p>
         <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400">
-          θ_max = ±{thetaMax}°
+          {withSubscripts("θ_max")} = ±{thetaMax}°
         </p>
       </section>
 

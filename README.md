@@ -8,8 +8,30 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 |---|---|---|
 | [`/`](http://localhost:3000/)        | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | [`/ring`](http://localhost:3000/ring) | **Vertical ring**     | Particle on the inside of a smooth vertical ring — RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, and the loop threshold `v_min = √(5gR)` |
+| [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
+| [`/kepler`](http://localhost:3000/kepler) | **Kepler orbital mechanics** | Mars return vehicle transfer trajectory — Kepler's laws, vis-viva, impulsive Δv maneuvers |
+| [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 
-Switch between them via the tab nav in the top-right of either page.
+Switch between them via the tab nav in the top-right of any page; on narrow screens it collapses into a menu button.
+
+### Particle Kinematics section (`/particle-kinematics`)
+
+A browsable set of the ten exercises from TP N°1, with prev/next navigation, a jump-to dropdown, and a section index with one card per exercise.
+
+| Exercise | Route |
+|---|---|
+| CPM 1 — Cyclist with air drag | `/particle-kinematics/drag-descent` |
+| CPM 2 — Stopping distance | `/particle-kinematics/stopping-distance` |
+| CPM 3 — Skater on a parabolic profile | `/particle-kinematics/parabolic-track` |
+| CPM 4 — Pin-slot, degenerate case (d = r) | `/particle-kinematics/pin-slot?preset=cpm4` |
+| CPM 5 — Motion graph builder | `/particle-kinematics/motion-graphs` |
+| CPM 6 — Pin in a circular slot | `/particle-kinematics/pin-slot` |
+| CPM 7 — Cable, pulleys and blocks | `/particle-kinematics/cable-blocks` |
+| CPM 8 — Radar-tracked aircraft | `/particle-kinematics/radar-tracking` |
+| CPM 9 — Satellite in circular orbit | `/particle-kinematics/circular-orbit` |
+| CPM 10 — Elevator and pulley | `/particle-kinematics/elevator-cable` |
+
+All ten exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
 ### `/` Polar coordinates
 

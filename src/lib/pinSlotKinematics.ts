@@ -23,6 +23,13 @@ export function pinOmega(params: PinSlotParams): number {
  *
  * Invariant: Vr² + V⊥² = V0² (speed is constant).
  */
+// Below this, ρ is treated as zero — only reachable when d = r, at Φ = π,
+// where the pin passes exactly through the pivot O. The bar's orientation
+// and angular rate are genuinely undefined at that instant (a measure-zero
+// point in time), so vr/omega/vPerp/gamma are frozen at 0 instead of
+// dividing by ~0 into NaN/Infinity.
+const RHO_EPSILON = 1e-6;
+
 export function computePinSlotState(
   params: PinSlotParams,
   phi: number,
@@ -35,12 +42,14 @@ export function computePinSlotState(
   const rho = Math.sqrt(d * d + r * r + 2 * d * r * Math.cos(phi));
   const theta = Math.atan2(r * Math.sin(phi), d + r * Math.cos(phi));
 
-  const vr = -(d * v0 * Math.sin(phi)) / rho;
-  const omega = (v0 * (r + d * Math.cos(phi))) / (rho * rho);
-  const vPerp = rho * omega;
-  const gamma = (vr * (Omega - 2 * omega)) / rho;
+  const singular = rho < RHO_EPSILON * Math.max(r, 1);
 
-  if (process.env.NODE_ENV === "development") {
+  const vr = singular ? 0 : -(d * v0 * Math.sin(phi)) / rho;
+  const omega = singular ? 0 : (v0 * (r + d * Math.cos(phi))) / (rho * rho);
+  const vPerp = singular ? 0 : rho * omega;
+  const gamma = singular ? 0 : (vr * (Omega - 2 * omega)) / rho;
+
+  if (process.env.NODE_ENV === "development" && !singular) {
     const speedSq = vr * vr + vPerp * vPerp;
     const expected = v0 * v0;
     if (Math.abs(speedSq - expected) > 1e-6 * expected + 1e-10) {
@@ -50,5 +59,5 @@ export function computePinSlotState(
     }
   }
 
-  return { phi, bx, by, rho, theta, vr, vPerp, omega, gamma };
+  return { phi, bx, by, rho, theta, vr, vPerp, omega, gamma, singular };
 }
