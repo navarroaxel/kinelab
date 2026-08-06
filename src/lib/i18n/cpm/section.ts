@@ -4,7 +4,6 @@ export const cpmSection = {
     "cpm.section.index_title": "Particle Kinematics — TP N°1",
     "cpm.section.subtitle":
       "Cinemática del Punto Material — ten exercises from Mecánica Técnica, UTN FRBA. Browse and open any of them below.",
-    "cpm.section.pdf_link": "Original TP statement (PDF)",
     "cpm.nav.back_to_index": "Index",
     "cpm.nav.prev": "Prev",
     "cpm.nav.next": "Next",
@@ -15,7 +14,6 @@ export const cpmSection = {
     "cpm.section.index_title": "Cinemática del Punto Material — TP N°1",
     "cpm.section.subtitle":
       "Diez ejercicios de Mecánica Técnica, UTN FRBA. Explorá y abrí cualquiera de ellos a continuación.",
-    "cpm.section.pdf_link": "Enunciado original del TP (PDF)",
     "cpm.nav.back_to_index": "Índice",
     "cpm.nav.prev": "Anterior",
     "cpm.nav.next": "Siguiente",

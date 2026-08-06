@@ -6,8 +6,6 @@ import { cpmExercises } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 
-const TP_PDF_HREF = "/tp1-cinematica-del-punto-material.pdf";
-
 export function ParticleKinematicsIndexClient() {
   const { t } = useLanguage();
   const exercises = cpmExercises();
@@ -24,14 +22,6 @@ export function ParticleKinematicsIndexClient() {
           <p className="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
             {t("cpm.section.subtitle")}
           </p>
-          <a
-            href={TP_PDF_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-fit text-sm text-blue-700 hover:underline dark:text-blue-300"
-          >
-            {t("cpm.section.pdf_link")} ↗
-          </a>
         </header>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
