@@ -5,7 +5,7 @@ export const cpmExercisesI18n = {
   en: {
     "cpm.exercises.cpm1.title": "Cyclist with air drag",
     "cpm.exercises.cpm1.summary":
-      "A cyclist accelerates from rest against quadratic air drag — find v(x), v_max and the time to reach half of it.",
+      "A cyclist accelerates from rest against quadratic air drag — find v(x), vₘₐₓ and the time to reach half of it.",
     "cpm.exercises.cpm2.title": "Stopping distance",
     "cpm.exercises.cpm2.summary":
       "Reaction time plus braking at g/2 — compare stopping distances at 40, 80 and 100 km/h.",
@@ -37,7 +37,7 @@ export const cpmExercisesI18n = {
   es: {
     "cpm.exercises.cpm1.title": "Ciclista con resistencia del aire",
     "cpm.exercises.cpm1.summary":
-      "Un ciclista acelera desde el reposo contra una resistencia cuadrática — hallar v(x), v_max y el tiempo hasta la mitad de v_max.",
+      "Un ciclista acelera desde el reposo contra una resistencia cuadrática — hallar v(x), vₘₐₓ y el tiempo hasta la mitad de vₘₐₓ.",
     "cpm.exercises.cpm2.title": "Distancia de frenado",
     "cpm.exercises.cpm2.summary":
       "Tiempo de reacción más frenado a g/2 — comparar la distancia de frenado a 40, 80 y 100 km/h.",
