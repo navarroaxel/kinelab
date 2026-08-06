@@ -38,9 +38,9 @@ export const SimulatorNav = memo(function SimulatorNav() {
 
   const allItems = [
     { href: HOME_HREF, key: "nav.home" as const },
-    ...items,
     { href: CPM_SECTION_HREF, key: "nav.particle_kinematics" as const },
     { href: DPM_SECTION_HREF, key: "nav.particle_dynamics" as const },
+    ...items,
   ];
 
   useEffect(() => {

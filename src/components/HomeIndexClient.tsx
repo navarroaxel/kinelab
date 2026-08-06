@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { withSubscripts } from "@/components/Subscript";
-import { coreSimulators } from "@/lib/simulators";
+import { coreSimulators, findByHref } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 import { HomePolarPreview } from "@/components/HomePolarPreview";
@@ -21,9 +21,11 @@ const DPM_SECTION_CARD = {
   summaryKey: "dpm.section.subtitle",
 } as const;
 
+const KEPLER_HOME_CARD = findByHref("/particle-dynamics/kepler")!;
+
 function HomeIndexContent() {
   const { t } = useLanguage();
-  const simulators = coreSimulators();
+  const simulators = [...coreSimulators(), KEPLER_HOME_CARD];
 
   return (
     <main className="mx-auto max-w-7xl p-4">

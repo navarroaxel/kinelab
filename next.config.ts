@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/particle-dynamics/ring",
         permanent: true,
       },
+      {
+        source: "/kepler",
+        destination: "/particle-dynamics/kepler",
+        permanent: true,
+      },
     ];
   },
 };

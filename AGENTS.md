@@ -20,16 +20,15 @@ Core simulators:
 |-------------------|---------|
 | `/polar`          | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
-| `/kepler`         | Orbital mechanics — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva |
 
 Plus two grouped sections:
 
 - **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, all implemented, browsable via a section index and an exercise nav (prev/next, jump-to dropdown).
-- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; only DPM 3 (`/particle-dynamics/ring` — the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold) is implemented so far. The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
+- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; two are implemented so far — DPM 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold) and DPM 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva). The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
 
 See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route tables.
 
-`/` itself is a landing page — a card index linking to the three core simulators above plus both TP sections (`src/components/HomeIndexClient.tsx`).
+`/` itself is a landing page — a card index linking to the two core simulators above plus both TP sections (`src/components/HomeIndexClient.tsx`).
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 
@@ -42,7 +41,6 @@ src/
 │   ├── page.tsx                      # / — home landing page (server component + metadata)
 │   ├── polar/page.tsx                # /polar — polar simulator (client component, inline composition)
 │   ├── quick-return/page.tsx         # /quick-return — quick-return mechanism
-│   ├── kepler/page.tsx               # /kepler — orbital mechanics / Mars transfer
 │   ├── particle-kinematics/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-kinematics — section index (card grid)
@@ -50,7 +48,8 @@ src/
 │   ├── particle-dynamics/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-dynamics — section index (card grid, incl. disabled stubs)
-│   │   └── ring/page.tsx             # /particle-dynamics/ring — DPM 3 (moved from the former core /ring)
+│   │   ├── ring/page.tsx             # /particle-dynamics/ring — DPM 3 (moved from the former core /ring)
+│   │   └── kepler/page.tsx           # /particle-dynamics/kepler — DPM 6 (moved from the former core /kepler)
 │   └── globals.css                   # Tailwind v4 import + CSS variables
 ├── components/
 │   ├── SimulatorCanvas.tsx     # Polar canvas: ResizeObserver + DPR + RAF wiring
@@ -80,7 +79,7 @@ src/
 │   ├── useRingSimulator.ts / useRingAnimationLoop.ts # Ring state + RAF loop (RK4)
 │   ├── usePinSlotSimulator.ts / usePinSlotAnimationLoop.ts
 │   ├── useQuickReturnSimulator.ts / useQuickReturnAnimationLoop.ts
-│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts
+│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts   # Kepler state + RAF loop (DPM 6)
 │   └── usePreset.ts            # Reads shared `?preset=<id>` convention; falls back silently
 ├── lib/
 │   ├── kinematics.ts, ringKinematics.ts, pinSlotKinematics.ts, quickReturnKinematics.ts, keplerKinematics.ts
@@ -151,7 +150,7 @@ rθ̇   = −vx·sin θ + vy·cos θ  =  R·ω·cos(φ − θ)
 
 Special case — pole at (0, 0): `ṙ = 0` and `rθ̇ = R·ω` (pure rotation).
 
-### Ring (`/ring`)
+### Ring (`/particle-dynamics/ring`, DPM 3)
 
 θ measured from the bottom, CCW positive. Mass normalised to 1 throughout.
 

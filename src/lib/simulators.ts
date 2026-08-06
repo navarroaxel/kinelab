@@ -40,15 +40,6 @@ export const SIMULATORS: SimulatorEntry[] = [
     summaryKey: "home.summary.quick_return",
     group: "core",
   },
-  {
-    id: "kepler",
-    href: "/kepler",
-    navKey: "nav.kepler",
-    titleKey: "nav.kepler",
-    summaryKey: "home.summary.kepler",
-    group: "core",
-  },
-
   // Particle Kinematics section — TP N°1, Cinemática del Punto Material (UTN FRBA)
   {
     id: "drag-descent",
@@ -193,14 +184,13 @@ export const SIMULATORS: SimulatorEntry[] = [
     disabled: true,
   },
   {
-    id: "dpm6",
-    href: "/particle-dynamics",
+    id: "kepler",
+    href: "/particle-dynamics/kepler",
     navKey: "dpm.exercises.dpm6.title",
     titleKey: "dpm.exercises.dpm6.title",
     summaryKey: "dpm.exercises.dpm6.summary",
     group: "particle-dynamics",
     dpm: 6,
-    disabled: true,
   },
   {
     id: "dpm7",

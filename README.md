@@ -9,7 +9,6 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/`](http://localhost:3000/) | **Home** | Landing page — a card index linking to every simulator below |
 | [`/polar`](http://localhost:3000/polar) | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
-| [`/kepler`](http://localhost:3000/kepler) | **Kepler orbital mechanics** | Mars return vehicle transfer trajectory — Kepler's laws, vis-viva, impulsive Δv maneuvers |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 
@@ -36,7 +35,7 @@ All ten exercises are implemented — see `src/lib/simulators.ts` for the regist
 
 ### Particle Dynamics section (`/particle-dynamics`)
 
-A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. Only DPM 3 (the vertical ring, moved here from the former `/ring` route) has a working simulator so far; the rest show as "coming soon" cards until built.
+A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. DPM 3 (the vertical ring, moved here from the former `/ring` route) and DPM 6 (Kepler orbital mechanics, moved here from the former `/kepler` route) have working simulators; the rest show as "coming soon" cards until built.
 
 | Exercise | Route |
 |---|---|
@@ -45,7 +44,7 @@ A browsable set of the fourteen exercises from TP N°2, same nav pattern as the 
 | DPM 3 — Particle in a vertical ring | `/particle-dynamics/ring` |
 | DPM 4 — Atwood machine | *not yet implemented* |
 | DPM 5 — Sphere on a parabolic track | *not yet implemented* |
-| DPM 6 — Orbital transfer thrust factors | *not yet implemented* |
+| DPM 6 — Orbital transfer thrust factors | `/particle-dynamics/kepler` |
 | DPM 7 — Elevator and counterweight power | *not yet implemented* |
 | DPM 8 — Spring-stopped package on an incline | *not yet implemented* |
 | DPM 9 — Pulleys and blocks with friction | *not yet implemented* |

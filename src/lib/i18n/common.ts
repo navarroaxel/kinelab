@@ -18,9 +18,8 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pin–Slot",
     "nav.quick_return": "Quick-Return",
-    "nav.kepler": "Kepler",
-    "nav.particle_kinematics": "Particle Kinematics",
-    "nav.particle_dynamics": "Particle Dynamics",
+    "nav.particle_kinematics": "PK",
+    "nav.particle_dynamics": "PD",
 
     // Home page (index of all simulators)
     "home.title": "Kinelab — Interactive Simulators for Mecánica Racional and Mecánica Técnica",
@@ -30,8 +29,6 @@ export const common = {
       "Cartesian ↔ polar decomposition of circular motion with a freely movable pole",
     "home.summary.quick_return":
       "Crank AB drives an oscillating bar OQ and a tool slider P — cutting and return strokes take unequal time",
-    "home.summary.kepler":
-      "Mars return vehicle transfer trajectory — Kepler's laws, vis-viva, impulsive Δv maneuvers",
     "home.card.tp1.title": "Particle Kinematics",
     "home.card.tp2.title": "Particle Dynamics",
 
@@ -70,9 +67,8 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pasador",
     "nav.quick_return": "Retorno Rápido",
-    "nav.kepler": "Kepler",
-    "nav.particle_kinematics": "Cinemática del Punto",
-    "nav.particle_dynamics": "Dinámica del Punto",
+    "nav.particle_kinematics": "CPM",
+    "nav.particle_dynamics": "DPM",
 
     // Home page (índice de todos los simuladores)
     "home.title": "Kinelab — Simuladores interactivos de Mecánica Racional y Mecánica Técnica",
@@ -82,8 +78,6 @@ export const common = {
       "Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable",
     "home.summary.quick_return":
       "La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos",
-    "home.summary.kepler":
-      "Trayectoria de transferencia del vehículo de retorno de Marte — leyes de Kepler, vis-viva, maniobras Δv impulsivas",
     "home.card.tp1.title": "Cinemática del Punto Material",
     "home.card.tp2.title": "Dinámica del Punto Material",
 
