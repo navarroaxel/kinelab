@@ -17,9 +17,9 @@ const INITIAL_PARAMS: PinSlotParams = {
   v0: 10,
 };
 
-// CPM 4: the circular guide passes through O (d = r) — see AGENTS.md 3.9.
+// PK 4: the circular guide passes through O (d = r) — see AGENTS.md 3.9.
 const PRESETS: Record<string, PinSlotParams> = {
-  cpm4: { r: 12.5, d: 12.5, v0: 10 },
+  pk4: { r: 12.5, d: 12.5, v0: 10 },
 };
 
 const INITIAL_VISIBILITY: PinSlotVisibility = {
@@ -47,7 +47,7 @@ export function usePinSlotSimulator() {
   );
 
   // usePreset's return value only seeds the initial useState above — it isn't
-  // re-read on its own. CPM 4 and CPM 6 both route to /particle-kinematics/pin-slot
+  // re-read on its own. PK 4 and PK 6 both route to /particle-kinematics/pin-slot
   // (only the `?preset=` query differs), so navigating between them via
   // ExerciseNav doesn't remount this component; without this render-time sync
   // the params would keep whichever preset was active on first mount.
@@ -67,7 +67,7 @@ export function usePinSlotSimulator() {
       setParams((prev) => {
         const next = { ...prev, [key]: value };
         // Clamp d >= r so O never ends up strictly inside the slot circle.
-        // d === r is the CPM 4 degenerate case and is explicitly allowed.
+        // d === r is the PK 4 degenerate case and is explicitly allowed.
         if (next.d < next.r) {
           if (key === "d") next.d = next.r;
           if (key === "r") next.r = next.d;

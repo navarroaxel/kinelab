@@ -4,7 +4,7 @@ import { memo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cpmExercises } from "@/lib/simulators";
+import { pkExercises } from "@/lib/simulators";
 
 const INDEX_HREF = "/particle-kinematics";
 
@@ -19,7 +19,7 @@ export const ExerciseNav = memo(function ExerciseNav() {
   const { t } = useLanguage();
   const selectRef = useRef<HTMLSelectElement>(null);
 
-  const exercises = cpmExercises();
+  const exercises = pkExercises();
   const preset = searchParams.get("preset");
   const currentHref = hrefOf(pathname, preset);
 
@@ -62,15 +62,15 @@ export const ExerciseNav = memo(function ExerciseNav() {
         href={INDEX_HREF}
         className="font-medium text-blue-700 hover:underline dark:text-blue-300"
       >
-        {t("cpm.nav.back_to_index")}
+        {t("pk.nav.back_to_index")}
       </Link>
       <span className="text-gray-300 dark:text-gray-600">|</span>
       <Link
         href={prev?.href ?? INDEX_HREF}
-        aria-label={t("cpm.nav.prev")}
+        aria-label={t("pk.nav.prev")}
         className="rounded px-1.5 py-0.5 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
       >
-        ← {t("cpm.nav.prev")}
+        ← {t("pk.nav.prev")}
       </Link>
       {hasCurrent && (
         <span className="text-gray-500 tabular-nums dark:text-gray-400">
@@ -79,15 +79,15 @@ export const ExerciseNav = memo(function ExerciseNav() {
       )}
       <Link
         href={next?.href ?? INDEX_HREF}
-        aria-label={t("cpm.nav.next")}
+        aria-label={t("pk.nav.next")}
         className="rounded px-1.5 py-0.5 text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
       >
-        {t("cpm.nav.next")} →
+        {t("pk.nav.next")} →
       </Link>
       <span className="text-gray-300 dark:text-gray-600">|</span>
       <select
         ref={selectRef}
-        aria-label={t("cpm.nav.jump_to")}
+        aria-label={t("pk.nav.jump_to")}
         value={hasCurrent ? currentHref : ""}
         onChange={(e) => {
           const href = e.target.value;
@@ -95,10 +95,10 @@ export const ExerciseNav = memo(function ExerciseNav() {
         }}
         className="rounded border border-gray-200 bg-white px-1.5 py-0.5 text-xs text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
       >
-        {!hasCurrent && <option value="">{t("cpm.nav.jump_to")}</option>}
+        {!hasCurrent && <option value="">{t("pk.nav.jump_to")}</option>}
         {exercises.map((e) => (
           <option key={e.href} value={e.href}>
-            CPM {e.cpm} — {t(e.titleKey)}
+            PK {e.pk} — {t(e.titleKey)}
           </option>
         ))}
       </select>

@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 3 — Skater on a parabolic profile (/particle-kinematics/parabolic-track)
+// PK 3 — Skater on a parabolic profile (/particle-kinematics/parabolic-track)
 // ---------------------------------------------------------------------------
 
 export interface ParabolicTrackParams {

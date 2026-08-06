@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 9 — Satellite in circular orbit (/particle-kinematics/circular-orbit)
+// PK 9 — Satellite in circular orbit (/particle-kinematics/circular-orbit)
 // ---------------------------------------------------------------------------
 
 export interface CircularOrbitParams {

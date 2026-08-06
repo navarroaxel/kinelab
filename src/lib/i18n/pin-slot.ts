@@ -29,7 +29,7 @@ export const pinSlot = {
     "pin-slot.controls.constraint.ok": "d > r ✓",
     "pin-slot.controls.constraint.warn": "⚠ d must be ≥ r",
     "pin-slot.controls.constraint.degenerate":
-      "d = r — CPM 4 degenerate case (O on the circle)",
+      "d = r — PK 4 degenerate case (O on the circle)",
     "pin-slot.controls.btn.reset": "Reset to Φ = 0",
     "pin-slot.controls.btn.pause": "Pause",
     "pin-slot.controls.btn.resume": "Resume",
@@ -57,11 +57,11 @@ export const pinSlot = {
       "Because d > r, O lies outside the circle and the bar never completes a full revolution — " +
       "it swings back and forth within ±arcsin(r/d).",
     "pin-slot.equations.note.swing_degenerate":
-      "Because d = r, O lies ON the circle — this is CPM 4. The bar now completes a full " +
+      "Because d = r, O lies ON the circle — this is PK 4. The bar now completes a full " +
       "revolution as the pin goes around, but ρ → 0 at Φ = π (the pin passes through O itself), " +
       "where the bar's orientation is momentarily undefined.",
-    "pin-slot.equations.section.cpm4": "CPM 4 closed form (d = r)",
-    "pin-slot.equations.note.cpm4":
+    "pin-slot.equations.section.pk4": "PK 4 closed form (d = r)",
+    "pin-slot.equations.note.pk4":
       "By the inscribed-angle theorem, the bar angle is always exactly half the pin angle.",
     "pin-slot.equations.note.invariant":
       "The total speed of the pin is constant (V₀), so the radial and transverse " +
@@ -131,8 +131,8 @@ export const pinSlot = {
       "Como d = r, O queda SOBRE el círculo — este es el CPM 4. Ahora la barra completa una " +
       "vuelta entera a medida que el pasador gira, pero ρ → 0 en Φ = π (el pasador pasa " +
       "exactamente por O), donde la orientación de la barra queda momentáneamente indefinida.",
-    "pin-slot.equations.section.cpm4": "Forma cerrada del CPM 4 (d = r)",
-    "pin-slot.equations.note.cpm4":
+    "pin-slot.equations.section.pk4": "Forma cerrada del CPM 4 (d = r)",
+    "pin-slot.equations.note.pk4":
       "Por el teorema del ángulo inscripto, el ángulo de la barra es siempre exactamente la " +
       "mitad del ángulo del pasador.",
     "pin-slot.equations.note.invariant":

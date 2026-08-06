@@ -4,18 +4,18 @@ import { ring } from "./ring";
 import { pinSlot } from "./pin-slot";
 import { quickReturn } from "./quick-return";
 import { kepler } from "./kepler";
-import { cpmSection } from "./cpm/section";
-import { cpmExercisesI18n } from "./cpm/exercises";
-import { dragDescent } from "./cpm/drag-descent";
-import { motionGraphs } from "./cpm/motion-graphs";
-import { stoppingDistance } from "./cpm/stopping-distance";
-import { circularOrbit } from "./cpm/circular-orbit";
-import { parabolicTrack } from "./cpm/parabolic-track";
-import { cableBlocks } from "./cpm/cable-blocks";
-import { radarTracking } from "./cpm/radar-tracking";
-import { elevatorCable } from "./cpm/elevator-cable";
-import { dpmSection } from "./dpm/section";
-import { dpmExercisesI18n } from "./dpm/exercises";
+import { pkSection } from "./pk/section";
+import { pkExercisesI18n } from "./pk/exercises";
+import { dragDescent } from "./pk/drag-descent";
+import { motionGraphs } from "./pk/motion-graphs";
+import { stoppingDistance } from "./pk/stopping-distance";
+import { circularOrbit } from "./pk/circular-orbit";
+import { parabolicTrack } from "./pk/parabolic-track";
+import { cableBlocks } from "./pk/cable-blocks";
+import { radarTracking } from "./pk/radar-tracking";
+import { elevatorCable } from "./pk/elevator-cable";
+import { pdSection } from "./pd/section";
+import { pdExercisesI18n } from "./pd/exercises";
 
 export type Language = "en" | "es";
 
@@ -29,8 +29,8 @@ export const translations = {
     ...pinSlot.en,
     ...quickReturn.en,
     ...kepler.en,
-    ...cpmSection.en,
-    ...cpmExercisesI18n.en,
+    ...pkSection.en,
+    ...pkExercisesI18n.en,
     ...dragDescent.en,
     ...motionGraphs.en,
     ...stoppingDistance.en,
@@ -39,8 +39,8 @@ export const translations = {
     ...cableBlocks.en,
     ...radarTracking.en,
     ...elevatorCable.en,
-    ...dpmSection.en,
-    ...dpmExercisesI18n.en,
+    ...pdSection.en,
+    ...pdExercisesI18n.en,
   },
   es: {
     ...common.es,
@@ -49,8 +49,8 @@ export const translations = {
     ...pinSlot.es,
     ...quickReturn.es,
     ...kepler.es,
-    ...cpmSection.es,
-    ...cpmExercisesI18n.es,
+    ...pkSection.es,
+    ...pkExercisesI18n.es,
     ...dragDescent.es,
     ...motionGraphs.es,
     ...stoppingDistance.es,
@@ -59,8 +59,8 @@ export const translations = {
     ...cableBlocks.es,
     ...radarTracking.es,
     ...elevatorCable.es,
-    ...dpmSection.es,
-    ...dpmExercisesI18n.es,
+    ...pdSection.es,
+    ...pdExercisesI18n.es,
   },
 } as const;
 

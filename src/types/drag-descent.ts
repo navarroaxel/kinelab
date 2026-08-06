@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 1 — Cyclist with air drag simulator (/particle-kinematics/drag-descent)
+// PK 1 — Cyclist with air drag simulator (/particle-kinematics/drag-descent)
 // ---------------------------------------------------------------------------
 
 export interface DragDescentParams {

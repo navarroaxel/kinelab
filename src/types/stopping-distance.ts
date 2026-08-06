@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 2 — Stopping distance simulator (/particle-kinematics/stopping-distance)
+// PK 2 — Stopping distance simulator (/particle-kinematics/stopping-distance)
 // ---------------------------------------------------------------------------
 
 export interface StoppingDistanceParams {

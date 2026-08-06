@@ -60,14 +60,14 @@ export const PinSlotEquations = memo(function PinSlotEquations({
           {isDegenerate ? (
             <>
               <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
-                {t("pin-slot.equations.section.cpm4")}
+                {t("pin-slot.equations.section.pk4")}
               </p>
               <p>ρ = 2r·cos(Φ/2)</p>
               <p>θ = Φ/2</p>
               <p>|v| = 2·ω·r</p>
               <p>|a| = 4·ω²·r</p>
               <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
-                {t("pin-slot.equations.note.cpm4")}
+                {t("pin-slot.equations.note.pk4")}
               </p>
 
               <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">

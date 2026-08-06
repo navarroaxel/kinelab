@@ -20,39 +20,39 @@ A browsable set of the ten exercises from TP N°1, with prev/next navigation, a 
 
 | Exercise | Route |
 |---|---|
-| CPM 1 — Cyclist with air drag | `/particle-kinematics/drag-descent` |
-| CPM 2 — Stopping distance | `/particle-kinematics/stopping-distance` |
-| CPM 3 — Skater on a parabolic profile | `/particle-kinematics/parabolic-track` |
-| CPM 4 — Pin-slot, degenerate case (d = r) | `/particle-kinematics/pin-slot?preset=cpm4` |
-| CPM 5 — Motion graph builder | `/particle-kinematics/motion-graphs` |
-| CPM 6 — Pin in a circular slot | `/particle-kinematics/pin-slot` |
-| CPM 7 — Cable, pulleys and blocks | `/particle-kinematics/cable-blocks` |
-| CPM 8 — Radar-tracked aircraft | `/particle-kinematics/radar-tracking` |
-| CPM 9 — Satellite in circular orbit | `/particle-kinematics/circular-orbit` |
-| CPM 10 — Elevator and pulley | `/particle-kinematics/elevator-cable` |
+| PK 1 — Cyclist with air drag | `/particle-kinematics/drag-descent` |
+| PK 2 — Stopping distance | `/particle-kinematics/stopping-distance` |
+| PK 3 — Skater on a parabolic profile | `/particle-kinematics/parabolic-track` |
+| PK 4 — Pin-slot, degenerate case (d = r) | `/particle-kinematics/pin-slot?preset=pk4` |
+| PK 5 — Motion graph builder | `/particle-kinematics/motion-graphs` |
+| PK 6 — Pin in a circular slot | `/particle-kinematics/pin-slot` |
+| PK 7 — Cable, pulleys and blocks | `/particle-kinematics/cable-blocks` |
+| PK 8 — Radar-tracked aircraft | `/particle-kinematics/radar-tracking` |
+| PK 9 — Satellite in circular orbit | `/particle-kinematics/circular-orbit` |
+| PK 10 — Elevator and pulley | `/particle-kinematics/elevator-cable` |
 
 All ten exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
 ### Particle Dynamics section (`/particle-dynamics`)
 
-A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. DPM 3 (the vertical ring, moved here from the former `/ring` route) and DPM 6 (Kepler orbital mechanics, moved here from the former `/kepler` route) have working simulators; the rest show as "coming soon" cards until built.
+A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. PD 3 (the vertical ring, moved here from the former `/ring` route) and PD 6 (Kepler orbital mechanics, moved here from the former `/kepler` route) have working simulators; the rest show as "coming soon" cards until built.
 
 | Exercise | Route |
 |---|---|
-| DPM 1 — Bullet through a viscous plate | *not yet implemented* |
-| DPM 2 — Parachutist with linear drag | *not yet implemented* |
-| DPM 3 — Particle in a vertical ring | `/particle-dynamics/ring` |
-| DPM 4 — Atwood machine | *not yet implemented* |
-| DPM 5 — Sphere on a parabolic track | *not yet implemented* |
-| DPM 6 — Orbital transfer thrust factors | `/particle-dynamics/kepler` |
-| DPM 7 — Elevator and counterweight power | *not yet implemented* |
-| DPM 8 — Spring-stopped package on an incline | *not yet implemented* |
-| DPM 9 — Pulleys and blocks with friction | *not yet implemented* |
-| DPM 10 — Vehicle resistance and power | *not yet implemented* |
-| DPM 11 — Hoist motor efficiency | *not yet implemented* |
-| DPM 12 — Escalator motor efficiency | *not yet implemented* |
-| DPM 13 — Rail car coupling | *not yet implemented* |
-| DPM 14 — Staged rocket launch | *not yet implemented* |
+| PD 1 — Bullet through a viscous plate | *not yet implemented* |
+| PD 2 — Parachutist with linear drag | *not yet implemented* |
+| PD 3 — Particle in a vertical ring | `/particle-dynamics/ring` |
+| PD 4 — Atwood machine | *not yet implemented* |
+| PD 5 — Sphere on a parabolic track | *not yet implemented* |
+| PD 6 — Orbital transfer thrust factors | `/particle-dynamics/kepler` |
+| PD 7 — Elevator and counterweight power | *not yet implemented* |
+| PD 8 — Spring-stopped package on an incline | *not yet implemented* |
+| PD 9 — Pulleys and blocks with friction | *not yet implemented* |
+| PD 10 — Vehicle resistance and power | *not yet implemented* |
+| PD 11 — Hoist motor efficiency | *not yet implemented* |
+| PD 12 — Escalator motor efficiency | *not yet implemented* |
+| PD 13 — Rail car coupling | *not yet implemented* |
+| PD 14 — Staged rocket launch | *not yet implemented* |
 
 See `src/lib/simulators.ts` for the registry driving this table.
 
@@ -68,7 +68,7 @@ The key insight it makes visible: move the pole (origin of the polar frame) away
 - Strip charts: polar velocity vs. time, tangential acceleration vs. time
 - Live metrics: r, θ, ṙ, rθ̇, ω, aₜ
 
-### `/particle-dynamics/ring` Vertical ring (DPM 3)
+### `/particle-dynamics/ring` Vertical ring (PD 3)
 
 A particle constrained to slide on the inside of a smooth ring of radius R in a uniform gravitational field. The simulation integrates `θ̈ = −(g/R)·sin θ` with 4th-order Runge–Kutta and surfaces the dynamics in real time:
 

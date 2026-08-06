@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 5 — Motion graph builder (/particle-kinematics/motion-graphs)
+// PK 5 — Motion graph builder (/particle-kinematics/motion-graphs)
 // ---------------------------------------------------------------------------
 
 export interface MotionVertex {

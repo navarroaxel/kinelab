@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cpmExercises } from "@/lib/simulators";
+import { pkExercises } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 
 export function ParticleKinematicsIndexClient() {
   const { t } = useLanguage();
-  const exercises = cpmExercises();
+  const exercises = pkExercises();
 
   return (
     <main className="mx-auto max-w-7xl p-4">
@@ -17,10 +17,10 @@ export function ParticleKinematicsIndexClient() {
 
         <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            {t("cpm.section.index_title")}
+            {t("pk.section.index_title")}
           </h1>
           <p className="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-            {t("cpm.section.subtitle")}
+            {t("pk.section.subtitle")}
           </p>
         </header>
 
@@ -32,7 +32,7 @@ export function ParticleKinematicsIndexClient() {
               className="flex flex-col gap-1 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
             >
               <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                CPM {ex.cpm}
+                PK {ex.pk}
               </span>
               <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                 {t(ex.titleKey)}

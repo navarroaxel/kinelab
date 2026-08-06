@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ParticleDynamicsIndexClient } from "@/components/dpm/ParticleDynamicsIndexClient";
+import { ParticleDynamicsIndexClient } from "@/components/pd/ParticleDynamicsIndexClient";
 
 export const metadata: Metadata = {
   title: "Particle Dynamics — TP N°2 | Kinelab",
