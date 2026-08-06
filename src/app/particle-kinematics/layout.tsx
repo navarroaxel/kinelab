@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ExerciseNav } from "@/components/cpm/ExerciseNav";

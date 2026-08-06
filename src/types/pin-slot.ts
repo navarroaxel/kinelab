@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// Pin-in-circular-slot simulator (/pin-slot)
+// Pin-in-circular-slot simulator (/particle-kinematics/pin-slot)
 // ---------------------------------------------------------------------------
 
 export interface PinSlotParams {
