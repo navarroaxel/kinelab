@@ -173,7 +173,15 @@ function render(
   // during the loop (B–C's vertical run is drawn at a fixed length —
   // it carries no independent physical meaning here).
   const t0 = timeAtPosition(params.x0, params);
-  const xMax = Math.max(positionAtTime(t0 + loopDuration, params), params.b, 1);
+  // Guard against the current frame's x running ahead of the loop's expected
+  // max (e.g. a param edit mid-animation before the effect restarts) — take
+  // whichever is larger so the scale never underestimates the car's reach.
+  const xMax = Math.max(
+    positionAtTime(t0 + loopDuration, params),
+    state.x,
+    params.b,
+    1,
+  );
   const marginTop = 56;
   const marginBottom = 40;
   const scaleH = (W * 0.62) / Math.max(params.b, 1);
@@ -185,7 +193,9 @@ function render(
   const topY = marginTop; // the level where x = 0 (car level with B)
   const bx = shaftX + params.b * scale;
   const by = topY;
-  const carY = topY + state.x * scale;
+  // Hard-clamped so the car can never be drawn past the canvas bottom,
+  // regardless of any edge case in the scale computation above.
+  const carY = Math.min(topY + state.x * scale, H - marginBottom);
   const cx = bx;
   const cy = Math.min(H - 30, by + 150);
 
@@ -209,7 +219,7 @@ function render(
     ctx.lineWidth = 3;
     ctx.beginPath();
     trace.forEach((x, i) => {
-      const y = topY + x * scale;
+      const y = Math.min(topY + x * scale, H - marginBottom);
       if (i === 0) ctx.moveTo(shaftX, y);
       else ctx.lineTo(shaftX, y);
     });
