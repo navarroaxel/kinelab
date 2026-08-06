@@ -13,6 +13,7 @@ import { circularOrbit } from "./cpm/circular-orbit";
 import { parabolicTrack } from "./cpm/parabolic-track";
 import { cableBlocks } from "./cpm/cable-blocks";
 import { radarTracking } from "./cpm/radar-tracking";
+import { elevatorCable } from "./cpm/elevator-cable";
 
 export type Language = "en" | "es";
 
@@ -35,6 +36,7 @@ export const translations = {
     ...parabolicTrack.en,
     ...cableBlocks.en,
     ...radarTracking.en,
+    ...elevatorCable.en,
   },
   es: {
     ...common.es,
@@ -52,6 +54,7 @@ export const translations = {
     ...parabolicTrack.es,
     ...cableBlocks.es,
     ...radarTracking.es,
+    ...elevatorCable.es,
   },
 } as const;
 
