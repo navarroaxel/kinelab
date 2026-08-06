@@ -226,7 +226,7 @@ function render(
     drawLabel(
       ctx,
       `${c.speedKmh} km/h${stopped ? " ■" : ""}`,
-      MARGIN_X + 10,
+      MARGIN_X + 30,
       y - 16,
       color,
     );

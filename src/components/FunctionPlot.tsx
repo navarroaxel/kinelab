@@ -239,8 +239,15 @@ export const FunctionPlot = memo(function FunctionPlot({
 
   const { xDomain, yDomain } = useMemo(() => {
     const extent = seriesExtent(series);
+    // Most series here are time or distance, naturally starting at 0 — padding
+    // below that would show a meaningless negative sliver, so only pad the
+    // upper bound in that case.
+    const xAuto =
+      extent.x.min === 0
+        ? { min: 0, max: extent.x.max + (extent.x.max - extent.x.min) * 0.06 }
+        : padDomain(extent.x);
     return {
-      xDomain: domain ?? padDomain(extent.x),
+      xDomain: domain ?? xAuto,
       yDomain: range ?? padDomain(extent.y),
     };
   }, [series, domain, range]);
