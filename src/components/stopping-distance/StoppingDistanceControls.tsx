@@ -1,6 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type {
   StoppingDistanceParams,
   StoppingDistanceVisibility,
@@ -21,7 +23,7 @@ interface Props {
 }
 
 interface SliderProps {
-  label: string;
+  label: ReactNode;
   id: string;
   min: number;
   max: number;
@@ -149,7 +151,9 @@ export function StoppingDistanceControls({
         </h3>
         <div className="flex flex-col gap-3">
           <Slider
-            label={t("stopping-distance.controls.slider.reaction_time")}
+            label={withSubscripts(
+              t("stopping-distance.controls.slider.reaction_time"),
+            )}
             id="reactionTime"
             min={0}
             max={2.5}

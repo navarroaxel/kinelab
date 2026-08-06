@@ -3,6 +3,7 @@
 import { memo, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { FunctionPlot } from "@/components/FunctionPlot";
+import { withSubscripts } from "@/components/Subscript";
 import { COLORS } from "@/lib/drawing";
 import { velocityAtTime } from "@/lib/stoppingDistanceKinematics";
 import type { StoppingDistanceCase } from "@/types/simulator";
@@ -36,7 +37,10 @@ export const StoppingDistanceEquations = memo(
         points.push([reactionTime, c.v0]);
         points.sort((a, b) => a[0] - b[0]);
         return {
-          label: `${c.speedKmh} km/h`,
+          // Label in m/s, matching the plot's own y-axis unit — using km/h
+          // here (the launch-speed identifier) read as if it were the
+          // hovered value, which is always in m/s.
+          label: `${c.speedKmh} km/h (${c.v0.toFixed(1)} m/s)`,
           color: SERIES_COLORS[i % SERIES_COLORS.length],
           points,
         };
@@ -82,15 +86,17 @@ export const StoppingDistanceEquations = memo(
               <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
                 {t("stopping-distance.equations.section.formulas")}
               </p>
-              <p>d₁ = v₀·t_r (rectangle)</p>
-              <p>t_f = v₀/a, a = decel × g</p>
+              <p>d₁ = v₀·{withSubscripts("t_r")} (rectangle)</p>
+              <p>{withSubscripts("t_f")} = v₀/a, a = decel × g</p>
               <p>d₂ = v₀² / (2·a) (triangle)</p>
               <p>D = d₁ + d₂</p>
             </div>
 
             <div>
               <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
-                {t("stopping-distance.equations.section.reference")}
+                {withSubscripts(
+                  t("stopping-distance.equations.section.reference"),
+                )}
               </p>
               <p className="font-sans leading-relaxed text-gray-500 dark:text-gray-400">
                 {t("stopping-distance.equations.note.reference")}

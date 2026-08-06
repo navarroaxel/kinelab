@@ -1,7 +1,8 @@
 "use client";
 
-import { memo } from "react";
+import { memo, type ReactNode } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type { StoppingDistanceState } from "@/types/simulator";
 
 interface Props {
@@ -15,7 +16,7 @@ export const StoppingDistanceMetrics = memo(function StoppingDistanceMetrics({
 
   const columns: {
     key: keyof StoppingDistanceState["cases"][number];
-    label: string;
+    label: ReactNode;
     fmt: (v: number) => string;
   }[] = [
     {
@@ -35,7 +36,7 @@ export const StoppingDistanceMetrics = memo(function StoppingDistanceMetrics({
     },
     {
       key: "tf",
-      label: t("stopping-distance.metrics.table.tf"),
+      label: withSubscripts(t("stopping-distance.metrics.table.tf")),
       fmt: (v) => v.toFixed(2),
     },
     {
@@ -50,7 +51,7 @@ export const StoppingDistanceMetrics = memo(function StoppingDistanceMetrics({
     },
     {
       key: "tTotal",
-      label: t("stopping-distance.metrics.table.ttotal"),
+      label: withSubscripts(t("stopping-distance.metrics.table.ttotal")),
       fmt: (v) => v.toFixed(2),
     },
   ];
