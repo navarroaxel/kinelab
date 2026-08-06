@@ -46,6 +46,17 @@ export function usePinSlotSimulator() {
     computePinSlotState(presetParams, 0),
   );
 
+  // usePreset's return value only seeds the initial useState above — it isn't
+  // re-read on its own. CPM 4 and CPM 6 both route to /particle-kinematics/pin-slot
+  // (only the `?preset=` query differs), so navigating between them via
+  // ExerciseNav doesn't remount this component; without this render-time sync
+  // the params would keep whichever preset was active on first mount.
+  const [prevPresetParams, setPrevPresetParams] = useState(presetParams);
+  if (presetParams !== prevPresetParams) {
+    setPrevPresetParams(presetParams);
+    setParams(presetParams);
+  }
+
   // Reset phi when params change — old trajectory is no longer meaningful
   useEffect(() => {
     phiRef.current = 0;

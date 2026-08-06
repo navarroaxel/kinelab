@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type { PinSlotParams, PinSlotVisibility } from "@/types/simulator";
 
 interface Props {
@@ -156,7 +157,7 @@ export function PinSlotControls({
           Ω = V₀/r = {(params.v0 / params.r).toFixed(3)} rad/s
         </p>
         <p className="font-mono text-[10px] text-gray-500 dark:text-gray-400">
-          θ_max = ±{thetaMax}°
+          {withSubscripts("θ_max")} = ±{thetaMax}°
         </p>
       </section>
 

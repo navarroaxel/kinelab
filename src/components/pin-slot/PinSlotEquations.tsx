@@ -2,6 +2,7 @@
 
 import { memo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type { PinSlotParams } from "@/types/simulator";
 
 interface Props {
@@ -81,7 +82,7 @@ export const PinSlotEquations = memo(function PinSlotEquations({
               <p className="mt-2 mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-500">
                 {t("pin-slot.equations.section.swing")}
               </p>
-              <p>|θ|_max = arcsin(r / d)</p>
+              <p>{withSubscripts("|θ|_max")} = arcsin(r / d)</p>
               <p className="font-sans text-xs leading-relaxed text-gray-400 dark:text-gray-500">
                 {t("pin-slot.equations.note.swing")}
               </p>
