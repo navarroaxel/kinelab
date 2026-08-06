@@ -1,15 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/pin-slot",
-        destination: "/particle-kinematics/pin-slot",
-        permanent: true,
-      },
-    ];
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

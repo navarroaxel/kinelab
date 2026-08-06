@@ -31,7 +31,7 @@ Un conjunto navegable de los diez ejercicios del TP N°1, con navegación anteri
 | CPM 9 — Satélite en órbita circular | `/particle-kinematics/circular-orbit` |
 | CPM 10 — Ascensor y polea | `/particle-kinematics/elevator-cable` |
 
-`/pin-slot` (la ruta original) redirige permanentemente a `/particle-kinematics/pin-slot`. Al momento de escribir esto, el CPM 6 (pasador en ranura) está implementado; las nueve rutas restantes quedan pendientes para PRs futuros — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
+Los diez ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 
 ### `/` Coordenadas polares
 

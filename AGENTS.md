@@ -23,7 +23,7 @@ Core simulators:
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
 | `/kepler`         | Orbital mechanics — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva |
 
-Plus a grouped section, **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, browsable via a section index and an exercise nav (prev/next, jump-to dropdown). `/pin-slot` now lives here as CPM 6, at `/particle-kinematics/pin-slot` (permanent redirect from the old path). See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route table.
+Plus a grouped section, **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, browsable via a section index and an exercise nav (prev/next, jump-to dropdown). See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route table.
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 

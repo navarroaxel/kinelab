@@ -31,7 +31,7 @@ A browsable set of the ten exercises from TP N°1, with prev/next navigation, a 
 | CPM 9 — Satellite in circular orbit | `/particle-kinematics/circular-orbit` |
 | CPM 10 — Elevator and pulley | `/particle-kinematics/elevator-cable` |
 
-`/pin-slot` (the original route) permanently redirects to `/particle-kinematics/pin-slot`. As of this writing, CPM 6 (pin-slot) is implemented; the remaining nine routes are tracked for follow-up PRs — see `src/lib/simulators.ts` for the registry driving this table.
+All ten exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
 ### `/` Polar coordinates
 
