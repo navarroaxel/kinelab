@@ -1,7 +1,7 @@
 export const elevatorCable = {
   en: {
     "elevator-cable.page.canvas_aria":
-      "Elevator and pulley simulator — a car descends as a drum unwinds cable at constant speed",
+      "Elevator and pulley simulator — a car descends as a reel unwinds cable at constant speed",
 
     "elevator-cable.controls.section.parameters": "Parameters",
     "elevator-cable.controls.section.visibility": "Visibility",
@@ -9,7 +9,7 @@ export const elevatorCable = {
     "elevator-cable.controls.slider.v0": "Cable unwind speed v₀",
     "elevator-cable.controls.slider.x0": "Initial position x₀",
     "elevator-cable.controls.toggle.velocity": "Velocity indicator",
-    "elevator-cable.controls.toggle.drum": "Drum C",
+    "elevator-cable.controls.toggle.drum": "Reel C",
     "elevator-cable.controls.toggle.trace": "Car trail",
     "elevator-cable.controls.btn.reset": "Reset to t = 0",
     "elevator-cable.controls.btn.pause": "Pause",
@@ -26,12 +26,12 @@ export const elevatorCable = {
     "elevator-cable.legend.heading": "Legend",
     "elevator-cable.legend.cable": "Cable A–B",
     "elevator-cable.legend.car": "Car (elevator)",
-    "elevator-cable.legend.drum": "Drum C",
+    "elevator-cable.legend.drum": "Reel C",
 
     "elevator-cable.equations.heading": "Equations",
     "elevator-cable.equations.section.statement": "Statement",
     "elevator-cable.equations.statement.text":
-      "Cable unwinds from drum C at constant v₀. Find the elevator's velocity and acceleration as functions of time.",
+      "Cable unwinds from reel C at constant v₀. Find the elevator's velocity and acceleration as functions of time.",
     "elevator-cable.equations.section.formulas": "Formulas",
     "elevator-cable.equations.section.singularity":
       "Singularity at t = 0 (x₀ = 0)",
