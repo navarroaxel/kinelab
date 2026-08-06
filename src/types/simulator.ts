@@ -4,3 +4,4 @@ export * from "./pin-slot";
 export * from "./kepler";
 export * from "./quick-return";
 export * from "./drag-descent";
+export * from "./motion-graphs";

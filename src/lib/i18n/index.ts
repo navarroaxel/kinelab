@@ -7,6 +7,7 @@ import { kepler } from "./kepler";
 import { cpmSection } from "./cpm/section";
 import { cpmExercisesI18n } from "./cpm/exercises";
 import { dragDescent } from "./cpm/drag-descent";
+import { motionGraphs } from "./cpm/motion-graphs";
 
 export type Language = "en" | "es";
 
@@ -23,6 +24,7 @@ export const translations = {
     ...cpmSection.en,
     ...cpmExercisesI18n.en,
     ...dragDescent.en,
+    ...motionGraphs.en,
   },
   es: {
     ...common.es,
@@ -34,6 +36,7 @@ export const translations = {
     ...cpmSection.es,
     ...cpmExercisesI18n.es,
     ...dragDescent.es,
+    ...motionGraphs.es,
   },
 } as const;
 
