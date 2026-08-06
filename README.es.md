@@ -21,16 +21,16 @@ Un conjunto navegable de los diez ejercicios del TP N°1, con navegación anteri
 
 | Ejercicio | Ruta |
 |---|---|
-| CPM 1 — Ciclista con resistencia del aire | `/particle-kinematics/drag-descent` |
-| CPM 2 — Distancia de frenado | `/particle-kinematics/stopping-distance` |
-| CPM 3 — Patinador sobre perfil parabólico | `/particle-kinematics/parabolic-track` |
-| CPM 4 — Pasador en ranura, caso degenerado (d = r) | `/particle-kinematics/pin-slot?preset=cpm4` |
-| CPM 5 — Constructor de gráficos de movimiento | `/particle-kinematics/motion-graphs` |
-| CPM 6 — Pasador en ranura circular | `/particle-kinematics/pin-slot` |
-| CPM 7 — Cable, poleas y bloques | `/particle-kinematics/cable-blocks` |
-| CPM 8 — Aeronave rastreada por radar | `/particle-kinematics/radar-tracking` |
-| CPM 9 — Satélite en órbita circular | `/particle-kinematics/circular-orbit` |
-| CPM 10 — Ascensor y polea | `/particle-kinematics/elevator-cable` |
+| PK 1 — Ciclista con resistencia del aire | `/particle-kinematics/drag-descent` |
+| PK 2 — Distancia de frenado | `/particle-kinematics/stopping-distance` |
+| PK 3 — Patinador sobre perfil parabólico | `/particle-kinematics/parabolic-track` |
+| PK 4 — Pasador en ranura, caso degenerado (d = r) | `/particle-kinematics/pin-slot?preset=pk4` |
+| PK 5 — Constructor de gráficos de movimiento | `/particle-kinematics/motion-graphs` |
+| PK 6 — Pasador en ranura circular | `/particle-kinematics/pin-slot` |
+| PK 7 — Cable, poleas y bloques | `/particle-kinematics/cable-blocks` |
+| PK 8 — Aeronave rastreada por radar | `/particle-kinematics/radar-tracking` |
+| PK 9 — Satélite en órbita circular | `/particle-kinematics/circular-orbit` |
+| PK 10 — Ascensor y polea | `/particle-kinematics/elevator-cable` |
 
 Los diez ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 

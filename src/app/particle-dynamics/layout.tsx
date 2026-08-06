@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { ExerciseNav } from "@/components/dpm/ExerciseNav";
+import { ExerciseNav } from "@/components/pd/ExerciseNav";
 
 export default function ParticleDynamicsLayout({
   children,

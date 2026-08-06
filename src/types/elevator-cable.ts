@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 10 — Elevator and pulley (/particle-kinematics/elevator-cable)
+// PK 10 — Elevator and pulley (/particle-kinematics/elevator-cable)
 // ---------------------------------------------------------------------------
 
 export interface ElevatorCableParams {

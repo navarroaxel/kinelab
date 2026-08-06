@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 8 — Radar-tracked aircraft (/particle-kinematics/radar-tracking)
+// PK 8 — Radar-tracked aircraft (/particle-kinematics/radar-tracking)
 // ---------------------------------------------------------------------------
 
 export interface RadarTrackingParams {

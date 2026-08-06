@@ -7,8 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { coreSimulators } from "@/lib/simulators";
 
 const HOME_HREF = "/";
-const CPM_SECTION_HREF = "/particle-kinematics";
-const DPM_SECTION_HREF = "/particle-dynamics";
+const PK_SECTION_HREF = "/particle-kinematics";
+const PD_SECTION_HREF = "/particle-dynamics";
 
 const pillClass = (active: boolean) =>
   `px-2.5 py-1 text-xs font-medium transition-colors ${
@@ -33,13 +33,13 @@ export const SimulatorNav = memo(function SimulatorNav() {
   const mobileItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const items = coreSimulators().map((s) => ({ href: s.href, key: s.navKey }));
-  const cpmActive = pathname.startsWith(CPM_SECTION_HREF);
-  const dpmActive = pathname.startsWith(DPM_SECTION_HREF);
+  const pkActive = pathname.startsWith(PK_SECTION_HREF);
+  const pdActive = pathname.startsWith(PD_SECTION_HREF);
 
   const allItems = [
     { href: HOME_HREF, key: "nav.home" as const },
-    { href: CPM_SECTION_HREF, key: "nav.particle_kinematics" as const },
-    { href: DPM_SECTION_HREF, key: "nav.particle_dynamics" as const },
+    { href: PK_SECTION_HREF, key: "nav.particle_kinematics" as const },
+    { href: PD_SECTION_HREF, key: "nav.particle_dynamics" as const },
     ...items,
   ];
 
@@ -81,10 +81,10 @@ export const SimulatorNav = memo(function SimulatorNav() {
       <div className="hidden overflow-hidden rounded-md border border-gray-200 md:inline-flex dark:border-gray-700">
         {allItems.map((item, index) => {
           const active =
-            item.href === CPM_SECTION_HREF
-              ? cpmActive
-              : item.href === DPM_SECTION_HREF
-                ? dpmActive
+            item.href === PK_SECTION_HREF
+              ? pkActive
+              : item.href === PD_SECTION_HREF
+                ? pdActive
                 : pathname === item.href;
           return (
             <Link
@@ -123,10 +123,10 @@ export const SimulatorNav = memo(function SimulatorNav() {
           >
             {allItems.map((item, index) => {
               const active =
-                item.href === CPM_SECTION_HREF
-                  ? cpmActive
-                  : item.href === DPM_SECTION_HREF
-                    ? dpmActive
+                item.href === PK_SECTION_HREF
+                  ? pkActive
+                  : item.href === PD_SECTION_HREF
+                    ? pdActive
                     : pathname === item.href;
               return (
                 <Link

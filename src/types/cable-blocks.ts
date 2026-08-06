@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// CPM 7 — Cable, pulleys and blocks (/particle-kinematics/cable-blocks)
+// PK 7 — Cable, pulleys and blocks (/particle-kinematics/cable-blocks)
 // ---------------------------------------------------------------------------
 
 export interface CableBlocksParams {

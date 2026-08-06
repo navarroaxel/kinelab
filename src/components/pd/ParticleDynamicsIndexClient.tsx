@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { dpmExercises } from "@/lib/simulators";
+import { pdExercises } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 
 export function ParticleDynamicsIndexClient() {
   const { t } = useLanguage();
-  const exercises = dpmExercises();
+  const exercises = pdExercises();
 
   return (
     <main className="mx-auto max-w-7xl p-4">
@@ -17,10 +17,10 @@ export function ParticleDynamicsIndexClient() {
 
         <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            {t("dpm.section.index_title")}
+            {t("pd.section.index_title")}
           </h1>
           <p className="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-            {t("dpm.section.subtitle")}
+            {t("pd.section.subtitle")}
           </p>
         </header>
 
@@ -30,11 +30,11 @@ export function ParticleDynamicsIndexClient() {
               <>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                    DPM {ex.dpm}
+                    PD {ex.pd}
                   </span>
                   {ex.disabled && (
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium tracking-wide text-gray-500 uppercase dark:bg-gray-800 dark:text-gray-400">
-                      {t("dpm.card.coming_soon")}
+                      {t("pd.card.coming_soon")}
                     </span>
                   )}
                 </div>
