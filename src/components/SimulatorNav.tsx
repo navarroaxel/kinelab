@@ -8,6 +8,7 @@ import { coreSimulators } from "@/lib/simulators";
 
 const HOME_HREF = "/";
 const CPM_SECTION_HREF = "/particle-kinematics";
+const DPM_SECTION_HREF = "/particle-dynamics";
 
 const pillClass = (active: boolean) =>
   `px-2.5 py-1 text-xs font-medium transition-colors ${
@@ -33,11 +34,13 @@ export const SimulatorNav = memo(function SimulatorNav() {
 
   const items = coreSimulators().map((s) => ({ href: s.href, key: s.navKey }));
   const cpmActive = pathname.startsWith(CPM_SECTION_HREF);
+  const dpmActive = pathname.startsWith(DPM_SECTION_HREF);
 
   const allItems = [
     { href: HOME_HREF, key: "nav.home" as const },
     ...items,
     { href: CPM_SECTION_HREF, key: "nav.particle_kinematics" as const },
+    { href: DPM_SECTION_HREF, key: "nav.particle_dynamics" as const },
   ];
 
   useEffect(() => {
@@ -78,7 +81,11 @@ export const SimulatorNav = memo(function SimulatorNav() {
       <div className="hidden overflow-hidden rounded-md border border-gray-200 md:inline-flex dark:border-gray-700">
         {allItems.map((item, index) => {
           const active =
-            item.href === CPM_SECTION_HREF ? cpmActive : pathname === item.href;
+            item.href === CPM_SECTION_HREF
+              ? cpmActive
+              : item.href === DPM_SECTION_HREF
+                ? dpmActive
+                : pathname === item.href;
           return (
             <Link
               key={item.href}
@@ -118,7 +125,9 @@ export const SimulatorNav = memo(function SimulatorNav() {
               const active =
                 item.href === CPM_SECTION_HREF
                   ? cpmActive
-                  : pathname === item.href;
+                  : item.href === DPM_SECTION_HREF
+                    ? dpmActive
+                    : pathname === item.href;
               return (
                 <Link
                   key={item.href}

@@ -4,7 +4,10 @@ import type { TranslationKey } from "@/lib/i18n";
 // particle-kinematics section index, and ExerciseNav all read from here.
 // Adding a simulator should only ever touch this file plus its own slice.
 
-export type SimulatorGroup = "core" | "particle-kinematics";
+export type SimulatorGroup =
+  | "core"
+  | "particle-kinematics"
+  | "particle-dynamics";
 
 export interface SimulatorEntry {
   id: string; // "pin-slot"
@@ -13,8 +16,10 @@ export interface SimulatorEntry {
   titleKey: TranslationKey; // exercise/simulator title
   summaryKey?: TranslationKey; // one-line statement, shown on the section index card
   group: SimulatorGroup;
-  cpm?: number; // exercise number, drives ordering inside the section
+  cpm?: number; // exercise number, drives ordering inside the particle-kinematics section
+  dpm?: number; // exercise number, drives ordering inside the particle-dynamics section
   preset?: string; // e.g. "cpm4" — appended as ?preset=
+  disabled?: boolean; // exercise not implemented yet — shown as a non-clickable stub card
 }
 
 export const SIMULATORS: SimulatorEntry[] = [
@@ -25,14 +30,6 @@ export const SIMULATORS: SimulatorEntry[] = [
     navKey: "nav.polar",
     titleKey: "nav.polar",
     summaryKey: "home.summary.polar",
-    group: "core",
-  },
-  {
-    id: "ring",
-    href: "/ring",
-    navKey: "nav.ring",
-    titleKey: "nav.ring",
-    summaryKey: "home.summary.ring",
     group: "core",
   },
   {
@@ -144,6 +141,147 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "particle-kinematics",
     cpm: 10,
   },
+
+  // Particle Dynamics section — TP N°2, Dinámica del Punto Material (UTN FRBA)
+  {
+    id: "dpm1",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm1.title",
+    titleKey: "dpm.exercises.dpm1.title",
+    summaryKey: "dpm.exercises.dpm1.summary",
+    group: "particle-dynamics",
+    dpm: 1,
+    disabled: true,
+  },
+  {
+    id: "dpm2",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm2.title",
+    titleKey: "dpm.exercises.dpm2.title",
+    summaryKey: "dpm.exercises.dpm2.summary",
+    group: "particle-dynamics",
+    dpm: 2,
+    disabled: true,
+  },
+  {
+    id: "ring",
+    href: "/particle-dynamics/ring",
+    navKey: "dpm.exercises.dpm3.title",
+    titleKey: "dpm.exercises.dpm3.title",
+    summaryKey: "dpm.exercises.dpm3.summary",
+    group: "particle-dynamics",
+    dpm: 3,
+  },
+  {
+    id: "dpm4",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm4.title",
+    titleKey: "dpm.exercises.dpm4.title",
+    summaryKey: "dpm.exercises.dpm4.summary",
+    group: "particle-dynamics",
+    dpm: 4,
+    disabled: true,
+  },
+  {
+    id: "dpm5",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm5.title",
+    titleKey: "dpm.exercises.dpm5.title",
+    summaryKey: "dpm.exercises.dpm5.summary",
+    group: "particle-dynamics",
+    dpm: 5,
+    disabled: true,
+  },
+  {
+    id: "dpm6",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm6.title",
+    titleKey: "dpm.exercises.dpm6.title",
+    summaryKey: "dpm.exercises.dpm6.summary",
+    group: "particle-dynamics",
+    dpm: 6,
+    disabled: true,
+  },
+  {
+    id: "dpm7",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm7.title",
+    titleKey: "dpm.exercises.dpm7.title",
+    summaryKey: "dpm.exercises.dpm7.summary",
+    group: "particle-dynamics",
+    dpm: 7,
+    disabled: true,
+  },
+  {
+    id: "dpm8",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm8.title",
+    titleKey: "dpm.exercises.dpm8.title",
+    summaryKey: "dpm.exercises.dpm8.summary",
+    group: "particle-dynamics",
+    dpm: 8,
+    disabled: true,
+  },
+  {
+    id: "dpm9",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm9.title",
+    titleKey: "dpm.exercises.dpm9.title",
+    summaryKey: "dpm.exercises.dpm9.summary",
+    group: "particle-dynamics",
+    dpm: 9,
+    disabled: true,
+  },
+  {
+    id: "dpm10",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm10.title",
+    titleKey: "dpm.exercises.dpm10.title",
+    summaryKey: "dpm.exercises.dpm10.summary",
+    group: "particle-dynamics",
+    dpm: 10,
+    disabled: true,
+  },
+  {
+    id: "dpm11",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm11.title",
+    titleKey: "dpm.exercises.dpm11.title",
+    summaryKey: "dpm.exercises.dpm11.summary",
+    group: "particle-dynamics",
+    dpm: 11,
+    disabled: true,
+  },
+  {
+    id: "dpm12",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm12.title",
+    titleKey: "dpm.exercises.dpm12.title",
+    summaryKey: "dpm.exercises.dpm12.summary",
+    group: "particle-dynamics",
+    dpm: 12,
+    disabled: true,
+  },
+  {
+    id: "dpm13",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm13.title",
+    titleKey: "dpm.exercises.dpm13.title",
+    summaryKey: "dpm.exercises.dpm13.summary",
+    group: "particle-dynamics",
+    dpm: 13,
+    disabled: true,
+  },
+  {
+    id: "dpm14",
+    href: "/particle-dynamics",
+    navKey: "dpm.exercises.dpm14.title",
+    titleKey: "dpm.exercises.dpm14.title",
+    summaryKey: "dpm.exercises.dpm14.summary",
+    group: "particle-dynamics",
+    dpm: 14,
+    disabled: true,
+  },
 ];
 
 export const coreSimulators = () =>
@@ -152,6 +290,11 @@ export const coreSimulators = () =>
 export const cpmExercises = () =>
   SIMULATORS.filter((s) => s.group === "particle-kinematics").sort(
     (a, b) => a.cpm! - b.cpm!,
+  );
+
+export const dpmExercises = () =>
+  SIMULATORS.filter((s) => s.group === "particle-dynamics").sort(
+    (a, b) => a.dpm! - b.dpm!,
   );
 
 export function findByHref(href: string): SimulatorEntry | undefined {

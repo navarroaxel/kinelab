@@ -14,6 +14,8 @@ import { parabolicTrack } from "./cpm/parabolic-track";
 import { cableBlocks } from "./cpm/cable-blocks";
 import { radarTracking } from "./cpm/radar-tracking";
 import { elevatorCable } from "./cpm/elevator-cable";
+import { dpmSection } from "./dpm/section";
+import { dpmExercisesI18n } from "./dpm/exercises";
 
 export type Language = "en" | "es";
 
@@ -37,6 +39,8 @@ export const translations = {
     ...cableBlocks.en,
     ...radarTracking.en,
     ...elevatorCable.en,
+    ...dpmSection.en,
+    ...dpmExercisesI18n.en,
   },
   es: {
     ...common.es,
@@ -55,6 +59,8 @@ export const translations = {
     ...cableBlocks.es,
     ...radarTracking.es,
     ...elevatorCable.es,
+    ...dpmSection.es,
+    ...dpmExercisesI18n.es,
   },
 } as const;
 
