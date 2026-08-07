@@ -5,17 +5,19 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { FunctionPlot } from "@/components/FunctionPlot";
 import { withSubscripts } from "@/components/Subscript";
 import { COLORS } from "@/lib/drawing";
-import { efficiencyAtPeopleCount } from "@/lib/escalatorKinematics";
-import type { EscalatorParams, EscalatorState } from "@/types/simulator";
+import { efficiencyAtWattmeterReading } from "@/lib/hoistKinematics";
+import type { HoistParams, HoistState } from "@/types/simulator";
 
 interface Props {
-  params: EscalatorParams;
-  state: EscalatorState;
+  params: HoistParams;
+  state: HoistState;
 }
 
-const N_MAX = 40;
+const READING_MIN = 500;
+const READING_MAX = 8000;
+const SAMPLES = 100;
 
-export const EscalatorEquations = memo(function EscalatorEquations({
+export const HoistEquations = memo(function HoistEquations({
   params,
   state,
 }: Props) {
@@ -24,8 +26,10 @@ export const EscalatorEquations = memo(function EscalatorEquations({
 
   const etaPoints = useMemo(() => {
     const points: [number, number][] = [];
-    for (let n = 0; n <= N_MAX; n++) {
-      points.push([n, efficiencyAtPeopleCount(n, params) * 100]);
+    for (let i = 0; i <= SAMPLES; i++) {
+      const reading =
+        READING_MIN + ((READING_MAX - READING_MIN) * i) / SAMPLES;
+      points.push([reading, efficiencyAtWattmeterReading(reading, params) * 100]);
     }
     return points;
   }, [params]);
@@ -36,10 +40,10 @@ export const EscalatorEquations = memo(function EscalatorEquations({
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        aria-controls="escalator-equations-content"
+        aria-controls="hoist-equations-content"
         className="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold tracking-wide text-gray-500 uppercase transition-colors hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
       >
-        <span>{t("escalator.equations.heading")}</span>
+        <span>{t("hoist.equations.heading")}</span>
         <span aria-hidden="true" className="text-gray-400">
           {open ? "▲" : "▼"}
         </span>
@@ -47,79 +51,80 @@ export const EscalatorEquations = memo(function EscalatorEquations({
 
       {open && (
         <div
-          id="escalator-equations-content"
+          id="hoist-equations-content"
           className="flex flex-col gap-3 px-3 pb-3 text-xs text-gray-700 dark:text-gray-300"
         >
           <div>
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
-              {t("escalator.equations.section.statement")}
+              {t("hoist.equations.section.statement")}
             </p>
             <p className="font-sans leading-relaxed text-gray-600 dark:text-gray-400">
-              {t("escalator.equations.statement.text")}
+              {t("hoist.equations.statement.text")}
             </p>
           </div>
 
           <div>
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
-              {t("escalator.equations.section.theory")}
+              {t("hoist.equations.section.theory")}
             </p>
             <p className="font-sans leading-relaxed text-gray-600 dark:text-gray-400">
-              {withSubscripts(t("escalator.equations.theory.three_phase"))}
+              {withSubscripts(t("hoist.equations.theory.pulley_ratio"))}
             </p>
             <p className="mt-1.5 font-sans leading-relaxed text-gray-600 dark:text-gray-400">
-              {withSubscripts(t("escalator.equations.theory.mechanical"))}
+              {withSubscripts(t("hoist.equations.theory.counterweight"))}
             </p>
             <p className="mt-1.5 font-sans leading-relaxed text-gray-600 dark:text-gray-400">
-              {withSubscripts(t("escalator.equations.theory.losses"))}
+              {withSubscripts(t("hoist.equations.theory.wattmeter"))}
             </p>
           </div>
 
           <div className="font-mono">
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
-              {t("escalator.equations.section.formulas")}
+              {t("hoist.equations.section.formulas")}
             </p>
+            <p>{withSubscripts(t("hoist.equations.formula.pulley"))}</p>
+            <p>{withSubscripts(t("hoist.equations.formula.tension2"))}</p>
+            <p>{withSubscripts(t("hoist.equations.formula.tension1"))}</p>
+            <p>{withSubscripts(t("hoist.symbol.mechanical"))} = T₁ · v_c</p>
             <p>
-              {withSubscripts(t("escalator.symbol.electrical"))} = √3 · V · I · cos φ
-            </p>
-            <p>
-              {withSubscripts(t("escalator.symbol.mechanical"))} = (n · m · g · h) / t
-            </p>
-            <p>
-              η = {withSubscripts(t("escalator.symbol.mechanical"))} /{" "}
-              {withSubscripts(t("escalator.symbol.electrical"))}
+              η = {withSubscripts(t("hoist.symbol.mechanical"))} /{" "}
+              {withSubscripts(t("hoist.symbol.electrical"))}
             </p>
           </div>
 
           <div>
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
-              {t("escalator.equations.section.reference")}
+              {t("hoist.equations.section.reference")}
             </p>
             <p className="font-sans leading-relaxed whitespace-pre-line text-gray-500 dark:text-gray-400">
-              {withSubscripts(t("escalator.equations.note.reference"))}
+              {withSubscripts(t("hoist.equations.note.reference"))}
             </p>
           </div>
 
           <div>
             <p className="mb-2 font-sans text-xs text-gray-500 dark:text-gray-400">
-              {t("escalator.equations.section.plot")}
+              {t("hoist.equations.section.plot")}
             </p>
             <FunctionPlot
-              ariaLabel={t("escalator.plot.eta_n.title")}
-              xUnit="people"
+              ariaLabel={t("hoist.plot.eta_p.title")}
+              xUnit="W"
               yUnit="%"
               series={[
                 {
-                  label: "η(n)",
+                  label: "η(B)",
                   color: COLORS.rVector,
                   points: etaPoints,
                 },
               ]}
               markers={[
                 {
-                  x: params.numPeople,
+                  x: params.wattmeterReading,
                   y: state.efficiency * 100,
-                  label: `n = ${params.numPeople}`,
+                  label: `B = ${params.wattmeterReading} W`,
                 },
+              ]}
+              refLines={[
+                { orientation: "h", value: 100, label: "η = 100%", dashed: true },
               ]}
             />
           </div>

@@ -11,4 +11,5 @@ export * from "./parabolic-track";
 export * from "./cable-blocks";
 export * from "./radar-tracking";
 export * from "./elevator-cable";
+export * from "./hoist";
 export * from "./escalator";

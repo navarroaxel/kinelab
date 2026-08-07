@@ -7,18 +7,18 @@ import { COLORS } from "@/lib/drawing";
 import type { TranslationKey } from "@/lib/i18n";
 
 const items: { color: string; key: TranslationKey }[] = [
-  { color: COLORS.trajectory, key: "escalator.legend.belt" },
-  { color: COLORS.point, key: "escalator.legend.riders" },
-  { color: COLORS.acceleration, key: "escalator.legend.p_elec" },
-  { color: COLORS.normalAccel, key: "escalator.legend.p_mech" },
+  { color: COLORS.trajectory, key: "hoist.legend.cable" },
+  { color: COLORS.point, key: "hoist.legend.load" },
+  { color: COLORS.acceleration, key: "hoist.legend.p_elec" },
+  { color: COLORS.normalAccel, key: "hoist.legend.p_mech" },
 ];
 
-export const EscalatorLegend = memo(function EscalatorLegend() {
+export const HoistLegend = memo(function HoistLegend() {
   const { t } = useLanguage();
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
       <h3 className="mb-2 text-[10px] font-semibold tracking-wide text-gray-400 uppercase">
-        {t("escalator.legend.heading")}
+        {t("hoist.legend.heading")}
       </h3>
       <ul className="flex flex-col gap-1.5">
         {items.map((item) => (
