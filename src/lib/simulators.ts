@@ -223,14 +223,13 @@ export const SIMULATORS: SimulatorEntry[] = [
     disabled: true,
   },
   {
-    id: "pd10",
-    href: "/particle-dynamics",
+    id: "vehicle-power",
+    href: "/particle-dynamics/vehicle-power",
     navKey: "pd.exercises.pd10.title",
     titleKey: "pd.exercises.pd10.title",
     summaryKey: "pd.exercises.pd10.summary",
     group: "particle-dynamics",
     pd: 10,
-    disabled: true,
   },
   {
     id: "hoist",
@@ -251,14 +250,13 @@ export const SIMULATORS: SimulatorEntry[] = [
     pd: 12,
   },
   {
-    id: "pd13",
-    href: "/particle-dynamics",
+    id: "rail-car-coupling",
+    href: "/particle-dynamics/rail-car-coupling",
     navKey: "pd.exercises.pd13.title",
     titleKey: "pd.exercises.pd13.title",
     summaryKey: "pd.exercises.pd13.summary",
     group: "particle-dynamics",
     pd: 13,
-    disabled: true,
   },
   {
     id: "pd14",

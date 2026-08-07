@@ -18,6 +18,8 @@ import { pdSection } from "./pd/section";
 import { pdExercisesI18n } from "./pd/exercises";
 import { escalator } from "./pd/escalator";
 import { hoist } from "./pd/hoist";
+import { vehiclePower } from "./pd/vehicle-power";
+import { railCarCoupling } from "./pd/rail-car-coupling";
 
 export type Language = "en" | "es";
 
@@ -45,6 +47,8 @@ export const translations = {
     ...pdExercisesI18n.en,
     ...escalator.en,
     ...hoist.en,
+    ...vehiclePower.en,
+    ...railCarCoupling.en,
   },
   es: {
     ...common.es,
@@ -67,6 +71,8 @@ export const translations = {
     ...pdExercisesI18n.es,
     ...escalator.es,
     ...hoist.es,
+    ...vehiclePower.es,
+    ...railCarCoupling.es,
   },
 } as const;
 
