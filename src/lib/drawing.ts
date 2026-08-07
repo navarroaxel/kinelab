@@ -298,6 +298,55 @@ export function drawLabel(
   ctx.restore();
 }
 
+/**
+ * Like drawLabel, but renders a single "X_sub" token (anywhere in the
+ * string) as a real subscript — a smaller, baseline-dropped run of text —
+ * since canvas text has no equivalent to an HTML <sub> tag. Falls back to
+ * drawLabel verbatim if no "_" token is found.
+ */
+export function drawLabelWithSubscript(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  color: string,
+): void {
+  const match = /^([^\s_]+)_([A-Za-z0-9]+)(.*)$/.exec(text);
+  if (!match) {
+    drawLabel(ctx, text, x, y, color);
+    return;
+  }
+  const [, main, sub, after] = match;
+  const mainFont = "12px sans-serif";
+  const subFont = "9px sans-serif";
+
+  ctx.save();
+  ctx.font = mainFont;
+  const mainWidth = ctx.measureText(main).width;
+  ctx.font = subFont;
+  const subWidth = ctx.measureText(sub).width;
+  ctx.font = mainFont;
+  const afterWidth = ctx.measureText(after).width;
+  const totalWidth = mainWidth + subWidth + afterWidth;
+
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = color;
+
+  let cursorX = x - totalWidth / 2;
+  ctx.font = mainFont;
+  ctx.fillText(main, cursorX, y);
+  cursorX += mainWidth;
+
+  ctx.font = subFont;
+  ctx.fillText(sub, cursorX, y + 3);
+  cursorX += subWidth;
+
+  ctx.font = mainFont;
+  ctx.fillText(after, cursorX, y);
+  ctx.restore();
+}
+
 /** Draws a filled circle (used for the point mass, pole, and center markers). */
 export function drawDot(
   ctx: CanvasRenderingContext2D,

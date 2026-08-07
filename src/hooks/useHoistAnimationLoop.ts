@@ -47,13 +47,15 @@ export function useHoistAnimationLoop(
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const labels = {
-      pElec: translateRef.current("hoist.canvas.p_elec"),
-      pMech: translateRef.current("hoist.canvas.p_mech"),
-      motor: translateRef.current("hoist.canvas.motor_short"),
-      wattmeter: translateRef.current("hoist.canvas.wattmeter_short"),
-      notPossible: translateRef.current("hoist.canvas.warn.not_possible"),
-    };
+    function currentLabels() {
+      return {
+        pElec: translateRef.current("hoist.canvas.p_elec"),
+        pMech: translateRef.current("hoist.canvas.p_mech"),
+        motor: translateRef.current("hoist.canvas.motor_short"),
+        wattmeter: translateRef.current("hoist.canvas.wattmeter_short"),
+        notPossible: translateRef.current("hoist.canvas.warn.not_possible"),
+      };
+    }
 
     if (paused) {
       const colors: ColorPalette = document.documentElement.classList.contains(
@@ -61,7 +63,16 @@ export function useHoistAnimationLoop(
       )
         ? COLORS_DARK
         : COLORS;
-      render(ctx, canvas, params, state, visibility, phaseRef.current, colors, labels);
+      render(
+        ctx,
+        canvas,
+        params,
+        state,
+        visibility,
+        phaseRef.current,
+        colors,
+        currentLabels(),
+      );
       return;
     }
 
@@ -89,7 +100,7 @@ export function useHoistAnimationLoop(
         visibility,
         phaseRef.current,
         colors,
-        labels,
+        currentLabels(),
       );
 
       rafIdRef.current = requestAnimationFrame(frame);
