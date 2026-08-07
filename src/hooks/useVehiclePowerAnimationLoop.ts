@@ -24,10 +24,17 @@ import type {
 // (60-90 km/h) would cross this small canvas in a fraction of a second.
 const DRIVE_SPEED_PX_S = 34;
 
-// Drawn steeper than most real grades (5° here) so the incline reads clearly
-// on a small canvas — purely illustrative, the actual angle used in the
-// physics comes from params.gradeDeg, not this constant.
-const DRAWN_INCLINE_DEG = 18;
+// Real grades (0-20°) barely read as a slope on a small canvas, so the
+// drawn incline exaggerates params.gradeDeg by this factor — it still
+// tracks the selected grade (flat stays flat, steeper reads steeper),
+// just visually amplified and capped so it never looks near-vertical.
+// The physics always uses params.gradeDeg itself, never this scaling.
+const INCLINE_VISUAL_EXAGGERATION = 1.5;
+const MAX_DRAWN_INCLINE_DEG = 40;
+
+function drawnInclineDeg(gradeDeg: number): number {
+  return Math.min(gradeDeg * INCLINE_VISUAL_EXAGGERATION, MAX_DRAWN_INCLINE_DEG);
+}
 
 export function useVehiclePowerAnimationLoop(
   canvasRef: RefObject<HTMLCanvasElement | null>,
@@ -207,7 +214,7 @@ function render(
   }
 
   // --- Inclined lane ---------------------------------------------------
-  const inclineRad = (DRAWN_INCLINE_DEG * Math.PI) / 180;
+  const inclineRad = (drawnInclineDeg(params.gradeDeg) * Math.PI) / 180;
   const inclineBottom = { x: marginX, y: H * 0.88 };
   const inclineTop = {
     x: marginX + roadLen * Math.cos(inclineRad),
