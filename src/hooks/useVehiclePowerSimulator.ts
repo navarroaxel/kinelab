@@ -5,7 +5,10 @@ import type {
   VehiclePowerParams,
   VehiclePowerVisibility,
 } from "@/types/simulator";
-import { computeVehiclePowerState } from "@/lib/vehiclePowerKinematics";
+import {
+  computeVehiclePowerState,
+  MIN_CALIB_SPEED_SEPARATION_KMH,
+} from "@/lib/vehiclePowerKinematics";
 
 const INITIAL_PARAMS: VehiclePowerParams = {
   vehicleMass: 1600,
@@ -43,7 +46,25 @@ export function useVehiclePowerSimulator() {
       key: K,
       value: VehiclePowerParams[K],
     ) => {
-      setParams((prev) => ({ ...prev, [key]: value }));
+      setParams((prev) => {
+        const next = { ...prev, [key]: value };
+        // The two calibration speeds feed a 2×2 solve that's singular when
+        // they coincide — nudge the *other* one away rather than let the
+        // fit blow up (see MIN_CALIB_SPEED_SEPARATION_KMH).
+        if (key === "calibSpeed1Kmh" || key === "calibSpeed2Kmh") {
+          const gap = next.calibSpeed2Kmh - next.calibSpeed1Kmh;
+          if (Math.abs(gap) < MIN_CALIB_SPEED_SEPARATION_KMH) {
+            if (key === "calibSpeed1Kmh") {
+              next.calibSpeed2Kmh =
+                next.calibSpeed1Kmh + MIN_CALIB_SPEED_SEPARATION_KMH;
+            } else {
+              next.calibSpeed1Kmh =
+                next.calibSpeed2Kmh - MIN_CALIB_SPEED_SEPARATION_KMH;
+            }
+          }
+        }
+        return next;
+      });
     },
     [],
   );

@@ -23,7 +23,12 @@ export const VehiclePowerEquations = memo(function VehiclePowerEquations({
   const { t } = useLanguage();
 
   const powerPoints = useMemo(() => {
-    const maxKmh = Math.max(params.targetSpeedKmh, params.calibSpeed2Kmh) * 1.2;
+    const maxKmh =
+      Math.max(
+        params.targetSpeedKmh,
+        params.calibSpeed1Kmh,
+        params.calibSpeed2Kmh,
+      ) * 1.2;
     const points: [number, number][] = [];
     for (let i = 0; i <= SAMPLES; i++) {
       const kmh = (maxKmh * i) / SAMPLES;

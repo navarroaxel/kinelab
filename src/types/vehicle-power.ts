@@ -24,4 +24,5 @@ export interface VehiclePowerState {
   targetPowerFlat: number; // W, power at targetSpeedKmh on a flat road
   targetPowerSlope: number; // W, power at slopeSpeedKmh on a gradeDeg incline
   gradeForce: number; // N, weight component along the slope (mg·sinθ)
+  invalidCalibration: boolean; // calibSpeed1Kmh ≈ calibSpeed2Kmh — the 2×2 fit is singular, a/b above are meaningless
 }

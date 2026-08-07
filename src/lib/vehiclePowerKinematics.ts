@@ -6,11 +6,22 @@ export function kmhToMs(kmh: number): number {
   return kmh / 3.6;
 }
 
+// The two calibration speeds must differ enough for the 2×2 solve below to
+// stay well-conditioned — the determinant is v1·v2·(v2−v1)·(v2+v1), which
+// vanishes as v1 → v2. useVehiclePowerSimulator keeps the two sliders at
+// least this far apart; this constant is shared so the pure math and the
+// UI guard can't drift out of sync.
+export const MIN_CALIB_SPEED_SEPARATION_KMH = 1;
+
 /**
  * Retarding force F(v) = a + b·v² has two calibration readings, each
  * giving one equation in the unknowns a, b via P = F(v)·v = a·v + b·v³
  * (constant-speed driving: drive force exactly balances the resistance).
  * Two speeds/powers give a 2×2 linear system, solved directly.
+ *
+ * Degenerate (v1 ≈ v2, so the determinant is ~0) returns {a: 0, b: 0}
+ * rather than dividing by ~0 into NaN/Infinity — a defensive backstop,
+ * since normal UI use never reaches this (see the constant above).
  */
 export function fitCoefficients(
   v1: number,
@@ -19,6 +30,9 @@ export function fitCoefficients(
   p2: number,
 ): { a: number; b: number } {
   const det = v1 * v2 ** 3 - v1 ** 3 * v2;
+  if (Math.abs(det) < 1e-6) {
+    return { a: 0, b: 0 };
+  }
   const a = (p1 * v2 ** 3 - v1 ** 3 * p2) / det;
   const b = (v1 * p2 - v2 * p1) / det;
   return { a, b };
@@ -78,6 +92,9 @@ export function computeVehiclePowerState(
     targetPowerFlat,
     targetPowerSlope,
     gradeForce: gradeForce(params.vehicleMass, params.gradeDeg),
+    invalidCalibration:
+      Math.abs(params.calibSpeed1Kmh - params.calibSpeed2Kmh) <
+      MIN_CALIB_SPEED_SEPARATION_KMH,
   };
 }
 

@@ -3,11 +3,13 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import type {
   VehiclePowerParams,
+  VehiclePowerState,
   VehiclePowerVisibility,
 } from "@/types/simulator";
 
 interface Props {
   params: VehiclePowerParams;
+  state: VehiclePowerState;
   visibility: VehiclePowerVisibility;
   onSetParam: <K extends keyof VehiclePowerParams>(
     key: K,
@@ -90,6 +92,7 @@ function Toggle({ id, label, checked, onChange }: ToggleProps) {
 
 export function VehiclePowerControls({
   params,
+  state,
   visibility,
   onSetParam,
   onToggle,
@@ -165,6 +168,11 @@ export function VehiclePowerControls({
             onChange={(v) => onSetParam("calibPower2", v)}
           />
         </div>
+        {state.invalidCalibration && (
+          <p className="mt-2 text-[10px] leading-relaxed text-rose-600 dark:text-rose-400">
+            {t("vehicle-power.controls.warn.invalid_calibration")}
+          </p>
+        )}
       </section>
 
       <section>

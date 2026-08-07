@@ -42,6 +42,7 @@ export default function VehiclePowerPage() {
         <VehiclePowerMetrics state={metrics} />
         <VehiclePowerControls
           params={params}
+          state={metrics}
           visibility={visibility}
           onSetParam={setParam}
           onToggle={toggleVisibility}

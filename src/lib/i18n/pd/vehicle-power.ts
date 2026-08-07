@@ -5,6 +5,8 @@ export const vehiclePower = {
 
     "vehicle-power.controls.section.vehicle": "Vehicle",
     "vehicle-power.controls.section.calibration": "Calibration (two readings)",
+    "vehicle-power.controls.warn.invalid_calibration":
+      "⚠ Speeds 1 and 2 are too close together — the two-point fit for a and b becomes singular. Move them further apart.",
     "vehicle-power.controls.section.prediction": "Prediction",
     "vehicle-power.controls.section.visibility": "Visibility",
     "vehicle-power.controls.slider.mass": "Vehicle mass m",
@@ -66,6 +68,8 @@ export const vehiclePower = {
 
     "vehicle-power.controls.section.vehicle": "Vehículo",
     "vehicle-power.controls.section.calibration": "Calibración (dos lecturas)",
+    "vehicle-power.controls.warn.invalid_calibration":
+      "⚠ Las velocidades 1 y 2 están demasiado cerca — el ajuste de dos puntos para a y b se vuelve singular. Alejalas un poco.",
     "vehicle-power.controls.section.prediction": "Predicción",
     "vehicle-power.controls.section.visibility": "Visibilidad",
     "vehicle-power.controls.slider.mass": "Masa del vehículo m",
