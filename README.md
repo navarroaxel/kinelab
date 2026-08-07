@@ -35,24 +35,24 @@ All ten exercises are implemented — see `src/lib/simulators.ts` for the regist
 
 ### Particle Dynamics section (`/particle-dynamics`)
 
-A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. PD 3 (the vertical ring, moved here from the former `/ring` route), PD 6 (Kepler orbital mechanics, moved here from the former `/kepler` route), PD 10 (vehicle resistance and power), PD 11 (hoist motor efficiency), PD 12 (escalator motor efficiency), and PD 13 (rail car coupling) have working simulators; the rest show as "coming soon" cards until built.
+A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. All fourteen exercises have working simulators.
 
 | Exercise | Route |
 |---|---|
-| PD 1 — Bullet through a viscous plate | *not yet implemented* |
-| PD 2 — Parachutist with linear drag | *not yet implemented* |
+| PD 1 — Bullet through a viscous plate | `/particle-dynamics/viscous-impact` |
+| PD 2 — Parachutist with linear drag | `/particle-dynamics/parachutist` |
 | PD 3 — Particle in a vertical ring | `/particle-dynamics/ring` |
-| PD 4 — Atwood machine | *not yet implemented* |
-| PD 5 — Sphere on a parabolic track | *not yet implemented* |
+| PD 4 — Atwood machine | `/particle-dynamics/atwood` |
+| PD 5 — Sphere on a parabolic track | `/particle-dynamics/parabolic-bowl` |
 | PD 6 — Orbital transfer thrust factors | `/particle-dynamics/kepler` |
-| PD 7 — Elevator and counterweight power | *not yet implemented* |
-| PD 8 — Spring-stopped package on an incline | *not yet implemented* |
-| PD 9 — Pulleys and blocks with friction | *not yet implemented* |
+| PD 7 — Elevator and counterweight power | `/particle-dynamics/elevator-counterweight` |
+| PD 8 — Spring-stopped package on an incline | `/particle-dynamics/spring-stop` |
+| PD 9 — Pulleys and blocks with friction | `/particle-dynamics/pulley-friction` |
 | PD 10 — Vehicle resistance and power | `/particle-dynamics/vehicle-power` |
 | PD 11 — Hoist motor efficiency | `/particle-dynamics/hoist` |
 | PD 12 — Escalator motor efficiency | `/particle-dynamics/escalator` |
 | PD 13 — Rail car coupling | `/particle-dynamics/rail-car-coupling` |
-| PD 14 — Staged rocket launch | *not yet implemented* |
+| PD 14 — Staged rocket launch | `/particle-dynamics/staged-rocket` |
 
 See `src/lib/simulators.ts` for the registry driving this table.
 

@@ -16,9 +16,17 @@ import { radarTracking } from "./pk/radar-tracking";
 import { elevatorCable } from "./pk/elevator-cable";
 import { pdSection } from "./pd/section";
 import { pdExercisesI18n } from "./pd/exercises";
+import { atwood } from "./pd/atwood";
 import { escalator } from "./pd/escalator";
 import { hoist } from "./pd/hoist";
 import { vehiclePower } from "./pd/vehicle-power";
+import { viscousImpact } from "./pd/viscous-impact";
+import { parachutist } from "./pd/parachutist";
+import { parabolicBowl } from "./pd/parabolic-bowl";
+import { stagedRocket } from "./pd/staged-rocket";
+import { elevatorCounterweight } from "./pd/elevator-counterweight";
+import { springStop } from "./pd/spring-stop";
+import { pulleyFriction } from "./pd/pulley-friction";
 import { railCarCoupling } from "./pd/rail-car-coupling";
 
 export type Language = "en" | "es";
@@ -45,10 +53,18 @@ export const translations = {
     ...elevatorCable.en,
     ...pdSection.en,
     ...pdExercisesI18n.en,
+    ...atwood.en,
     ...escalator.en,
     ...hoist.en,
     ...vehiclePower.en,
     ...railCarCoupling.en,
+    ...viscousImpact.en,
+    ...parachutist.en,
+    ...parabolicBowl.en,
+    ...stagedRocket.en,
+    ...elevatorCounterweight.en,
+    ...springStop.en,
+    ...pulleyFriction.en,
   },
   es: {
     ...common.es,
@@ -69,10 +85,18 @@ export const translations = {
     ...elevatorCable.es,
     ...pdSection.es,
     ...pdExercisesI18n.es,
+    ...atwood.es,
     ...escalator.es,
     ...hoist.es,
     ...vehiclePower.es,
     ...railCarCoupling.es,
+    ...viscousImpact.es,
+    ...parachutist.es,
+    ...parabolicBowl.es,
+    ...stagedRocket.es,
+    ...elevatorCounterweight.es,
+    ...springStop.es,
+    ...pulleyFriction.es,
   },
 } as const;
 
