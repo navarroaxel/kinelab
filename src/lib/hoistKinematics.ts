@@ -13,15 +13,25 @@ export function counterweightSpeed(loadSpeed: number): number {
 }
 
 /**
+ * A counterweight heavier than load/2 would overpower the movable pulley on
+ * its own, driving the motor's cable in reverse (T₁ < 0) — the motor would
+ * have to brake rather than drive, a regenerative mode this exercise doesn't
+ * model. Clamping here keeps every reachable (loadMass, counterweightMass)
+ * pair inside the regime where the motor is actually doing work.
+ */
+export function maxCounterweightMass(loadMass: number): number {
+  return loadMass / 2;
+}
+
+/**
  * Net mechanical power the motor must supply, after the counterweight's
  * assist: the counterweight's descent releases energy that offsets part of
  * the work needed to raise the load, so the motor only makes up the
  * difference.
  *
  *   T₂ (movable pulley, 2 strands) = load·g / 2
- *   T₁ (motor's cable)             = T₂ − counterweight·g
+ *   T₁ (motor's cable)             = T₂ − counterweight·g  (≥ 0, see above)
  *   P_mechanical                   = T₁ · counterweightSpeed
- *                                   = g·(load·v_load − counterweight·v_counterweight) / … [see below]
  */
 export function mechanicalPower(
   loadMass: number,
@@ -29,9 +39,13 @@ export function mechanicalPower(
   loadSpeed: number,
   g = G,
 ): number {
+  const clampedCounterweight = Math.min(
+    counterweightMass,
+    maxCounterweightMass(loadMass),
+  );
   const vCounterweight = counterweightSpeed(loadSpeed);
   const tensionAtPulley = (loadMass * g) / 2;
-  const tensionAtMotor = tensionAtPulley - counterweightMass * g;
+  const tensionAtMotor = tensionAtPulley - clampedCounterweight * g;
   return tensionAtMotor * vCounterweight;
 }
 

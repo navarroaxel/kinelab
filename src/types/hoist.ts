@@ -4,7 +4,7 @@
 
 export interface HoistParams {
   loadMass: number; // kg, load being lifted, default 300
-  counterweightMass: number; // kg, counterweight descending via the movable pulley, default 100
+  counterweightMass: number; // kg, counterweight descending via the movable pulley, default 100; clamped to ≤ loadMass/2 (see maxCounterweightMass)
   speed: number; // m/s, load's constant lifting speed, default 2 (counterweight moves at 2× this)
   wattmeterReading: number; // W, motor's total electrical input as read on wattmeter B, default 2200
 }

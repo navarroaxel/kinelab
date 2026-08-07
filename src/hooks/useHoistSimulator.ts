@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useMemo } from "react";
 import type { HoistParams, HoistVisibility } from "@/types/simulator";
-import { computeHoistState } from "@/lib/hoistKinematics";
+import { computeHoistState, maxCounterweightMass } from "@/lib/hoistKinematics";
 
 const INITIAL_PARAMS: HoistParams = {
   loadMass: 300,
@@ -32,7 +32,12 @@ export function useHoistSimulator() {
 
   const setParam = useCallback(
     <K extends keyof HoistParams>(key: K, value: HoistParams[K]) => {
-      setParams((prev) => ({ ...prev, [key]: value }));
+      setParams((prev) => {
+        const next = { ...prev, [key]: value };
+        const maxCw = maxCounterweightMass(next.loadMass);
+        if (next.counterweightMass > maxCw) next.counterweightMass = maxCw;
+        return next;
+      });
     },
     [],
   );

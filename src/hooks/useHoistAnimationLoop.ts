@@ -175,9 +175,10 @@ function render(
   ctx.restore();
   drawLabel(ctx, labels.wattmeter, wattmeter.x, wattmeter.y - 22, colors.axes);
 
-  // Motor A
+  // Motor A — a fixed dark fill regardless of theme, since colors.center
+  // (light gray in dark mode) doesn't contrast well against the white label.
   ctx.save();
-  ctx.fillStyle = colors.center;
+  ctx.fillStyle = "#52525b";
   ctx.beginPath();
   ctx.arc(motor.x, motor.y, 16, 0, 2 * Math.PI);
   ctx.fill();
@@ -251,7 +252,7 @@ function render(
       `${params.counterweightMass} kg`,
       fixedPulley.x - 46,
       (counterweightTopY + counterweightBottomY) / 2,
-      colors.axes,
+      colors.velocity,
     );
     drawArrow(
       ctx,

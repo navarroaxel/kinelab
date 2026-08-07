@@ -129,7 +129,7 @@ export function HoistControls({
             label={t("hoist.controls.slider.counterweight_mass")}
             id="counterweightMass"
             min={0}
-            max={300}
+            max={params.loadMass / 2}
             step={5}
             value={params.counterweightMass}
             unit="kg"
