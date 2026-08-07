@@ -35,7 +35,7 @@ All ten exercises are implemented — see `src/lib/simulators.ts` for the regist
 
 ### Particle Dynamics section (`/particle-dynamics`)
 
-A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. PD 3 (the vertical ring, moved here from the former `/ring` route) and PD 6 (Kepler orbital mechanics, moved here from the former `/kepler` route) have working simulators; the rest show as "coming soon" cards until built.
+A browsable set of the fourteen exercises from TP N°2, same nav pattern as the kinematics section. PD 3 (the vertical ring, moved here from the former `/ring` route), PD 6 (Kepler orbital mechanics, moved here from the former `/kepler` route), PD 11 (hoist motor efficiency), and PD 12 (escalator motor efficiency) have working simulators; the rest show as "coming soon" cards until built.
 
 | Exercise | Route |
 |---|---|
@@ -49,8 +49,8 @@ A browsable set of the fourteen exercises from TP N°2, same nav pattern as the 
 | PD 8 — Spring-stopped package on an incline | *not yet implemented* |
 | PD 9 — Pulleys and blocks with friction | *not yet implemented* |
 | PD 10 — Vehicle resistance and power | *not yet implemented* |
-| PD 11 — Hoist motor efficiency | *not yet implemented* |
-| PD 12 — Escalator motor efficiency | *not yet implemented* |
+| PD 11 — Hoist motor efficiency | `/particle-dynamics/hoist` |
+| PD 12 — Escalator motor efficiency | `/particle-dynamics/escalator` |
 | PD 13 — Rail car coupling | *not yet implemented* |
 | PD 14 — Staged rocket launch | *not yet implemented* |
 

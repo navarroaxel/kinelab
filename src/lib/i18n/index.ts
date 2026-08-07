@@ -16,6 +16,8 @@ import { radarTracking } from "./pk/radar-tracking";
 import { elevatorCable } from "./pk/elevator-cable";
 import { pdSection } from "./pd/section";
 import { pdExercisesI18n } from "./pd/exercises";
+import { escalator } from "./pd/escalator";
+import { hoist } from "./pd/hoist";
 
 export type Language = "en" | "es";
 
@@ -41,6 +43,8 @@ export const translations = {
     ...elevatorCable.en,
     ...pdSection.en,
     ...pdExercisesI18n.en,
+    ...escalator.en,
+    ...hoist.en,
   },
   es: {
     ...common.es,
@@ -61,6 +65,8 @@ export const translations = {
     ...elevatorCable.es,
     ...pdSection.es,
     ...pdExercisesI18n.es,
+    ...escalator.es,
+    ...hoist.es,
   },
 } as const;
 
