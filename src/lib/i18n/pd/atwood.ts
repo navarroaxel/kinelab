@@ -53,7 +53,7 @@ export const atwood = {
     "atwood.equations.section.reference": "Reference (default values)",
     "atwood.equations.note.reference":
       "With I = 0 (massless pulley): a = (8−5)×9.81 / (5+8) ≈ 2.26 m/s², T ≈ 60.4 N on both sides.\n" +
-      "Increasing I splits the tension: T_1 rises above T_2, and a decreases below the massless-pulley value.",
+      "Increasing I splits the tension: T_2 stays above T_1 (m2's own weight is bigger to begin with), and a decreases below the massless-pulley value.",
   },
   es: {
     "atwood.page.canvas_aria":
@@ -109,6 +109,6 @@ export const atwood = {
     "atwood.equations.section.reference": "Referencia (valores por defecto)",
     "atwood.equations.note.reference":
       "Con I = 0 (polea sin masa): a = (8−5)×9,81 / (5+8) ≈ 2,26 m/s², T ≈ 60,4 N en ambos lados.\n" +
-      "Al aumentar I la tensión se divide: T_1 supera a T_2, y a disminuye respecto del valor de la polea sin masa.",
+      "Al aumentar I la tensión se divide: T_2 se mantiene por encima de T_1 (el peso propio de m2 ya era mayor), y a disminuye respecto del valor de la polea sin masa.",
   },
 };
