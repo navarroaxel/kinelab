@@ -15,4 +15,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npx tsc --noEmit
+      - run: npx vitest run --reporter=verbose --reporter=junit --outputFile=junit.xml
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: junit-test-results
+          path: junit.xml
       - run: npm run build

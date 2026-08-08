@@ -1,7 +1,7 @@
 {
   "name": "kinelab",
   "version": "0.1.0",
-  "description": "Interactive polar coordinates simulator — visualises the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
+  "description": "Interactive polar coordinates simulator \u2014 visualises the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
   "private": true,
   "engines": {
     "node": ">=24.15.0"
@@ -10,6 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
-    "typescript": "^6"
+    "typescript": "^6",
+    "vitest": "^4.1.10"
   }
 }
