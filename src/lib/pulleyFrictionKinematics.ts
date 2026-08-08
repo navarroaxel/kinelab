@@ -22,12 +22,17 @@ export function cableTension(params: PulleyFrictionParams): number {
 
 /**
  * Force needed on block A (applied at angle θ above the horizontal) to
- * drag it at constant velocity against friction and the cable tension T
- * pulling it back. Pulling upward at an angle both reduces the normal
- * force (less friction) and adds a losing cosθ projection along the
- * direction of travel — the classic "optimal drag angle" trade-off.
+ * drag it at constant velocity against friction and the cable pulling it
+ * back. A is hitched to a movable pulley — the cable runs from B, over
+ * two fixed pulleys, around A's movable pulley, and back to a fixed
+ * anchor, so TWO segments of the same cable (each at tension T) pull on
+ * A's pulley, doubling the load to 2T. That also halves A's speed
+ * relative to B's: v_B = 2·v_A. Pulling upward at an angle both reduces
+ * the normal force (less friction) and adds a losing cosθ projection
+ * along the direction of travel — the classic "optimal drag angle"
+ * trade-off, just with 2T added on top of A's own friction debt.
  *
- *   F(θ) = (μ·weightA + T) / (cos θ + μ·sin θ)
+ *   F(θ) = (μ·weightA + 2T) / (cos θ + μ·sin θ)
  */
 export function appliedForce(
   thetaDeg: number,
@@ -36,7 +41,7 @@ export function appliedForce(
   const theta = degToRad(thetaDeg);
   const T = cableTension(params);
   return (
-    (params.frictionCoefficient * params.weightA + T) /
+    (params.frictionCoefficient * params.weightA + 2 * T) /
     (Math.cos(theta) + params.frictionCoefficient * Math.sin(theta))
   );
 }

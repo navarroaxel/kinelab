@@ -81,10 +81,14 @@ export const PulleyFrictionEquations = memo(function PulleyFrictionEquations({
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
               {t("pulley-friction.equations.section.formulas")}
             </p>
-            <p>T = weightB · (sin α + μ·cos α)</p>
+            <p>T = {withSubscripts("P_B")} · (sin α + μ·cos α)</p>
+            <p>
+              {withSubscripts("v_B")} = 2·{withSubscripts("v_A")}{" "}
+              {t("pulley-friction.equations.formula.velocity_note")}
+            </p>
             <p>
               {withSubscripts(t("pulley-friction.symbol.applied_force"))} =
-              (μ·weightA + T) / (cos θ + μ·sin θ)
+              (μ·{withSubscripts("P_A")} + 2T) / (cos θ + μ·sin θ)
             </p>
             <p>
               {withSubscripts(t("pulley-friction.symbol.optimal_angle"))} =
@@ -92,7 +96,7 @@ export const PulleyFrictionEquations = memo(function PulleyFrictionEquations({
             </p>
             <p>
               {withSubscripts(t("pulley-friction.symbol.minimum_force"))} =
-              (μ·weightA + T) / √(1+μ²)
+              (μ·{withSubscripts("P_A")} + 2T) / √(1+μ²)
             </p>
           </div>
 
