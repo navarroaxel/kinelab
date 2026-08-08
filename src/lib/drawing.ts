@@ -311,7 +311,7 @@ export function drawLabelWithSubscript(
   y: number,
   color: string,
 ): void {
-  const match = /^([^\s_]+)_([A-Za-z0-9]+)(.*)$/.exec(text);
+  const match = /^([^\s_]+)_([^\s_]+)(.*)$/.exec(text);
   if (!match) {
     drawLabel(ctx, text, x, y, color);
     return;

@@ -140,14 +140,44 @@ function render(
   const groundY = H * 0.92;
   const motor = { x: W * 0.22, y: groundY - 14 };
   const wattmeter = { x: W * 0.08, y: groundY - 16 };
+  const PULLEY_R = 9;
   const fixedPulley = { x: W * 0.46, y: H * 0.1 };
-  // The ground-level pulley that redirects the motor's cable: horizontally
-  // aligned with the motor (same y), vertically aligned with the fixed
-  // pulley up on the ceiling (same x) — exactly as in the source diagram.
-  const motorPulley = { x: fixedPulley.x, y: motor.y };
-  const ceilingAnchor = { x: W * 0.82, y: H * 0.06 };
-  const movablePulley = { x: W * 0.66, y: H * 0.38 };
-  const counterweightHeight = H * 0.12;
+  // The ground-level pulley that redirects the motor's cable, horizontally
+  // aligned with the motor (same y). Its RIGHT edge lines up with the
+  // fixed (ceiling) pulley's LEFT edge, since the counterweight's cable
+  // runs edge-to-edge between them (a shared vertical tangent), not
+  // axle-to-axle — the counterweight itself hangs centred on that line.
+  const motorPulley = { x: fixedPulley.x - 2 * PULLEY_R, y: motor.y };
+  const counterweightX = fixedPulley.x - PULLEY_R;
+  // A second ceiling pulley, at the same height, redirects the load's
+  // cord — fixedPulley only handles the counterweight side.
+  const loadPulley = { x: fixedPulley.x + 55, y: fixedPulley.y };
+  // The movable pulley is rigidly fixed to the load's top edge — it's
+  // "movable" only in the sense that it isn't bolted to the ceiling like
+  // the other pulleys; it rides up and down with the load itself, so its
+  // height tracks the load's rise directly rather than staying fixed.
+  const loadW = 34;
+  const loadH = 68;
+  const loadBottomY = groundY - 20 - loadH;
+  const loadTravelTopY = H * 0.16;
+  const loadTravel = loadBottomY - loadTravelTopY;
+  const loadD = phase % loadTravel;
+  const loadY = visibility.showLoad ? loadBottomY - loadD : loadBottomY;
+  // Both cord segments at the movable pulley run edge-to-edge, and both
+  // need to be vertical — so the movable pulley's x is set from
+  // loadPulley's right edge plus both radii, and the ceiling anchor's x
+  // is set from the movable pulley's right edge plus its own radius,
+  // rather than picked independently.
+  const MOVABLE_PULLEY_R = 11;
+  const movablePulley = {
+    x: loadPulley.x + PULLEY_R + MOVABLE_PULLEY_R,
+    y: loadY - 10,
+  };
+  const ceilingAnchor = {
+    x: movablePulley.x + MOVABLE_PULLEY_R,
+    y: fixedPulley.y - 36,
+  };
+  const counterweightHeight = H * 0.09;
   const counterweightTravelTop = fixedPulley.y + 20;
   const counterweightTravelBottom = motorPulley.y - 20 - counterweightHeight;
   const counterweightTravel =
@@ -196,20 +226,36 @@ function render(
   ctx.restore();
   drawLabel(ctx, labels.motor, motor.x, motor.y, "#fff");
 
-  // Fixed pulley bracket, top-left
+  // A single shelter-shaped bracket spans both ceiling pulleys: one roof
+  // beam with a support leg down to each pulley, rather than two separate
+  // brackets.
+  const roofY = fixedPulley.y - 16;
   ctx.save();
   ctx.strokeStyle = colors.axes;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(fixedPulley.x, fixedPulley.y - 16);
-  ctx.lineTo(fixedPulley.x - 14, fixedPulley.y - 16);
+  ctx.moveTo(fixedPulley.x - 14, roofY);
+  ctx.lineTo(loadPulley.x + 14, roofY);
+  ctx.moveTo(fixedPulley.x - 14, roofY);
   ctx.lineTo(fixedPulley.x - 14, fixedPulley.y);
-  ctx.moveTo(fixedPulley.x, fixedPulley.y - 16);
-  ctx.lineTo(fixedPulley.x + 14, fixedPulley.y - 16);
-  ctx.lineTo(fixedPulley.x + 14, fixedPulley.y);
+  ctx.moveTo(loadPulley.x + 14, roofY);
+  ctx.lineTo(loadPulley.x + 14, loadPulley.y);
   ctx.stroke();
   ctx.beginPath();
-  ctx.arc(fixedPulley.x, fixedPulley.y, 9, 0, 2 * Math.PI);
+  ctx.arc(fixedPulley.x, fixedPulley.y, PULLEY_R, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(loadPulley.x, loadPulley.y, PULLEY_R, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.restore();
+
+  // Horizontal cable: fixedPulley's top edge → loadPulley's top edge.
+  ctx.save();
+  ctx.strokeStyle = colors.trajectory;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(fixedPulley.x, fixedPulley.y - PULLEY_R);
+  ctx.lineTo(loadPulley.x, loadPulley.y - PULLEY_R);
   ctx.stroke();
   ctx.restore();
 
@@ -222,24 +268,35 @@ function render(
   ctx.stroke();
   ctx.restore();
 
-  // Cable: motor → ground pulley → bottom of the counterweight
+  // Cable: motor → ground pulley's BOTTOM edge (the motor/wattmeter side).
+  // Hooked lower on the motor, level with the pulley's bottom edge, so the
+  // cable runs parallel to the ground instead of sloping down to it.
   ctx.save();
   ctx.strokeStyle = colors.trajectory;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(motor.x + 16, motor.y);
-  ctx.lineTo(motorPulley.x, motorPulley.y);
-  ctx.lineTo(motorPulley.x, counterweightBottomY);
+  ctx.moveTo(motor.x + 16, motorPulley.y + PULLEY_R);
+  ctx.lineTo(motorPulley.x, motorPulley.y + PULLEY_R);
   ctx.stroke();
   ctx.restore();
 
-  // Cable: top of the counterweight → fixed (ceiling) pulley
+  // Cable: ground pulley's RIGHT edge → bottom of the counterweight.
   ctx.save();
   ctx.strokeStyle = colors.trajectory;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(fixedPulley.x, counterweightTopY);
-  ctx.lineTo(fixedPulley.x, fixedPulley.y);
+  ctx.moveTo(motorPulley.x + PULLEY_R, motorPulley.y);
+  ctx.lineTo(counterweightX, counterweightBottomY);
+  ctx.stroke();
+  ctx.restore();
+
+  // Cable: top of the counterweight → fixed (ceiling) pulley's LEFT edge.
+  ctx.save();
+  ctx.strokeStyle = colors.trajectory;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(counterweightX, counterweightTopY);
+  ctx.lineTo(fixedPulley.x - PULLEY_R, fixedPulley.y);
   ctx.stroke();
   ctx.restore();
 
@@ -250,9 +307,9 @@ function render(
     ctx.globalAlpha = 0.55;
     ctx.beginPath();
     ctx.roundRect(
-      fixedPulley.x - 16,
+      counterweightX - 12,
       counterweightTopY,
-      32,
+      24,
       counterweightHeight,
       3,
     );
@@ -261,22 +318,22 @@ function render(
     drawLabel(
       ctx,
       `${params.counterweightMass} kg`,
-      fixedPulley.x - 46,
+      counterweightX - 46,
       (counterweightTopY + counterweightBottomY) / 2,
       colors.velocity,
     );
     drawArrow(
       ctx,
-      fixedPulley.x + 24,
+      counterweightX + 24,
       counterweightTopY + 8,
-      fixedPulley.x + 24,
+      counterweightX + 24,
       counterweightTopY + 22,
       colors.velocity,
       2,
     );
   }
 
-  // Ceiling anchor, top-right
+  // Ceiling anchor, tucked in above the pulley shelter
   ctx.save();
   ctx.strokeStyle = colors.axes;
   ctx.fillStyle = colors.axes;
@@ -290,14 +347,15 @@ function render(
   ctx.fill();
   ctx.restore();
 
-  // Cord: fixed pulley → movable pulley → ceiling anchor (the two strands
+  // Cord: loadPulley → movable pulley → ceiling anchor (the two strands
   // sharing the load's weight)
   ctx.save();
   ctx.strokeStyle = colors.trajectory;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(fixedPulley.x, fixedPulley.y);
-  ctx.lineTo(movablePulley.x, movablePulley.y);
+  ctx.moveTo(loadPulley.x + PULLEY_R, loadPulley.y);
+  ctx.lineTo(movablePulley.x - MOVABLE_PULLEY_R, movablePulley.y);
+  ctx.moveTo(movablePulley.x + MOVABLE_PULLEY_R, movablePulley.y);
   ctx.lineTo(ceilingAnchor.x, ceilingAnchor.y);
   ctx.stroke();
   ctx.restore();
@@ -307,24 +365,20 @@ function render(
   ctx.strokeStyle = colors.axes;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(movablePulley.x, movablePulley.y, 8, 0, 2 * Math.PI);
+  ctx.arc(movablePulley.x, movablePulley.y, MOVABLE_PULLEY_R, 0, 2 * Math.PI);
   ctx.stroke();
   ctx.restore();
 
-  // Load ("300 kg"), rising from the ground and looping
+  // Load ("300 kg"), rising from the ground and looping — its top edge is
+  // exactly loadY, which the movable pulley (above) is rigidly fixed to.
   if (visibility.showLoad) {
-    const loadTop = movablePulley.y + 10;
-    const travel = groundY - 20 - loadTop;
-    const d = phase % travel;
-    const y = groundY - 20 - d;
-    const loadW = 34;
-    const loadH = 56;
+    const y = loadY;
 
     ctx.save();
     ctx.strokeStyle = colors.trajectory;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(movablePulley.x, movablePulley.y + 8);
+    ctx.moveTo(movablePulley.x, movablePulley.y + MOVABLE_PULLEY_R);
     ctx.lineTo(movablePulley.x, y);
     ctx.stroke();
     ctx.restore();
@@ -343,14 +397,14 @@ function render(
       ctx,
       `${params.loadMass} kg`,
       movablePulley.x,
-      y - 14,
+      y + loadH + 14,
       colors.point,
     );
     drawArrow(
       ctx,
-      movablePulley.x + loadW / 2 + 18,
+      movablePulley.x + 30,
       y + loadH * 0.7,
-      movablePulley.x + loadW / 2 + 18,
+      movablePulley.x + 30,
       y + loadH * 0.3,
       colors.velocity,
       2,
@@ -358,7 +412,7 @@ function render(
     drawLabel(
       ctx,
       `${params.speed} m/s`,
-      movablePulley.x + loadW / 2 + 44,
+      movablePulley.x + 56,
       y + loadH * 0.5,
       colors.velocity,
     );
@@ -385,18 +439,18 @@ function render(
 
     drawArrow(
       ctx,
-      movablePulley.x - 30,
-      movablePulley.y + 30,
-      movablePulley.x - 30,
-      movablePulley.y + 4,
+      movablePulley.x + 30,
+      movablePulley.y + 20,
+      movablePulley.x + 30,
+      movablePulley.y - 6,
       colors.normalAccel,
       2,
     );
     drawLabel(
       ctx,
       `${labels.pMech} ${(state.mechanicalPower / 1000).toFixed(2)} kW`,
-      movablePulley.x - 30,
-      movablePulley.y + 44,
+      movablePulley.x + 70,
+      movablePulley.y,
       colors.normalAccel,
     );
   }

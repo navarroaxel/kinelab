@@ -8,10 +8,9 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 |---|---|---|
 | [`/`](http://localhost:3000/) | **Inicio** | Página de bienvenida — un índice de tarjetas que enlaza a cada simulador |
 | [`/polar`](http://localhost:3000/polar) | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
-| [`/ring`](http://localhost:3000/ring) | **Anillo vertical**     | Partícula dentro de un anillo liso vertical — integración RK4 de `θ̈ = −(g/R)·sin θ`, fuerza normal y umbral de vuelta `v_min = √(5gR)` |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Mecanismo de retorno rápido** | La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos |
-| [`/kepler`](http://localhost:3000/kepler) | **Mecánica orbital de Kepler** | Trayectoria de transferencia del vehículo de retorno de Marte — leyes de Kepler, vis-viva, maniobras Δv impulsivas |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
+| [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Dinámica del Punto Material (TP N°2)** | Catorce ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 
 Cambia entre ellos usando las pestañas en la esquina superior derecha de cada página; en pantallas angostas se colapsa en un botón de menú.
 
@@ -34,6 +33,29 @@ Un conjunto navegable de los diez ejercicios del TP N°1, con navegación anteri
 
 Los diez ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 
+### Sección de Dinámica del Punto Material (`/particle-dynamics`)
+
+Un conjunto navegable de los catorce ejercicios del TP N°2, con el mismo patrón de navegación que la sección de cinemática. Los catorce ejercicios tienen simuladores funcionando.
+
+| Ejercicio | Ruta |
+|---|---|
+| PD 1 — Bala a través de una placa viscosa | `/particle-dynamics/viscous-impact` |
+| PD 2 — Paracaidista con resistencia lineal | `/particle-dynamics/parachutist` |
+| PD 3 — Partícula en un anillo vertical | `/particle-dynamics/ring` |
+| PD 4 — Máquina de Atwood | `/particle-dynamics/atwood` |
+| PD 5 — Esfera sobre una pista parabólica | `/particle-dynamics/parabolic-bowl` |
+| PD 6 — Factores de empuje en la transferencia orbital | `/particle-dynamics/kepler` |
+| PD 7 — Potencia del ascensor y contrapeso | `/particle-dynamics/elevator-counterweight` |
+| PD 8 — Paquete detenido por un resorte en una rampa | `/particle-dynamics/spring-stop` |
+| PD 9 — Poleas y bloques con fricción | `/particle-dynamics/pulley-friction` |
+| PD 10 — Resistencia y potencia de un vehículo | `/particle-dynamics/vehicle-power` |
+| PD 11 — Eficiencia del motor de un montacargas | `/particle-dynamics/hoist` |
+| PD 12 — Eficiencia del motor de una escalera mecánica | `/particle-dynamics/escalator` |
+| PD 13 — Acople de vagones de tren | `/particle-dynamics/rail-car-coupling` |
+| PD 14 — Lanzamiento de un cohete por etapas | `/particle-dynamics/staged-rocket` |
+
+Ver `src/lib/simulators.ts` para el registro que genera esta tabla.
+
 ### `/polar` Coordenadas polares
 
 La idea clave que hace visible: mueve el polo (origen del sistema polar) lejos del centro del círculo y observa cómo la velocidad radial ṙ y la velocidad transversal rθ̇ dejan de ser cero — aunque la trayectoria siga siendo un círculo perfecto.
@@ -46,7 +68,7 @@ La idea clave que hace visible: mueve el polo (origen del sistema polar) lejos d
 - Gráficos de tira: velocidad polar vs. tiempo, aceleración tangencial vs. tiempo
 - Métricas en vivo: r, θ, ṙ, rθ̇, ω, aₜ
 
-### `/ring` Anillo vertical
+### `/particle-dynamics/ring` Anillo vertical (PD 3)
 
 Una partícula obligada a deslizarse por el interior de un anillo liso de radio R en un campo gravitacional uniforme. La simulación integra `θ̈ = −(g/R)·sin θ` con Runge–Kutta de 4.º orden y expone la dinámica en tiempo real:
 
@@ -60,9 +82,9 @@ Una partícula obligada a deslizarse por el interior de un anillo liso de radio 
 ## Características compartidas
 
 - **Conmutador EN / ES** — persistido en localStorage, sincronizado entre pestañas
-- **Modo oscuro automático** mediante `prefers-color-scheme`
+- **Modo oscuro** — conmutador auto/claro/oscuro; `auto` sigue `prefers-color-scheme`, `claro`/`oscuro` fijan y persisten la elección
 - **Nítido en pantallas retina** — escalado del canvas según DPR + `ResizeObserver`
-- **Física pura** — `lib/kinematics.ts` (polar) y `lib/ringKinematics.ts` (anillo) no dependen de React ni del DOM
+- **Física pura** — la física de cada simulador vive en su propio módulo `lib/<nombre>Kinematics.ts` sin dependencias de React ni del DOM; la mayoría tiene tests unitarios con Vitest (`npm test`)
 
 ## Primeros pasos
 
@@ -78,6 +100,7 @@ Abre [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run build   # verificación de tipos + salida optimizada
 npm run start   # sirve la build de producción localmente
+npm test        # corre la suite de Vitest sobre los módulos de física pura
 ```
 
 ## Despliegue
@@ -88,7 +111,7 @@ Despliegue sin configuración en Vercel:
 npx vercel
 ```
 
-No se requieren variables de entorno — ambas páginas son enteramente del lado del cliente.
+No se requieren variables de entorno — todas las páginas son enteramente del lado del cliente.
 
 ## Resumen físico
 
@@ -117,7 +140,7 @@ rθ̇   = R·ω·cos(φ − θ)
 
 Cuando el polo coincide con el centro del círculo: θ = φ, por lo que ṙ = 0 y rθ̇ = R·ω = constante. Mueve el polo fuera del centro y ambas componentes pasan a variar con el tiempo.
 
-### Simulador del anillo
+### Simulador del anillo (PD 3)
 
 θ se mide desde el fondo del anillo, positivo en sentido antihorario. Con la masa normalizada a 1:
 
@@ -140,4 +163,5 @@ v_min = √(5·g·R)                       rapidez mínima en el fondo para una 
 | Estilos   | Tailwind CSS v4 |
 | Animación | `requestAnimationFrame` nativo |
 | Integrador (anillo) | Runge–Kutta de 4.º orden sobre `[θ, θ̇]` |
+| Tests     | Vitest (módulos de física pura) |
 | Runtime   | Node ≥ 20 |

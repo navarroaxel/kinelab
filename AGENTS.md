@@ -24,15 +24,17 @@ Core simulators:
 Plus two grouped sections:
 
 - **Particle Kinematics** (`/particle-kinematics`) — TP N°1, Cinemática del Punto Material (Mecánica Técnica, UTN FRBA). Ten exercise routes, all implemented, browsable via a section index and an exercise nav (prev/next, jump-to dropdown).
-- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). Fourteen exercises registered; six are implemented so far — PD 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold), PD 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva), PD 10 (`/particle-dynamics/vehicle-power`, vehicle resistance and power — fits F(v) = a + bv² from two (speed, power) calibration readings via a 2×2 linear solve, then predicts power at another flat-road speed and on a graded road, no ODE), PD 11 (`/particle-dynamics/hoist`, hoist motor efficiency — a counterweight over a movable pulley genuinely relieves the motor: T₂ = load·g/2 at the pulley, T₁ = T₂ − counterweight·g at the motor, P_mech = T₁ · (2·v); counterweightMass is clamped to ≤ loadMass/2 so T₁ never goes negative, no ODE), PD 12 (`/particle-dynamics/escalator`, three-phase motor + escalator efficiency — closed-form P_elec = √3·V·I·cos φ vs. P_mech = n·m·g·h/t, no ODE), and PD 13 (`/particle-dynamics/rail-car-coupling`, rail car coupling — momentum conservation gives v_f, the impulse-momentum theorem gives the mean coupling force; the canvas animates the closed-form linear velocity ramp during coupling, no ODE). The rest render as disabled "coming soon" cards on the section index (`disabled: true` in the registry) until built.
+- **Particle Dynamics** (`/particle-dynamics`) — TP N°2, Dinámica del Punto Material (Mecánica Técnica, UTN FRBA). All fourteen exercises are implemented — PD 1 (`/particle-dynamics/viscous-impact`, a bullet decelerating linearly with distance through a viscous plate — dv/dx = −k/m is constant because the v·dv/dx substitution cancels the v, no ODE), PD 2 (`/particle-dynamics/parachutist`, linear-drag descent — the classic exact closed form v(t) = v_t + (v_0−v_t)e^(−t/τ), no numerical integration needed despite being "an ODE"), PD 3 (`/particle-dynamics/ring`, the vertical ring, moved here from the former core `/ring` route, RK4 integration of `θ̈ = −(g/R)·sin θ`, normal force, energy bookkeeping, `v_min = √(5gR)` threshold), PD 4 (`/particle-dynamics/atwood`, the Atwood machine — a = (m₂−m₁)g/(m₁+m₂+I/r²) generalizes the massless-pulley result to a pulley with real moment of inertia I, splitting the two-sided tension T₁≠T₂; I=0 recovers the textbook case, no ODE), PD 5 (`/particle-dynamics/parabolic-bowl`, a sphere sliding frictionlessly between two supports — N(x) from energy conservation + the track's curvature, and the L ≥ 2H design rule for a 4g limit at the vertex; the animation's timing is stylized since the true x(t) isn't simple harmonic, but N(x)/v(x) shown are exact), PD 6 (`/particle-dynamics/kepler`, orbital mechanics, moved here from the former core `/kepler` route — Mars return vehicle transfer trajectory, Kepler's laws, vis-viva), PD 7 (`/particle-dynamics/elevator-counterweight`, elevator/counterweight motor power — the motor drives the pulley itself, so power is a balance over the coupled system, P = (m_e+m_c)·v·a + (m_e−m_c)·g·v; the sign of P flips between driving and braking depending on speed/acceleration, no ODE), PD 8 (`/particle-dynamics/spring-stop`, a package sliding down a rough incline into a precompressed spring — the work-energy theorem gives a quadratic in the additional deformation δ, solved for its positive root, no ODE), PD 9 (`/particle-dynamics/pulley-friction`, two blocks linked by a 1:1 pulley, one dragged on the flat at angle θ and one hauled up an incline — F(θ) = (μ·weightA + T)/(cos θ + μ·sin θ) minimized at θ = arctan(μ), the classic "minimum force to drag a crate" result generalized with a cable tension term, no ODE), PD 10 (`/particle-dynamics/vehicle-power`, vehicle resistance and power — fits F(v) = a + bv² from two (speed, power) calibration readings via a 2×2 linear solve, then predicts power at another flat-road speed and on a graded road, no ODE), PD 11 (`/particle-dynamics/hoist`, hoist motor efficiency — a counterweight over a movable pulley genuinely relieves the motor: T₂ = load·g/2 at the pulley, T₁ = T₂ − counterweight·g at the motor, P_mech = T₁ · (2·v); counterweightMass is clamped to ≤ loadMass/2 so T₁ never goes negative, no ODE), PD 12 (`/particle-dynamics/escalator`, three-phase motor + escalator efficiency — closed-form P_elec = √3·V·I·cos φ vs. P_mech = n·m·g·h/t, no ODE), PD 13 (`/particle-dynamics/rail-car-coupling`, rail car coupling — momentum conservation gives v_f, the impulse-momentum theorem gives the mean coupling force; the canvas animates the closed-form linear velocity ramp during coupling, no ODE), and PD 14 (`/particle-dynamics/staged-rocket`, the rocket equation with gravity, v(t) = v_0 + v_rel·ln(m_0/m(t)) − g·t, comparing a single-stage vs. two-stage design side by side — max speed always lands exactly at burnout, no ODE).
 
 See `src/lib/simulators.ts` for the full registry and `README.md` for the per-exercise route tables.
 
-`/` itself is a landing page — a card index linking to the two core simulators above plus both TP sections (`src/components/HomeIndexClient.tsx`).
+`/` itself is a landing page (`src/components/HomeIndexClient.tsx`) — a card index linking to the two core simulators above, the Kepler orbital-mechanics exercise (pulled out of the Particle Dynamics group onto the home grid since it predates that section), and both TP section cards.
 
 Stack: **Next.js 16** · **React 19** · **TypeScript (strict)** · **Tailwind CSS v4** · native Canvas 2D API.
 
 ## Folder structure
+
+Every exercise — core, PK, or PD — follows the same five-way split: one route (`app/.../<name>/page.tsx`), one pure physics module (`lib/<name>Kinematics.ts`, usually with a colocated `lib/<name>Kinematics.test.ts`), one state hook + one RAF hook (`hooks/use<Name>Simulator.ts` / `use<Name>AnimationLoop.ts`), one types file (`types/<name>.ts`), and one aside-panel folder (`components/<name>/` with Canvas/Controls/Metrics/Equations/Legend pieces). The tree below shows that pattern once per group rather than enumerating every exercise — check `src/lib/simulators.ts` for the current, authoritative list of exercise ids.
 
 ```
 src/
@@ -44,16 +46,11 @@ src/
 │   ├── particle-kinematics/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-kinematics — section index (card grid)
-│   │   └── pin-slot/page.tsx         # /particle-kinematics/pin-slot — PK 6 (moved from /pin-slot)
+│   │   └── <name>/page.tsx           # one dir per PK exercise route (pin-slot doubles as PK4 via ?preset=pk4)
 │   ├── particle-dynamics/
 │   │   ├── layout.tsx                # LanguageProvider + ExerciseNav for the whole section
 │   │   ├── page.tsx                  # /particle-dynamics — section index (card grid, incl. disabled stubs)
-│   │   ├── ring/page.tsx             # /particle-dynamics/ring — PD 3 (moved from the former core /ring)
-│   │   ├── kepler/page.tsx           # /particle-dynamics/kepler — PD 6 (moved from the former core /kepler)
-│   │   ├── vehicle-power/page.tsx    # /particle-dynamics/vehicle-power — PD 10 (resistance curve fit)
-│   │   ├── hoist/page.tsx            # /particle-dynamics/hoist — PD 11 (hoist motor efficiency)
-│   │   ├── escalator/page.tsx        # /particle-dynamics/escalator — PD 12 (three-phase motor efficiency)
-│   │   └── rail-car-coupling/page.tsx # /particle-dynamics/rail-car-coupling — PD 13 (impulse-momentum)
+│   │   └── <name>/page.tsx           # one dir per PD exercise route (ring = PD3, kepler = PD6, moved from the former core /ring and /kepler)
 │   └── globals.css                   # Tailwind v4 import + CSS variables
 ├── components/
 │   ├── SimulatorCanvas.tsx     # Polar canvas: ResizeObserver + DPR + RAF wiring
@@ -63,13 +60,19 @@ src/
 │   ├── EquationsPanel.tsx      # Polar collapsible formula panel (React.memo)
 │   ├── StripChart.tsx          # Rolling real-time strip chart (React.memo)
 │   ├── FunctionPlot.tsx        # Static function plotter: axes, markers, shading, hover (React.memo)
+│   ├── PhasorDiagram.tsx       # Phasor/vector diagram for AC-circuit exercises (escalator/hoist motors) (React.memo)
 │   ├── SimulatorNav.tsx        # Grouped top nav: Home + core tabs + Particle Kinematics + Particle Dynamics, mobile menu
-│   ├── HomeIndexClient.tsx     # / — landing page card grid (core simulators + both TP sections)
+│   ├── SimulatorHeader.tsx     # Shared per-page header: title + LanguageToggle + ThemeToggle + GitHubLink (React.memo)
+│   ├── HomeIndexClient.tsx     # / — landing page card grid (core simulators + Kepler + both TP sections)
+│   ├── HomePolarPreview.tsx    # Mini animated polar preview on the home card (React.memo)
+│   ├── ProjectCredits.tsx      # Footer credits block (React.memo)
 │   ├── LanguageToggle.tsx      # EN ↔ ES switch
+│   ├── ThemeToggle.tsx         # auto/light/dark cycle, localStorage-backed (`kinelab-theme`), overrides prefers-color-scheme
 │   ├── GitHubLink.tsx          # Repo icon link
-│   ├── ring/                   # Ring-only aside panels (RingCanvas, RingControls, RingMetrics, …)
-│   ├── pin-slot/                # Pin-slot-only aside panels
-│   ├── quick-return/           # Quick-return-only aside panels
+│   ├── Subscript.tsx           # `withSubscripts` — renders v_0-style text with real `<sub>` tags
+│   ├── <name>/                 # one aside-panel folder per exercise — core (ring, pin-slot, quick-return, kepler),
+│   │                           # every PK exercise, and every PD exercise — each with its own Canvas/Controls/Metrics/
+│   │                           # Equations/Legend components, e.g. `ring/RingCanvas.tsx`, `atwood/AtwoodControls.tsx`
 │   ├── pk/
 │   │   ├── ExerciseNav.tsx     # Prev/next + jump-to dropdown + position, rendered by the section layout
 │   │   └── ParticleKinematicsIndexClient.tsx  # Section index card grid
@@ -80,17 +83,15 @@ src/
 │   └── LanguageContext.tsx     # EN / ES context, localStorage-backed, cross-tab sync
 ├── hooks/
 │   ├── useSimulator.ts / useAnimationLoop.ts        # Polar state + RAF loop (semi-implicit Euler)
-│   ├── useRingSimulator.ts / useRingAnimationLoop.ts # Ring state + RAF loop (RK4)
-│   ├── usePinSlotSimulator.ts / usePinSlotAnimationLoop.ts
-│   ├── useQuickReturnSimulator.ts / useQuickReturnAnimationLoop.ts
-│   ├── useKeplerSimulator.ts / useKeplerAnimationLoop.ts   # Kepler state + RAF loop (PD 6)
+│   ├── use<Name>Simulator.ts / use<Name>AnimationLoop.ts  # one pair per exercise (core, PK, PD alike)
 │   └── usePreset.ts            # Reads shared `?preset=<id>` convention; falls back silently
 ├── lib/
-│   ├── kinematics.ts, ringKinematics.ts, pinSlotKinematics.ts, quickReturnKinematics.ts, keplerKinematics.ts
+│   ├── kinematics.ts           # Polar physics (no ODE)
+│   ├── <name>Kinematics.ts     # one pure physics module per exercise, most with a colocated `.test.ts` (Vitest)
 │   ├── drawing.ts               # Canvas helpers, COLORS/COLORS_DARK palettes, renderFrame (polar) + shared helpers
 │   ├── strip-chart.ts           # Rolling real-time sample buffer + drawing
-│   ├── plot.ts                  # Static-plot helpers (scales, ticks, interpolation) backing FunctionPlot
-│   ├── simulators.ts            # SIMULATORS registry — single source of truth for all navigation
+│   ├── plot.ts / plot.test.ts   # Static-plot helpers (scales, ticks, interpolation) backing FunctionPlot
+│   ├── simulators.ts / simulators.test.ts  # SIMULATORS registry — single source of truth for all navigation
 │   └── i18n/                    # Translation modules — see below
 │       ├── index.ts             # Merges all modules; exports Language, translations, TranslationKey
 │       ├── common.ts, polar.ts, ring.ts, pin-slot.ts, quick-return.ts, kepler.ts
@@ -102,7 +103,7 @@ src/
 │           └── exercises.ts     # PD 1–14 titles + one-line summaries
 └── types/
     ├── simulator.ts             # Barrel: re-exports everything below — import path unchanged
-    └── polar.ts, ring.ts, pin-slot.ts, kepler.ts, quick-return.ts
+    └── polar.ts, ring.ts, quick-return.ts, kepler.ts, <name>.ts  # one file per exercise
 ```
 
 ## Key conventions
@@ -121,6 +122,8 @@ src/
 - Adding a **particle-dynamics** exercise: same shape, under `group: "particle-dynamics"` with a `pd` number, route `app/particle-dynamics/<name>/page.tsx`, keys in `src/lib/i18n/pd/exercises.ts`. Registry entries not yet built keep `disabled: true` and `href: "/particle-dynamics"` — flip `disabled` off and point `href` at the real route once the page exists; the section index and `ExerciseNav` pick this up automatically.
 - Shared `?preset=<id>` query-string convention: `usePreset(presets, fallback)` (`src/hooks/usePreset.ts`) reads it via `useSearchParams`, so any component calling it (directly or through a `use<Name>Simulator` hook) must render under a `<Suspense>` boundary. Unknown preset ids fall back silently.
 - `FunctionPlot` (`src/components/FunctionPlot.tsx` + `src/lib/plot.ts`) is for **static** function/analytic plots (v(t), x(t), phase portraits …) — axes, ticks, markers, dashed reference lines, area shading, hover cursor. `StripChart` is for **rolling real-time** samples. Don't use one for the other's job.
+- Dark mode is a three-way `auto`/`light`/`dark` toggle (`ThemeToggle.tsx`), not purely `prefers-color-scheme` — `auto` defers to the media query, `light`/`dark` pin it and persist to `localStorage["kinelab-theme"]`. Any component that reads `prefers-color-scheme` directly for canvas colors (`StripChart`, `FunctionPlot`, `PhasorDiagram`, the ring energy chart, `MotionGraphsCanvas`, `ParabolicTrackCanvas`) is following the resolved `dark` class on `<html>`, not the raw media query, so it stays correct under a manual override.
+- Physics modules are unit-tested with **Vitest** (`vitest.config.mts`) — most `lib/<name>Kinematics.ts` files have a colocated `<name>Kinematics.test.ts`. Run with `npm test`. New pure-physics modules should get a test file alongside them; rendering/hook code is not tested.
 
 ## Common tasks
 
@@ -137,6 +140,12 @@ npm run build
 **Lint**:
 ```bash
 npx eslint src/
+```
+
+**Unit tests** (pure physics modules only, Vitest):
+```bash
+npm test         # run once
+npm run test:watch
 ```
 
 ## Physics quick reference
