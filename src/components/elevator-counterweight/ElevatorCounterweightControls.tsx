@@ -1,6 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { withSubscripts } from "@/components/Subscript";
 import type {
   ElevatorCounterweightParams,
   ElevatorCounterweightVisibility,
@@ -20,7 +22,7 @@ interface Props {
 }
 
 interface SliderProps {
-  label: string;
+  label: ReactNode;
   id: string;
   min: number;
   max: number;
@@ -112,7 +114,7 @@ export function ElevatorCounterweightControls({
         </h3>
         <div className="flex flex-col gap-3">
           <Slider
-            label={t("elevator-counterweight.controls.slider.elevator_mass")}
+            label={withSubscripts(t("elevator-counterweight.controls.slider.elevator_mass"))}
             id="elevatorMass"
             min={500}
             max={6000}
@@ -122,7 +124,7 @@ export function ElevatorCounterweightControls({
             onChange={(v) => onSetParam("elevatorMass", v)}
           />
           <Slider
-            label={t("elevator-counterweight.controls.slider.counterweight_mass")}
+            label={withSubscripts(t("elevator-counterweight.controls.slider.counterweight_mass"))}
             id="counterweightMass"
             min={200}
             max={6000}

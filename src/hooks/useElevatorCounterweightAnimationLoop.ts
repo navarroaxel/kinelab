@@ -10,6 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import {
   drawArrow,
   drawLabel,
+  drawLabelWithSubscript,
   COLORS,
   COLORS_DARK,
   type ColorPalette,
@@ -20,10 +21,16 @@ import type {
   ElevatorCounterweightVisibility,
 } from "@/types/simulator";
 
-// The cars scroll at a fixed screen speed for legibility, in the direction
-// elevatorVelocity's sign indicates — only the direction is physical here,
-// the pixel rate itself is illustrative.
-const SCROLL_SPEED_PX_S = 30;
+// The cars' on-screen position is the real kinematic integral
+// x(t) = v0·t + ½·a·t², using the actual elevatorVelocity/elevatorAcceleration
+// params — so when a decelerates the elevator (opposite sign to v0), it
+// visibly slows, stops, and reverses at t* = |v0/a|, instead of always
+// scrolling one direction. PX_PER_MPS is the only illustrative constant
+// here, just converting real metres to a legible pixel scale; the loop
+// resets every LOOP_DURATION_S so the reversal (when there is one) keeps
+// replaying rather than drifting off in one direction forever.
+const PX_PER_MPS = 12;
+const LOOP_DURATION_S = 8;
 
 export function useElevatorCounterweightAnimationLoop(
   canvasRef: RefObject<HTMLCanvasElement | null>,
@@ -93,8 +100,7 @@ export function useElevatorCounterweightAnimationLoop(
       lastTimeRef.current = now;
 
       if (dt > 0) {
-        const direction = Math.sign(params.elevatorVelocity) || 1;
-        phaseRef.current += direction * SCROLL_SPEED_PX_S * dt;
+        phaseRef.current = (phaseRef.current + dt) % LOOP_DURATION_S;
       }
 
       render(
@@ -120,13 +126,30 @@ export function useElevatorCounterweightAnimationLoop(
   }, [params, state, visibility, paused, resetCount]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
+/**
+ * The point on a pulley's rim, in the quadrant facing `from` — where a
+ * cable coming from that direction actually meets the pulley, rather than
+ * its axle. The radius matters physically (it's the torque lever arm for
+ * fixed pulleys), so cables should visibly terminate at the rim.
+ */
+function rimPoint(
+  from: { x: number; y: number },
+  center: { x: number; y: number },
+  radius: number,
+): { x: number; y: number } {
+  const dx = from.x - center.x;
+  const dy = from.y - center.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  return { x: center.x + (dx / dist) * radius, y: center.y + (dy / dist) * radius };
+}
+
 function render(
   ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
   params: ElevatorCounterweightParams,
   state: ElevatorCounterweightState,
   visibility: ElevatorCounterweightVisibility,
-  phase: number,
+  simTime: number,
   colors: ColorPalette,
   labels: {
     elevator: string;
@@ -142,6 +165,17 @@ function render(
 
   ctx.clearRect(0, 0, W, H);
 
+  const isDark = colors === COLORS_DARK;
+  const cableLabelColor = isDark ? "#ffffff" : colors.axes;
+
+  // Real kinematics: x(t) = v0·t + ½·a·t², v(t) = v0 + a·t.
+  const displacementM =
+    params.elevatorVelocity * simTime +
+    0.5 * params.elevatorAcceleration * simTime ** 2;
+  const phase = displacementM * PX_PER_MPS;
+  const elevatorSpeedNow =
+    params.elevatorVelocity + params.elevatorAcceleration * simTime;
+
   const shaftTop = H * 0.1;
   const shaftBottom = H * 0.85;
   const travel = shaftBottom - shaftTop - 60;
@@ -149,18 +183,19 @@ function render(
 
   // E hangs from a movable pulley with two cable segments: a left one
   // anchored directly to the ceiling, and a right one ("T") that runs up
-  // over the smaller of the two ceiling-fixed pulleys and down to the
-  // motor's drum — that's the segment the motor actually pulls on ("C").
-  // A third, separate cable ties W to the centre (axle) of E's pulley,
-  // running up over the BIGGER ceiling-fixed pulley and back down to W —
-  // so three cables meet at E's pulley altogether.
+  // directly to the smaller of the two fixed ceiling pulleys, which
+  // continues straight down to the motor's drum below ("C"). A third,
+  // separate cable ties W to the centre (axle) of E's pulley, running up
+  // over the BIGGER fixed pulley and back down to W — so three cables
+  // meet at E's pulley altogether.
   const leftAnchorX = W * 0.2;
-  const motorPulley = { x: W * 0.34, y: ceilingY };
-  const elevatorX = (leftAnchorX + motorPulley.x) / 2;
+  const motorPulleyBig = { x: W * 0.29, y: ceilingY };
+  const motorPulleySmall = { x: W * 0.34, y: ceilingY + 42 };
   const weightPulley = { x: W * 0.58, y: ceilingY };
-  const counterweightX = W * 0.78;
+  const elevatorX = (leftAnchorX + motorPulleySmall.x) / 2;
+  const counterweightX = weightPulley.x + 16;
 
-  // Ceiling anchor + the two fixed pulleys.
+  // Ceiling anchor + the fixed pulleys.
   ctx.save();
   ctx.strokeStyle = colors.axes;
   ctx.lineWidth = 2;
@@ -168,7 +203,10 @@ function render(
   ctx.arc(leftAnchorX, ceilingY, 5, 0, 2 * Math.PI);
   ctx.stroke();
   ctx.beginPath();
-  ctx.arc(motorPulley.x, motorPulley.y, 11, 0, 2 * Math.PI);
+  ctx.arc(motorPulleyBig.x, motorPulleyBig.y, 16, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(motorPulleySmall.x, motorPulleySmall.y, 9, 0, 2 * Math.PI);
   ctx.stroke();
   ctx.beginPath();
   ctx.arc(weightPulley.x, weightPulley.y, 16, 0, 2 * Math.PI);
@@ -193,34 +231,81 @@ function render(
     ctx.restore();
 
     // Left cable: ceiling anchor → E's pulley.
-    // Right cable "T": E's pulley → motor pulley (continues to the motor below).
-    // Third cable: E's pulley axle → up over the weight pulley → down to W.
+    // Right cable "T": E's pulley → directly to the smaller motor pulley,
+    // which continues straight down to the motor ("C").
+    // Third cable: E's pulley axle → up over the bigger motor pulley →
+    // over the weight pulley → down to W.
+    // Every cable terminates at the pulley's rim, in the quadrant facing
+    // where it comes from — not at the axle — since the radius is the
+    // torque lever arm and matters visually.
+    const elevatorPulley = { x: elevatorX, y: elevatorPulleyY };
+    const leftAnchor = { x: leftAnchorX, y: ceilingY };
+    const wBoxTop = { x: counterweightX, y: counterweightY - 16 };
+
     ctx.save();
     ctx.strokeStyle = colors.trajectory;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(leftAnchorX, ceilingY);
-    ctx.lineTo(elevatorX, elevatorPulleyY);
-    ctx.moveTo(elevatorX, elevatorPulleyY);
-    ctx.lineTo(motorPulley.x, motorPulley.y);
-    ctx.moveTo(elevatorX, elevatorPulleyY);
-    ctx.lineTo(weightPulley.x, weightPulley.y);
-    ctx.moveTo(weightPulley.x, weightPulley.y);
-    ctx.lineTo(counterweightX, counterweightY - 16);
+
+    let p1 = { x: leftAnchor.x - 5, y: leftAnchor.y };
+    let p2 = rimPoint(leftAnchor, elevatorPulley, 8);
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+
+    p1 = rimPoint(motorPulleySmall, elevatorPulley, 8);
+    p2 = { x: motorPulleySmall.x - 9, y: motorPulleySmall.y };
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+
+    p1 = rimPoint(motorPulleyBig, elevatorPulley, 8);
+    p2 = { x: motorPulleyBig.x - 16, y: motorPulleyBig.y };
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+
+    p1 = { x: motorPulleyBig.x, y: motorPulleyBig.y - 16 };
+    p2 = { x: weightPulley.x, y: weightPulley.y - 16 };
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+
+    p1 = { x: weightPulley.x + 16, y: weightPulley.y };
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(wBoxTop.x, wBoxTop.y);
+
     ctx.stroke();
     ctx.restore();
-    drawLabel(
+    drawLabelWithSubscript(
       ctx,
-      "T",
-      (elevatorX + motorPulley.x) / 2 + 10,
-      (elevatorPulleyY + motorPulley.y) / 2,
-      colors.trajectory,
+      "T_C",
+      (elevatorX + motorPulleySmall.x) / 2 + 10,
+      (elevatorPulleyY + motorPulleySmall.y) / 2,
+      cableLabelColor,
+    );
+    drawLabelWithSubscript(
+      ctx,
+      "T_W",
+      (elevatorX + motorPulleyBig.x) / 2 - 12,
+      (elevatorPulleyY + motorPulleyBig.y) / 2,
+      cableLabelColor,
+    );
+    drawLabelWithSubscript(
+      ctx,
+      "T_W",
+      weightPulley.x + 26,
+      (weightPulley.y + wBoxTop.y) / 2,
+      cableLabelColor,
+    );
+    drawLabelWithSubscript(
+      ctx,
+      "T_W",
+      (motorPulleyBig.x + weightPulley.x) / 2,
+      motorPulleyBig.y - 26,
+      cableLabelColor,
     );
 
     // Elevator car, hanging just below its pulley.
     const elevatorY = elevatorPulleyY + 28;
     ctx.save();
-    ctx.fillStyle = colors.rVector;
+    ctx.fillStyle = colors.point;
     ctx.strokeStyle = "#fff";
     ctx.lineWidth = 1.5;
     ctx.fillRect(elevatorX - 22, elevatorY - 20, 44, 40);
@@ -235,29 +320,44 @@ function render(
     ctx.lineTo(elevatorX, elevatorY - 20);
     ctx.stroke();
     ctx.restore();
+    drawLabel(
+      ctx,
+      `v ≈ ${elevatorSpeedNow >= 0 ? "+" : ""}${elevatorSpeedNow.toFixed(2)} m/s`,
+      elevatorX,
+      elevatorY + 30,
+      colors.point,
+    );
 
-    // Counterweight
+    // Counterweight — coupled 1:1 to E, so it moves at the same speed,
+    // opposite sign.
     ctx.save();
-    ctx.fillStyle = colors.axes;
+    ctx.fillStyle = colors.velocity;
     ctx.fillRect(counterweightX - 16, counterweightY - 16, 32, 32);
     ctx.restore();
     drawLabel(ctx, labels.counterweight, counterweightX, counterweightY, "#fff");
+    drawLabel(
+      ctx,
+      `v ≈ ${-elevatorSpeedNow >= 0 ? "+" : ""}${(-elevatorSpeedNow).toFixed(2)} m/s`,
+      counterweightX,
+      counterweightY + 26,
+      colors.velocity,
+    );
   }
 
-  // Cable C: continues from the motor pulley straight down to the
+  // Cable C: continues from the smaller motor pulley straight down to the
   // ground-mounted motor's winch drum, as in the textbook figure — the
   // motor sits on the floor, not up at the ceiling.
   const floorY = H * 0.96;
-  const drum = { x: motorPulley.x, y: floorY - 26 };
+  const drum = { x: motorPulleySmall.x + 9, y: floorY - 26 };
   ctx.save();
   ctx.strokeStyle = colors.trajectory;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(motorPulley.x, motorPulley.y + 11);
+  ctx.moveTo(motorPulleySmall.x + 9, motorPulleySmall.y);
   ctx.lineTo(drum.x, drum.y);
   ctx.stroke();
   ctx.restore();
-  drawLabel(ctx, "C", motorPulley.x - 12, (motorPulley.y + drum.y) / 2, colors.trajectory);
+  drawLabel(ctx, "C", drum.x + 12, (motorPulleySmall.y + drum.y) / 2, cableLabelColor);
 
   // Floor.
   ctx.save();

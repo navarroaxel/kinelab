@@ -82,9 +82,9 @@ A particle constrained to slide on the inside of a smooth ring of radius R in a 
 ## Shared features
 
 - **EN / ES toggle** — persisted in localStorage, syncs across tabs
-- **Automatic dark mode** via `prefers-color-scheme`
+- **Dark mode** — auto/light/dark toggle; `auto` follows `prefers-color-scheme`, `light`/`dark` pin and persist the choice
 - **Retina-sharp** — DPR-aware canvas scaling + `ResizeObserver`
-- **Pure physics** — `lib/kinematics.ts` (polar) and `lib/ringKinematics.ts` (ring) have no React or DOM dependencies
+- **Pure physics** — every simulator's physics lives in its own `lib/<name>Kinematics.ts` module with no React or DOM dependencies; most are unit-tested with Vitest (`npm test`)
 
 ## Getting started
 
@@ -100,6 +100,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run build   # type-checks + produces optimised output
 npm run start   # serve the production build locally
+npm test        # run the Vitest suite for the pure physics modules
 ```
 
 ## Deploy
