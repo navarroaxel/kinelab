@@ -164,7 +164,7 @@ v_min = √(5·g·R)                       rapidez mínima en el fondo para una 
 | Animación | `requestAnimationFrame` nativo |
 | Integrador (anillo) | Runge–Kutta de 4.º orden sobre `[θ, θ̇]` |
 | Tests     | Vitest (módulos de física pura) |
-| Runtime   | Node ≥ 20 |
+| Runtime   | Node ≥ 26.6 |
 
 ## Licencia
 
