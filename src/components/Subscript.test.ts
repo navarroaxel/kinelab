@@ -54,17 +54,33 @@ describe("withSubscripts", () => {
     expect(childrenOf(third)).toEqual(["n", expect.anything()]);
   });
 
-  it("is greedy: a token glued to trailing punctuation swallows it into the subscript", () => {
-    // Documents a real gotcha: withSubscripts() grabs everything up to the
-    // next whitespace, so "δ_st)" without a separating space renders the
-    // closing paren *inside* the <sub>, not after it. Callers must isolate
-    // each token with its own withSubscripts() call when punctuation touches
-    // it directly (see VehicleSuspensionEquations.tsx).
+  it("stops the subscript at trailing punctuation instead of swallowing it", () => {
+    // Regression test: a token glued to punctuation with no separating
+    // space — "δ_st)", "m_c·g", "X_0/Y_0" — must not pull that punctuation
+    // (or the next word) into the <sub>. The subscript is letters/digits
+    // only, so it stops at the first non-alphanumeric character.
     const nodes = withSubscripts("δ_st) = 0") as ReactNode[];
-    const [span] = nodes;
+    expect(nodes).toHaveLength(2);
+
+    const [span, rest] = nodes;
     const [, sub] = childrenOf(span);
     expect((asElement(sub).props as { children: ReactNode }).children).toBe(
-      "st)",
+      "st",
     );
+    expect(rest).toBe(") = 0");
+  });
+
+  it("does not pull an adjacent word into the subscript", () => {
+    // "Y_0·sin(ωt)" must render as Y₀ followed by plain "·sin(ωt)", not as
+    // Y with "0·sin(ωt)" as its subscript.
+    const nodes = withSubscripts("Y_0·sin(ωt)") as ReactNode[];
+    expect(nodes).toHaveLength(2);
+
+    const [span, rest] = nodes;
+    const [, sub] = childrenOf(span);
+    expect((asElement(sub).props as { children: ReactNode }).children).toBe(
+      "0",
+    );
+    expect(rest).toBe("·sin(ωt)");
   });
 });
