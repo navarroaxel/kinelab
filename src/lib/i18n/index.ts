@@ -3,6 +3,8 @@ import { polar } from "./polar";
 import { ring } from "./ring";
 import { pinSlot } from "./pin-slot";
 import { quickReturn } from "./quick-return";
+import { vibrationsQuiz } from "./vibrations-quiz";
+import { vehicleSuspension } from "./vehicle-suspension";
 import { kepler } from "./kepler";
 import { pkSection } from "./pk/section";
 import { pkExercisesI18n } from "./pk/exercises";
@@ -40,6 +42,8 @@ export const translations = {
     ...ring.en,
     ...pinSlot.en,
     ...quickReturn.en,
+    ...vibrationsQuiz.en,
+    ...vehicleSuspension.en,
     ...kepler.en,
     ...pkSection.en,
     ...pkExercisesI18n.en,
@@ -72,6 +76,8 @@ export const translations = {
     ...ring.es,
     ...pinSlot.es,
     ...quickReturn.es,
+    ...vibrationsQuiz.es,
+    ...vehicleSuspension.es,
     ...kepler.es,
     ...pkSection.es,
     ...pkExercisesI18n.es,

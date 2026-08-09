@@ -9,6 +9,7 @@ export const pdSection = {
     "pd.nav.next": "Next",
     "pd.nav.jump_to": "Jump to exercise",
     "pd.card.coming_soon": "Coming soon",
+    "pd.label": "PD",
   },
   es: {
     "pd.nav.aria_label": "Ejercicios de Dinámica del Punto Material",
@@ -20,5 +21,6 @@ export const pdSection = {
     "pd.nav.next": "Siguiente",
     "pd.nav.jump_to": "Ir al ejercicio",
     "pd.card.coming_soon": "Próximamente",
+    "pd.label": "DPM",
   },
 };

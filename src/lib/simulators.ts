@@ -40,6 +40,22 @@ export const SIMULATORS: SimulatorEntry[] = [
     summaryKey: "home.summary.quick_return",
     group: "core",
   },
+  {
+    id: "vibrations-quiz",
+    href: "/vibrations-quiz",
+    navKey: "nav.vibrations_quiz",
+    titleKey: "vq.title",
+    summaryKey: "home.summary.vibrations_quiz",
+    group: "core",
+  },
+  {
+    id: "vehicle-suspension",
+    href: "/vehicle-suspension",
+    navKey: "nav.vehicle_suspension",
+    titleKey: "vs.title",
+    summaryKey: "home.summary.vehicle_suspension",
+    group: "core",
+  },
   // Particle Kinematics section — TP N°1, Cinemática del Punto Material (UTN FRBA)
   {
     id: "drag-descent",

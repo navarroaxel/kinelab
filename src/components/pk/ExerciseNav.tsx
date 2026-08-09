@@ -98,7 +98,7 @@ export const ExerciseNav = memo(function ExerciseNav() {
         {!hasCurrent && <option value="">{t("pk.nav.jump_to")}</option>}
         {exercises.map((e) => (
           <option key={e.href} value={e.href}>
-            PK {e.pk} — {t(e.titleKey)}
+            {t("pk.label")} {e.pk} — {t(e.titleKey)}
           </option>
         ))}
       </select>

@@ -30,7 +30,7 @@ export function ParticleDynamicsIndexClient() {
               <>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                    PD {ex.pd}
+                    {t("pd.label")} {ex.pd}
                   </span>
                   {ex.disabled && (
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium tracking-wide text-gray-500 uppercase dark:bg-gray-800 dark:text-gray-400">
