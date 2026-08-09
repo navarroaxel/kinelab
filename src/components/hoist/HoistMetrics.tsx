@@ -15,13 +15,13 @@ export const HoistMetrics = memo(function HoistMetrics({ state }: Props) {
   const cards = [
     {
       id: "p_elec",
-      label: withSubscripts(t("hoist.metrics.p_elec")),
+      label: "Pₑ",
       value: (state.electricalPower / 1000).toFixed(2),
       unit: "kW",
     },
     {
       id: "p_mech",
-      label: withSubscripts(t("hoist.metrics.p_mech")),
+      label: "Pₘ",
       value: (state.mechanicalPower / 1000).toFixed(2),
       unit: "kW",
     },

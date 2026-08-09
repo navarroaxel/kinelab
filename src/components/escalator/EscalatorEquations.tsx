@@ -78,16 +78,9 @@ export const EscalatorEquations = memo(function EscalatorEquations({
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
               {t("escalator.equations.section.formulas")}
             </p>
-            <p>
-              {withSubscripts(t("escalator.symbol.electrical"))} = √3 · V · I · cos φ
-            </p>
-            <p>
-              {withSubscripts(t("escalator.symbol.mechanical"))} = (n · m · g · h) / t
-            </p>
-            <p>
-              η = {withSubscripts(t("escalator.symbol.mechanical"))} /{" "}
-              {withSubscripts(t("escalator.symbol.electrical"))}
-            </p>
+            <p>Pₑ = √3 · V · I · cos φ</p>
+            <p>Pₘ = (n · m · g · h) / t</p>
+            <p>η = Pₘ / Pₑ</p>
           </div>
 
           <div>

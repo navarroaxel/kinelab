@@ -17,37 +17,37 @@ export const VehicleSuspensionMetrics = memo(function VehicleSuspensionMetrics({
   const cards = [
     {
       id: "kEq",
-      label: withSubscripts(t("vs.metrics.kEq")),
+      label: withSubscripts("k_eq"),
       value: state.equivalentStiffness.toFixed(0),
       unit: "N/m",
     },
     {
       id: "cEq",
-      label: withSubscripts(t("vs.metrics.cEq")),
+      label: withSubscripts("c_eq"),
       value: state.equivalentDamping.toFixed(0),
       unit: "N·s/m",
     },
     {
       id: "omegaN",
-      label: withSubscripts(t("vs.metrics.omegaN")),
+      label: withSubscripts("ω_n"),
       value: state.naturalFrequency.toFixed(3),
       unit: "rad/s",
     },
     {
       id: "zeta",
-      label: t("vs.metrics.zeta"),
+      label: "ζ",
       value: state.dampingRatio.toFixed(3),
       unit: "",
     },
     {
       id: "TR",
-      label: t("vs.metrics.TR"),
+      label: "TR = X₀/Y₀",
       value: state.transmissibility.toFixed(3),
       unit: "",
     },
     {
       id: "X0",
-      label: withSubscripts(t("vs.metrics.X0")),
+      label: withSubscripts("X_0"),
       value: (state.responseAmplitude * 100).toFixed(2),
       unit: "cm",
     },

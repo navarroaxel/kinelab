@@ -19,16 +19,7 @@ export const escalator = {
     "escalator.controls.btn.pause": "Pause",
     "escalator.controls.btn.resume": "Resume",
 
-    "escalator.canvas.p_elec": "Pₑ",
-    "escalator.canvas.p_mech": "Pₘ",
-    "escalator.canvas.motor": "M",
-
-    "escalator.symbol.electrical": "Pₑ",
-    "escalator.symbol.mechanical": "Pₘ",
-
     "escalator.metrics.heading": "Live Metrics",
-    "escalator.metrics.p_elec": "Pₑ",
-    "escalator.metrics.p_mech": "Pₘ",
     "escalator.metrics.efficiency": "η  (efficiency)",
     "escalator.metrics.climb_speed": "v  (climb speed)",
     "escalator.metrics.work": "W  (work per trip)",
@@ -80,16 +71,7 @@ export const escalator = {
     "escalator.controls.btn.pause": "Pausar",
     "escalator.controls.btn.resume": "Reanudar",
 
-    "escalator.canvas.p_elec": "Pₑ",
-    "escalator.canvas.p_mech": "Pₘ",
-    "escalator.canvas.motor": "M",
-
-    "escalator.symbol.electrical": "Pₑ",
-    "escalator.symbol.mechanical": "Pₘ",
-
     "escalator.metrics.heading": "Métricas en vivo",
-    "escalator.metrics.p_elec": "Pₑ",
-    "escalator.metrics.p_mech": "Pₘ",
     "escalator.metrics.efficiency": "η  (rendimiento)",
     "escalator.metrics.climb_speed": "v  (velocidad de elevación)",
     "escalator.metrics.work": "W  (trabajo por viaje)",

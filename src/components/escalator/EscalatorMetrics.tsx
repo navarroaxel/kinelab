@@ -2,7 +2,6 @@
 
 import { memo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { withSubscripts } from "@/components/Subscript";
 import type { EscalatorState } from "@/types/simulator";
 
 interface Props {
@@ -17,13 +16,13 @@ export const EscalatorMetrics = memo(function EscalatorMetrics({
   const cards = [
     {
       id: "p_elec",
-      label: withSubscripts(t("escalator.metrics.p_elec")),
+      label: "Pₑ",
       value: (state.electricalPower / 1000).toFixed(2),
       unit: "kW",
     },
     {
       id: "p_mech",
-      label: withSubscripts(t("escalator.metrics.p_mech")),
+      label: "Pₘ",
       value: (state.mechanicalPower / 1000).toFixed(2),
       unit: "kW",
     },

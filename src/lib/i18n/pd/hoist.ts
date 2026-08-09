@@ -18,19 +18,9 @@ export const hoist = {
     "hoist.controls.warn.exceeds":
       "⚠ Pₘ > Pₑ at this wattmeter reading — physically impossible (η would exceed 100%). Raise the reading to at least the mechanical power shown below.",
 
-    "hoist.canvas.p_elec": "Pₑ",
-    "hoist.canvas.p_mech": "Pₘ",
-    "hoist.canvas.motor_short": "A",
-    "hoist.canvas.wattmeter_short": "B",
     "hoist.canvas.warn.not_possible": "η > 100% — not possible",
 
-    "hoist.symbol.mechanical": "Pₘ",
-    "hoist.symbol.electrical": "Pₑ",
-    "hoist.symbol.wattmeter": "B",
-
     "hoist.metrics.heading": "Live Metrics",
-    "hoist.metrics.p_elec": "Pₑ",
-    "hoist.metrics.p_mech": "Pₘ",
     "hoist.metrics.efficiency": "η  (motor efficiency)",
     "hoist.metrics.counterweight_speed": "v_c  (counterweight speed)",
 
@@ -85,19 +75,9 @@ export const hoist = {
     "hoist.controls.warn.exceeds":
       "⚠ Pₘ > Pₑ con esta lectura del vatímetro — físicamente imposible (η superaría el 100%). Subí la lectura al menos hasta la potencia mecánica indicada abajo.",
 
-    "hoist.canvas.p_elec": "Pₑ",
-    "hoist.canvas.p_mech": "Pₘ",
-    "hoist.canvas.motor_short": "A",
-    "hoist.canvas.wattmeter_short": "B",
     "hoist.canvas.warn.not_possible": "η > 100% — no es posible",
 
-    "hoist.symbol.mechanical": "Pₘ",
-    "hoist.symbol.electrical": "Pₑ",
-    "hoist.symbol.wattmeter": "B",
-
     "hoist.metrics.heading": "Métricas en vivo",
-    "hoist.metrics.p_elec": "Pₑ",
-    "hoist.metrics.p_mech": "Pₘ",
     "hoist.metrics.efficiency": "η  (rendimiento del motor)",
     "hoist.metrics.counterweight_speed": "v_c  (velocidad del contrapeso)",
 

@@ -86,13 +86,9 @@ export const HoistEquations = memo(function HoistEquations({
             <p>{withSubscripts(t("hoist.equations.formula.tension2"))}</p>
             <p>{withSubscripts(t("hoist.equations.formula.tension1"))}</p>
             <p>
-              {withSubscripts(t("hoist.symbol.mechanical"))} = T₁ ·{" "}
-              {withSubscripts("v_c")}
+              Pₘ = T₁ · {withSubscripts("v_c")}
             </p>
-            <p>
-              η = {withSubscripts(t("hoist.symbol.mechanical"))} /{" "}
-              {withSubscripts(t("hoist.symbol.electrical"))}
-            </p>
+            <p>η = Pₘ / Pₑ</p>
           </div>
 
           <div>

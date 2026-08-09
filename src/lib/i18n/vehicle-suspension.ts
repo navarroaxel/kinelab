@@ -15,12 +15,6 @@ export const vehicleSuspension = {
     "vs.controls.btn.resume": "Resume",
 
     "vs.metrics.heading": "Live readouts",
-    "vs.metrics.kEq": "k_eq",
-    "vs.metrics.cEq": "c_eq",
-    "vs.metrics.omegaN": "ω_n",
-    "vs.metrics.zeta": "ζ",
-    "vs.metrics.TR": "TR = X₀/Y₀",
-    "vs.metrics.X0": "X_0",
 
     "vs.legend.heading": "Legend",
     "vs.legend.platform": "Test platform y(t) — base excitation",
@@ -39,7 +33,7 @@ export const vehicleSuspension = {
       "The steady-state response to a harmonically moving base y(t) = Y_0 · sin(ωt) is x(t) = X_0 · sin(ωt − δ), where the displacement transmissibility TR = X_0 / Y_0 depends only on the damping ratio ζ and the frequency ratio r = ω/ω_n — it applies regardless of whether the system is under-, critically, or overdamped.",
     "vs.equations.section.formulas": "Formulas",
     "vs.equations.formulas.legend":
-      "n_s = number of springs, n_d = number of dampers, δ_st = static deflection per spring, c = damping coefficient per damper, m = vehicle mass.",
+      "n_s = number of springs, n_d = number of dampers, δ_st = static deflection per spring, c = damping coefficient per damper, m = vehicle mass, k_eq/c_eq = equivalent spring/damper for the whole car, ω_n = natural frequency, ζ = damping ratio, r = frequency ratio, Y_0/X_0 = platform/vehicle amplitude, TR = X_0/Y_0 = displacement transmissibility (how much the platform's motion is amplified or attenuated at the vehicle body).",
   },
   es: {
     "vs.title": "Suspensión de un vehículo — excitación en la base",
@@ -57,12 +51,6 @@ export const vehicleSuspension = {
     "vs.controls.btn.resume": "Reanudar",
 
     "vs.metrics.heading": "Lecturas en vivo",
-    "vs.metrics.kEq": "k_eq",
-    "vs.metrics.cEq": "c_eq",
-    "vs.metrics.omegaN": "ω_n",
-    "vs.metrics.zeta": "ζ",
-    "vs.metrics.TR": "TR = X₀/Y₀",
-    "vs.metrics.X0": "X_0",
 
     "vs.legend.heading": "Referencias",
     "vs.legend.platform": "Plataforma de ensayo y(t) — excitación en la base",
@@ -81,6 +69,6 @@ export const vehicleSuspension = {
       "La respuesta en régimen permanente ante una base que se mueve armónicamente y(t) = Y_0 · sen(ωt) es x(t) = X_0 · sen(ωt − δ), donde la transmisibilidad de desplazamiento TR = X_0 / Y_0 depende solo de la razón de amortiguamiento ζ y de la relación de frecuencias r = ω/ω_n — vale sin importar si el sistema está sub, críticamente o sobreamortiguado.",
     "vs.equations.section.formulas": "Fórmulas",
     "vs.equations.formulas.legend":
-      "n_s = cantidad de resortes, n_d = cantidad de amortiguadores, δ_st = deformación estática por resorte, c = coeficiente de amortiguamiento por amortiguador, m = masa del vehículo.",
+      "n_s = cantidad de resortes, n_d = cantidad de amortiguadores, δ_st = deformación estática por resorte, c = coeficiente de amortiguamiento por amortiguador, m = masa del vehículo, k_eq/c_eq = resorte/amortiguador equivalente de todo el auto, ω_n = frecuencia natural, ζ = razón de amortiguamiento, r = relación de frecuencias, Y_0/X_0 = amplitud de la plataforma/del vehículo, TR = X_0/Y_0 = transmisibilidad de desplazamiento (cuánto se amplifica o atenúa el movimiento de la plataforma al llegar a la carrocería).",
   },
 };
