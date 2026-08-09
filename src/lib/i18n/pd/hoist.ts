@@ -29,8 +29,8 @@ export const hoist = {
     "hoist.symbol.wattmeter": "B",
 
     "hoist.metrics.heading": "Live Metrics",
-    "hoist.metrics.p_elec": "P_electrical  (electrical input)",
-    "hoist.metrics.p_mech": "P_mechanical  (net motor output)",
+    "hoist.metrics.p_elec": "Pₑ",
+    "hoist.metrics.p_mech": "Pₘ",
     "hoist.metrics.efficiency": "η  (motor efficiency)",
     "hoist.metrics.counterweight_speed": "v_c  (counterweight speed)",
 
@@ -96,8 +96,8 @@ export const hoist = {
     "hoist.symbol.wattmeter": "B",
 
     "hoist.metrics.heading": "Métricas en vivo",
-    "hoist.metrics.p_elec": "P_electrica  (entrada eléctrica)",
-    "hoist.metrics.p_mech": "P_mecanica  (salida neta del motor)",
+    "hoist.metrics.p_elec": "Pₑ",
+    "hoist.metrics.p_mech": "Pₘ",
     "hoist.metrics.efficiency": "η  (rendimiento del motor)",
     "hoist.metrics.counterweight_speed": "v_c  (velocidad del contrapeso)",
 

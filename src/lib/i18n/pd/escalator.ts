@@ -27,8 +27,8 @@ export const escalator = {
     "escalator.symbol.mechanical": "P_mechanical",
 
     "escalator.metrics.heading": "Live Metrics",
-    "escalator.metrics.p_elec": "P_electrical  (electrical input)",
-    "escalator.metrics.p_mech": "P_mechanical  (mechanical output)",
+    "escalator.metrics.p_elec": "Pₑ",
+    "escalator.metrics.p_mech": "Pₘ",
     "escalator.metrics.efficiency": "η  (efficiency)",
     "escalator.metrics.climb_speed": "v  (climb speed)",
     "escalator.metrics.work": "W  (work per trip)",
@@ -88,8 +88,8 @@ export const escalator = {
     "escalator.symbol.mechanical": "P_mecanica",
 
     "escalator.metrics.heading": "Métricas en vivo",
-    "escalator.metrics.p_elec": "P_electrica  (potencia eléctrica)",
-    "escalator.metrics.p_mech": "P_mecanica  (potencia mecánica)",
+    "escalator.metrics.p_elec": "Pₑ",
+    "escalator.metrics.p_mech": "Pₘ",
     "escalator.metrics.efficiency": "η  (rendimiento)",
     "escalator.metrics.climb_speed": "v  (velocidad de elevación)",
     "escalator.metrics.work": "W  (trabajo por viaje)",
