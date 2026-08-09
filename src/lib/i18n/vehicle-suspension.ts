@@ -36,8 +36,10 @@ export const vehicleSuspension = {
     "vs.equations.theory.equivalent_system":
       "Because the CG lies at the centroid of the 4 wheels, symmetric base motion produces pure vertical translation — no rocking — so the 4 springs act as one equivalent spring k_eq = 4k, and the 4 dampers as one equivalent damper c_eq = 4c. The problem collapses to an ordinary damped single-degree-of-freedom base-excitation system.",
     "vs.equations.theory.transmissibility":
-      "The steady-state response to a harmonically moving base y(t) = Y_0·sin(ωt) is x(t) = X_0·sin(ωt − δ), where the displacement transmissibility TR = X_0/Y_0 depends only on the damping ratio ζ and the frequency ratio r = ω/ω_n — it applies regardless of whether the system is under-, critically, or overdamped.",
+      "The steady-state response to a harmonically moving base y(t) = Y_0 · sin(ωt) is x(t) = X_0 · sin(ωt − δ), where the displacement transmissibility TR = X_0 / Y_0 depends only on the damping ratio ζ and the frequency ratio r = ω/ω_n — it applies regardless of whether the system is under-, critically, or overdamped.",
     "vs.equations.section.formulas": "Formulas",
+    "vs.equations.formulas.legend":
+      "n_s = number of springs, n_d = number of dampers, δ_st = static deflection per spring, c = damping coefficient per damper, m = vehicle mass.",
   },
   es: {
     "vs.title": "Suspensión de un vehículo — excitación en la base",
@@ -76,7 +78,9 @@ export const vehicleSuspension = {
     "vs.equations.theory.equivalent_system":
       "Como el CG está en el centroide de las 4 ruedas, un movimiento de base simétrico produce traslación vertical pura — sin cabeceo — por lo que los 4 resortes equivalen a un único resorte k_eq = 4k, y los 4 amortiguadores a un único amortiguador c_eq = 4c. El problema se reduce a un sistema amortiguado de un grado de libertad con excitación en la base.",
     "vs.equations.theory.transmissibility":
-      "La respuesta en régimen permanente ante una base que se mueve armónicamente y(t) = Y_0·sen(ωt) es x(t) = X_0·sen(ωt − δ), donde la transmisibilidad de desplazamiento TR = X_0/Y_0 depende solo de la razón de amortiguamiento ζ y de la relación de frecuencias r = ω/ω_n — vale sin importar si el sistema está sub, críticamente o sobreamortiguado.",
+      "La respuesta en régimen permanente ante una base que se mueve armónicamente y(t) = Y_0 · sen(ωt) es x(t) = X_0 · sen(ωt − δ), donde la transmisibilidad de desplazamiento TR = X_0 / Y_0 depende solo de la razón de amortiguamiento ζ y de la relación de frecuencias r = ω/ω_n — vale sin importar si el sistema está sub, críticamente o sobreamortiguado.",
     "vs.equations.section.formulas": "Fórmulas",
+    "vs.equations.formulas.legend":
+      "n_s = cantidad de resortes, n_d = cantidad de amortiguadores, δ_st = deformación estática por resorte, c = coeficiente de amortiguamiento por amortiguador, m = masa del vehículo.",
   },
 };

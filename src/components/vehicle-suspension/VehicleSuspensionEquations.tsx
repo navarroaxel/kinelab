@@ -53,13 +53,33 @@ export const VehicleSuspensionEquations = memo(function VehicleSuspensionEquatio
             <p className="mb-0.5 font-sans text-xs text-gray-500 dark:text-gray-400">
               {t("vs.equations.section.formulas")}
             </p>
-            <p>{withSubscripts("k_eq = n_s · (m·g) / (n_s · δ_st) = m·g / δ_st")}</p>
-            <p>{withSubscripts("c_eq = n_d · c")}</p>
-            <p>{withSubscripts("ω_n = √(k_eq / m),   ζ = c_eq / (2√(k_eq·m)),   r = ω / ω_n")}</p>
+            {/* Each subscripted token is passed to withSubscripts() on its own —
+                its regex is greedy and grabs everything up to the next space,
+                so e.g. "δ_st)" or "k_eq·m" without a separating space would
+                swallow the trailing punctuation/text into the subscript. */}
             <p>
-              {withSubscripts("TR = X_0 / Y_0")} = √[(1 + (2ζr)²) / ((1 − r²)² + (2ζr)²)]
+              {withSubscripts("k_eq")} = {withSubscripts("n_s")} · (m·g) / (
+              {withSubscripts("n_s")} · {withSubscripts("δ_st")}) = m·g /{" "}
+              {withSubscripts("δ_st")}
             </p>
-            <p>{withSubscripts("X_0 = TR · Y_0")}</p>
+            <p>
+              {withSubscripts("c_eq")} = {withSubscripts("n_d")} · c
+            </p>
+            <p>
+              {withSubscripts("ω_n")} = √({withSubscripts("k_eq")} / m), ζ ={" "}
+              {withSubscripts("c_eq")} / (2√({withSubscripts("k_eq")} · m)), r = ω
+              / {withSubscripts("ω_n")}
+            </p>
+            <p>
+              TR = {withSubscripts("X_0")} / {withSubscripts("Y_0")} = √[(1 +
+              (2ζr)²) / ((1 − r²)² + (2ζr)²)]
+            </p>
+            <p>
+              {withSubscripts("X_0")} = TR · {withSubscripts("Y_0")}
+            </p>
+            <p className="mt-1.5 font-sans text-gray-500 dark:text-gray-400">
+              {withSubscripts(t("vs.equations.formulas.legend"))}
+            </p>
           </div>
         </div>
       )}
