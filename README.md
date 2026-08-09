@@ -163,4 +163,8 @@ v_min = √(5·g·R)                       minimum bottom speed for a complete l
 | Styles    | Tailwind CSS v4 |
 | Animation | Native `requestAnimationFrame` |
 | Integrator (ring) | 4th-order Runge–Kutta on `[θ, θ̇]` |
-| Runtime   | Node ≥ 20 |
+| Runtime   | Node ≥ 24.15 |
+
+## License
+
+[MIT](LICENSE) © Axel Navarro

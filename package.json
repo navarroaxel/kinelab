@@ -1,8 +1,9 @@
 {
   "name": "kinelab",
   "version": "0.1.0",
-  "description": "Interactive polar coordinates simulator \u2014 visualises the relationship between Cartesian and polar coordinates for circular motion with a freely movable pole",
+  "description": "A browser-based set of small, focused physics simulators built with Next.js + Canvas",
   "private": true,
+  "license": "MIT",
   "engines": {
     "node": ">=24.15.0"
   },
