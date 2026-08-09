@@ -164,3 +164,7 @@ v_min = √(5·g·R)                       minimum bottom speed for a complete l
 | Animation | Native `requestAnimationFrame` |
 | Integrator (ring) | 4th-order Runge–Kutta on `[θ, θ̇]` |
 | Runtime   | Node ≥ 20 |
+
+## License
+
+[MIT](LICENSE) © Axel Navarro

@@ -165,3 +165,7 @@ v_min = √(5·g·R)                       rapidez mínima en el fondo para una 
 | Integrador (anillo) | Runge–Kutta de 4.º orden sobre `[θ, θ̇]` |
 | Tests     | Vitest (módulos de física pura) |
 | Runtime   | Node ≥ 20 |
+
+## Licencia
+
+[MIT](LICENSE) © Axel Navarro
