@@ -1,7 +1,7 @@
 {
   "name": "kinelab",
   "version": "0.1.0",
-  "description": "Kinelab \u2014 a browser-based set of small, focused physics simulators built with Next.js + Canvas: polar coordinates, the quick-return mechanism, and the particle kinematics (TP N\u00b01) and particle dynamics (TP N\u00b02) exercise sets from Mec\u00e1nica T\u00e9cnica, UTN FRBA",
+  "description": "A browser-based set of small, focused physics simulators built with Next.js + Canvas",
   "private": true,
   "license": "MIT",
   "engines": {
