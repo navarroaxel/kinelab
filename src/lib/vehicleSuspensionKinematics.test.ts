@@ -4,7 +4,7 @@ import {
   platformDisplacementAt,
   vehicleDisplacementAt,
 } from "./vehicleSuspensionKinematics";
-import type { VehicleSuspensionParams } from "@/types/vehicle-suspension";
+import type { VehicleSuspensionParams } from "@/types/simulator";
 
 const PROBLEM_PARAMS: VehicleSuspensionParams = {
   vehicleMass: 1000,
@@ -44,6 +44,19 @@ describe("vehicleSuspensionKinematics", () => {
   it("isolates the body at high frequency ratio (TR → 0)", () => {
     const derived = computeDerived({ ...PROBLEM_PARAMS, frequencyRatio: 50 });
     expect(derived.transmissibility).toBeLessThan(0.1);
+  });
+
+  it.each([
+    ["vehicleMass", 0],
+    ["vehicleMass", -1000],
+    ["staticDeflection", 0],
+    ["staticDeflection", -0.09],
+    ["springCount", 0],
+    ["damperCount", 0],
+  ] as const)("rejects non-positive %s (%d)", (key, value) => {
+    expect(() => computeDerived({ ...PROBLEM_PARAMS, [key]: value })).toThrow(
+      RangeError,
+    );
   });
 });
 

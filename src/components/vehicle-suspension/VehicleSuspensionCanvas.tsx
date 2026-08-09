@@ -6,7 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type {
   VehicleSuspensionParams,
   VehicleSuspensionState,
-} from "@/types/vehicle-suspension";
+} from "@/types/simulator";
 
 interface Props {
   params: VehicleSuspensionParams;

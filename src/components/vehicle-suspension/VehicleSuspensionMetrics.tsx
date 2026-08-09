@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { withSubscripts } from "@/components/Subscript";
-import type { VehicleSuspensionState } from "@/types/vehicle-suspension";
+import type { VehicleSuspensionState } from "@/types/simulator";
 
 interface Props {
   state: VehicleSuspensionState;

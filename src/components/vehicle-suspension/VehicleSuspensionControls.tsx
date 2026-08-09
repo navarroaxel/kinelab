@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { VehicleSuspensionParams } from "@/types/vehicle-suspension";
+import type { VehicleSuspensionParams } from "@/types/simulator";
 
 interface Props {
   params: VehicleSuspensionParams;

@@ -1,7 +1,7 @@
 import type {
   VehicleSuspensionDerived,
   VehicleSuspensionParams,
-} from "@/types/vehicle-suspension";
+} from "@/types/simulator";
 
 export const G = 9.81; // m/s²
 
@@ -26,6 +26,15 @@ export function computeDerived(
     dampingPerDamper,
     frequencyRatio: r,
   } = params;
+
+  // Guard against non-physical inputs (zero/negative mass, deflection, or
+  // counts) producing division-by-zero or NaN — sliders already keep these
+  // positive, but the module is also called directly (e.g. from tests).
+  if (m <= 0 || staticDeflection <= 0 || springCount <= 0 || damperCount <= 0) {
+    throw new RangeError(
+      "vehicleMass, staticDeflection, springCount, and damperCount must all be positive",
+    );
+  }
 
   const springStiffness = (m * g) / (springCount * staticDeflection);
   const equivalentStiffness = springCount * springStiffness;

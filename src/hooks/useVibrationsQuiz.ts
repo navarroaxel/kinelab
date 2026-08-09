@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import type { VibrationsQuizAnswers } from "@/types/vibrations-quiz";
+import type { VibrationsQuizAnswers } from "@/types/simulator";
 import {
   VIBRATIONS_QUIZ_ITEMS,
   initialVibrationsQuizAnswers,

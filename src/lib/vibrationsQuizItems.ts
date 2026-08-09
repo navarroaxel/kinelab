@@ -1,7 +1,7 @@
 import type {
   VibrationsQuizAnswers,
   VibrationsQuizItem,
-} from "@/types/vibrations-quiz";
+} from "@/types/simulator";
 
 export const VIBRATIONS_QUIZ_ITEMS: VibrationsQuizItem[] = [
   {

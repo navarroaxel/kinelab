@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import type {
   VehicleSuspensionParams,
   VehicleSuspensionState,
-} from "@/types/vehicle-suspension";
+} from "@/types/simulator";
 import { computeDerived } from "@/lib/vehicleSuspensionKinematics";
 
 const INITIAL_PARAMS: VehicleSuspensionParams = {

@@ -10,7 +10,7 @@ import { drawGrid, drawLabel, COLORS, COLORS_DARK, type ColorPalette } from "@/l
 import type {
   VehicleSuspensionParams,
   VehicleSuspensionState,
-} from "@/types/vehicle-suspension";
+} from "@/types/simulator";
 
 // px per metre for the vertical motion — small physical amplitudes (cm-scale)
 // need heavy magnification to read clearly on screen.
