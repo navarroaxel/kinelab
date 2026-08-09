@@ -8,6 +8,7 @@ export const pkSection = {
     "pk.nav.prev": "Prev",
     "pk.nav.next": "Next",
     "pk.nav.jump_to": "Jump to exercise",
+    "pk.label": "PK",
   },
   es: {
     "pk.nav.aria_label": "Ejercicios de Cinemática del Punto Material",
@@ -18,5 +19,6 @@ export const pkSection = {
     "pk.nav.prev": "Anterior",
     "pk.nav.next": "Siguiente",
     "pk.nav.jump_to": "Ir al ejercicio",
+    "pk.label": "CPM",
   },
 };

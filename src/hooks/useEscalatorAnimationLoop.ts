@@ -6,7 +6,6 @@ import {
   type RefObject,
   type MutableRefObject,
 } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 import {
   drawArrow,
   drawLabel,
@@ -37,12 +36,6 @@ export function useEscalatorAnimationLoop(
   paused: boolean,
   resetCount: number,
 ): void {
-  const { t } = useLanguage();
-  const translateRef = useRef(t);
-  useEffect(() => {
-    translateRef.current = t;
-  }, [t]);
-
   const lastTimeRef = useRef<number | null>(null);
   const rafIdRef = useRef<number>(0);
 
@@ -59,9 +52,9 @@ export function useEscalatorAnimationLoop(
         ? COLORS_DARK
         : COLORS;
       render(ctx, canvas, params, state, visibility, phaseRef.current, colors, {
-        pElec: translateRef.current("escalator.canvas.p_elec"),
-        pMech: translateRef.current("escalator.canvas.p_mech"),
-        motor: translateRef.current("escalator.canvas.motor"),
+        pElec: "Pₑ",
+        pMech: "Pₘ",
+        motor: "M",
       });
       return;
     }
@@ -91,9 +84,9 @@ export function useEscalatorAnimationLoop(
         phaseRef.current,
         colors,
         {
-          pElec: translateRef.current("escalator.canvas.p_elec"),
-          pMech: translateRef.current("escalator.canvas.p_mech"),
-          motor: translateRef.current("escalator.canvas.motor"),
+          pElec: "Pₑ",
+          pMech: "Pₘ",
+          motor: "M",
         },
       );
 

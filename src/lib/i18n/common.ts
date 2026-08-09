@@ -18,6 +18,8 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pin–Slot",
     "nav.quick_return": "Quick-Return",
+    "nav.vibrations_quiz": "Quiz",
+    "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
     "nav.particle_dynamics": "PD",
 
@@ -29,6 +31,10 @@ export const common = {
       "Cartesian ↔ polar decomposition of circular motion with a freely movable pole",
     "home.summary.quick_return":
       "Crank AB drives an oscillating bar OQ and a tool slider P — cutting and return strokes take unequal time",
+    "home.summary.vibrations_quiz":
+      "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
+    "home.summary.vehicle_suspension":
+      "A car body on 4 springs and 4 dampers, base-excited by a shaking test platform at its own natural frequency — steady-state amplitude via the displacement transmissibility formula",
     "home.card.tp1.title": "Particle Kinematics",
     "home.card.tp2.title": "Particle Dynamics",
 
@@ -67,6 +73,8 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pasador",
     "nav.quick_return": "Retorno Rápido",
+    "nav.vibrations_quiz": "Quiz",
+    "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
     "nav.particle_dynamics": "DPM",
 
@@ -78,6 +86,10 @@ export const common = {
       "Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable",
     "home.summary.quick_return":
       "La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos",
+    "home.summary.vibrations_quiz":
+      "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
+    "home.summary.vehicle_suspension":
+      "La carrocería de un auto sobre 4 resortes y 4 amortiguadores, excitada en su base por una plataforma de ensayo que vibra a su propia frecuencia natural — amplitud en régimen permanente mediante la fórmula de transmisibilidad",
     "home.card.tp1.title": "Cinemática del Punto Material",
     "home.card.tp2.title": "Dinámica del Punto Material",
 

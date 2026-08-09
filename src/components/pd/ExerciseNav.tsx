@@ -96,7 +96,7 @@ export const ExerciseNav = memo(function ExerciseNav() {
         {!hasCurrent && <option value="">{t("pd.nav.jump_to")}</option>}
         {exercises.map((e) => (
           <option key={e.id} value={e.href} disabled={e.disabled}>
-            PD {e.pd} — {t(e.titleKey)}
+            {t("pd.label")} {e.pd} — {t(e.titleKey)}
             {e.disabled ? ` (${t("pd.card.coming_soon")})` : ""}
           </option>
         ))}

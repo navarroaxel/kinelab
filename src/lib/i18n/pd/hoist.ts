@@ -16,29 +16,19 @@ export const hoist = {
     "hoist.controls.btn.pause": "Pause",
     "hoist.controls.btn.resume": "Resume",
     "hoist.controls.warn.exceeds":
-      "⚠ P_mechanical > P_electrical at this wattmeter reading — physically impossible (η would exceed 100%). Raise the reading to at least the mechanical power shown below.",
+      "⚠ Pₘ > Pₑ at this wattmeter reading — physically impossible (η would exceed 100%). Raise the reading to at least the mechanical power shown below.",
 
-    "hoist.canvas.p_elec": "Pₑ",
-    "hoist.canvas.p_mech": "Pₘ",
-    "hoist.canvas.motor_short": "A",
-    "hoist.canvas.wattmeter_short": "B",
     "hoist.canvas.warn.not_possible": "η > 100% — not possible",
 
-    "hoist.symbol.mechanical": "P_mechanical",
-    "hoist.symbol.electrical": "P_electrical",
-    "hoist.symbol.wattmeter": "B",
-
     "hoist.metrics.heading": "Live Metrics",
-    "hoist.metrics.p_elec": "P_electrical  (electrical input)",
-    "hoist.metrics.p_mech": "P_mechanical  (net motor output)",
     "hoist.metrics.efficiency": "η  (motor efficiency)",
     "hoist.metrics.counterweight_speed": "v_c  (counterweight speed)",
 
     "hoist.legend.heading": "Legend",
     "hoist.legend.cable": "Cable, fixed pulley and counterweight",
     "hoist.legend.load": "Load, via the movable pulley",
-    "hoist.legend.p_elec": "P_electrical into the motor",
-    "hoist.legend.p_mech": "P_mechanical, net of the counterweight's assist",
+    "hoist.legend.p_elec": "Pₑ, electrical power into the motor",
+    "hoist.legend.p_mech": "Pₘ, mechanical power net of the counterweight's assist",
 
     "hoist.equations.heading": "Equations",
     "hoist.equations.section.statement": "Statement",
@@ -61,8 +51,8 @@ export const hoist = {
       "v_c = 2 × 2 m/s = 4 m/s.\n" +
       "T₂ = 300 × 9.81 / 2 = 1471.5 N (150 kgf).\n" +
       "T₁ = 1471.5 − 100 × 9.81 = 490.5 N (50 kgf).\n" +
-      "P_mechanical = T₁ × v_c = 490.5 × 4 ≈ 1.96 kW.\n" +
-      "η = P_mechanical / P_electrical = 1962 / 2200 ≈ 89.2%.",
+      "Pₘ = T₁ × v_c = 490.5 × 4 ≈ 1.96 kW.\n" +
+      "η = Pₘ / Pₑ = 1962 / 2200 ≈ 89.2%.",
     "hoist.equations.section.plot": "Efficiency vs. wattmeter reading",
     "hoist.plot.eta_p.title": "η(B) — efficiency vs. wattmeter reading",
   },
@@ -83,29 +73,19 @@ export const hoist = {
     "hoist.controls.btn.pause": "Pausar",
     "hoist.controls.btn.resume": "Reanudar",
     "hoist.controls.warn.exceeds":
-      "⚠ P_mecanica > P_electrica con esta lectura del vatímetro — físicamente imposible (η superaría el 100%). Subí la lectura al menos hasta la potencia mecánica indicada abajo.",
+      "⚠ Pₘ > Pₑ con esta lectura del vatímetro — físicamente imposible (η superaría el 100%). Subí la lectura al menos hasta la potencia mecánica indicada abajo.",
 
-    "hoist.canvas.p_elec": "Pₑ",
-    "hoist.canvas.p_mech": "Pₘ",
-    "hoist.canvas.motor_short": "A",
-    "hoist.canvas.wattmeter_short": "B",
     "hoist.canvas.warn.not_possible": "η > 100% — no es posible",
 
-    "hoist.symbol.mechanical": "P_mecanica",
-    "hoist.symbol.electrical": "P_electrica",
-    "hoist.symbol.wattmeter": "B",
-
     "hoist.metrics.heading": "Métricas en vivo",
-    "hoist.metrics.p_elec": "P_electrica  (entrada eléctrica)",
-    "hoist.metrics.p_mech": "P_mecanica  (salida neta del motor)",
     "hoist.metrics.efficiency": "η  (rendimiento del motor)",
     "hoist.metrics.counterweight_speed": "v_c  (velocidad del contrapeso)",
 
     "hoist.legend.heading": "Leyenda",
     "hoist.legend.cable": "Cable, polea fija y contrapeso",
     "hoist.legend.load": "Carga, vía la polea móvil",
-    "hoist.legend.p_elec": "P_electrica hacia el motor",
-    "hoist.legend.p_mech": "P_mecanica, neta de la asistencia del contrapeso",
+    "hoist.legend.p_elec": "Pₑ, potencia eléctrica hacia el motor",
+    "hoist.legend.p_mech": "Pₘ, potencia mecánica neta de la asistencia del contrapeso",
 
     "hoist.equations.heading": "Ecuaciones",
     "hoist.equations.section.statement": "Enunciado",
@@ -128,8 +108,8 @@ export const hoist = {
       "v_c = 2 × 2 m/s = 4 m/s.\n" +
       "T₂ = 300 × 9,81 / 2 = 1471,5 N (150 kgf).\n" +
       "T₁ = 1471,5 − 100 × 9,81 = 490,5 N (50 kgf).\n" +
-      "P_mecanica = T₁ × v_c = 490,5 × 4 ≈ 1,96 kW.\n" +
-      "η = P_mecanica / P_electrica = 1962 / 2200 ≈ 89,2%.",
+      "Pₘ = T₁ × v_c = 490,5 × 4 ≈ 1,96 kW.\n" +
+      "η = Pₘ / Pₑ = 1962 / 2200 ≈ 89,2%.",
     "hoist.equations.section.plot": "Rendimiento vs. lectura del vatímetro",
     "hoist.plot.eta_p.title": "η(B) — rendimiento vs. lectura del vatímetro",
   },

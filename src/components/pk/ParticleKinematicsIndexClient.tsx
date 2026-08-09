@@ -32,7 +32,7 @@ export function ParticleKinematicsIndexClient() {
               className="flex flex-col gap-1 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
             >
               <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                PK {ex.pk}
+                {t("pk.label")} {ex.pk}
               </span>
               <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                 {t(ex.titleKey)}

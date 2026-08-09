@@ -49,10 +49,10 @@ export function useHoistAnimationLoop(
 
     function currentLabels() {
       return {
-        pElec: translateRef.current("hoist.canvas.p_elec"),
-        pMech: translateRef.current("hoist.canvas.p_mech"),
-        motor: translateRef.current("hoist.canvas.motor_short"),
-        wattmeter: translateRef.current("hoist.canvas.wattmeter_short"),
+        pElec: "Pₑ",
+        pMech: "Pₘ",
+        motor: "A",
+        wattmeter: "B",
         notPossible: translateRef.current("hoist.canvas.warn.not_possible"),
       };
     }
