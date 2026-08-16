@@ -21,6 +21,7 @@ export const common = {
     "nav.fireman_ladder": "Ladder",
     "nav.cam_follower": "Cam",
     "nav.banked_curve": "Banking",
+    "nav.parabolic_spring": "Parabola",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
@@ -41,6 +42,8 @@ export const common = {
       "A rod riding on a smooth contoured cam — the profile z = A·sin θ is differentiated through the chain rule and Newton’s second law read backwards gives the maximum and minimum force the cam exerts on the roller",
     "home.summary.banked_curve":
       "A car rounding a banked curve — the friction the road must supply sets a maximum and a minimum speed, and neither of them depends on the mass of the car",
+    "home.summary.parabolic_spring":
+      "A block sliding on a smooth parabola against a horizontal spring — the smooth path splits the problem in two, giving the rate of increase of speed from the tangential axis and the normal force from the curvature",
     "home.summary.vibrations_quiz":
       "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
     "home.summary.vehicle_suspension":
@@ -86,6 +89,7 @@ export const common = {
     "nav.fireman_ladder": "Escalera",
     "nav.cam_follower": "Leva",
     "nav.banked_curve": "Peralte",
+    "nav.parabolic_spring": "Parábola",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
@@ -106,6 +110,8 @@ export const common = {
       "Una barra apoyada sobre una leva contorneada lisa — el perfil z = A·sen θ se deriva con la regla de la cadena y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo",
     "home.summary.banked_curve":
       "Un auto tomando una curva peraltada — la fricción que la pista debe aportar fija una rapidez máxima y una mínima, y ninguna de las dos depende de la masa del auto",
+    "home.summary.parabolic_spring":
+      "Un bloque deslizando sobre una parábola lisa contra un resorte horizontal — la trayectoria lisa parte el problema en dos: el eje tangencial da la tasa de incremento de la rapidez y la curvatura da la fuerza normal",
     "home.summary.vibrations_quiz":
       "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
     "home.summary.vehicle_suspension":

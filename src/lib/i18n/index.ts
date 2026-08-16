@@ -6,6 +6,7 @@ import { quickReturn } from "./quick-return";
 import { firemanLadder } from "./fireman-ladder";
 import { camFollower } from "./cam-follower";
 import { bankedCurve } from "./banked-curve";
+import { parabolicSpring } from "./parabolic-spring";
 import { vibrationsQuiz } from "./vibrations-quiz";
 import { vehicleSuspension } from "./vehicle-suspension";
 import { kepler } from "./kepler";
@@ -48,6 +49,7 @@ export const translations = {
     ...firemanLadder.en,
     ...camFollower.en,
     ...bankedCurve.en,
+    ...parabolicSpring.en,
     ...vibrationsQuiz.en,
     ...vehicleSuspension.en,
     ...kepler.en,
@@ -85,6 +87,7 @@ export const translations = {
     ...firemanLadder.es,
     ...camFollower.es,
     ...bankedCurve.es,
+    ...parabolicSpring.es,
     ...vibrationsQuiz.es,
     ...vehicleSuspension.es,
     ...kepler.es,

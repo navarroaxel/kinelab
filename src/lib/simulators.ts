@@ -65,6 +65,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "parabolic-spring",
+    href: "/parabolic-spring",
+    navKey: "nav.parabolic_spring",
+    titleKey: "ps.title",
+    summaryKey: "home.summary.parabolic_spring",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",
