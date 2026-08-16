@@ -8,6 +8,7 @@ export * from "./fireman-ladder";
 export * from "./cam-follower";
 export * from "./banked-curve";
 export * from "./parabolic-spring";
+export * from "./oscillating-bar";
 export * from "./drag-descent";
 export * from "./motion-graphs";
 export * from "./stopping-distance";

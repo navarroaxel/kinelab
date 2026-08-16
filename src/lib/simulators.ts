@@ -73,6 +73,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "oscillating-bar",
+    href: "/oscillating-bar",
+    navKey: "nav.oscillating_bar",
+    titleKey: "ob.title",
+    summaryKey: "home.summary.oscillating_bar",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",
