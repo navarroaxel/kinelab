@@ -5,6 +5,7 @@ import { pinSlot } from "./pin-slot";
 import { quickReturn } from "./quick-return";
 import { firemanLadder } from "./fireman-ladder";
 import { camFollower } from "./cam-follower";
+import { bankedCurve } from "./banked-curve";
 import { vibrationsQuiz } from "./vibrations-quiz";
 import { vehicleSuspension } from "./vehicle-suspension";
 import { kepler } from "./kepler";
@@ -46,6 +47,7 @@ export const translations = {
     ...quickReturn.en,
     ...firemanLadder.en,
     ...camFollower.en,
+    ...bankedCurve.en,
     ...vibrationsQuiz.en,
     ...vehicleSuspension.en,
     ...kepler.en,
@@ -82,6 +84,7 @@ export const translations = {
     ...quickReturn.es,
     ...firemanLadder.es,
     ...camFollower.es,
+    ...bankedCurve.es,
     ...vibrationsQuiz.es,
     ...vehicleSuspension.es,
     ...kepler.es,

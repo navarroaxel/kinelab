@@ -57,6 +57,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "banked-curve",
+    href: "/banked-curve",
+    navKey: "nav.banked_curve",
+    titleKey: "bc.title",
+    summaryKey: "home.summary.banked_curve",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",

@@ -20,6 +20,7 @@ export const common = {
     "nav.quick_return": "Quick-Return",
     "nav.fireman_ladder": "Ladder 3D",
     "nav.cam_follower": "Cam 3D",
+    "nav.banked_curve": "Banking 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
@@ -38,6 +39,8 @@ export const common = {
       "A fire-truck ladder elevating, rotating about a vertical axis and extending at once — velocity and acceleration of the tip in an orbitable 3D view, Coriolis and Euler terms included",
     "home.summary.cam_follower":
       "A rod riding on a smooth contoured cam — the profile z = A·sin θ is differentiated through the chain rule and Newton’s second law read backwards gives the maximum and minimum force the cam exerts on the roller",
+    "home.summary.banked_curve":
+      "A car rounding a banked curve — the friction the road must supply sets a maximum and a minimum speed, and neither of them depends on the mass of the car",
     "home.summary.vibrations_quiz":
       "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
     "home.summary.vehicle_suspension":
@@ -82,6 +85,7 @@ export const common = {
     "nav.quick_return": "Retorno Rápido",
     "nav.fireman_ladder": "Escalera 3D",
     "nav.cam_follower": "Leva 3D",
+    "nav.banked_curve": "Peralte 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
@@ -100,6 +104,8 @@ export const common = {
       "Una escalera de bomberos que se eleva, gira en torno a un eje vertical y se extiende a la vez — velocidad y aceleración del extremo en una vista 3D orbitable, con los términos de Coriolis y de Euler",
     "home.summary.cam_follower":
       "Una barra apoyada sobre una leva contorneada lisa — el perfil z = A·sen θ se deriva con la regla de la cadena y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo",
+    "home.summary.banked_curve":
+      "Un auto tomando una curva peraltada — la fricción que la pista debe aportar fija una rapidez máxima y una mínima, y ninguna de las dos depende de la masa del auto",
     "home.summary.vibrations_quiz":
       "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
     "home.summary.vehicle_suspension":

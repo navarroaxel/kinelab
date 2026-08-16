@@ -174,6 +174,38 @@ const BOX_FACES: [number, number, number, number][] = [
   [1, 3, 7, 5], // x = max
 ];
 
+/**
+ * Painter-ordered box with arbitrary orientation: `axes` are the three
+ * (unit) edge directions and `half` the half-extent along each of them.
+ */
+export function drawOrientedBox3D(
+  ctx: CanvasRenderingContext2D,
+  center: Vec3,
+  axes: [Vec3, Vec3, Vec3],
+  half: [number, number, number],
+  view: View3D,
+  fill: string,
+  stroke: string,
+): void {
+  const corners: Vec3[] = [];
+  for (const sz of [-1, 1]) {
+    for (const sy of [-1, 1]) {
+      for (const sx of [-1, 1]) {
+        corners.push(
+          add(
+            center,
+            add(
+              scale(axes[0], sx * half[0]),
+              add(scale(axes[1], sy * half[1]), scale(axes[2], sz * half[2])),
+            ),
+          ),
+        );
+      }
+    }
+  }
+  paintBox(ctx, corners, view, fill, stroke);
+}
+
 /** Painter-ordered axis-aligned box. */
 export function drawBox3D(
   ctx: CanvasRenderingContext2D,
@@ -189,7 +221,16 @@ export function drawBox3D(
       for (const x of [min.x, max.x]) corners.push(vec(x, y, z));
     }
   }
+  paintBox(ctx, corners, view, fill, stroke);
+}
 
+function paintBox(
+  ctx: CanvasRenderingContext2D,
+  corners: Vec3[],
+  view: View3D,
+  fill: string,
+  stroke: string,
+): void {
   const faces = BOX_FACES.map((idx) => ({
     idx,
     d: idx.reduce((sum, i) => sum + depth(corners[i], view.cam), 0) / 4,

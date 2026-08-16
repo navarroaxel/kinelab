@@ -6,6 +6,7 @@ export * from "./quick-return";
 export * from "./geometry3d";
 export * from "./fireman-ladder";
 export * from "./cam-follower";
+export * from "./banked-curve";
 export * from "./drag-descent";
 export * from "./motion-graphs";
 export * from "./stopping-distance";

@@ -11,6 +11,7 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
 | [`/fireman-ladder`](http://localhost:3000/fireman-ladder) | **Fireman's ladder (3D)** | CCR N°14 — a ladder elevating, rotating about a vertical axis and extending at once; velocity and acceleration of the tip in an orbitable axonometric view, Coriolis and Euler terms included |
 | [`/cam-follower`](http://localhost:3000/cam-follower) | **Cam and roller follower (3D)** | Hibbeler 13-91 — a rod riding on a smooth contoured cam z = A·sin θ; the chain rule gives z̈ and Newton's second law, read backwards, gives the maximum and minimum force the cam exerts on the roller |
+| [`/banked-curve`](http://localhost:3000/banked-curve) | **Banked curve with friction (3D)** | Hibbeler 13-53 / 13-54 — the friction the road must supply, μ_req = f/N, sets a maximum and a minimum speed; neither depends on the mass of the car |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 
