@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { withSubscripts } from "@/components/Subscript";
-import { norm } from "@/lib/firemanLadderKinematics";
+import { norm } from "@/lib/vec3";
 import type { FiremanLadderState, Vec3 } from "@/types/simulator";
 
 interface Props {

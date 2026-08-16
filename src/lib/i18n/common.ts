@@ -19,13 +19,15 @@ export const common = {
     "nav.pin_slot": "Pin–Slot",
     "nav.quick_return": "Quick-Return",
     "nav.fireman_ladder": "Ladder 3D",
+    "nav.cam_follower": "Cam 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
     "nav.particle_dynamics": "PD",
 
     // Home page (index of all simulators)
-    "home.title": "Kinelab — Interactive Simulators for Mecánica Racional and Mecánica Técnica",
+    "home.title":
+      "Kinelab — Interactive Simulators for Mecánica Racional and Mecánica Técnica",
     "home.subtitle":
       "Interactive simulators that explore different concepts of classical mechanics in applied form.",
     "home.summary.polar":
@@ -34,6 +36,8 @@ export const common = {
       "Crank AB drives an oscillating bar OQ and a tool slider P — cutting and return strokes take unequal time",
     "home.summary.fireman_ladder":
       "A fire-truck ladder elevating, rotating about a vertical axis and extending at once — velocity and acceleration of the tip in an orbitable 3D view, Coriolis and Euler terms included",
+    "home.summary.cam_follower":
+      "A rod riding on a smooth contoured cam — the profile z = A·sin θ is differentiated through the chain rule and Newton’s second law read backwards gives the maximum and minimum force the cam exerts on the roller",
     "home.summary.vibrations_quiz":
       "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
     "home.summary.vehicle_suspension":
@@ -77,13 +81,15 @@ export const common = {
     "nav.pin_slot": "Pasador",
     "nav.quick_return": "Retorno Rápido",
     "nav.fireman_ladder": "Escalera 3D",
+    "nav.cam_follower": "Leva 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
     "nav.particle_dynamics": "DPM",
 
     // Home page (índice de todos los simuladores)
-    "home.title": "Kinelab — Simuladores interactivos de Mecánica Racional y Mecánica Técnica",
+    "home.title":
+      "Kinelab — Simuladores interactivos de Mecánica Racional y Mecánica Técnica",
     "home.subtitle":
       "Simuladores interactivos que exploran distintos conceptos de la mecánica clásica de forma aplicada.",
     "home.summary.polar":
@@ -92,6 +98,8 @@ export const common = {
       "La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos",
     "home.summary.fireman_ladder":
       "Una escalera de bomberos que se eleva, gira en torno a un eje vertical y se extiende a la vez — velocidad y aceleración del extremo en una vista 3D orbitable, con los términos de Coriolis y de Euler",
+    "home.summary.cam_follower":
+      "Una barra apoyada sobre una leva contorneada lisa — el perfil z = A·sen θ se deriva con la regla de la cadena y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo",
     "home.summary.vibrations_quiz":
       "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
     "home.summary.vehicle_suspension":

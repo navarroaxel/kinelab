@@ -49,6 +49,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "cam-follower",
+    href: "/cam-follower",
+    navKey: "nav.cam_follower",
+    titleKey: "cf.title",
+    summaryKey: "home.summary.cam_follower",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",

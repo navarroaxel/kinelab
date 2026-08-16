@@ -10,6 +10,7 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 | [`/polar`](http://localhost:3000/polar) | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Mecanismo de retorno rápido** | La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos |
 | [`/fireman-ladder`](http://localhost:3000/fireman-ladder) | **Escalera de bomberos (3D)** | CCR N°14 — una escalera que se eleva, gira en torno a un eje vertical y se extiende a la vez; velocidad y aceleración del extremo en una vista axonométrica orbitable, con los términos de Coriolis y de Euler |
+| [`/cam-follower`](http://localhost:3000/cam-follower) | **Leva y seguidor de rodillo (3D)** | Hibbeler 13-91 — una barra apoyada sobre una leva contorneada lisa z = A·sen θ; la regla de la cadena da z̈ y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Dinámica del Punto Material (TP N°2)** | Catorce ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 

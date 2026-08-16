@@ -3,17 +3,7 @@
 // CCR N°14 — Cinemática del Cuerpo Rígido (UTN FRBA)
 // ---------------------------------------------------------------------------
 
-export interface Vec3 {
-  x: number;
-  y: number;
-  z: number;
-}
-
-/** Orbit camera for the axonometric view — azimuth and elevation, in radians. */
-export interface FiremanLadderCamera {
-  az: number;
-  el: number;
-}
+import type { Vec3 } from "./geometry3d";
 
 export interface FiremanLadderParams {
   omega1: number; // rad/s, turret rotation about the vertical axis ẑ, default 0.8

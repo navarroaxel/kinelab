@@ -5,12 +5,10 @@ import {
   S_MIN,
   computeFiremanLadderInstant,
   computeFiremanLadderState,
-  cross,
-  dot,
   ladderUnit,
-  norm,
   sweep,
 } from "./firemanLadderKinematics";
+import { cross, dot, norm } from "./vec3";
 import type { FiremanLadderParams } from "@/types/simulator";
 
 const DEG = Math.PI / 180;

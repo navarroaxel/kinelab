@@ -1,3 +1,4 @@
+import { add, cross, norm, scale, vec } from "@/lib/vec3";
 import type {
   FiremanLadderParams,
   FiremanLadderState,
@@ -29,27 +30,6 @@ export const THETA2_MAX_DEG = 80;
 /** Extension stops for the animated sweep (m). */
 export const S_MIN = 4;
 export const S_MAX = 20;
-
-// --- minimal 3-vector helpers ----------------------------------------------
-
-export const vec = (x: number, y: number, z: number): Vec3 => ({ x, y, z });
-
-export const add = (a: Vec3, b: Vec3): Vec3 =>
-  vec(a.x + b.x, a.y + b.y, a.z + b.z);
-
-export const sub = (a: Vec3, b: Vec3): Vec3 =>
-  vec(a.x - b.x, a.y - b.y, a.z - b.z);
-
-export const scale = (a: Vec3, k: number): Vec3 =>
-  vec(a.x * k, a.y * k, a.z * k);
-
-export const dot = (a: Vec3, b: Vec3): number =>
-  a.x * b.x + a.y * b.y + a.z * b.z;
-
-export const cross = (a: Vec3, b: Vec3): Vec3 =>
-  vec(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
-
-export const norm = (a: Vec3): number => Math.sqrt(dot(a, a));
 
 // --- kinematics -------------------------------------------------------------
 

@@ -11,21 +11,27 @@ import {
   drawArrow,
   drawDot,
   drawLabel,
-  drawLabelWithSubscript,
   COLORS,
   COLORS_DARK,
   type ColorPalette,
 } from "@/lib/drawing";
 import {
+  arcPoints,
+  drawBox3D,
+  drawVector3D,
+  fillPolygon3D,
+  horizontalCircle,
+  project,
+  strokePolyline3D,
+  type View3D,
+} from "@/lib/projection3d";
+import { add, rotZ, scale, vec } from "@/lib/vec3";
+import {
   S_MAX,
-  add,
   computeFiremanLadderState,
-  norm,
-  scale,
-  vec,
 } from "@/lib/firemanLadderKinematics";
 import type {
-  FiremanLadderCamera,
+  Camera3D,
   FiremanLadderParams,
   FiremanLadderState,
   FiremanLadderVisibility,
@@ -71,17 +77,12 @@ interface Labels {
   theta2: string;
 }
 
-interface Screen {
-  x: number;
-  y: number;
-}
-
 export function useFiremanLadderAnimationLoop(
   canvasRef: RefObject<HTMLCanvasElement | null>,
   params: FiremanLadderParams,
   visibility: FiremanLadderVisibility,
   phaseRef: MutableRefObject<number>,
-  cameraRef: MutableRefObject<FiremanLadderCamera>,
+  cameraRef: MutableRefObject<Camera3D>,
   paused: boolean,
   resetCount: number,
   onMetrics: (state: FiremanLadderState) => void,
@@ -186,166 +187,6 @@ export function useFiremanLadderAnimationLoop(
 }
 
 // ---------------------------------------------------------------------------
-// 3D helpers — local to this simulator, the way worldToScreenQR & friends are
-// local to theirs.
-// ---------------------------------------------------------------------------
-
-/** Rotates a body-frame vector by the turret heading θ₁ about the vertical. */
-function rotZ(v: Vec3, angle: number): Vec3 {
-  const c = Math.cos(angle);
-  const s = Math.sin(angle);
-  return vec(v.x * c - v.y * s, v.x * s + v.y * c, v.z);
-}
-
-interface View {
-  cam: FiremanLadderCamera;
-  k: number; // px per metre
-  cx: number;
-  cy: number;
-}
-
-/** Orthographic (axonometric) projection — no foreshortening by distance. */
-function project(p: Vec3, view: View): Screen {
-  const ca = Math.cos(view.cam.az);
-  const sa = Math.sin(view.cam.az);
-  const ce = Math.cos(view.cam.el);
-  const se = Math.sin(view.cam.el);
-  const right = -p.x * sa + p.y * ca;
-  const inward = p.x * ca + p.y * sa;
-  const up = p.z * ce - inward * se;
-  return { x: view.cx + view.k * right, y: view.cy - view.k * up };
-}
-
-/** Camera-space depth, for painter-ordering the truck's faces. */
-function depth(p: Vec3, cam: FiremanLadderCamera): number {
-  const inward = p.x * Math.cos(cam.az) + p.y * Math.sin(cam.az);
-  return inward * Math.cos(cam.el) + p.z * Math.sin(cam.el);
-}
-
-/** Samples a circular arc lying in the plane spanned by u1 and u2. */
-function arcPoints(
-  center: Vec3,
-  u1: Vec3,
-  u2: Vec3,
-  radius: number,
-  from: number,
-  to: number,
-  steps = 24,
-): Vec3[] {
-  const points: Vec3[] = [];
-  for (let i = 0; i <= steps; i++) {
-    const angle = from + ((to - from) * i) / steps;
-    points.push(
-      add(
-        center,
-        add(
-          scale(u1, radius * Math.cos(angle)),
-          scale(u2, radius * Math.sin(angle)),
-        ),
-      ),
-    );
-  }
-  return points;
-}
-
-function strokePolyline(
-  ctx: CanvasRenderingContext2D,
-  points: Vec3[],
-  view: View,
-  color: string,
-  width: number,
-  dash: number[] = [],
-): void {
-  if (points.length < 2) return;
-  ctx.save();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = width;
-  ctx.setLineDash(dash);
-  ctx.beginPath();
-  points.forEach((p, i) => {
-    const s = project(p, view);
-    if (i === 0) ctx.moveTo(s.x, s.y);
-    else ctx.lineTo(s.x, s.y);
-  });
-  ctx.stroke();
-  ctx.restore();
-}
-
-/** Draws a 3D vector anchored at `origin`, scaled into scene metres. */
-function drawVector(
-  ctx: CanvasRenderingContext2D,
-  origin: Vec3,
-  v: Vec3,
-  factor: number,
-  view: View,
-  color: string,
-  label: string,
-): void {
-  if (norm(v) < 1e-6) return;
-  const tip = add(origin, scale(v, factor));
-  const a = project(origin, view);
-  const b = project(tip, view);
-  drawArrow(ctx, a.x, a.y, b.x, b.y, color, 2.2, 9);
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  const len = Math.hypot(dx, dy) || 1;
-  drawLabelWithSubscript(
-    ctx,
-    label,
-    b.x + (dx / len) * 14,
-    b.y + (dy / len) * 12,
-    color,
-  );
-}
-
-const BOX_FACES: [number, number, number, number][] = [
-  [0, 1, 3, 2], // z = min
-  [4, 5, 7, 6], // z = max
-  [0, 1, 5, 4], // y = min
-  [2, 3, 7, 6], // y = max
-  [0, 2, 6, 4], // x = min
-  [1, 3, 7, 5], // x = max
-];
-
-/** Painter-ordered axis-aligned box. */
-function drawBox(
-  ctx: CanvasRenderingContext2D,
-  min: Vec3,
-  max: Vec3,
-  view: View,
-  fill: string,
-  stroke: string,
-): void {
-  const corners: Vec3[] = [];
-  for (const z of [min.z, max.z])
-    for (const y of [min.y, max.y]) for (const x of [min.x, max.x])
-      corners.push(vec(x, y, z));
-  // corners index = x + 2y + 4z, matching BOX_FACES above.
-
-  const faces = BOX_FACES.map((idx) => ({
-    idx,
-    d: idx.reduce((sum, i) => sum + depth(corners[i], view.cam), 0) / 4,
-  })).sort((a, b) => b.d - a.d);
-
-  ctx.save();
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = stroke;
-  for (const face of faces) {
-    ctx.fillStyle = fill;
-    ctx.beginPath();
-    face.idx.forEach((i, n) => {
-      const s = project(corners[i], view);
-      if (n === 0) ctx.moveTo(s.x, s.y);
-      else ctx.lineTo(s.x, s.y);
-    });
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-  }
-  ctx.restore();
-}
-
-// ---------------------------------------------------------------------------
 // Render
 // ---------------------------------------------------------------------------
 
@@ -356,7 +197,7 @@ function render(
   bWorld: Vec3,
   trace: Vec3[],
   visibility: FiremanLadderVisibility,
-  cam: FiremanLadderCamera,
+  cam: Camera3D,
   colors: ColorPalette,
   labels: Labels,
 ): void {
@@ -366,7 +207,7 @@ function render(
 
   ctx.clearRect(0, 0, W, H);
 
-  const view: View = {
+  const view: View3D = {
     cam,
     // Sized so that a fully extended, fully elevated ladder plus its vector
     // arrows still fit; the default configuration then fills the frame.
@@ -381,14 +222,14 @@ function render(
   // --- ground plane -------------------------------------------------------
   if (visibility.showGrid) {
     for (let i = -GRID_HALF; i <= GRID_HALF; i += GRID_STEP) {
-      strokePolyline(
+      strokePolyline3D(
         ctx,
         [vec(i, -GRID_HALF, GROUND_Z), vec(i, GRID_HALF, GROUND_Z)],
         view,
         colors.grid,
         1,
       );
-      strokePolyline(
+      strokePolyline3D(
         ctx,
         [vec(-GRID_HALF, i, GROUND_Z), vec(GRID_HALF, i, GROUND_Z)],
         view,
@@ -398,7 +239,7 @@ function render(
     }
     // Ground shadow of B plus its plumb line — the only depth cue an
     // orthographic view can offer for a point floating in mid-air.
-    strokePolyline(
+    strokePolyline3D(
       ctx,
       [bWorld, vec(bWorld.x, bWorld.y, GROUND_Z)],
       view,
@@ -412,29 +253,22 @@ function render(
 
   // --- truck --------------------------------------------------------------
   if (visibility.showTruck) {
-    drawBox(ctx, TRUCK_MIN, TRUCK_MAX, view, "rgba(200,64,52,0.55)", colors.axes);
-    // Turntable: a disc in the horizontal plane, drawn as a projected circle.
-    const disc = arcPoints(
-      vec(0, 0, TURNTABLE_Z),
-      vec(1, 0, 0),
-      vec(0, 1, 0),
-      TURNTABLE_R,
-      0,
-      Math.PI * 2,
-      36,
+    drawBox3D(
+      ctx,
+      TRUCK_MIN,
+      TRUCK_MAX,
+      view,
+      "rgba(200,64,52,0.55)",
+      colors.axes,
     );
-    ctx.save();
-    ctx.fillStyle = "rgba(128,135,128,0.45)";
-    ctx.beginPath();
-    disc.forEach((p, i) => {
-      const s = project(p, view);
-      if (i === 0) ctx.moveTo(s.x, s.y);
-      else ctx.lineTo(s.x, s.y);
-    });
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-    strokePolyline(ctx, disc, view, colors.axes, 1.2);
+    fillPolygon3D(
+      ctx,
+      horizontalCircle(TURNTABLE_Z, TURNTABLE_R, 36),
+      view,
+      "rgba(128,135,128,0.45)",
+      colors.axes,
+      1.2,
+    );
   }
 
   // --- world axes and rotation arcs ---------------------------------------
@@ -460,7 +294,7 @@ function render(
       0,
       Math.PI * 1.5,
     );
-    strokePolyline(ctx, spin1, view, colors.pole, 1.6);
+    strokePolyline3D(ctx, spin1, view, colors.pole, 1.6);
     const spin1Tip = project(spin1[spin1.length - 1], view);
     drawLabel(ctx, labels.omega1, spin1Tip.x + 12, spin1Tip.y, colors.pole);
 
@@ -475,7 +309,7 @@ function render(
       -Math.PI * 0.35,
       Math.PI * 0.9,
     );
-    strokePolyline(ctx, spin2, view, colors.pole, 1.6);
+    strokePolyline3D(ctx, spin2, view, colors.pole, 1.6);
     const spin2Tip = project(spin2[spin2.length - 1], view);
     drawLabel(ctx, labels.omega2, spin2Tip.x + 12, spin2Tip.y, colors.pole);
 
@@ -488,7 +322,7 @@ function render(
       0,
       state.theta2,
     );
-    strokePolyline(ctx, theta2Arc, view, colors.axes, 1.4);
+    strokePolyline3D(ctx, theta2Arc, view, colors.axes, 1.4);
     const mid = project(
       arcPoints(vec(0, 0, 0), yHat, vec(0, 0, 1), 3.7, 0, state.theta2, 2)[1],
       view,
@@ -500,7 +334,7 @@ function render(
   if (visibility.showTrace && trace.length > 1) {
     // colors.trajectory is tuned for a flat 2D trail on a light background and
     // all but disappears here, so the 3D trail borrows the axis colour.
-    strokePolyline(ctx, trace, view, colors.axes, 1.6);
+    strokePolyline3D(ctx, trace, view, colors.axes, 1.6);
   }
 
   // --- the ladder ---------------------------------------------------------
@@ -508,7 +342,7 @@ function render(
   const railOffset = scale(toWorld(vec(1, 0, 0)), RAIL_HALF_WIDTH);
   const bodyEnd = scale(uWorld, state.s);
   // The fixed base section first, so the telescoping rails ride on top of it.
-  strokePolyline(
+  strokePolyline3D(
     ctx,
     [vec(0, 0, 0), scale(uWorld, Math.min(state.s, S_MAX * 0.45))],
     view,
@@ -517,17 +351,11 @@ function render(
   );
   for (const sign of [1, -1]) {
     const off = scale(railOffset, sign);
-    strokePolyline(
-      ctx,
-      [off, add(bodyEnd, off)],
-      view,
-      colors.rVector,
-      3,
-    );
+    strokePolyline3D(ctx, [off, add(bodyEnd, off)], view, colors.rVector, 3);
   }
   for (let d = RUNG_SPACING; d < state.s; d += RUNG_SPACING) {
     const at = scale(uWorld, d);
-    strokePolyline(
+    strokePolyline3D(
       ctx,
       [add(at, railOffset), add(at, scale(railOffset, -1))],
       view,
@@ -545,7 +373,7 @@ function render(
 
   // --- vectors at B -------------------------------------------------------
   if (visibility.showVelocityParts) {
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.vTransport),
@@ -554,7 +382,7 @@ function render(
       colors.transverseVelocity,
       labels.vTransport,
     );
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.vRel),
@@ -565,7 +393,7 @@ function render(
     );
   }
   if (visibility.showVelocity) {
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.v),
@@ -576,7 +404,7 @@ function render(
     );
   }
   if (visibility.showAccelParts) {
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.aEuler),
@@ -585,7 +413,7 @@ function render(
       colors.euler,
       labels.aEuler,
     );
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.aCentripetal),
@@ -594,7 +422,7 @@ function render(
       colors.normalAccel,
       labels.aCentripetal,
     );
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.aCoriolis),
@@ -605,7 +433,7 @@ function render(
     );
   }
   if (visibility.showAccel) {
-    drawVector(
+    drawVector3D(
       ctx,
       bWorld,
       toWorld(state.a),

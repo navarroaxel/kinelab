@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import type {
-  FiremanLadderCamera,
+  Camera3D,
   FiremanLadderParams,
   FiremanLadderState,
   FiremanLadderVisibility,
@@ -32,7 +32,7 @@ const INITIAL_VISIBILITY: FiremanLadderVisibility = {
   showTruck: true,
 };
 
-const INITIAL_CAMERA: FiremanLadderCamera = { az: 0.62, el: 0.42 };
+const INITIAL_CAMERA: Camera3D = { az: 0.62, el: 0.42 };
 
 const EL_MIN = 0.09; // ~5°
 const EL_MAX = 1.48; // ~85°
@@ -47,7 +47,7 @@ export function useFiremanLadderSimulator() {
   // High-frequency state in refs — neither the clock nor the camera should
   // ever trigger a React re-render.
   const phaseRef = useRef(0);
-  const cameraRef = useRef<FiremanLadderCamera>({ ...INITIAL_CAMERA });
+  const cameraRef = useRef<Camera3D>({ ...INITIAL_CAMERA });
 
   const [metrics, setMetrics] = useState<FiremanLadderState>(() =>
     computeFiremanLadderState(INITIAL_PARAMS, 0),

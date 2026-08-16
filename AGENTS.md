@@ -20,7 +20,8 @@ Core simulators:
 |-------------------|---------|
 | `/polar`          | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
-| `/fireman-ladder` | Fireman's ladder (CCR N°14) — the only 3D scene in the app: a ladder elevating at ω₂ while the turret spins at ω₁ and the ladder extends at ṡ. Rotating-reference-frame decomposition of v and a at the tip (transport + relative; Euler + centripetal + Coriolis), drawn with a hand-rolled orthographic projection the user can orbit by dragging. `s₀`/`θ₂₀` default to the statement's own s = 10 m, θ₂ = 30°, so t = 0 *is* the instant the exercise asks about; from there both sweep between stops so the 3D terms never go stale. No ODE — every quantity is a cross product |
+| `/fireman-ladder` | Fireman's ladder (CCR N°14) — the first of the two 3D scenes: a ladder elevating at ω₂ while the turret spins at ω₁ and the ladder extends at ṡ. Rotating-reference-frame decomposition of v and a at the tip (transport + relative; Euler + centripetal + Coriolis), drawn with a hand-rolled orthographic projection the user can orbit by dragging. `s₀`/`θ₂₀` default to the statement's own s = 10 m, θ₂ = 30°, so t = 0 *is* the instant the exercise asks about; from there both sweep between stops so the 3D terms never go stale. No ODE — every quantity is a cross product |
+| `/cam-follower`   | Cam and roller follower (Hibbeler 13-91) — the second 3D scene: a rod held vertical by a bearing rides on a smooth cam whose profile is z = A·sin θ. Newton's second law read backwards — the motion is given, the force is the unknown — after the chain rule turns the θ-parameterised profile into z̈ = −A·θ̇²·sin θ. Also surfaces the true surface-normal force N = N_z/cos φ, which coincides with the textbook's vertical component only at the extremes, and flags roller lift-off once A·θ̇² > g. No ODE |
 
 Plus two grouped sections:
 
@@ -112,6 +113,7 @@ src/
 - **World coordinates**: Y-axis points up, geometric centre fixed at (0, 0). `worldToScreen` in `lib/drawing.ts` handles the Y flip and places the centre at `(W×0.45, H×0.50)`.
 - All drawing helpers in `lib/drawing.ts` work in screen coordinates.
 - The polar simulator uses `renderFrame` (in `lib/drawing.ts`) as a single render entry point. The ring simulator inlines its render in `useRingAnimationLoop` and reuses the lower-level helpers — there is intentionally no shared `renderRing` export.
+- The two 3D simulators (`/fireman-ladder`, `/cam-follower`) share `src/lib/vec3.ts` (vector algebra) and `src/lib/projection3d.ts` (a hand-rolled orthographic projection plus `strokePolyline3D`/`fillPolygon3D`/`drawBox3D`/`drawVector3D`), with `Vec3`/`Camera3D` in `src/types/geometry3d.ts`. There is no perspective divide and no z-buffer — `depth()` exists only so solid shapes can painter-order their own faces. Everything else in the app is planar and uses the per-simulator `worldToScreen*` transforms in `drawing.ts`.
 - Physics is fully decoupled from rendering — `lib/kinematics.ts` and `lib/ringKinematics.ts` import no React or DOM.
 - Frame-rate state is held in **refs** (`phiRef`, `omegaRef`, `thetaRef`, `thetaDotRef`, `traceRef`) so that the animation loop never triggers a re-render.
 - Metrics are throttled to ~15 fps (`66ms` gate on `lastMetricUpdate`) to avoid saturating React's reconciler.

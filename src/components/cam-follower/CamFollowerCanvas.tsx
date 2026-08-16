@@ -1,22 +1,22 @@
 "use client";
 
 import { useRef, useEffect, useState, type MutableRefObject } from "react";
-import { useFiremanLadderAnimationLoop } from "@/hooks/useFiremanLadderAnimationLoop";
+import { useCamFollowerAnimationLoop } from "@/hooks/useCamFollowerAnimationLoop";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type {
   Camera3D,
-  FiremanLadderParams,
-  FiremanLadderState,
-  FiremanLadderVisibility,
+  CamFollowerParams,
+  CamFollowerState,
+  CamFollowerVisibility,
 } from "@/types/simulator";
 
 interface Props {
-  params: FiremanLadderParams;
-  visibility: FiremanLadderVisibility;
+  params: CamFollowerParams;
+  visibility: CamFollowerVisibility;
   phaseRef: MutableRefObject<number>;
   cameraRef: MutableRefObject<Camera3D>;
   onOrbit: (dAz: number, dEl: number) => void;
-  onMetrics: (state: FiremanLadderState) => void;
+  onMetrics: (state: CamFollowerState) => void;
   paused: boolean;
   resetCount: number;
 }
@@ -24,7 +24,7 @@ interface Props {
 /** Radians of camera rotation per pixel dragged. */
 const ORBIT_SENSITIVITY = 0.008;
 
-export function FiremanLadderCanvas({
+export function CamFollowerCanvas({
   params,
   visibility,
   phaseRef,
@@ -65,7 +65,7 @@ export function FiremanLadderCanvas({
     return () => ro.disconnect();
   }, []);
 
-  useFiremanLadderAnimationLoop(
+  useCamFollowerAnimationLoop(
     canvasRef,
     params,
     visibility,
@@ -107,7 +107,7 @@ export function FiremanLadderCanvas({
       className={`rounded-xl border border-gray-200 dark:border-gray-700 ${
         dragging ? "cursor-grabbing" : "cursor-grab"
       }`}
-      aria-label={t("fl.page.canvas_aria")}
+      aria-label={t("cf.page.canvas_aria")}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
