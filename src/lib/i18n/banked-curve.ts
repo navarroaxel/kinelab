@@ -134,13 +134,13 @@ export const bankedCurve = {
     "bc.metrics.mu_required": "μ_req  (necesario / disponible)",
     "bc.metrics.net": "m·v²/ρ  (resultante)",
     "bc.metrics.answer_heading": "Respuesta",
-    "bc.metrics.min": "v_mín  (13-54)",
-    "bc.metrics.max": "v_máx  (13-53)",
+    "bc.metrics.min": "v_min  (13-54)",
+    "bc.metrics.max": "v_max  (13-53)",
     "bc.metrics.unbounded": "sin límite superior",
     "bc.metrics.slip_up":
-      "Por encima de v_máx: la pista necesitaría más fricción que μs para impedir que el auto trepe el peralte.",
+      "Por encima de v_max: la pista necesitaría más fricción que μs para impedir que el auto trepe el peralte.",
     "bc.metrics.slip_down":
-      "Por debajo de v_mín: la pista necesitaría más fricción que μs para impedir que el auto se deslice cuesta abajo.",
+      "Por debajo de v_min: la pista necesitaría más fricción que μs para impedir que el auto se deslice cuesta abajo.",
 
     "bc.legend.heading": "Leyenda",
     "bc.legend.normal": "N — fuerza normal, perpendicular a la pista",
@@ -161,17 +161,17 @@ export const bankedCurve = {
     "bc.equations.theory.limits":
       "Hay una rapidez donde el peralte hace todo el trabajo solo — v_ideal = √(ρ·g·tan θ), el punto donde f = 0 y la flecha de fricción desaparece. Por encima el auto tiende a trepar y la fricción tiene que retenerlo; por debajo tiende a caer hacia adentro y la fricción tiene que sostenerlo. Poniendo f = ±μN y despejando v salen los dos límites, y la respuesta a las dos partes del ejercicio son justamente esas dos raíces.",
     "bc.equations.theory.degenerate":
-      "Dos casos límite salen directo de esas fórmulas. Cuando μ ≥ tan θ ya no hay mínimo: la fricción sola sostiene al auto detenido sobre el peralte y v_mín cae a cero. Y cuando μ ≥ cot θ el denominador de v_máx se anula — ninguna rapidez es demasiado, porque cuanto más rápido vas más fuerte te aprieta la pista. Ambos se alcanzan con los sliders.",
+      "Dos casos límite salen directo de esas fórmulas. Cuando μ ≥ tan θ ya no hay mínimo: la fricción sola sostiene al auto detenido sobre el peralte y v_min cae a cero. Y cuando μ ≥ cot θ el denominador de v_max se anula — ninguna rapidez es demasiado, porque cuanto más rápido vas más fuerte te aprieta la pista. Ambos se alcanzan con los sliders.",
     "bc.equations.section.formulas": "Fórmulas",
     "bc.equations.section.reference": "Referencia (valores del enunciado)",
     "bc.equations.note.reference":
       "tan 20° = 0,3640,   ρ·g = 100 × 9,81 = 981 m²/s².\n" +
-      "v_máx = √( 981 × (0,3640 + 0,2) / (1 − 0,2 × 0,3640) ) = √596,7 = 24,4 m/s  (88 km/h).\n" +
-      "v_mín = √( 981 × (0,3640 − 0,2) / (1 + 0,2 × 0,3640) ) = √149,9 = 12,2 m/s  (44 km/h).\n" +
+      "v_max = √( 981 × (0,3640 + 0,2) / (1 − 0,2 × 0,3640) ) = √596,7 = 24,4 m/s  (88 km/h).\n" +
+      "v_min = √( 981 × (0,3640 − 0,2) / (1 + 0,2 × 0,3640) ) = √149,9 = 12,2 m/s  (44 km/h).\n" +
       "v_ideal = √( 981 × 0,3640 ) = 18,9 m/s  (68 km/h), donde no hace falta nada de fricción.",
     "bc.equations.section.plot": "Fricción que la pista tiene que aportar",
     "bc.equations.plot.note":
-      "μ_req(v) = f/N, el coeficiente que la pista debe entregar a cada rapidez — la misma curva para cualquier masa. La banda segura es donde se mantiene entre ±μs, y los dos cruces son exactamente v_mín y v_máx. La línea vertical llena es la rapidez a la que estás yendo.",
+      "μ_req(v) = f/N, el coeficiente que la pista debe entregar a cada rapidez — la misma curva para cualquier masa. La banda segura es donde se mantiene entre ±μs, y los dos cruces son exactamente v_min y v_max. La línea vertical llena es la rapidez a la que estás yendo.",
     "bc.plot.mu.title":
       "μ_req(v) — coeficiente de fricción que la pista debe aportar, en función de la rapidez",
   },
