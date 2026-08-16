@@ -23,6 +23,7 @@ export const common = {
     "nav.banked_curve": "Banking",
     "nav.parabolic_spring": "Parabola",
     "nav.oscillating_bar": "Linkage",
+    "nav.forced_vibration": "Forced",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
@@ -47,6 +48,8 @@ export const common = {
       "A block sliding on a smooth parabola against a horizontal spring — the smooth path splits the problem in two, giving the rate of increase of speed from the tangential axis and the normal force from the curvature",
     "home.summary.oscillating_bar":
       "A bar turning at a constant rate drives a second one through a sliding pin — the driven bar oscillates rather than rotating, and the Coriolis term is the one everyone forgets",
+    "home.summary.forced_vibration":
+      "A mass on a spring and a dashpot driven by a harmonic force — steady-state amplitude with and without damping, and the free response the transient leaves behind",
     "home.summary.vibrations_quiz":
       "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
     "home.summary.vehicle_suspension":
@@ -94,6 +97,7 @@ export const common = {
     "nav.banked_curve": "Peralte",
     "nav.parabolic_spring": "Parábola",
     "nav.oscillating_bar": "Barras",
+    "nav.forced_vibration": "Forzada",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
@@ -118,6 +122,8 @@ export const common = {
       "Un bloque deslizando sobre una parábola lisa contra un resorte horizontal — la trayectoria lisa parte el problema en dos: el eje tangencial da la tasa de incremento de la rapidez y la curvatura da la fuerza normal",
     "home.summary.oscillating_bar":
       "Una barra que gira a velocidad constante impulsa a otra mediante un pasador deslizante — la barra impulsada oscila en vez de girar, y el término de Coriolis es el que todos olvidan",
+    "home.summary.forced_vibration":
+      "Una masa sobre resorte y amortiguador excitada por una fuerza armónica — amplitud estacionaria con y sin amortiguamiento, y la respuesta libre que deja el transitorio",
     "home.summary.vibrations_quiz":
       "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
     "home.summary.vehicle_suspension":

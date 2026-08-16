@@ -14,6 +14,7 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/banked-curve`](http://localhost:3000/banked-curve) | **Banked curve with friction (3D)** | Hibbeler 13-53 / 13-54 — the friction the road must supply, μ_req = f/N, sets a maximum and a minimum speed; neither depends on the mass of the car |
 | [`/parabolic-spring`](http://localhost:3000/parabolic-spring) | **Block on a parabolic path with a spring** | Hibbeler 13-74 — a smooth path decouples the two equations: the tangential axis gives the rate of increase of speed, the curvature gives the normal force |
 | [`/oscillating-bar`](http://localhost:3000/oscillating-bar) | **Rotating bar driving an oscillating bar** | Bar OA turns at a constant ω and its pin slides along BC — the driven bar oscillates between ±arcsen(b/d) rather than rotating, and the Coriolis term is the one that gets dropped |
+| [`/forced-vibration`](http://localhost:3000/forced-vibration) | **Forced vibration with viscous damping** | Steady-state amplitude of a mass driven by a harmonic force, with and without a damper, plus the free response the transient leaves behind |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 

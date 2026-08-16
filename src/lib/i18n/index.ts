@@ -8,6 +8,7 @@ import { camFollower } from "./cam-follower";
 import { bankedCurve } from "./banked-curve";
 import { parabolicSpring } from "./parabolic-spring";
 import { oscillatingBar } from "./oscillating-bar";
+import { forcedVibration } from "./forced-vibration";
 import { vibrationsQuiz } from "./vibrations-quiz";
 import { vehicleSuspension } from "./vehicle-suspension";
 import { kepler } from "./kepler";
@@ -52,6 +53,7 @@ export const translations = {
     ...bankedCurve.en,
     ...parabolicSpring.en,
     ...oscillatingBar.en,
+    ...forcedVibration.en,
     ...vibrationsQuiz.en,
     ...vehicleSuspension.en,
     ...kepler.en,
@@ -91,6 +93,7 @@ export const translations = {
     ...bankedCurve.es,
     ...parabolicSpring.es,
     ...oscillatingBar.es,
+    ...forcedVibration.es,
     ...vibrationsQuiz.es,
     ...vehicleSuspension.es,
     ...kepler.es,

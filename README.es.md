@@ -14,6 +14,7 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 | [`/banked-curve`](http://localhost:3000/banked-curve) | **Curva peraltada con fricción (3D)** | Hibbeler 13-53 / 13-54 — la fricción que la pista debe aportar, μ_req = f/N, fija una rapidez máxima y una mínima; ninguna depende de la masa del auto |
 | [`/parabolic-spring`](http://localhost:3000/parabolic-spring) | **Bloque en trayectoria parabólica con resorte** | Hibbeler 13-74 — una trayectoria lisa desacopla las dos ecuaciones: el eje tangencial da la tasa de incremento de la rapidez y la curvatura da la fuerza normal |
 | [`/oscillating-bar`](http://localhost:3000/oscillating-bar) | **Barra giratoria que impulsa una barra oscilante** | La barra OA gira a ω constante y su pasador desliza sobre BC — la barra impulsada oscila entre ±arcsen(b/d) en vez de girar, y el término de Coriolis es el que se olvida |
+| [`/forced-vibration`](http://localhost:3000/forced-vibration) | **Vibración forzada con amortiguamiento viscoso** | Amplitud estacionaria de una masa excitada por una fuerza armónica, con y sin amortiguador, más la respuesta libre que deja el transitorio |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Dinámica del Punto Material (TP N°2)** | Catorce ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 

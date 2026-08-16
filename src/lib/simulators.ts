@@ -81,6 +81,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "forced-vibration",
+    href: "/forced-vibration",
+    navKey: "nav.forced_vibration",
+    titleKey: "fv.title",
+    summaryKey: "home.summary.forced_vibration",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",
