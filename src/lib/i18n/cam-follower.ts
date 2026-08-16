@@ -58,7 +58,7 @@ export const camFollower = {
     "cf.equations.heading": "Equations",
     "cf.equations.section.statement": "Statement",
     "cf.equations.statement.text":
-      "13-91 — The 2 kg rod AB rises and falls as its end slides on the smooth contoured surface of the cam, where r = 0.1 m and z = (0.02 sin θ) m. If the cam rotates at a constant angular velocity of 5 rad/s, determine the maximum and minimum force the cam exerts on the roller at A. Neglect friction at the bearing C and the mass of the roller.",
+      "Hibbeler, Engineering Mechanics: Dynamics — problem 13-91. The 2 kg rod AB rises and falls as its end slides on the smooth contoured surface of the cam, where r = 0.1 m and z = (0.02 sin θ) m. If the cam rotates at a constant angular velocity of 5 rad/s, determine the maximum and minimum force the cam exerts on the roller at A. Neglect friction at the bearing C and the mass of the roller.",
     "cf.equations.section.theory": "Theory",
     "cf.equations.theory.kinematics":
       "The bearing C keeps the rod vertical, so the whole problem is one coordinate: the height z of the contact point. The cam hands you z as a function of its own angle, not of time, so the chain rule does the work — ż = (dz/dθ)·θ̇ and z̈ = (d²z/dθ²)·θ̇² + (dz/dθ)·θ̈. Here θ̇ is constant, so the last term vanishes and z̈ = −A·θ̇²·sin θ.",
@@ -142,7 +142,7 @@ export const camFollower = {
     "cf.equations.heading": "Ecuaciones",
     "cf.equations.section.statement": "Enunciado",
     "cf.equations.statement.text":
-      "13-91 — La barra AB de 2 kg sube y baja a medida que su extremo se desliza sobre la superficie contorneada lisa de la leva, donde r = 0,1 m y z = (0,02 sen θ) m. Si la leva gira a una velocidad angular constante de 5 rad/s, determine la fuerza máxima y mínima que la leva ejerce en el rodillo en A. Ignore la fricción en el cojinete C y la masa del rodillo.",
+      "Hibbeler, Ingeniería Mecánica: Dinámica — problema 13-91. La barra AB de 2 kg sube y baja a medida que su extremo se desliza sobre la superficie contorneada lisa de la leva, donde r = 0,1 m y z = (0,02 sen θ) m. Si la leva gira a una velocidad angular constante de 5 rad/s, determine la fuerza máxima y mínima que la leva ejerce en el rodillo en A. Ignore la fricción en el cojinete C y la masa del rodillo.",
     "cf.equations.section.theory": "Teoría",
     "cf.equations.theory.kinematics":
       "El cojinete C mantiene vertical a la barra, así que todo el problema es una sola coordenada: la altura z del punto de contacto. La leva da z en función de su propio ángulo, no del tiempo, así que el trabajo lo hace la regla de la cadena — ż = (dz/dθ)·θ̇ y z̈ = (d²z/dθ²)·θ̇² + (dz/dθ)·θ̈. Acá θ̇ es constante, el último término se anula y queda z̈ = −A·θ̇²·sen θ.",
