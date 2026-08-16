@@ -41,6 +41,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "fireman-ladder",
+    href: "/fireman-ladder",
+    navKey: "nav.fireman_ladder",
+    titleKey: "fl.title",
+    summaryKey: "home.summary.fireman_ladder",
+    group: "core",
+  },
+  {
     id: "vibrations-quiz",
     href: "/vibrations-quiz",
     navKey: "nav.vibrations_quiz",

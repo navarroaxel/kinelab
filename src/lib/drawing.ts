@@ -29,6 +29,9 @@ export interface ColorPalette {
   ring: string;
   contactLost: string;
   criticalSpeed: string;
+  // Fireman's ladder — the two acceleration terms that only exist in 3D
+  coriolis: string;
+  euler: string;
 }
 
 export const COLORS: ColorPalette = {
@@ -52,6 +55,9 @@ export const COLORS: ColorPalette = {
   ring: "rgba(0,0,0,0.25)",
   contactLost: "rgba(232,89,60,0.15)",
   criticalSpeed: "#F5A623",
+  // Fireman's ladder
+  coriolis: "#0EA5A0", // teal    — 2Ω × v_rel
+  euler: "#C2185B", // magenta — Ω̇ × r
 };
 
 export const COLORS_DARK: ColorPalette = {
@@ -75,6 +81,9 @@ export const COLORS_DARK: ColorPalette = {
   ring: "rgba(255,255,255,0.30)",
   contactLost: "rgba(240,153,123,0.20)",
   criticalSpeed: "#FCD34D",
+  // Fireman's ladder
+  coriolis: "#4FD1C5",
+  euler: "#F472B6",
 };
 
 // ---------------------------------------------------------------------------

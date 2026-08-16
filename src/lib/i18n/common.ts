@@ -18,6 +18,7 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pin–Slot",
     "nav.quick_return": "Quick-Return",
+    "nav.fireman_ladder": "Ladder 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.particle_kinematics": "PK",
@@ -31,6 +32,8 @@ export const common = {
       "Cartesian ↔ polar decomposition of circular motion with a freely movable pole",
     "home.summary.quick_return":
       "Crank AB drives an oscillating bar OQ and a tool slider P — cutting and return strokes take unequal time",
+    "home.summary.fireman_ladder":
+      "A fire-truck ladder elevating, rotating about a vertical axis and extending at once — velocity and acceleration of the tip in an orbitable 3D view, Coriolis and Euler terms included",
     "home.summary.vibrations_quiz":
       "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
     "home.summary.vehicle_suspension":
@@ -73,6 +76,7 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pasador",
     "nav.quick_return": "Retorno Rápido",
+    "nav.fireman_ladder": "Escalera 3D",
     "nav.vibrations_quiz": "Quiz",
     "nav.vehicle_suspension": "Suspensión",
     "nav.particle_kinematics": "CPM",
@@ -86,6 +90,8 @@ export const common = {
       "Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable",
     "home.summary.quick_return":
       "La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos",
+    "home.summary.fireman_ladder":
+      "Una escalera de bomberos que se eleva, gira en torno a un eje vertical y se extiende a la vez — velocidad y aceleración del extremo en una vista 3D orbitable, con los términos de Coriolis y de Euler",
     "home.summary.vibrations_quiz":
       "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
     "home.summary.vehicle_suspension":

@@ -20,6 +20,7 @@ Core simulators:
 |-------------------|---------|
 | `/polar`          | Polar coordinates — Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | `/quick-return`   | Quick-return mechanism — crank AB drives an oscillating bar OQ and a tool slider P |
+| `/fireman-ladder` | Fireman's ladder (CCR N°14) — the only 3D scene in the app: a ladder elevating at ω₂ while the turret spins at ω₁ and the ladder extends at ṡ. Rotating-reference-frame decomposition of v and a at the tip (transport + relative; Euler + centripetal + Coriolis), drawn with a hand-rolled orthographic projection the user can orbit by dragging. `s₀`/`θ₂₀` default to the statement's own s = 10 m, θ₂ = 30°, so t = 0 *is* the instant the exercise asks about; from there both sweep between stops so the 3D terms never go stale. No ODE — every quantity is a cross product |
 
 Plus two grouped sections:
 

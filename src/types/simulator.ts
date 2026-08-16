@@ -3,6 +3,7 @@ export * from "./ring";
 export * from "./pin-slot";
 export * from "./kepler";
 export * from "./quick-return";
+export * from "./fireman-ladder";
 export * from "./drag-descent";
 export * from "./motion-graphs";
 export * from "./stopping-distance";

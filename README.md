@@ -9,6 +9,7 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/`](http://localhost:3000/) | **Home** | Landing page — a card index linking to every simulator below |
 | [`/polar`](http://localhost:3000/polar) | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
+| [`/fireman-ladder`](http://localhost:3000/fireman-ladder) | **Fireman's ladder (3D)** | CCR N°14 — a ladder elevating, rotating about a vertical axis and extending at once; velocity and acceleration of the tip in an orbitable axonometric view, Coriolis and Euler terms included |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 
