@@ -139,30 +139,6 @@ export function useOscillatingBarAnimationLoop(
   }, [params, visibility, paused, resetCount]); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
-/** Hatched ground under a pivot. */
-function drawGround(
-  ctx: CanvasRenderingContext2D,
-  centre: Screen,
-  halfWidth: number,
-  color: string,
-): void {
-  ctx.save();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1.4;
-  ctx.beginPath();
-  ctx.moveTo(centre.x - halfWidth, centre.y);
-  ctx.lineTo(centre.x + halfWidth, centre.y);
-  ctx.stroke();
-  ctx.lineWidth = 1;
-  for (let offset = -halfWidth; offset < halfWidth; offset += 7) {
-    ctx.beginPath();
-    ctx.moveTo(centre.x + offset, centre.y);
-    ctx.lineTo(centre.x + offset - 6, centre.y + 7);
-    ctx.stroke();
-  }
-  ctx.restore();
-}
-
 function render(
   ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
@@ -226,9 +202,6 @@ function render(
     ctx.restore();
   }
 
-  drawGround(ctx, O, 26, colors.axes);
-  drawGround(ctx, B, 26, colors.axes);
-
   // --- bar BC, running from B through A and out to C -----------------------
   const overshoot = (d + b) * 1.12;
   const C = toScreen(d + ux * overshoot, uy * overshoot);
@@ -268,8 +241,8 @@ function render(
   ctx.stroke();
   ctx.restore();
 
-  drawHinge(ctx, O.x, O.y, colors.axes);
-  drawHinge(ctx, B.x, B.y, colors.axes);
+  drawHinge(ctx, O.x, O.y, colors.axes, 1.6);
+  drawHinge(ctx, B.x, B.y, colors.axes, 1.6);
   drawDot(ctx, A.x, A.y, 4, colors.point);
   drawLabel(ctx, "O", O.x - 16, O.y - 6, colors.axes);
   drawLabel(ctx, "B", B.x + 18, B.y - 6, colors.axes);
@@ -282,14 +255,16 @@ function render(
     ctx.strokeStyle = colors.axes;
     ctx.lineWidth = 1.4;
     ctx.beginPath();
-    // From the baseline pointing back toward O, up to the bar.
+    // From the baseline pointing back toward O, up to the bar. barAngle is a
+    // world-space angle; toScreen flips y, so the screen-space bearing of BA
+    // is π + barAngle, not π − barAngle.
     ctx.arc(
       B.x,
       B.y,
       arcRadius,
-      Math.PI - state.barAngle,
+      Math.PI + state.barAngle,
       Math.PI,
-      state.barAngle < 0,
+      state.barAngle > 0,
     );
     ctx.stroke();
     ctx.restore();
@@ -302,18 +277,23 @@ function render(
     );
 
     const omegaRadius = Math.min(0.42 * b * scale, 52);
+    // Trails behind OA's current bearing, so it visibly spins with the crank
+    // instead of sitting fixed on screen.
+    const crankAngle = Math.atan2(A.y - O.y, A.x - O.x);
+    const omegaSweep = Math.PI / 3;
     ctx.save();
     ctx.strokeStyle = colors.rVector;
     ctx.lineWidth = 1.6;
     ctx.beginPath();
-    ctx.arc(O.x, O.y, omegaRadius, -Math.PI / 2.1, -Math.PI / 12);
+    ctx.arc(O.x, O.y, omegaRadius, crankAngle - omegaSweep, crankAngle);
     ctx.stroke();
     ctx.restore();
+    const labelAngle = crankAngle - omegaSweep / 2;
     drawLabel(
       ctx,
       labels.omega,
-      O.x + omegaRadius + 14,
-      O.y - omegaRadius * 0.5,
+      O.x + Math.cos(labelAngle) * (omegaRadius + 14),
+      O.y + Math.sin(labelAngle) * (omegaRadius + 14),
       colors.rVector,
     );
   }

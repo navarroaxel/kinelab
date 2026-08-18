@@ -41,8 +41,7 @@ export function useOscillatingBarSimulator() {
   const [params, setParams] = useState<OscillatingBarParams>(INITIAL_PARAMS);
   const [visibility, setVisibility] =
     useState<OscillatingBarVisibility>(INITIAL_VISIBILITY);
-  // Opens frozen on the configuration the exercise asks about.
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [resetCount, setResetCount] = useState(0);
 
   // The clock is a ref, so turning the crank never triggers a re-render.
@@ -89,7 +88,6 @@ export function useOscillatingBarSimulator() {
   const reset = useCallback(() => {
     setParams(INITIAL_PARAMS);
     phaseRef.current = startingPhase(INITIAL_PARAMS);
-    setPaused(true);
     setResetCount((n) => n + 1);
   }, []);
 
