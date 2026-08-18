@@ -25,6 +25,7 @@ export const common = {
     "nav.oscillating_bar": "Linkage",
     "nav.forced_vibration": "Forced",
     "nav.vibrations_quiz": "Quiz",
+    "nav.mechanics_quiz": "MT Quiz",
     "nav.vehicle_suspension": "Suspension",
     "nav.helicopter_lift": "Heli",
     "nav.jet_climb": "Jet",
@@ -53,7 +54,9 @@ export const common = {
     "home.summary.forced_vibration":
       "A mass on a spring and a dashpot driven by a harmonic force — steady-state amplitude with and without damping, and the free response the transient leaves behind",
     "home.summary.vibrations_quiz":
-      "Six true/false statements on free and undamped vibration, natural frequency, and periodic vs. harmonic motion — interactive",
+      "Six true/false statements focused on mechanical vibrations — free and undamped vibration, natural frequency, periodic vs. harmonic motion — interactive",
+    "home.summary.mechanics_quiz":
+      "36 true/false statements spanning particle kinematics, particle dynamics, and vibrations — polar coordinates, work-energy, impulse-momentum, Kepler, rockets, cams, resonance — interactive",
     "home.summary.vehicle_suspension":
       "A car body on 4 springs and 4 dampers, base-excited by a shaking test platform at its own natural frequency — steady-state amplitude via the displacement transmissibility formula",
     "home.summary.helicopter_lift":
@@ -105,6 +108,7 @@ export const common = {
     "nav.oscillating_bar": "Barras",
     "nav.forced_vibration": "Forzada",
     "nav.vibrations_quiz": "Quiz",
+    "nav.mechanics_quiz": "Quiz MT",
     "nav.vehicle_suspension": "Suspensión",
     "nav.helicopter_lift": "Helicóptero",
     "nav.jet_climb": "Avión",
@@ -133,7 +137,9 @@ export const common = {
     "home.summary.forced_vibration":
       "Una masa sobre resorte y amortiguador excitada por una fuerza armónica — amplitud estacionaria con y sin amortiguamiento, y la respuesta libre que deja el transitorio",
     "home.summary.vibrations_quiz":
-      "Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural y movimiento periódico vs. armónico — interactivo",
+      "Seis afirmaciones de verdadero/falso centradas en vibraciones mecánicas — vibración libre y no amortiguada, frecuencia natural, movimiento periódico vs. armónico — interactivo",
+    "home.summary.mechanics_quiz":
+      "36 afirmaciones de verdadero/falso sobre cinemática y dinámica del punto material, y vibraciones — coordenadas polares, trabajo-energía, impulso-cantidad de movimiento, Kepler, cohetes, levas, resonancia — interactivo",
     "home.summary.vehicle_suspension":
       "La carrocería de un auto sobre 4 resortes y 4 amortiguadores, excitada en su base por una plataforma de ensayo que vibra a su propia frecuencia natural — amplitud en régimen permanente mediante la fórmula de transmisibilidad",
     "home.summary.helicopter_lift":
