@@ -63,9 +63,9 @@ export const oscillatingBar = {
       "Bar OA rotates at a constant angular velocity ω counterclockwise. The pin A can slide freely along bar BC. Determine the angular velocity and angular acceleration of bar BC when θ = 20°. Take ω = 3 rad/s and b = 1 m, with OB = 2b.",
     "ob.equations.section.theory": "Theory",
     "ob.equations.theory.loop":
-      "Put O at the origin and B at (d, 0). The pin is at A = b·(cos φ, sen φ), so the geometry closes in one line: tan θ = b·sen φ / (d − b·cos φ). Everything else is differentiation. Because ω is constant, φ̈ = 0, so θ̇ = ω·dθ/dφ and θ̈ = ω²·d²θ/dφ² — no second term to carry, and the two derivatives come out in closed form rather than needing anything numerical.",
+      "Put O at the origin and B at (d, 0). The pin is at A = b·(cos φ, sin φ), so the geometry closes in one line: tan θ = b·sin φ / (d − b·cos φ). Everything else is differentiation. Because ω is constant, φ̈ = 0, so θ̇ = ω·dθ/dφ and θ̈ = ω²·d²θ/dφ² — no second term to carry, and the two derivatives come out in closed form rather than needing anything numerical.",
     "ob.equations.theory.swing":
-      "θ̇ vanishes when cos φ = b/d, and that is the whole character of this mechanism: BC does not go round with OA, it *oscillates* between ±arcsen(b/d) — ±30° for the statement's OB = 2b. Those turning points are exactly where OA comes out perpendicular to AB. Push the pivots together until OB = OA and something else happens: θ̇ collapses to a constant −ω/2 and θ̈ vanishes, so the driven bar turns uniformly at half speed. The slider stops just short of it, since φ = 0 is singular there.",
+      "θ̇ vanishes when cos φ = b/d, and that is the whole character of this mechanism: BC does not go round with OA, it *oscillates* between ±arcsin(b/d) — ±30° for the statement's OB = 2b. Those turning points are exactly where OA comes out perpendicular to AB. Push the pivots together until OB = OA and something else happens: θ̇ collapses to a constant −ω/2 and θ̈ vanishes, so the driven bar turns uniformly at half speed. The slider stops just short of it, since φ = 0 is singular there.",
     "ob.equations.theory.frame":
       "The textbook route is a rotating frame attached to BC. The pin's own motion is easy — v_A is b·ω perpendicular to OA and a_A is b·ω² straight back at O, since ω is constant. Splitting v_A along and across BC gives ṙ and r·θ̇ in one step. The acceleration needs all four terms, a_A = α×r + Ω×(Ω×r) + 2Ω×v_rel + a_rel, and the Coriolis one is the classic omission: the pin is sliding while its frame turns, so 2Ω×v_rel is not zero. Switch the terms on and watch them close on a_A.",
     "ob.equations.theory.sense":
@@ -73,10 +73,10 @@ export const oscillatingBar = {
     "ob.equations.section.formulas": "Formulas",
     "ob.equations.section.reference": "Reference (statement instant)",
     "ob.equations.note.reference":
-      "θ = 20° needs sen(φ + θ) = (d/b)·sen θ = 0.6840, so φ = 43.16° − 20° = 23.16°.\n" +
+      "θ = 20° needs sin(φ + θ) = (d/b)·sin θ = 0.6840, so φ = 43.16° − 20° = 23.16°.\n" +
       "D = 4 + 1 − 4·cos 23.16° = 1.3221,   r = 1.1499 m,   ṙ = 2.052 m/s.\n" +
       "θ̇ = 3 × (2·cos 23.16° − 1) / 1.3221 = 1.903 rad/s  →  ω_BC = 1.90 rad/s, clockwise.\n" +
-      "θ̈ = −9 × 6 · sen 23.16° / 1.3221² = −12.15 rad/s²  →  α_BC = 12.15 rad/s², counterclockwise.",
+      "θ̈ = −9 × 6 · sin 23.16° / 1.3221² = −12.15 rad/s²  →  α_BC = 12.15 rad/s², counterclockwise.",
     "ob.equations.section.plot": "How BC moves over one turn of OA",
     "ob.equations.plot.note":
       "ω_BC in rad/s and α_BC in rad/s², against the crank angle φ. The solid vertical line is where the mechanism is now. ω_BC crosses zero twice a turn — those are the ends of the swing, at ±",

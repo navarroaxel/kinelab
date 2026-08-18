@@ -76,7 +76,7 @@ export const parabolicSpring = {
     "ps.equations.note.reference":
       "At x = 1 m:  y = 1.5 m,  y′ = −1,  y″ = −1,  ρ = 2√2 = 2.828 m.\n" +
       "Spring:  stretch = 1 − 0.5 = 0.5 m,  F_s = 10 × 0.5 = 5 N toward B.\n" +
-      "Tangential:  m·v̇ = W·sen 45° − F_s·cos 45° = (58.86 − 5)/√2 = 38.09 N  →  v̇ = 6.35 m/s².\n" +
+      "Tangential:  m·v̇ = W·sin 45° − F_s·cos 45° = (58.86 − 5)/√2 = 38.09 N  →  v̇ = 6.35 m/s².\n" +
       "Normal:  (W + F_s)/√2 − N = m·v²/ρ  →  45.16 − N = 6 × 16 / 2.828 = 33.94\n" +
       "N = 11.2 N.",
     "ps.equations.section.plot": "Normal force along the descent",
