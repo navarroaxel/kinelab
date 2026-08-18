@@ -10,6 +10,7 @@ import { parabolicSpring } from "./parabolic-spring";
 import { oscillatingBar } from "./oscillating-bar";
 import { forcedVibration } from "./forced-vibration";
 import { vibrationsQuiz } from "./vibrations-quiz";
+import { mechanicsQuiz } from "./mechanics-quiz";
 import { vehicleSuspension } from "./vehicle-suspension";
 import { helicopterLift } from "./helicopter-lift";
 import { jetClimb } from "./jet-climb";
@@ -57,6 +58,7 @@ export const translations = {
     ...oscillatingBar.en,
     ...forcedVibration.en,
     ...vibrationsQuiz.en,
+    ...mechanicsQuiz.en,
     ...vehicleSuspension.en,
     ...helicopterLift.en,
     ...jetClimb.en,
@@ -100,6 +102,7 @@ export const translations = {
     ...oscillatingBar.es,
     ...forcedVibration.es,
     ...vibrationsQuiz.es,
+    ...mechanicsQuiz.es,
     ...vehicleSuspension.es,
     ...helicopterLift.es,
     ...jetClimb.es,

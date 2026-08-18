@@ -97,6 +97,14 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "core",
   },
   {
+    id: "mechanics-quiz",
+    href: "/mechanics-quiz",
+    navKey: "nav.mechanics_quiz",
+    titleKey: "mq.title",
+    summaryKey: "home.summary.mechanics_quiz",
+    group: "core",
+  },
+  {
     id: "vehicle-suspension",
     href: "/vehicle-suspension",
     navKey: "nav.vehicle_suspension",
