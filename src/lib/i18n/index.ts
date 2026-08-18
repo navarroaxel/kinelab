@@ -11,6 +11,8 @@ import { oscillatingBar } from "./oscillating-bar";
 import { forcedVibration } from "./forced-vibration";
 import { vibrationsQuiz } from "./vibrations-quiz";
 import { vehicleSuspension } from "./vehicle-suspension";
+import { helicopterLift } from "./helicopter-lift";
+import { jetClimb } from "./jet-climb";
 import { kepler } from "./kepler";
 import { pkSection } from "./pk/section";
 import { pkExercisesI18n } from "./pk/exercises";
@@ -56,6 +58,8 @@ export const translations = {
     ...forcedVibration.en,
     ...vibrationsQuiz.en,
     ...vehicleSuspension.en,
+    ...helicopterLift.en,
+    ...jetClimb.en,
     ...kepler.en,
     ...pkSection.en,
     ...pkExercisesI18n.en,
@@ -71,6 +75,7 @@ export const translations = {
     ...pdExercisesI18n.en,
     ...atwood.en,
     ...escalator.en,
+    ...helicopterLift.en,
     ...hoist.en,
     ...vehiclePower.en,
     ...railCarCoupling.en,
@@ -96,6 +101,8 @@ export const translations = {
     ...forcedVibration.es,
     ...vibrationsQuiz.es,
     ...vehicleSuspension.es,
+    ...helicopterLift.es,
+    ...jetClimb.es,
     ...kepler.es,
     ...pkSection.es,
     ...pkExercisesI18n.es,
@@ -111,6 +118,7 @@ export const translations = {
     ...pdExercisesI18n.es,
     ...atwood.es,
     ...escalator.es,
+    ...helicopterLift.es,
     ...hoist.es,
     ...vehiclePower.es,
     ...railCarCoupling.es,

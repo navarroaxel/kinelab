@@ -104,6 +104,22 @@ export const SIMULATORS: SimulatorEntry[] = [
     summaryKey: "home.summary.vehicle_suspension",
     group: "core",
   },
+  {
+    id: "helicopter-lift",
+    href: "/helicopter-lift",
+    navKey: "nav.helicopter_lift",
+    titleKey: "hl.title",
+    summaryKey: "home.summary.helicopter_lift",
+    group: "core",
+  },
+  {
+    id: "jet-climb",
+    href: "/jet-climb",
+    navKey: "nav.jet_climb",
+    titleKey: "jc.title",
+    summaryKey: "home.summary.jet_climb",
+    group: "core",
+  },
   // Particle Kinematics section — TP N°1, Cinemática del Punto Material (UTN FRBA)
   {
     id: "drag-descent",

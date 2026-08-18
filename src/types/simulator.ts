@@ -30,5 +30,7 @@ export * from "./vehicle-power";
 export * from "./hoist";
 export * from "./escalator";
 export * from "./rail-car-coupling";
+export * from "./helicopter-lift";
+export * from "./jet-climb";
 export * from "./vibrations-quiz";
 export * from "./vehicle-suspension";
