@@ -38,6 +38,36 @@ export const vibrationsQuiz = {
       "The time required to complete one cycle of motion is called the vibration frequency.",
     "vq.j.f":
       "False. That describes the period of vibration (T), not the frequency. Frequency f = 1/T is the number of cycles per unit time (ω = 2π/T is the angular frequency).",
+
+    "vq.q.g":
+      "In an underdamped mechanical system, the angular frequency of the motion is √(k/m).",
+    "vq.j.g":
+      "False. √(k/m) is the undamped natural frequency ωₙ. An underdamped system oscillates at the damped frequency ω_d = ωₙ·√(1 − ζ²), which is always lower; it only tends to √(k/m) as ζ → 0.",
+
+    "vq.q.h":
+      "The critically damped response is obtained as the combination of two exponential functions with real, distinct and negative exponents.",
+    "vq.j.h":
+      "False. That is the overdamped case (ζ > 1), with two distinct real roots. At critical damping (ζ = 1) the characteristic equation has a double root s = −ωₙ, so the response is x(t) = (A + B·t)·e^(−ωₙt) — an exponential multiplied by a linear term, not two distinct exponentials.",
+
+    "vq.q.i":
+      "In simple harmonic oscillatory motion, the mechanical energy is constant.",
+    "vq.j.i":
+      "True. Harmonic motion is the undamped case: with no dissipation, kinetic and potential energy trade back and forth while their sum E = ½·k·A² stays constant, which is why the amplitude never decays.",
+
+    "vq.q.j":
+      "The period of oscillation of a physical pendulum resembles that of an ideal pendulum the farther the centre of mass is from the axis of rotation.",
+    "vq.j.j":
+      "True. For a physical pendulum T = 2π·√((k_G² + d²)/(g·d)), where d is the distance from the axis to the centre of mass and k_G the radius of gyration about it. As d grows, k_G² becomes negligible against d² and T → 2π·√(d/g), the ideal (point-mass) pendulum.",
+
+    "vq.q.k":
+      "For a base-excited mechanical system, transmissibility to the main mass can be reduced by increasing the damping when ω_f/ωₙ > √2.",
+    "vq.j.k":
+      "False. r = √2 is the crossover point: all transmissibility curves pass through TR = 1 there. Below it damping helps, but above it more damping raises TR — in the isolation region (r > √2) increasing damping worsens transmissibility.",
+
+    "vq.q.l":
+      "In a self-excited mechanical system, the eccentricity of the rotating mass directly affects the amplitude of the forced vibration.",
+    "vq.j.l":
+      "True. Rotating unbalance produces F₀ = m_r·e·ω², so the excitation — and with it the steady-state amplitude X = (m_r·e/m)·r²/√((1 − r²)² + (2ζr)²) — is directly proportional to the eccentricity e.",
   },
   es: {
     "vq.title": "Vibraciones Mecánicas — Quiz",
@@ -78,5 +108,35 @@ export const vibrationsQuiz = {
       "El tiempo requerido para completar un ciclo de movimiento se llama frecuencia de vibración.",
     "vq.j.f":
       "Falso. Eso describe el período de vibración (T), no la frecuencia. La frecuencia f = 1/T es el número de ciclos por unidad de tiempo (ω = 2π/T es la frecuencia angular).",
+
+    "vq.q.g":
+      "En un sistema mecánico subamortiguado, la pulsación del movimiento se obtiene como √(k/m).",
+    "vq.j.g":
+      "Falso. √(k/m) es la pulsación natural no amortiguada ωₙ. Un sistema subamortiguado oscila con la pulsación amortiguada ω_d = ωₙ·√(1 − ζ²), siempre menor; solo tiende a √(k/m) cuando ζ → 0.",
+
+    "vq.q.h":
+      "La respuesta crítica se obtiene como la combinación de dos funciones exponenciales con exponentes reales, distintos y negativos.",
+    "vq.j.h":
+      "Falso. Ese es el caso sobreamortiguado (ζ > 1), con dos raíces reales distintas. En el amortiguamiento crítico (ζ = 1) la ecuación característica tiene una raíz doble s = −ωₙ, por lo que la respuesta es x(t) = (A + B·t)·e^(−ωₙt) — una exponencial multiplicada por un término lineal, no dos exponenciales distintas.",
+
+    "vq.q.i":
+      "En un movimiento oscilatorio armónico, la energía mecánica es constante.",
+    "vq.j.i":
+      "Verdadero. El movimiento armónico es el caso no amortiguado: sin disipación, la energía cinética y la potencial se intercambian mientras su suma E = ½·k·A² permanece constante, y por eso la amplitud no decae.",
+
+    "vq.q.j":
+      "El período de oscilación de un péndulo físico se asemeja más al de un péndulo ideal cuanto más lejos esté el centro de masas respecto al eje de rotación.",
+    "vq.j.j":
+      "Verdadero. Para un péndulo físico T = 2π·√((k_G² + d²)/(g·d)), donde d es la distancia del eje al centro de masas y k_G el radio de giro respecto de éste. Al crecer d, k_G² se vuelve despreciable frente a d² y T → 2π·√(d/g), el péndulo ideal (masa puntual).",
+
+    "vq.q.k":
+      "Sea un sistema mecánico excitado por base, se puede reducir la transmisibilidad a la masa principal aumentando el amortiguamiento cuando la relación ω_f/ωₙ > √2.",
+    "vq.j.k":
+      "Falso. r = √2 es el punto de cruce: todas las curvas de transmisibilidad pasan por TR = 1 allí. Por debajo el amortiguamiento ayuda, pero por encima más amortiguamiento aumenta TR — en la zona de aislamiento (r > √2) aumentar el amortiguamiento empeora la transmisibilidad.",
+
+    "vq.q.l":
+      "En un sistema mecánico autoexcitado, la excentricidad de la masa rotante afecta directamente a la amplitud de la vibración forzada.",
+    "vq.j.l":
+      "Verdadero. El desbalance rotante genera F₀ = m_r·e·ω², de modo que la excitación — y con ella la amplitud de régimen X = (m_r·e/m)·r²/√((1 − r²)² + (2ζr)²) — es directamente proporcional a la excentricidad e.",
   },
 };

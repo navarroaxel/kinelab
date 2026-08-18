@@ -8,7 +8,7 @@ import {
 import { translations } from "./i18n";
 
 describe("VIBRATIONS_QUIZ_ITEMS", () => {
-  it("has exactly the six lettered statements a–f", () => {
+  it("has exactly the twelve lettered statements a–l", () => {
     expect(VIBRATIONS_QUIZ_ITEMS.map((item) => item.id)).toEqual([
       "a",
       "b",
@@ -16,6 +16,12 @@ describe("VIBRATIONS_QUIZ_ITEMS", () => {
       "d",
       "e",
       "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
     ]);
   });
 
@@ -36,6 +42,12 @@ describe("VIBRATIONS_QUIZ_ITEMS", () => {
       d: false,
       e: true,
       f: false,
+      g: false,
+      h: false,
+      i: true,
+      j: true,
+      k: false,
+      l: true,
     };
     for (const item of VIBRATIONS_QUIZ_ITEMS) {
       expect(item.correctAnswer).toBe(expected[item.id]);
@@ -70,12 +82,12 @@ describe("scoreVibrationsQuiz", () => {
     expect(scoreVibrationsQuiz(initialVibrationsQuizAnswers())).toBe(0);
   });
 
-  it("scores 6/6 when every answer matches the key", () => {
+  it("scores full marks when every answer matches the key", () => {
     const answers = initialVibrationsQuizAnswers();
     for (const item of VIBRATIONS_QUIZ_ITEMS) {
       answers[item.id] = item.correctAnswer;
     }
-    expect(scoreVibrationsQuiz(answers)).toBe(6);
+    expect(scoreVibrationsQuiz(answers)).toBe(VIBRATIONS_QUIZ_ITEMS.length);
   });
 
   it("only credits answers that match the correct answer", () => {
