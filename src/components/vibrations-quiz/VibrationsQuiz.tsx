@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useVibrationsQuiz } from "@/hooks/useVibrationsQuiz";
+import { withSubscripts } from "@/components/Subscript";
 
 export function VibrationsQuiz() {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ export function VibrationsQuiz() {
             >
               <span className="text-sm text-gray-900 dark:text-gray-100">
                 <span className="font-semibold">{item.id}. </span>
-                {t(item.statementKey)}
+                {withSubscripts(t(item.statementKey))}
               </span>
 
               <div className="flex gap-2">
@@ -74,7 +75,7 @@ export function VibrationsQuiz() {
                   <span className="font-medium">
                     {isCorrect ? t("vq.correct") : t("vq.incorrect")}:
                   </span>{" "}
-                  {t(item.justificationKey)}
+                  {withSubscripts(t(item.justificationKey))}
                 </span>
               )}
             </li>

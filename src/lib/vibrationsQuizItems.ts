@@ -40,6 +40,42 @@ export const VIBRATIONS_QUIZ_ITEMS: VibrationsQuizItem[] = [
     correctAnswer: false,
     justificationKey: "vq.j.f",
   },
+  {
+    id: "g",
+    statementKey: "vq.q.g",
+    correctAnswer: false,
+    justificationKey: "vq.j.g",
+  },
+  {
+    id: "h",
+    statementKey: "vq.q.h",
+    correctAnswer: false,
+    justificationKey: "vq.j.h",
+  },
+  {
+    id: "i",
+    statementKey: "vq.q.i",
+    correctAnswer: true,
+    justificationKey: "vq.j.i",
+  },
+  {
+    id: "j",
+    statementKey: "vq.q.j",
+    correctAnswer: true,
+    justificationKey: "vq.j.j",
+  },
+  {
+    id: "k",
+    statementKey: "vq.q.k",
+    correctAnswer: false,
+    justificationKey: "vq.j.k",
+  },
+  {
+    id: "l",
+    statementKey: "vq.q.l",
+    correctAnswer: true,
+    justificationKey: "vq.j.l",
+  },
 ];
 
 export function initialVibrationsQuizAnswers(): VibrationsQuizAnswers {
