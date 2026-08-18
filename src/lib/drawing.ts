@@ -658,8 +658,9 @@ export function drawHinge(
   x: number,
   y: number,
   color: string,
+  scale = 1,
 ): void {
-  const r = 6;
+  const r = 6 * scale;
   ctx.save();
   ctx.fillStyle = color;
   ctx.strokeStyle = color;
@@ -670,7 +671,7 @@ export function drawHinge(
   ctx.fill();
 
   // Small ground triangle below
-  const h = 8;
+  const h = 8 * scale;
   ctx.beginPath();
   ctx.moveTo(x, y + r);
   ctx.lineTo(x - h, y + r + h);
@@ -680,10 +681,11 @@ export function drawHinge(
 
   // Hatching lines under triangle
   ctx.lineWidth = 1;
-  for (let i = -h; i <= h; i += 4) {
+  const hatch = 4 * scale;
+  for (let i = -h; i <= h; i += hatch) {
     ctx.beginPath();
-    ctx.moveTo(x + i - 3, y + r + h);
-    ctx.lineTo(x + i, y + r + h + 4);
+    ctx.moveTo(x + i - 3 * scale, y + r + h);
+    ctx.lineTo(x + i, y + r + h + 4 * scale);
     ctx.stroke();
   }
   ctx.restore();
