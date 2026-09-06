@@ -8,9 +8,9 @@ import { VehicleSuspensionLegend } from "@/components/vehicle-suspension/Vehicle
 import { VehicleSuspensionEquations } from "@/components/vehicle-suspension/VehicleSuspensionEquations";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-function VehicleSuspensionContent() {
+export default function VehicleSuspensionPage() {
   const { t } = useLanguage();
   const {
     params,
@@ -56,13 +56,5 @@ function VehicleSuspensionContent() {
       </aside>
       <ProjectCredits />
     </main>
-  );
-}
-
-export default function VehicleSuspensionPage() {
-  return (
-    <LanguageProvider>
-      <VehicleSuspensionContent />
-    </LanguageProvider>
   );
 }

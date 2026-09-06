@@ -21,6 +21,12 @@ const PD_SECTION_CARD = {
   summaryKey: "pd.section.subtitle",
 } as const;
 
+const MV_SECTION_CARD = {
+  href: "/mechanical-vibrations",
+  titleKey: "home.card.tp3.title",
+  summaryKey: "mv.section.subtitle",
+} as const;
+
 const KEPLER_HOME_CARD = findByHref("/particle-dynamics/kepler")!;
 
 function HomeIndexContent() {
@@ -41,7 +47,7 @@ function HomeIndexContent() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             href={PK_SECTION_CARD.href}
             className="flex flex-col gap-1.5 rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
@@ -69,6 +75,21 @@ function HomeIndexContent() {
             </span>
             <span className="text-sm text-gray-600 dark:text-gray-400">
               {withSubscripts(t(PD_SECTION_CARD.summaryKey))}
+            </span>
+          </Link>
+
+          <Link
+            href={MV_SECTION_CARD.href}
+            className="flex flex-col gap-1.5 rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
+          >
+            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+              TP N°3
+            </span>
+            <span className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              {t(MV_SECTION_CARD.titleKey)}
+            </span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              {withSubscripts(t(MV_SECTION_CARD.summaryKey))}
             </span>
           </Link>
         </div>

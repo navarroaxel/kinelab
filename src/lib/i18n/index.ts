@@ -39,6 +39,8 @@ import { elevatorCounterweight } from "./pd/elevator-counterweight";
 import { springStop } from "./pd/spring-stop";
 import { pulleyFriction } from "./pd/pulley-friction";
 import { railCarCoupling } from "./pd/rail-car-coupling";
+import { mvSection } from "./mv/section";
+import { mvExercisesI18n } from "./mv/exercises";
 
 export type Language = "en" | "es";
 
@@ -88,6 +90,8 @@ export const translations = {
     ...elevatorCounterweight.en,
     ...springStop.en,
     ...pulleyFriction.en,
+    ...mvSection.en,
+    ...mvExercisesI18n.en,
   },
   es: {
     ...common.es,
@@ -132,6 +136,8 @@ export const translations = {
     ...elevatorCounterweight.es,
     ...springStop.es,
     ...pulleyFriction.es,
+    ...mvSection.es,
+    ...mvExercisesI18n.es,
   },
 } as const;
 
