@@ -4,7 +4,7 @@ import { MechanicalVibrationsIndexClient } from "@/components/mv/MechanicalVibra
 export const metadata: Metadata = {
   title: "Mechanical Vibrations — TP N°3 | Kinelab",
   description:
-    "Seven exercises from Vibraciones Mecánicas (Mecánica Técnica, UTN FRBA): rotating unbalance, base-excited suspension, vibration isolation, moving supports, pressure gauge design, and the release of a hanging mass, undamped and overdamped.",
+    "Vibraciones Mecánicas (Mecánica Técnica, UTN FRBA): rotating unbalance, base-excited suspension, vibration isolation, moving supports, pressure gauge design, and the release of a hanging mass, undamped and overdamped.",
 };
 
 export default function MechanicalVibrationsIndexPage() {
