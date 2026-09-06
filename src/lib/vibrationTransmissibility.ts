@@ -47,16 +47,16 @@ export function transmissibility(r: number, zeta: number): number {
 /**
  * The peak of `transmissibility` and the r at which it occurs, for markers.
  * Found by setting d(T²)/d(r²) = 0, which reduces to the quadratic
- * 2ζ²u² + u − 1 = 0 in u = r²; the positive root gives u_peak.
+ * 2ζ²u² + u − 1 = 0 in u = r²; the positive root, rationalised to avoid
+ * cancellation as ζ → 0 (where the naive (−1+√(1+8ζ²))/(4ζ²) subtracts two
+ * nearly-equal terms), is u_peak = 2/(1+√(1+8ζ²)) — which also folds the
+ * ζ = 0 case in cleanly, giving u_peak = 1.
  */
 export function transmissibilityPeak(zeta: number): {
   r: number;
   value: number;
 } {
-  if (zeta === 0) {
-    return { r: 1, value: Infinity };
-  }
-  const u = (-1 + Math.sqrt(1 + 8 * zeta * zeta)) / (4 * zeta * zeta);
+  const u = 2 / (1 + Math.sqrt(1 + 8 * zeta * zeta));
   const r = Math.sqrt(u);
   return { r, value: transmissibility(r, zeta) };
 }
