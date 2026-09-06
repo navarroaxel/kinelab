@@ -3,6 +3,7 @@ import type {
   ForcedVibrationProperties,
   ForcedVibrationState,
 } from "@/types/simulator";
+import { magnification } from "@/lib/vibrationTransmissibility";
 
 // ---------------------------------------------------------------------------
 // A mass on a spring and a dashpot, driven by a harmonic force:
@@ -95,12 +96,7 @@ export function computeProperties(
 
 /** Magnification factor X/δ_st at an arbitrary frequency ratio. */
 export function magnificationAt(r: number, dampingRatio: number): number {
-  const detuning = 1 - r * r;
-  const dissipation = 2 * dampingRatio * r;
-  const denominator = Math.sqrt(
-    detuning * detuning + dissipation * dissipation,
-  );
-  return denominator === 0 ? Infinity : 1 / denominator;
+  return magnification(r, dampingRatio);
 }
 
 /** The driving force at time t — zero when the force is switched off. */
