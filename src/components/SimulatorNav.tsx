@@ -8,7 +8,7 @@ import { coreSimulators } from "@/lib/simulators";
 const HOME_HREF = "/";
 const PK_SECTION_HREF = "/particle-kinematics";
 const PD_SECTION_HREF = "/particle-dynamics";
-const MV_SECTION_HREF = "/mechanical-vibrations";
+const VIB_SECTION_HREF = "/mechanical-vibrations";
 
 export const SimulatorNav = memo(function SimulatorNav() {
   const pathname = usePathname();
@@ -18,13 +18,13 @@ export const SimulatorNav = memo(function SimulatorNav() {
   const items = coreSimulators().map((s) => ({ href: s.href, key: s.navKey }));
   const pkActive = pathname.startsWith(PK_SECTION_HREF);
   const pdActive = pathname.startsWith(PD_SECTION_HREF);
-  const mvActive = pathname.startsWith(MV_SECTION_HREF);
+  const vibActive = pathname.startsWith(VIB_SECTION_HREF);
 
   const allItems = [
     { href: HOME_HREF, key: "nav.home" as const },
     { href: PK_SECTION_HREF, key: "nav.particle_kinematics" as const },
     { href: PD_SECTION_HREF, key: "nav.particle_dynamics" as const },
-    { href: MV_SECTION_HREF, key: "nav.mechanical_vibrations" as const },
+    { href: VIB_SECTION_HREF, key: "nav.mechanical_vibrations" as const },
     ...items,
   ];
 
@@ -32,8 +32,8 @@ export const SimulatorNav = memo(function SimulatorNav() {
     ? PK_SECTION_HREF
     : pdActive
       ? PD_SECTION_HREF
-      : mvActive
-        ? MV_SECTION_HREF
+      : vibActive
+        ? VIB_SECTION_HREF
         : (allItems.find((item) => item.href === pathname)?.href ?? HOME_HREF);
 
   return (

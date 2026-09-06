@@ -6,7 +6,7 @@ import {
   SIMULATORS,
   coreSimulators,
   findByHref,
-  mvExercises,
+  vibExercises,
   pdExercises,
   pkExercises,
 } from "./simulators";
@@ -57,15 +57,15 @@ describe("SIMULATORS registry", () => {
       } else if (s.group === "particle-dynamics") {
         expect(typeof s.pd).toBe("number");
         expect(s.pk).toBeUndefined();
-        expect(s.mv).toBeUndefined();
+        expect(s.vib).toBeUndefined();
       } else if (s.group === "mechanical-vibrations") {
-        expect(typeof s.mv).toBe("number");
+        expect(typeof s.vib).toBe("number");
         expect(s.pk).toBeUndefined();
         expect(s.pd).toBeUndefined();
       } else {
         expect(s.pk).toBeUndefined();
         expect(s.pd).toBeUndefined();
-        expect(s.mv).toBeUndefined();
+        expect(s.vib).toBeUndefined();
       }
     }
   });
@@ -87,7 +87,7 @@ describe("group selectors", () => {
       coreSimulators().length +
         pkExercises().length +
         pdExercises().length +
-        mvExercises().length,
+        vibExercises().length,
     ).toBe(SIMULATORS.length);
   });
 
@@ -100,7 +100,7 @@ describe("group selectors", () => {
       true,
     );
     expect(
-      mvExercises().every((s) => s.group === "mechanical-vibrations"),
+      vibExercises().every((s) => s.group === "mechanical-vibrations"),
     ).toBe(true);
   });
 
@@ -111,8 +111,8 @@ describe("group selectors", () => {
     expect(pdExercises().map((s) => s.pd)).toEqual(
       Array.from({ length: pdExercises().length }, (_, i) => i + 1),
     );
-    expect(mvExercises().map((s) => s.mv)).toEqual(
-      Array.from({ length: mvExercises().length }, (_, i) => i + 1),
+    expect(vibExercises().map((s) => s.vib)).toEqual(
+      Array.from({ length: vibExercises().length }, (_, i) => i + 1),
     );
   });
 
@@ -120,7 +120,7 @@ describe("group selectors", () => {
     const before = SIMULATORS.map((s) => s.id);
     pkExercises();
     pdExercises();
-    mvExercises();
+    vibExercises();
     expect(SIMULATORS.map((s) => s.id)).toEqual(before);
   });
 });
