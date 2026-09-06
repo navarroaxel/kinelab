@@ -6,6 +6,7 @@ import {
   SIMULATORS,
   coreSimulators,
   findByHref,
+  mvExercises,
   pdExercises,
   pkExercises,
 } from "./simulators";
@@ -26,7 +27,9 @@ describe("SIMULATORS registry", () => {
       expect(s.href.startsWith("/")).toBe(true);
       if (s.disabled) {
         // Stubs park on their section index until the page exists.
-        expect(s.href).toBe("/particle-dynamics");
+        expect(["/particle-dynamics", "/mechanical-vibrations"]).toContain(
+          s.href,
+        );
       } else if (s.group !== "core") {
         expect(s.href.startsWith(`/${s.group}/`)).toBe(true);
       }
@@ -54,16 +57,24 @@ describe("SIMULATORS registry", () => {
       } else if (s.group === "particle-dynamics") {
         expect(typeof s.pd).toBe("number");
         expect(s.pk).toBeUndefined();
+        expect(s.mv).toBeUndefined();
+      } else if (s.group === "mechanical-vibrations") {
+        expect(typeof s.mv).toBe("number");
+        expect(s.pk).toBeUndefined();
+        expect(s.pd).toBeUndefined();
       } else {
         expect(s.pk).toBeUndefined();
         expect(s.pd).toBeUndefined();
+        expect(s.mv).toBeUndefined();
       }
     }
   });
 
-  it("only marks particle-dynamics entries as disabled", () => {
+  it("only marks particle-dynamics and mechanical-vibrations entries as disabled", () => {
     for (const s of SIMULATORS.filter((s) => s.disabled)) {
-      expect(s.group).toBe("particle-dynamics");
+      expect(["particle-dynamics", "mechanical-vibrations"]).toContain(
+        s.group,
+      );
     }
     expect(coreSimulators().some((s) => s.disabled)).toBe(false);
     expect(pkExercises().some((s) => s.disabled)).toBe(false);
@@ -73,7 +84,10 @@ describe("SIMULATORS registry", () => {
 describe("group selectors", () => {
   it("partition the registry", () => {
     expect(
-      coreSimulators().length + pkExercises().length + pdExercises().length,
+      coreSimulators().length +
+        pkExercises().length +
+        pdExercises().length +
+        mvExercises().length,
     ).toBe(SIMULATORS.length);
   });
 
@@ -85,6 +99,9 @@ describe("group selectors", () => {
     expect(pdExercises().every((s) => s.group === "particle-dynamics")).toBe(
       true,
     );
+    expect(
+      mvExercises().every((s) => s.group === "mechanical-vibrations"),
+    ).toBe(true);
   });
 
   it("orders exercises by their contiguous 1..n numbering", () => {
@@ -94,12 +111,16 @@ describe("group selectors", () => {
     expect(pdExercises().map((s) => s.pd)).toEqual(
       Array.from({ length: pdExercises().length }, (_, i) => i + 1),
     );
+    expect(mvExercises().map((s) => s.mv)).toEqual(
+      Array.from({ length: mvExercises().length }, (_, i) => i + 1),
+    );
   });
 
   it("does not mutate SIMULATORS' order when sorting", () => {
     const before = SIMULATORS.map((s) => s.id);
     pkExercises();
     pdExercises();
+    mvExercises();
     expect(SIMULATORS.map((s) => s.id)).toEqual(before);
   });
 });
@@ -108,6 +129,9 @@ describe("findByHref", () => {
   it("finds core and section routes", () => {
     expect(findByHref("/polar")?.id).toBe("polar");
     expect(findByHref("/particle-dynamics/ring")?.id).toBe("ring");
+    expect(findByHref("/mechanical-vibrations/vehicle-suspension")?.id).toBe(
+      "vehicle-suspension",
+    );
   });
 
   it("returns undefined for unknown routes", () => {

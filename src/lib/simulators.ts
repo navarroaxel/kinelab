@@ -7,7 +7,8 @@ import type { TranslationKey } from "@/lib/i18n";
 export type SimulatorGroup =
   | "core"
   | "particle-kinematics"
-  | "particle-dynamics";
+  | "particle-dynamics"
+  | "mechanical-vibrations";
 
 export interface SimulatorEntry {
   id: string; // "pin-slot"
@@ -18,6 +19,7 @@ export interface SimulatorEntry {
   group: SimulatorGroup;
   pk?: number; // exercise number, drives ordering inside the particle-kinematics section
   pd?: number; // exercise number, drives ordering inside the particle-dynamics section
+  mv?: number; // exercise number, drives ordering inside the mechanical-vibrations section
   preset?: string; // e.g. "pk4" — appended as ?preset=
   disabled?: boolean; // exercise not implemented yet — shown as a non-clickable stub card
 }
@@ -102,14 +104,6 @@ export const SIMULATORS: SimulatorEntry[] = [
     navKey: "nav.mechanics_quiz",
     titleKey: "mq.title",
     summaryKey: "home.summary.mechanics_quiz",
-    group: "core",
-  },
-  {
-    id: "vehicle-suspension",
-    href: "/vehicle-suspension",
-    navKey: "nav.vehicle_suspension",
-    titleKey: "vs.title",
-    summaryKey: "home.summary.vehicle_suspension",
     group: "core",
   },
   {
@@ -348,6 +342,77 @@ export const SIMULATORS: SimulatorEntry[] = [
     group: "particle-dynamics",
     pd: 14,
   },
+
+  // Mechanical Vibrations section — TP N°3, Vibraciones Mecánicas (UTN FRBA)
+  {
+    id: "rotating-unbalance",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv1.title",
+    titleKey: "mv.exercises.mv1.title",
+    summaryKey: "mv.exercises.mv1.summary",
+    group: "mechanical-vibrations",
+    mv: 1,
+    disabled: true,
+  },
+  {
+    id: "vehicle-suspension",
+    href: "/mechanical-vibrations/vehicle-suspension",
+    navKey: "vs.title",
+    titleKey: "vs.title",
+    summaryKey: "mv.exercises.mv2.summary",
+    group: "mechanical-vibrations",
+    mv: 2,
+  },
+  {
+    id: "vibration-isolation",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv3.title",
+    titleKey: "mv.exercises.mv3.title",
+    summaryKey: "mv.exercises.mv3.summary",
+    group: "mechanical-vibrations",
+    mv: 3,
+    disabled: true,
+  },
+  {
+    id: "machine-element-base",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv4.title",
+    titleKey: "mv.exercises.mv4.title",
+    summaryKey: "mv.exercises.mv4.summary",
+    group: "mechanical-vibrations",
+    mv: 4,
+    disabled: true,
+  },
+  {
+    id: "pressure-gauge",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv5.title",
+    titleKey: "mv.exercises.mv5.title",
+    summaryKey: "mv.exercises.mv5.summary",
+    group: "mechanical-vibrations",
+    mv: 5,
+    disabled: true,
+  },
+  {
+    id: "mass-release",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv6.title",
+    titleKey: "mv.exercises.mv6.title",
+    summaryKey: "mv.exercises.mv6.summary",
+    group: "mechanical-vibrations",
+    mv: 6,
+    disabled: true,
+  },
+  {
+    id: "mass-release-damped",
+    href: "/mechanical-vibrations",
+    navKey: "mv.exercises.mv7.title",
+    titleKey: "mv.exercises.mv7.title",
+    summaryKey: "mv.exercises.mv7.summary",
+    group: "mechanical-vibrations",
+    mv: 7,
+    disabled: true,
+  },
 ];
 
 export const coreSimulators = () =>
@@ -361,6 +426,11 @@ export const pkExercises = () =>
 export const pdExercises = () =>
   SIMULATORS.filter((s) => s.group === "particle-dynamics").sort(
     (a, b) => a.pd! - b.pd!,
+  );
+
+export const mvExercises = () =>
+  SIMULATORS.filter((s) => s.group === "mechanical-vibrations").sort(
+    (a, b) => a.mv! - b.mv!,
   );
 
 export function findByHref(href: string): SimulatorEntry | undefined {
