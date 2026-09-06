@@ -2,6 +2,7 @@ import type {
   VehicleSuspensionDerived,
   VehicleSuspensionParams,
 } from "@/types/simulator";
+import { transmissibility as transmissibilityOf } from "@/lib/vibrationTransmissibility";
 
 export const G = 9.81; // m/s²
 
@@ -59,10 +60,7 @@ export function computeDerived(
 
   const phaseLag = responsePhase - basePhase;
 
-  const transmissibility = Math.sqrt(
-    (1 + (2 * dampingRatio * r) ** 2) /
-      ((1 - r * r) ** 2 + (2 * dampingRatio * r) ** 2),
-  );
+  const transmissibility = transmissibilityOf(r, dampingRatio);
 
   const responseAmplitude = transmissibility * params.excitationAmplitude;
 
