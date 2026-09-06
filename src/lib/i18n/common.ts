@@ -30,7 +30,7 @@ export const common = {
     "nav.jet_climb": "Jet",
     "nav.particle_kinematics": "PK",
     "nav.particle_dynamics": "PD",
-    "nav.mechanical_vibrations": "MV",
+    "nav.mechanical_vibrations": "VIB",
 
     // Home page (index of all simulators)
     "home.title":
@@ -112,7 +112,7 @@ export const common = {
     "nav.jet_climb": "Avión",
     "nav.particle_kinematics": "CPM",
     "nav.particle_dynamics": "DPM",
-    "nav.mechanical_vibrations": "VM",
+    "nav.mechanical_vibrations": "VIB",
 
     // Home page (índice de todos los simuladores)
     "home.title":

@@ -19,7 +19,7 @@ export interface SimulatorEntry {
   group: SimulatorGroup;
   pk?: number; // exercise number, drives ordering inside the particle-kinematics section
   pd?: number; // exercise number, drives ordering inside the particle-dynamics section
-  mv?: number; // exercise number, drives ordering inside the mechanical-vibrations section
+  vib?: number; // exercise number, drives ordering inside the mechanical-vibrations section
   preset?: string; // e.g. "pk4" — appended as ?preset=
   disabled?: boolean; // exercise not implemented yet — shown as a non-clickable stub card
 }
@@ -347,11 +347,11 @@ export const SIMULATORS: SimulatorEntry[] = [
   {
     id: "rotating-unbalance",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv1.title",
-    titleKey: "mv.exercises.mv1.title",
-    summaryKey: "mv.exercises.mv1.summary",
+    navKey: "vib.exercises.vib1.title",
+    titleKey: "vib.exercises.vib1.title",
+    summaryKey: "vib.exercises.vib1.summary",
     group: "mechanical-vibrations",
-    mv: 1,
+    vib: 1,
     disabled: true,
   },
   {
@@ -359,58 +359,58 @@ export const SIMULATORS: SimulatorEntry[] = [
     href: "/mechanical-vibrations/vehicle-suspension",
     navKey: "vs.title",
     titleKey: "vs.title",
-    summaryKey: "mv.exercises.mv2.summary",
+    summaryKey: "vib.exercises.vib2.summary",
     group: "mechanical-vibrations",
-    mv: 2,
+    vib: 2,
   },
   {
     id: "vibration-isolation",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv3.title",
-    titleKey: "mv.exercises.mv3.title",
-    summaryKey: "mv.exercises.mv3.summary",
+    navKey: "vib.exercises.vib3.title",
+    titleKey: "vib.exercises.vib3.title",
+    summaryKey: "vib.exercises.vib3.summary",
     group: "mechanical-vibrations",
-    mv: 3,
+    vib: 3,
     disabled: true,
   },
   {
     id: "machine-element-base",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv4.title",
-    titleKey: "mv.exercises.mv4.title",
-    summaryKey: "mv.exercises.mv4.summary",
+    navKey: "vib.exercises.vib4.title",
+    titleKey: "vib.exercises.vib4.title",
+    summaryKey: "vib.exercises.vib4.summary",
     group: "mechanical-vibrations",
-    mv: 4,
+    vib: 4,
     disabled: true,
   },
   {
     id: "pressure-gauge",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv5.title",
-    titleKey: "mv.exercises.mv5.title",
-    summaryKey: "mv.exercises.mv5.summary",
+    navKey: "vib.exercises.vib5.title",
+    titleKey: "vib.exercises.vib5.title",
+    summaryKey: "vib.exercises.vib5.summary",
     group: "mechanical-vibrations",
-    mv: 5,
+    vib: 5,
     disabled: true,
   },
   {
     id: "mass-release",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv6.title",
-    titleKey: "mv.exercises.mv6.title",
-    summaryKey: "mv.exercises.mv6.summary",
+    navKey: "vib.exercises.vib6.title",
+    titleKey: "vib.exercises.vib6.title",
+    summaryKey: "vib.exercises.vib6.summary",
     group: "mechanical-vibrations",
-    mv: 6,
+    vib: 6,
     disabled: true,
   },
   {
     id: "mass-release-damped",
     href: "/mechanical-vibrations",
-    navKey: "mv.exercises.mv7.title",
-    titleKey: "mv.exercises.mv7.title",
-    summaryKey: "mv.exercises.mv7.summary",
+    navKey: "vib.exercises.vib7.title",
+    titleKey: "vib.exercises.vib7.title",
+    summaryKey: "vib.exercises.vib7.summary",
     group: "mechanical-vibrations",
-    mv: 7,
+    vib: 7,
     disabled: true,
   },
 ];
@@ -428,9 +428,9 @@ export const pdExercises = () =>
     (a, b) => a.pd! - b.pd!,
   );
 
-export const mvExercises = () =>
+export const vibExercises = () =>
   SIMULATORS.filter((s) => s.group === "mechanical-vibrations").sort(
-    (a, b) => a.mv! - b.mv!,
+    (a, b) => a.vib! - b.vib!,
   );
 
 export function findByHref(href: string): SimulatorEntry | undefined {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { findByHref, mvExercises } from "@/lib/simulators";
+import { findByHref, vibExercises } from "@/lib/simulators";
 import { SimulatorHeader } from "@/components/SimulatorHeader";
 import { ProjectCredits } from "@/components/ProjectCredits";
 
@@ -10,7 +10,7 @@ const QUIZ_CARD = findByHref("/vibrations-quiz")!;
 
 export function MechanicalVibrationsIndexClient() {
   const { t } = useLanguage();
-  const exercises = mvExercises();
+  const exercises = vibExercises();
 
   return (
     <main className="mx-auto max-w-7xl p-4">
@@ -19,10 +19,10 @@ export function MechanicalVibrationsIndexClient() {
 
         <header className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            {t("mv.section.index_title")}
+            {t("vib.section.index_title")}
           </h1>
           <p className="max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-            {t("mv.section.subtitle")}
+            {t("vib.section.subtitle")}
           </p>
         </header>
 
@@ -32,11 +32,11 @@ export function MechanicalVibrationsIndexClient() {
               <>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                    {t("mv.label")} {ex.mv}
+                    {t("vib.label")} {ex.vib}
                   </span>
                   {ex.disabled && (
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium tracking-wide text-gray-500 uppercase dark:bg-gray-800 dark:text-gray-400">
-                      {t("mv.card.coming_soon")}
+                      {t("vib.card.coming_soon")}
                     </span>
                   )}
                 </div>
@@ -78,7 +78,7 @@ export function MechanicalVibrationsIndexClient() {
             className="flex flex-col gap-1 rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
           >
             <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-              {t("mv.card.quiz_label")}
+              {t("vib.card.quiz_label")}
             </span>
             <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
               {t(QUIZ_CARD.titleKey)}

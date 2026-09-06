@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { ExerciseNav } from "@/components/mv/ExerciseNav";
+import { ExerciseNav } from "@/components/vib/ExerciseNav";
 
 export default function MechanicalVibrationsLayout({
   children,

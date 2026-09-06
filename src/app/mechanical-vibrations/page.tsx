@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MechanicalVibrationsIndexClient } from "@/components/mv/MechanicalVibrationsIndexClient";
+import { MechanicalVibrationsIndexClient } from "@/components/vib/MechanicalVibrationsIndexClient";
 
 export const metadata: Metadata = {
   title: "Mechanical Vibrations — TP N°3 | Kinelab",
