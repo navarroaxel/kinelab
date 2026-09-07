@@ -391,23 +391,22 @@ export const SIMULATORS: SimulatorEntry[] = [
   },
   {
     id: "mass-release",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/mass-release",
     navKey: "vib.exercises.vib6.title",
     titleKey: "vib.exercises.vib6.title",
     summaryKey: "vib.exercises.vib6.summary",
     group: "mechanical-vibrations",
     vib: 6,
-    disabled: true,
   },
   {
     id: "mass-release-damped",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/mass-release?preset=mv7",
     navKey: "vib.exercises.vib7.title",
     titleKey: "vib.exercises.vib7.title",
     summaryKey: "vib.exercises.vib7.summary",
     group: "mechanical-vibrations",
     vib: 7,
-    disabled: true,
+    preset: "mv7",
   },
 ];
 

@@ -45,6 +45,7 @@ import { rotatingUnbalance } from "./vib/rotating-unbalance";
 import { machineElementBase } from "./vib/machine-element-base";
 import { vibrationIsolation } from "./vib/vibration-isolation";
 import { pressureGauge } from "./vib/pressure-gauge";
+import { massRelease } from "./vib/mass-release";
 
 export type Language = "en" | "es";
 
@@ -100,6 +101,7 @@ export const translations = {
     ...machineElementBase.en,
     ...vibrationIsolation.en,
     ...pressureGauge.en,
+    ...massRelease.en,
   },
   es: {
     ...common.es,
@@ -150,6 +152,7 @@ export const translations = {
     ...machineElementBase.es,
     ...vibrationIsolation.es,
     ...pressureGauge.es,
+    ...massRelease.es,
   },
 } as const;
 
