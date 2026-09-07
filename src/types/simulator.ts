@@ -35,3 +35,5 @@ export * from "./jet-climb";
 export * from "./vibrations-quiz";
 export * from "./mechanics-quiz";
 export * from "./vehicle-suspension";
+export * from "./rotating-unbalance";
+export * from "./machine-element-base";

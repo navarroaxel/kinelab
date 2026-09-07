@@ -346,13 +346,12 @@ export const SIMULATORS: SimulatorEntry[] = [
   // Mechanical Vibrations section — TP N°3, Vibraciones Mecánicas (UTN FRBA)
   {
     id: "rotating-unbalance",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/rotating-unbalance",
     navKey: "vib.exercises.vib1.title",
     titleKey: "vib.exercises.vib1.title",
     summaryKey: "vib.exercises.vib1.summary",
     group: "mechanical-vibrations",
     vib: 1,
-    disabled: true,
   },
   {
     id: "vehicle-suspension",
@@ -375,13 +374,12 @@ export const SIMULATORS: SimulatorEntry[] = [
   },
   {
     id: "machine-element-base",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/machine-element-base",
     navKey: "vib.exercises.vib4.title",
     titleKey: "vib.exercises.vib4.title",
     summaryKey: "vib.exercises.vib4.summary",
     group: "mechanical-vibrations",
     vib: 4,
-    disabled: true,
   },
   {
     id: "pressure-gauge",
