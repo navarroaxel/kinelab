@@ -79,6 +79,28 @@ describe("computeDerived", () => {
       RangeError,
     );
   });
+
+  it("flags the singular resonance (ζ = 0 exactly at r = 1 exactly)", () => {
+    // k/M = 1 and this rpm round-trip to ω = 1 exactly in floating point
+    // (unlike the statement's own numbers, where sqrt/π rounding leaves r
+    // a hair off 1) — the cleanest way to hit the genuine bitwise Infinity.
+    const AT_RESONANCE: RotatingUnbalanceParams = {
+      ...STATEMENT,
+      motorMass: 1,
+      springCount: 1,
+      springStiffness: 1,
+      rpm: (1 * 60) / (2 * Math.PI),
+    };
+    const singular = computeDerived(AT_RESONANCE);
+    expect(singular.frequencyRatio).toBe(1);
+    expect(singular.isSingularResonance).toBe(true);
+    expect(singular.amplitude).toBe(Infinity);
+
+    // Any damping at all, or being off resonance, keeps it finite.
+    const damped = computeDerived({ ...AT_RESONANCE, dampingRatio: 0.01 });
+    expect(damped.isSingularResonance).toBe(false);
+    expect(computeDerived(STATEMENT).isSingularResonance).toBe(false);
+  });
 });
 
 describe("displacementAt", () => {
@@ -92,6 +114,21 @@ describe("displacementAt", () => {
     const period = (2 * Math.PI) / d.omega;
     const t = 0.013;
     expect(displacementAt(t + period, d)).toBeCloseTo(displacementAt(t, d), 8);
+  });
+
+  it("stays finite (renders flat) at the singular resonance instead of NaN", () => {
+    const d = computeDerived({
+      ...STATEMENT,
+      motorMass: 1,
+      springCount: 1,
+      springStiffness: 1,
+      rpm: (1 * 60) / (2 * Math.PI),
+    });
+    expect(d.isSingularResonance).toBe(true);
+    // Infinity·sin(ω·t) is NaN at every zero crossing of sin — t = 0 is one.
+    expect(Number.isNaN(d.amplitude * Math.sin(0))).toBe(true);
+    expect(displacementAt(0, d)).toBe(0);
+    expect(displacementAt(0.37, d)).toBe(0);
   });
 });
 

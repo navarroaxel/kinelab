@@ -14,6 +14,8 @@ export const machineElementBase = {
     "vib4.controls.btn.resume": "Resume",
 
     "vib4.metrics.heading": "Live readouts",
+    "vib4.metrics.singular_resonance":
+      "Ideal resonance (ζ = 0, r = 1 exactly): the response is mathematically unbounded. The trace is shown at rest instead of an undefined value.",
 
     "vib4.legend.heading": "Legend",
     "vib4.legend.support": "Moving support S(t)",
@@ -54,6 +56,8 @@ export const machineElementBase = {
     "vib4.controls.btn.resume": "Reanudar",
 
     "vib4.metrics.heading": "Lecturas en vivo",
+    "vib4.metrics.singular_resonance":
+      "Resonancia ideal (ζ = 0, r = 1 exacto): la respuesta es matemáticamente no acotada. Se muestra la traza en reposo en vez de un valor indefinido.",
 
     "vib4.legend.heading": "Referencias",
     "vib4.legend.support": "Soporte móvil S(t)",

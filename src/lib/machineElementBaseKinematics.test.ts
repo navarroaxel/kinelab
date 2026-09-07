@@ -60,6 +60,17 @@ describe("computeDerived", () => {
     const d = computeDerived({ ...STATEMENT, supportAmplitude: 0 });
     expect(d.amplitude).toBe(0);
   });
+
+  it("flags the singular resonance (ζ = 0 exactly at r = 1 exactly)", () => {
+    const d = computeDerived({
+      ...STATEMENT,
+      damping: 0,
+      supportOmega: 14, // = naturalFrequency, so r = 1 exactly
+    });
+    expect(d.isSingularResonance).toBe(true);
+    expect(d.amplitude).toBe(Infinity);
+    expect(computeDerived(STATEMENT).isSingularResonance).toBe(false);
+  });
 });
 
 describe("supportDisplacementAt", () => {
@@ -91,5 +102,19 @@ describe("elementDisplacementAt", () => {
       elementDisplacementAt(t, STATEMENT, d),
       8,
     );
+  });
+
+  it("stays finite (renders flat) at the singular resonance instead of NaN", () => {
+    const params: MachineElementBaseParams = {
+      ...STATEMENT,
+      damping: 0,
+      supportOmega: 14,
+    };
+    const d = computeDerived(params);
+    expect(d.isSingularResonance).toBe(true);
+    // Infinity·sin(ω·t) is NaN at every zero crossing of sin — t = 0 is one.
+    expect(Number.isNaN(d.amplitude * Math.sin(0))).toBe(true);
+    expect(elementDisplacementAt(0, params, d)).toBe(0);
+    expect(elementDisplacementAt(0.11, params, d)).toBe(0);
   });
 });

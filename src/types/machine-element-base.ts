@@ -24,6 +24,7 @@ export interface MachineElementBaseDerived {
   basePhase: number; // rad, ψ — phase of the base-motion forcing term
   responsePhase: number; // rad, φ — phase of the response relative to that forcing
   phaseLag: number; // rad, δ = φ − ψ, lag of the element behind the support
+  isSingularResonance: boolean; // ζ = 0 exactly at r = 1 — amplitude is unbounded (Infinity)
 }
 
 export interface MachineElementBaseState extends MachineElementBaseDerived {

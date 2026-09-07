@@ -59,6 +59,10 @@ export function computeDerived(
     1 - frequencyRatio * frequencyRatio,
   );
   const phaseLag = responsePhase - basePhase;
+  // At ζ = 0 exactly and r = 1 exactly, D = 0 and the amplitude is genuinely
+  // unbounded (Infinity, not a bug) — flag it so the UI can say so plainly
+  // instead of rendering an Infinity/NaN-tainted trace.
+  const isSingularResonance = !Number.isFinite(amplitude);
 
   return {
     stiffness,
@@ -71,6 +75,7 @@ export function computeDerived(
     basePhase,
     responsePhase,
     phaseLag,
+    isSingularResonance,
   };
 }
 
@@ -82,12 +87,18 @@ export function supportDisplacementAt(
   return params.supportAmplitude * Math.sin(params.supportOmega * t);
 }
 
-/** The element's steady-state response x(t), lagging the support by δ. */
+/**
+ * The element's steady-state response x(t), lagging the support by δ. At the
+ * singular resonance (amplitude = Infinity), Infinity·sin(…) is NaN at every
+ * zero crossing of sin — rather than let that leak into metrics or the
+ * canvas, render the (physically undefined) trace flat at rest.
+ */
 export function elementDisplacementAt(
   t: number,
   params: MachineElementBaseParams,
   derived: MachineElementBaseDerived,
 ): number {
+  if (derived.isSingularResonance) return 0;
   return (
     derived.amplitude *
     Math.sin(params.supportOmega * t - derived.phaseLag)

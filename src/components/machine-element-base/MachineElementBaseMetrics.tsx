@@ -9,6 +9,9 @@ interface Props {
   state: MachineElementBaseState;
 }
 
+const fmtMm = (metres: number) =>
+  Number.isFinite(metres) ? (metres * 1000).toFixed(2) : "∞";
+
 export const MachineElementBaseMetrics = memo(function MachineElementBaseMetrics({
   state,
 }: Props) {
@@ -48,13 +51,13 @@ export const MachineElementBaseMetrics = memo(function MachineElementBaseMetrics
     {
       id: "xM",
       label: withSubscripts("X_M"),
-      value: (state.amplitude * 1000).toFixed(2),
+      value: fmtMm(state.amplitude),
       unit: "mm",
     },
     {
       id: "undamped",
       label: withSubscripts("X_M (c = 0)"),
-      value: (state.undampedAmplitude * 1000).toFixed(2),
+      value: fmtMm(state.undampedAmplitude),
       unit: "mm",
     },
     {
@@ -97,6 +100,11 @@ export const MachineElementBaseMetrics = memo(function MachineElementBaseMetrics
           </div>
         ))}
       </div>
+      {state.isSingularResonance && (
+        <p className="mt-2 rounded-lg bg-red-50 px-2 py-1.5 text-[11px] text-red-700 dark:bg-red-950 dark:text-red-300">
+          {t("vib4.metrics.singular_resonance")}
+        </p>
+      )}
     </div>
   );
 });

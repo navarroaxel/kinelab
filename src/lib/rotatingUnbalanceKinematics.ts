@@ -63,6 +63,10 @@ export function computeDerived(
     peakR !== null ? asymptote * unbalanceMagnification(peakR, zeta) : null;
 
   const nearResonance = Math.abs(frequencyRatio - 1) < 0.1;
+  // At ζ = 0 exactly and r = 1 exactly, D = 0 and the amplitude is genuinely
+  // unbounded (Infinity, not a bug) — flag it so the UI can say so plainly
+  // instead of rendering an Infinity/NaN-tainted trace.
+  const isSingularResonance = !Number.isFinite(amplitude);
 
   return {
     stiffness,
@@ -77,14 +81,21 @@ export function computeDerived(
     peakR,
     peakValue,
     nearResonance,
+    isSingularResonance,
   };
 }
 
-/** Steady-state motor displacement x(t), lagging the unbalance by φ. */
+/**
+ * Steady-state motor displacement x(t), lagging the unbalance by φ. At the
+ * singular resonance (amplitude = Infinity), Infinity·sin(…) is NaN at every
+ * zero crossing of sin — rather than let that leak into metrics or the
+ * canvas, render the (physically undefined) trace flat at rest.
+ */
 export function displacementAt(
   t: number,
   derived: RotatingUnbalanceDerived,
 ): number {
+  if (derived.isSingularResonance) return 0;
   return derived.amplitude * Math.sin(derived.omega * t - derived.phase);
 }
 
