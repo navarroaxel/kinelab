@@ -46,9 +46,13 @@ export function computeDerived(
   const frequencyRatio = omega / naturalFrequency;
 
   const transmissibility = transmissibilityOf(frequencyRatio, dampingRatio);
-  const amplitude = transmissibility * yM;
+  // y_M = 0 means no base motion at all, so the response is zero regardless
+  // of how close r sits to resonance — computing it as transmissibility·y_M
+  // directly would multiply Infinity·0 = NaN right at that exact resonance,
+  // conflating "no forcing" with "invalid math".
+  const amplitude = yM === 0 ? 0 : transmissibility * yM;
   const undampedAmplitude =
-    yM / Math.abs(1 - frequencyRatio * frequencyRatio);
+    yM === 0 ? 0 : yM / Math.abs(1 - frequencyRatio * frequencyRatio);
 
   // Base motion appears as an effective forcing c·yM·ω·cos(ωt) + k·yM·sin(ωt)
   // = F0·sin(ωt + ψ), with tan ψ = cω/k = 2ζr — the same decomposition as
@@ -59,9 +63,11 @@ export function computeDerived(
     1 - frequencyRatio * frequencyRatio,
   );
   const phaseLag = responsePhase - basePhase;
-  // At ζ = 0 exactly and r = 1 exactly, D = 0 and the amplitude is genuinely
-  // unbounded (Infinity, not a bug) — flag it so the UI can say so plainly
-  // instead of rendering an Infinity/NaN-tainted trace.
+  // At ζ = 0 exactly and r = 1 exactly (with y_M > 0), D = 0 and the
+  // amplitude is genuinely unbounded (Infinity, not a bug) — flag it so the
+  // UI can say so plainly instead of rendering an Infinity-tainted trace.
+  // amplitude can only be Infinity or a finite number here (never NaN, now
+  // that y_M = 0 is handled above), so this check is unambiguous.
   const isSingularResonance = !Number.isFinite(amplitude);
 
   return {

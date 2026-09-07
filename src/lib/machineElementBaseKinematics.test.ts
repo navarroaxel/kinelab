@@ -71,6 +71,21 @@ describe("computeDerived", () => {
     expect(d.amplitude).toBe(Infinity);
     expect(computeDerived(STATEMENT).isSingularResonance).toBe(false);
   });
+
+  it("y_M = 0 at resonance is zero response, not NaN or a false resonance flag", () => {
+    // Naively multiplying transmissibility (Infinity here) by y_M = 0 would
+    // give NaN — a different, invalid-math condition from genuine
+    // unbounded resonance, which this must not be confused with.
+    const d = computeDerived({
+      ...STATEMENT,
+      damping: 0,
+      supportOmega: 14, // = naturalFrequency, so r = 1 exactly
+      supportAmplitude: 0,
+    });
+    expect(d.amplitude).toBe(0);
+    expect(d.undampedAmplitude).toBe(0);
+    expect(d.isSingularResonance).toBe(false);
+  });
 });
 
 describe("supportDisplacementAt", () => {
