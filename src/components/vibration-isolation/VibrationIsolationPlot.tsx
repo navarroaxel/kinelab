@@ -16,7 +16,7 @@ interface Props {
 }
 
 const CURVE_SAMPLES = 240;
-const MAX_RATIO = 4;
+const MIN_MAX_RATIO = 4;
 /** T is unbounded near r = 1 at low ζ; clip it to stay readable. */
 const CEILING = 4;
 
@@ -26,20 +26,30 @@ export const VibrationIsolationPlot = memo(function VibrationIsolationPlot({
 }: Props) {
   const { t } = useLanguage();
 
+  // A low target with heavy damping can push the solution well past the
+  // usual r = 4 window (e.g. a very small T needs a very large r) — widen
+  // the sampled range (with headroom) so the domain, which FunctionPlot
+  // fits from the series data alone, always reaches the solution, instead
+  // of silently clipping its marker and shaded region off-plot.
+  const maxRatio =
+    derived.status === "solved"
+      ? Math.max(MIN_MAX_RATIO, derived.frequencyRatio! * 1.15)
+      : MIN_MAX_RATIO;
+
   const { dampedCurve, undampedCurve } = useMemo(() => {
     const damped: [number, number][] = [];
     const undamped: [number, number][] = [];
     for (let i = 0; i <= CURVE_SAMPLES; i++) {
-      const r = (MAX_RATIO * i) / CURVE_SAMPLES;
+      const r = (maxRatio * i) / CURVE_SAMPLES;
       damped.push([r, Math.min(transmissibility(r, params.dampingRatio), CEILING)]);
       undamped.push([r, Math.min(transmissibility(r, 0), CEILING)]);
     }
     return { dampedCurve: damped, undampedCurve: undamped };
-  }, [params.dampingRatio]);
+  }, [params.dampingRatio, maxRatio]);
 
   const shadedAreas =
     derived.status === "solved"
-      ? [{ seriesIndex: 0, x0: derived.frequencyRatio!, x1: MAX_RATIO }]
+      ? [{ seriesIndex: 0, x0: derived.frequencyRatio!, x1: maxRatio }]
       : [];
 
   return (
