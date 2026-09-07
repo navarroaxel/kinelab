@@ -26,6 +26,7 @@ export interface RotatingUnbalanceDerived {
   peakR: number | null; // r at the peak, null when ζ ≥ 1/√2 (no interior peak)
   peakValue: number | null; // m, amplitude at peakR
   nearResonance: boolean; // |r − 1| < 0.1
+  isSingularResonance: boolean; // ζ = 0 exactly at r = 1 — amplitude is unbounded (Infinity)
 }
 
 export interface RotatingUnbalanceState extends RotatingUnbalanceDerived {

@@ -16,6 +16,8 @@ export const rotatingUnbalance = {
 
     "vib1.metrics.heading": "Live readouts",
     "vib1.metrics.near_resonance": "Operating near resonance (r ≈ 1)",
+    "vib1.metrics.singular_resonance":
+      "Ideal resonance (ζ = 0, r = 1 exactly): the response is mathematically unbounded. The trace is shown at rest instead of an undefined value.",
 
     "vib1.legend.heading": "Legend",
     "vib1.legend.spring": "Springs (4 combined into k = springCount·k₁)",
@@ -54,6 +56,8 @@ export const rotatingUnbalance = {
 
     "vib1.metrics.heading": "Lecturas en vivo",
     "vib1.metrics.near_resonance": "Funcionando cerca de la resonancia (r ≈ 1)",
+    "vib1.metrics.singular_resonance":
+      "Resonancia ideal (ζ = 0, r = 1 exacto): la respuesta es matemáticamente no acotada. Se muestra la traza en reposo en vez de un valor indefinido.",
 
     "vib1.legend.heading": "Referencias",
     "vib1.legend.spring": "Resortes (4 combinados en k = springCount·k₁)",

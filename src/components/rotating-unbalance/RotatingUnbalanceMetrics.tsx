@@ -88,10 +88,16 @@ export const RotatingUnbalanceMetrics = memo(function RotatingUnbalanceMetrics({
           </div>
         ))}
       </div>
-      {state.nearResonance && (
-        <p className="mt-2 rounded-lg bg-amber-50 px-2 py-1.5 text-[11px] text-amber-700 dark:bg-amber-950 dark:text-amber-300">
-          {t("vib1.metrics.near_resonance")}
+      {state.isSingularResonance ? (
+        <p className="mt-2 rounded-lg bg-red-50 px-2 py-1.5 text-[11px] text-red-700 dark:bg-red-950 dark:text-red-300">
+          {t("vib1.metrics.singular_resonance")}
         </p>
+      ) : (
+        state.nearResonance && (
+          <p className="mt-2 rounded-lg bg-amber-50 px-2 py-1.5 text-[11px] text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+            {t("vib1.metrics.near_resonance")}
+          </p>
+        )
       )}
     </div>
   );

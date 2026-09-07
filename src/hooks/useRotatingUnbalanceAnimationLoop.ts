@@ -102,9 +102,12 @@ function render(
 
   const groundY = H * 0.78;
   const restY = H * 0.4;
+  // Defensive: the kinematics layer already sanitizes the singular-resonance
+  // case, but never let a non-finite value reach canvas geometry regardless.
+  const safeDisplacement = Number.isFinite(displacement) ? displacement : 0;
   const bouncePx = Math.max(
     -MAX_BOUNCE_PX,
-    Math.min(MAX_BOUNCE_PX, displacement * MOTION_SCALE),
+    Math.min(MAX_BOUNCE_PX, safeDisplacement * MOTION_SCALE),
   );
   const bodyY = restY + bouncePx;
 

@@ -104,10 +104,19 @@ function render(
   ctx.clearRect(0, 0, W, H);
   drawGrid(ctx, W, H, 20, colors.grid);
 
+  // Defensive: the kinematics layer already sanitizes the singular-resonance
+  // case, but never let a non-finite value reach canvas geometry regardless.
+  const safeSupport = Number.isFinite(supportDisplacement)
+    ? supportDisplacement
+    : 0;
+  const safeElement = Number.isFinite(elementDisplacement)
+    ? elementDisplacement
+    : 0;
+
   const midY = H * 0.55;
-  const supportY = midY + supportDisplacement * MOTION_SCALE;
+  const supportY = midY + safeSupport * MOTION_SCALE;
   const elementRestY = midY - H * 0.28;
-  const elementY = elementRestY + elementDisplacement * MOTION_SCALE;
+  const elementY = elementRestY + safeElement * MOTION_SCALE;
 
   const centerX = W * 0.5;
   const halfSpan = Math.min(W * 0.22, 90);
