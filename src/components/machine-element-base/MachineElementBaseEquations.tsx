@@ -32,7 +32,10 @@ export const MachineElementBaseEquations = memo(
     const { t } = useLanguage();
 
     const { supportPoints, elementPoints } = useMemo(() => {
-      const period = (2 * Math.PI) / params.supportOmega;
+      // ω = 0 means no base motion at all — both traces are flat at zero;
+      // fall back to an arbitrary 1 s window instead of dividing by zero.
+      const period =
+        params.supportOmega > 0 ? (2 * Math.PI) / params.supportOmega : 1;
       const duration = 2 * period;
       const support: [number, number][] = [];
       const element: [number, number][] = [];
@@ -48,7 +51,13 @@ export const MachineElementBaseEquations = memo(
         ]);
       }
       return { supportPoints: support, elementPoints: element };
-    }, [params, derived]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+      params.supportAmplitude,
+      params.supportOmega,
+      derived.amplitude,
+      derived.phaseLag,
+    ]);
 
     const { dampedCurve, undampedCurve } = useMemo(() => {
       const damped: [number, number][] = [];

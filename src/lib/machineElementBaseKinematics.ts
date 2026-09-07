@@ -32,11 +32,11 @@ export function computeDerived(
     springCount <= 0 ||
     springStiffness <= 0 ||
     c < 0 ||
-    yM <= 0 ||
+    yM < 0 ||
     omega < 0
   ) {
     throw new RangeError(
-      "mass, springCount, springStiffness, and supportAmplitude must be positive, and damping/supportOmega must be non-negative",
+      "mass, springCount, and springStiffness must be positive, and damping/supportAmplitude/supportOmega must be non-negative",
     );
   }
 

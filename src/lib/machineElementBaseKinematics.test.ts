@@ -47,13 +47,18 @@ describe("computeDerived", () => {
     ["mass", -400],
     ["springCount", 0],
     ["springStiffness", 0],
-    ["supportAmplitude", 0],
+    ["supportAmplitude", -0.001],
     ["damping", -1],
     ["supportOmega", -1],
   ] as const)("rejects invalid %s (%d)", (key, value) => {
     expect(() => computeDerived({ ...STATEMENT, [key]: value })).toThrow(
       RangeError,
     );
+  });
+
+  it("allows y_M = 0 — no base motion means no response", () => {
+    const d = computeDerived({ ...STATEMENT, supportAmplitude: 0 });
+    expect(d.amplitude).toBe(0);
   });
 });
 
