@@ -17,8 +17,11 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/forced-vibration`](http://localhost:3000/forced-vibration) | **Forced vibration with viscous damping** | Steady-state amplitude of a mass driven by a harmonic force, with and without a damper, plus the free response the transient leaves behind |
 | [`/helicopter-lift`](http://localhost:3000/helicopter-lift) | **Helicopter hover lift** | Hibbeler — steady flow of a fluid stream through the rotor's downwash; ΣF = ṁ·Δv gives the thrust and, with it, the maximum extra load the helicopter can lift while hovering |
 | [`/jet-climb`](http://localhost:3000/jet-climb) | **Jet climb to level flight** | A jet levels off from a steady climb — steady thrust T = ṁ·v_rel plus quadratic drag D = k·v² give an initial acceleration a₀ = g·sen θ and an exact tanh solution for v(t) approaching a terminal speed v_max |
+| [`/vibrations-quiz`](http://localhost:3000/vibrations-quiz) | **Mechanical Vibrations — Quiz** | Six true/false statements on free and undamped vibration, natural frequency, periodic vs. harmonic motion — interactive |
+| [`/mechanics-quiz`](http://localhost:3000/mechanics-quiz) | **Mecánica Técnica — Quiz** | 36 true/false statements spanning particle kinematics, particle dynamics, and vibrations — interactive |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
+| [`/mechanical-vibrations`](http://localhost:3000/mechanical-vibrations) | **Mechanical Vibrations (TP N°3)** | Seven exercises from Vibraciones Mecánicas, Mecánica Técnica — UTN FRBA (see table below) |
 
 Switch between them via the tab nav in the top-right of any page; on narrow screens it collapses into a menu button.
 
@@ -63,6 +66,22 @@ A browsable set of the fourteen exercises from TP N°2, same nav pattern as the 
 | PD 14 — Staged rocket launch | `/particle-dynamics/staged-rocket` |
 
 See `src/lib/simulators.ts` for the registry driving this table.
+
+### Mechanical Vibrations section (`/mechanical-vibrations`)
+
+A browsable set of the seven exercises from TP N°3, same nav pattern as the other two sections. VIB 6 and VIB 7 are the same rig (a released hanging mass) at two different damping values, routed through one page via `?preset=`.
+
+| Exercise | Route |
+|---|---|
+| VIB 1 — Rotating unbalance | `/mechanical-vibrations/rotating-unbalance` |
+| VIB 2 — Vehicle suspension, base excitation | `/mechanical-vibrations/vehicle-suspension` |
+| VIB 3 — Vibration isolation, inverse problem | `/mechanical-vibrations/vibration-isolation` |
+| VIB 4 — Machine element on a moving support | `/mechanical-vibrations/machine-element-base` |
+| VIB 5 — Pressure gauge design | `/mechanical-vibrations/pressure-gauge` |
+| VIB 6 — Release of a hanging mass, undamped | `/mechanical-vibrations/mass-release` |
+| VIB 7 — Release of a hanging mass, overdamped | `/mechanical-vibrations/mass-release?preset=mv7` |
+
+All seven exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
 
 ### `/polar` Polar coordinates
 

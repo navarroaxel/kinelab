@@ -17,8 +17,11 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 | [`/forced-vibration`](http://localhost:3000/forced-vibration) | **Vibración forzada con amortiguamiento viscoso** | Amplitud estacionaria de una masa excitada por una fuerza armónica, con y sin amortiguador, más la respuesta libre que deja el transitorio |
 | [`/helicopter-lift`](http://localhost:3000/helicopter-lift) | **Sustentación de un helicóptero suspendido** | Hibbeler — flujo permanente de una corriente fluida a través de la estela del rotor; ΣF = ṁ·Δv da el empuje y, con él, la carga extra máxima que el helicóptero puede levantar suspendido en el aire |
 | [`/jet-climb`](http://localhost:3000/jet-climb) | **Ascenso de un avión a vuelo horizontal** | Un avión pasa de un ascenso constante a vuelo horizontal — el empuje permanente T = ṁ·v_rel más el arrastre cuadrático D = k·v² dan una aceleración inicial a₀ = g·sen θ y una solución exacta en tanh para v(t) que se acerca a una rapidez terminal v_max |
+| [`/vibrations-quiz`](http://localhost:3000/vibrations-quiz) | **Vibraciones Mecánicas — Quiz** | Seis afirmaciones de verdadero/falso sobre vibración libre y no amortiguada, frecuencia natural, movimiento periódico vs. armónico — interactivo |
+| [`/mechanics-quiz`](http://localhost:3000/mechanics-quiz) | **Mecánica Técnica — Quiz** | 36 afirmaciones de verdadero/falso sobre cinemática, dinámica y vibraciones — interactivo |
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Dinámica del Punto Material (TP N°2)** | Catorce ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
+| [`/mechanical-vibrations`](http://localhost:3000/mechanical-vibrations) | **Vibraciones Mecánicas (TP N°3)** | Siete ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 
 Cambia entre ellos usando las pestañas en la esquina superior derecha de cada página; en pantallas angostas se colapsa en un botón de menú.
 
@@ -63,6 +66,22 @@ Un conjunto navegable de los catorce ejercicios del TP N°2, con el mismo patró
 | PD 14 — Lanzamiento de un cohete por etapas | `/particle-dynamics/staged-rocket` |
 
 Ver `src/lib/simulators.ts` para el registro que genera esta tabla.
+
+### Sección de Vibraciones Mecánicas (`/mechanical-vibrations`)
+
+Un conjunto navegable de los siete ejercicios del TP N°3, con el mismo patrón de navegación que las otras dos secciones. VIB 6 y VIB 7 son el mismo sistema (una masa colgante liberada) con dos valores de amortiguamiento distintos, servidos por una sola página vía `?preset=`.
+
+| Ejercicio | Ruta |
+|---|---|
+| VIB 1 — Desequilibrio rotativo | `/mechanical-vibrations/rotating-unbalance` |
+| VIB 2 — Suspensión de un vehículo, excitación en la base | `/mechanical-vibrations/vehicle-suspension` |
+| VIB 3 — Aislamiento de vibraciones, problema inverso | `/mechanical-vibrations/vibration-isolation` |
+| VIB 4 — Elemento de máquina sobre un soporte móvil | `/mechanical-vibrations/machine-element-base` |
+| VIB 5 — Diseño de un manómetro | `/mechanical-vibrations/pressure-gauge` |
+| VIB 6 — Liberación de una masa colgante, no amortiguada | `/mechanical-vibrations/mass-release` |
+| VIB 7 — Liberación de una masa colgante, sobreamortiguada | `/mechanical-vibrations/mass-release?preset=mv7` |
+
+Los siete ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
 
 ### `/polar` Coordenadas polares
 

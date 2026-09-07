@@ -39,3 +39,4 @@ export * from "./rotating-unbalance";
 export * from "./machine-element-base";
 export * from "./vibration-isolation";
 export * from "./pressure-gauge";
+export * from "./mass-release";
