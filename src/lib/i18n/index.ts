@@ -41,6 +41,8 @@ import { pulleyFriction } from "./pd/pulley-friction";
 import { railCarCoupling } from "./pd/rail-car-coupling";
 import { vibSection } from "./vib/section";
 import { vibExercisesI18n } from "./vib/exercises";
+import { rotatingUnbalance } from "./vib/rotating-unbalance";
+import { machineElementBase } from "./vib/machine-element-base";
 
 export type Language = "en" | "es";
 
@@ -92,6 +94,8 @@ export const translations = {
     ...pulleyFriction.en,
     ...vibSection.en,
     ...vibExercisesI18n.en,
+    ...rotatingUnbalance.en,
+    ...machineElementBase.en,
   },
   es: {
     ...common.es,
@@ -138,6 +142,8 @@ export const translations = {
     ...pulleyFriction.es,
     ...vibSection.es,
     ...vibExercisesI18n.es,
+    ...rotatingUnbalance.es,
+    ...machineElementBase.es,
   },
 } as const;
 
