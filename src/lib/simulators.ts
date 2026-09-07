@@ -364,13 +364,12 @@ export const SIMULATORS: SimulatorEntry[] = [
   },
   {
     id: "vibration-isolation",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/vibration-isolation",
     navKey: "vib.exercises.vib3.title",
     titleKey: "vib.exercises.vib3.title",
     summaryKey: "vib.exercises.vib3.summary",
     group: "mechanical-vibrations",
     vib: 3,
-    disabled: true,
   },
   {
     id: "machine-element-base",
@@ -383,13 +382,12 @@ export const SIMULATORS: SimulatorEntry[] = [
   },
   {
     id: "pressure-gauge",
-    href: "/mechanical-vibrations",
+    href: "/mechanical-vibrations/pressure-gauge",
     navKey: "vib.exercises.vib5.title",
     titleKey: "vib.exercises.vib5.title",
     summaryKey: "vib.exercises.vib5.summary",
     group: "mechanical-vibrations",
     vib: 5,
-    disabled: true,
   },
   {
     id: "mass-release",
