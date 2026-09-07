@@ -42,6 +42,50 @@ describe("VIB 6 — undamped (ζ = 0)", () => {
   });
 });
 
+describe("underdamped slack — the actual first trough, not just x0", () => {
+  // ẋ(0) = 0 makes every extremum land at t_n = n·π/ωd exactly, so the first
+  // trough (n = 1) has an exact magnitude x0·e^(−πζ/√(1−ζ²)) — decaying
+  // envelopes mean x0 > slackThreshold alone is necessary but not sufficient.
+
+  it("still goes slack when the decayed first trough clears the threshold", () => {
+    // Lightly damped: the envelope barely shrinks by the first trough.
+    const LIGHT: MassReleaseParams = {
+      hangingMass: 0.8,
+      remainingMass: 0.5,
+      stiffness: 19.6,
+      damping: 0.1,
+    };
+    const d = computeDerived(LIGHT, 9.8);
+    expect(d.regime).toBe("underdamped");
+    expect(d.x0).toBeGreaterThan(d.slackThreshold);
+    expect(d.slack).toBe(true);
+  });
+
+  it("does NOT go slack when x0 > threshold but the decayed trough doesn't reach it", () => {
+    // M2 = 0.6 kg gives x0 = 30 cm (> the 25 cm threshold), but ζ = 0.3
+    // decays the first trough down to ~11 cm — nowhere near slack.
+    const params: MassReleaseParams = {
+      hangingMass: 0.6,
+      remainingMass: 0.5,
+      stiffness: 19.6,
+      damping: 0.3 * 2 * Math.sqrt(19.6 * 0.5),
+    };
+    const d = computeDerived(params, 9.8);
+    expect(d.regime).toBe("underdamped");
+    expect(d.x0 * 100).toBeCloseTo(30, 3);
+    expect(d.slackThreshold * 100).toBeCloseTo(25, 3);
+    expect(d.x0).toBeGreaterThan(d.slackThreshold); // the naive check says slack…
+    expect(d.slack).toBe(false); // …but it never actually happens
+
+    // Confirm against the real trajectory: the first trough (at t = π/ωd)
+    // is the global minimum, and it sits above -slackThreshold.
+    const tFirstTrough = Math.PI / d.dampedOmega!;
+    const trough = displacementAt(tFirstTrough, d);
+    expect(trough).toBeGreaterThan(-d.slackThreshold);
+    expect(trough * 100).toBeCloseTo(-11.17, 1);
+  });
+});
+
 describe("VIB 7 — overdamped (ζ = 3.5)", () => {
   const VIB7: MassReleaseParams = {
     ...BASE,

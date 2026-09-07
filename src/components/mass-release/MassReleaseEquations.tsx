@@ -54,7 +54,29 @@ export const MassReleaseEquations = memo(function MassReleaseEquations({
     }
 
     return { mainCurve: main, slackCurve: slack, criticalCurve: critical, duration: dur };
-  }, [params, derived]);
+    // The page recomputes `derived` fresh on every render (including every
+    // ~15fps metrics tick), so depending on the object reference — rather
+    // than the scalar fields this closure actually reads — would rebuild
+    // all three sampled curves on every tick even when nothing relevant
+    // had changed. `params` narrows the same way, since spreading it into
+    // computeDerived only ever pulls out these three fields.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    params.hangingMass,
+    params.remainingMass,
+    params.stiffness,
+    derived.regime,
+    derived.naturalFrequency,
+    derived.settlingTime,
+    derived.slackThreshold,
+    derived.x0,
+    derived.dampingRatio,
+    derived.dampedOmega,
+    derived.s1,
+    derived.s2,
+    derived.A1,
+    derived.A2,
+  ]);
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">

@@ -75,11 +75,26 @@ export function computeDerived(
   // Slack requires the motion to actually swing back past the threshold.
   // Critical/overdamped release from rest is provably monotonic — it decays
   // from x0 straight to 0 without ever crossing back through it — so no
-  // amount of x0 exceeding the threshold can produce real slack there; only
-  // the genuinely oscillatory regimes (undamped, underdamped) can.
+  // amount of x0 exceeding the threshold can produce real slack there.
+  //
+  // For the oscillatory regimes, x0 > slackThreshold is necessary but not
+  // sufficient: an underdamped swing decays, so the first trough may never
+  // reach -x0. Because ẋ(0) = 0 exactly, t = 0 is itself an extremum, which
+  // forces every later extremum to land at t_n = n·π/ωd exactly (independent
+  // of the phase) — so the first trough (n = 1) has an exact closed form:
+  // |x(π/ωd)| = x0·e^(−ζω0·π/ωd) = x0·e^(−πζ/√(1−ζ²)), which reduces to x0
+  // itself at ζ = 0 (undamped). Slack occurs iff that magnitude — not the
+  // raw x0 — exceeds the threshold.
+  const firstTroughMagnitude =
+    regime === "undamped" || regime === "underdamped"
+      ? x0 *
+        Math.exp(
+          (-Math.PI * dampingRatio) / Math.sqrt(1 - dampingRatio * dampingRatio),
+        )
+      : 0;
   const slack =
     (regime === "undamped" || regime === "underdamped") &&
-    x0 > slackThreshold;
+    firstTroughMagnitude > slackThreshold;
 
   const tauSlow =
     regime === "undamped"
