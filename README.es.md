@@ -85,7 +85,7 @@ Los siete ejercicios están implementados — ver `src/lib/simulators.ts` para e
 
 ### Sección de Cinemática del Cuerpo Rígido (`/rigid-body-kinematics`)
 
-Un conjunto navegable de los diez ejercicios del TP N°4, con el mismo patrón de navegación que las otras tres secciones. CCR 6 y CCR 8 están implementados; los ocho restantes son páginas de relleno — la sección, el registro y la navegación ya existen para los diez, pero sus módulos de física llegan en fases posteriores.
+Un conjunto navegable de los diez ejercicios del TP N°4, con el mismo patrón de navegación que las otras tres secciones. CCR 5, CCR 6, CCR 7 y CCR 8 están implementados; los seis restantes son páginas de relleno — la sección, el registro y la navegación ya existen para los diez, pero sus módulos de física llegan en fases posteriores.
 
 | Ejercicio | Ruta |
 |---|---|

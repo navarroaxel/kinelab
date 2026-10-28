@@ -85,7 +85,7 @@ All seven exercises are implemented — see `src/lib/simulators.ts` for the regi
 
 ### Rigid Body Kinematics section (`/rigid-body-kinematics`)
 
-A browsable set of the ten exercises from TP N°4, same nav pattern as the other three sections. RB 6 and RB 8 are implemented; the remaining eight are stub pages — the section, registry entries, and navigation exist for all ten, but their physics modules land in later phases.
+A browsable set of the ten exercises from TP N°4, same nav pattern as the other three sections. RB 5, RB 6, RB 7 and RB 8 are implemented; the remaining six are stub pages — the section, registry entries, and navigation exist for all ten, but their physics modules land in later phases.
 
 | Exercise | Route |
 |---|---|
