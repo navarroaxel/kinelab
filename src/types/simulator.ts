@@ -40,3 +40,6 @@ export * from "./machine-element-base";
 export * from "./vibration-isolation";
 export * from "./pressure-gauge";
 export * from "./mass-release";
+export * from "./pin-slot-bar";
+export * from "./four-bar";
+export * from "./planetary-reducer";

@@ -18,7 +18,6 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pin–Slot",
     "nav.quick_return": "Quick-Return",
-    "nav.fireman_ladder": "Ladder",
     "nav.cam_follower": "Cam",
     "nav.banked_curve": "Banking",
     "nav.parabolic_spring": "Parabola",
@@ -31,6 +30,7 @@ export const common = {
     "nav.particle_kinematics": "PK",
     "nav.particle_dynamics": "PD",
     "nav.mechanical_vibrations": "VIB",
+    "nav.rigid_body_kinematics": "RB",
 
     // Home page (index of all simulators)
     "home.title":
@@ -41,8 +41,6 @@ export const common = {
       "Cartesian ↔ polar decomposition of circular motion with a freely movable pole",
     "home.summary.quick_return":
       "Crank AB drives an oscillating bar OQ and a tool slider P — cutting and return strokes take unequal time",
-    "home.summary.fireman_ladder":
-      "A fire-truck ladder elevating, rotating about a vertical axis and extending at once — velocity and acceleration of the tip in an orbitable 3D view, Coriolis and Euler terms included",
     "home.summary.cam_follower":
       "A rod riding on a smooth contoured cam — the profile z = A·sin θ is differentiated through the chain rule and Newton’s second law read backwards gives the maximum and minimum force the cam exerts on the roller",
     "home.summary.banked_curve":
@@ -64,6 +62,7 @@ export const common = {
     "home.card.tp1.title": "Particle Kinematics",
     "home.card.tp2.title": "Particle Dynamics",
     "home.card.tp3.title": "Mechanical Vibrations",
+    "home.card.tp4.title": "Rigid Body Kinematics",
 
     // Units note (shared on both pages)
     "units.note":
@@ -100,7 +99,6 @@ export const common = {
     "nav.polar": "Polar",
     "nav.pin_slot": "Pasador",
     "nav.quick_return": "Retorno Rápido",
-    "nav.fireman_ladder": "Escalera",
     "nav.cam_follower": "Leva",
     "nav.banked_curve": "Peralte",
     "nav.parabolic_spring": "Parábola",
@@ -113,6 +111,7 @@ export const common = {
     "nav.particle_kinematics": "CPM",
     "nav.particle_dynamics": "DPM",
     "nav.mechanical_vibrations": "VIB",
+    "nav.rigid_body_kinematics": "CCR",
 
     // Home page (índice de todos los simuladores)
     "home.title":
@@ -123,8 +122,6 @@ export const common = {
       "Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable",
     "home.summary.quick_return":
       "La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos",
-    "home.summary.fireman_ladder":
-      "Una escalera de bomberos que se eleva, gira en torno a un eje vertical y se extiende a la vez — velocidad y aceleración del extremo en una vista 3D orbitable, con los términos de Coriolis y de Euler",
     "home.summary.cam_follower":
       "Una barra apoyada sobre una leva contorneada lisa — el perfil z = A·sen θ se deriva con la regla de la cadena y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo",
     "home.summary.banked_curve":
@@ -146,6 +143,7 @@ export const common = {
     "home.card.tp1.title": "Cinemática del Punto Material",
     "home.card.tp2.title": "Dinámica del Punto Material",
     "home.card.tp3.title": "Vibraciones Mecánicas",
+    "home.card.tp4.title": "Cinemática del Cuerpo Rígido",
 
     // Units note (shared on both pages)
     "units.note":

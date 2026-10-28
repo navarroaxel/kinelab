@@ -27,6 +27,12 @@ const VIB_SECTION_CARD = {
   summaryKey: "vib.section.subtitle",
 } as const;
 
+const RB_SECTION_CARD = {
+  href: "/rigid-body-kinematics",
+  titleKey: "home.card.tp4.title",
+  summaryKey: "rb.section.subtitle",
+} as const;
+
 const KEPLER_HOME_CARD = findByHref("/particle-dynamics/kepler")!;
 
 function HomeIndexContent() {
@@ -90,6 +96,21 @@ function HomeIndexContent() {
             </span>
             <span className="text-sm text-gray-600 dark:text-gray-400">
               {withSubscripts(t(VIB_SECTION_CARD.summaryKey))}
+            </span>
+          </Link>
+
+          <Link
+            href={RB_SECTION_CARD.href}
+            className="flex flex-col gap-1.5 rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-blue-300 hover:bg-blue-50/40 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-gray-800"
+          >
+            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+              TP N°4
+            </span>
+            <span className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              {t(RB_SECTION_CARD.titleKey)}
+            </span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              {withSubscripts(t(RB_SECTION_CARD.summaryKey))}
             </span>
           </Link>
         </div>

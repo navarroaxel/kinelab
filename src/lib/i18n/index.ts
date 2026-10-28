@@ -46,6 +46,11 @@ import { machineElementBase } from "./vib/machine-element-base";
 import { vibrationIsolation } from "./vib/vibration-isolation";
 import { pressureGauge } from "./vib/pressure-gauge";
 import { massRelease } from "./vib/mass-release";
+import { rbSection } from "./rb/section";
+import { rbExercisesI18n } from "./rb/exercises";
+import { pinSlotBar } from "./rb/pin-slot-bar";
+import { fourBar } from "./rb/four-bar";
+import { planetaryReducer } from "./rb/planetary-reducer";
 
 export type Language = "en" | "es";
 
@@ -102,6 +107,11 @@ export const translations = {
     ...vibrationIsolation.en,
     ...pressureGauge.en,
     ...massRelease.en,
+    ...rbSection.en,
+    ...rbExercisesI18n.en,
+    ...pinSlotBar.en,
+    ...fourBar.en,
+    ...planetaryReducer.en,
   },
   es: {
     ...common.es,
@@ -153,6 +163,11 @@ export const translations = {
     ...vibrationIsolation.es,
     ...pressureGauge.es,
     ...massRelease.es,
+    ...rbSection.es,
+    ...rbExercisesI18n.es,
+    ...pinSlotBar.es,
+    ...fourBar.es,
+    ...planetaryReducer.es,
   },
 } as const;
 

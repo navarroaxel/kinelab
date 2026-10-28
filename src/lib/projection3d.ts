@@ -1,5 +1,5 @@
 import { add, scale, vec } from "@/lib/vec3";
-import { drawArrow, drawLabelWithSubscript } from "@/lib/drawing";
+import { drawArrow, drawLabel, drawLabelWithSubscript } from "@/lib/drawing";
 import type { Camera3D, Vec3 } from "@/types/simulator";
 
 // ---------------------------------------------------------------------------
@@ -81,6 +81,29 @@ export const horizontalCircle = (
     Math.PI * 2,
     steps,
   );
+
+/**
+ * World x/y/z axis arrows through the origin, labelled — the orientation
+ * anchor every orbitable 3D scene draws first. `length` is in world units.
+ */
+export function drawAxisTriad(
+  ctx: CanvasRenderingContext2D,
+  view: View3D,
+  color: string,
+  length: number,
+): void {
+  const origin = project(vec(0, 0, 0), view);
+  const axes: [Vec3, string][] = [
+    [vec(length, 0, 0), "x"],
+    [vec(0, length, 0), "y"],
+    [vec(0, 0, length), "z"],
+  ];
+  for (const [dir, name] of axes) {
+    const tip = project(dir, view);
+    drawArrow(ctx, origin.x, origin.y, tip.x, tip.y, color, 1.4, 7);
+    drawLabel(ctx, name, tip.x + 8, tip.y - 6, color);
+  }
+}
 
 // --- canvas helpers ---------------------------------------------------------
 

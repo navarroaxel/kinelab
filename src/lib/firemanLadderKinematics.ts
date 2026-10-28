@@ -1,9 +1,13 @@
 import { add, cross, norm, scale, vec } from "@/lib/vec3";
+import { composeRotations } from "@/lib/rotationComposition";
+import { sweep } from "@/lib/sweep";
 import type {
   FiremanLadderParams,
   FiremanLadderState,
   Vec3,
 } from "@/types/simulator";
+
+export { sweep } from "@/lib/sweep";
 
 // ---------------------------------------------------------------------------
 // CCR N°14 — Fireman's ladder (3D relative motion)
@@ -57,8 +61,12 @@ export function computeFiremanLadderInstant(
   const u = ladderUnit(i.theta2);
   const r = scale(u, i.s);
 
-  const omega = vec(i.omega2, 0, i.omega1);
-  const omegaDot = vec(0, i.omega1 * i.omega2, 0);
+  // Ω = ω₂x̂ + ω₁ẑ: the turret (about ẑ) is the outer rotation, the ladder's
+  // own elevation (about x̂, carried by the turret) is the inner one.
+  const { omega, gamma: omegaDot } = composeRotations([
+    { axis: vec(0, 0, 1), rate: i.omega1 },
+    { axis: vec(1, 0, 0), rate: i.omega2 },
+  ]);
 
   const vTransport = cross(omega, r);
   const vRel = scale(u, i.sDot);
@@ -89,29 +97,6 @@ export function computeFiremanLadderInstant(
     speed: norm(v),
     accelMag: norm(a),
   };
-}
-
-/**
- * Triangle wave: a quantity starting at `x0` and travelling at speed `rate`
- * between `lo` and `hi`, bouncing off both stops. Returns the value and the
- * sign of its current rate (0 when the quantity is frozen).
- */
-export function sweep(
-  t: number,
-  x0: number,
-  rate: number,
-  lo: number,
-  hi: number,
-): { value: number; sign: number } {
-  const span = hi - lo;
-  const start = Math.min(Math.max(x0, lo), hi);
-  if (span <= 0 || rate === 0) return { value: start, sign: 0 };
-
-  const period = 2 * span;
-  const travelled = (((rate * t + (start - lo)) % period) + period) % period;
-  return travelled <= span
-    ? { value: lo + travelled, sign: 1 }
-    : { value: lo + (period - travelled), sign: -1 };
 }
 
 const DEG = Math.PI / 180;

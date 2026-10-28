@@ -9,7 +9,6 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 | [`/`](http://localhost:3000/) | **Inicio** | Página de bienvenida — un índice de tarjetas que enlaza a cada simulador |
 | [`/polar`](http://localhost:3000/polar) | **Coordenadas polares** | Descomposición cartesiana ↔ polar del movimiento circular con un polo libremente desplazable |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Mecanismo de retorno rápido** | La manivela AB mueve la barra oscilante OQ y el carro herramienta P — el avance y el retorno duran tiempos distintos |
-| [`/fireman-ladder`](http://localhost:3000/fireman-ladder) | **Escalera de bomberos (3D)** | CCR N°14 — una escalera que se eleva, gira en torno a un eje vertical y se extiende a la vez; velocidad y aceleración del extremo en una vista axonométrica orbitable, con los términos de Coriolis y de Euler |
 | [`/cam-follower`](http://localhost:3000/cam-follower) | **Leva y seguidor de rodillo (3D)** | Hibbeler 13-91 — una barra apoyada sobre una leva contorneada lisa z = A·sen θ; la regla de la cadena da z̈ y la segunda ley de Newton, leída al revés, da la fuerza máxima y mínima que la leva ejerce sobre el rodillo |
 | [`/banked-curve`](http://localhost:3000/banked-curve) | **Curva peraltada con fricción (3D)** | Hibbeler 13-53 / 13-54 — la fricción que la pista debe aportar, μ_req = f/N, fija una rapidez máxima y una mínima; ninguna depende de la masa del auto |
 | [`/parabolic-spring`](http://localhost:3000/parabolic-spring) | **Bloque en trayectoria parabólica con resorte** | Hibbeler 13-74 — una trayectoria lisa desacopla las dos ecuaciones: el eje tangencial da la tasa de incremento de la rapidez y la curvatura da la fuerza normal |
@@ -22,6 +21,7 @@ Un conjunto de pequeños simuladores de física en el navegador construidos con 
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Cinemática del Punto Material (TP N°1)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Dinámica del Punto Material (TP N°2)** | Catorce ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 | [`/mechanical-vibrations`](http://localhost:3000/mechanical-vibrations) | **Vibraciones Mecánicas (TP N°3)** | Siete ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
+| [`/rigid-body-kinematics`](http://localhost:3000/rigid-body-kinematics) | **Cinemática del Cuerpo Rígido (TP N°4)** | Diez ejercicios de Mecánica Técnica — UTN FRBA (ver tabla abajo) |
 
 Cambia entre ellos usando las pestañas en la esquina superior derecha de cada página; en pantallas angostas se colapsa en un botón de menú.
 
@@ -82,6 +82,34 @@ Un conjunto navegable de los siete ejercicios del TP N°3, con el mismo patrón 
 | VIB 7 — Liberación de una masa colgante, sobreamortiguada | `/mechanical-vibrations/mass-release?preset=mv7` |
 
 Los siete ejercicios están implementados — ver `src/lib/simulators.ts` para el registro que genera esta tabla.
+
+### Sección de Cinemática del Cuerpo Rígido (`/rigid-body-kinematics`)
+
+Un conjunto navegable de los diez ejercicios del TP N°4, con el mismo patrón de navegación que las otras tres secciones. CCR 5, CCR 6, CCR 7 y CCR 8 están implementados; los seis restantes son páginas de relleno — la sección, el registro y la navegación ya existen para los diez, pero sus módulos de física llegan en fases posteriores.
+
+| Ejercicio | Ruta |
+|---|---|
+| CCR 1 — Caja girando en torno a una diagonal | `/rigid-body-kinematics/box-diagonal` |
+| CCR 2 — Cubo con cuatro rotaciones simultáneas | `/rigid-body-kinematics/cube-rotations` |
+| CCR 3 — Mecanismo de tres barras | `/rigid-body-kinematics/three-bar-linkage` |
+| CCR 4 — Collarín, barra y rueda que rueda | `/rigid-body-kinematics/wheel-collar` |
+| CCR 5 — Mecanismo de cuatro barras | `/rigid-body-kinematics/four-bar` |
+| CCR 6 — Escalera de bomberos (3D) | `/rigid-body-kinematics/fireman-ladder` |
+| CCR 7 — Reductor de engranajes planetario | `/rigid-body-kinematics/planetary-reducer` |
+| CCR 8 — Pasador deslizando en una barra ranurada | `/rigid-body-kinematics/pin-slot-bar` |
+| CCR 9 — Líquido circulando en un anillo giratorio | `/rigid-body-kinematics/liquid-ring` |
+| CCR 10 — Disco sobre un brazo en un eje giratorio | `/rigid-body-kinematics/disc-on-arm` |
+
+Ver `src/lib/simulators.ts` para el registro que genera esta tabla.
+
+### `/rigid-body-kinematics/pin-slot-bar` Pasador deslizando en una barra ranurada (CCR 8)
+
+CCR N°16 — el gemelo plano de `/oscillating-bar`, con los roles de impulsora e impulsada invertidos: la barra BO (que pivota en el punto fijo O) es el miembro ranurado de ω constante, y la barra AC (que pivota en el otro punto fijo C) es el brazo de longitud fija que lleva el pasador. En cada instante el pasador se halla por la intersección de una recta con una circunferencia, y luego se igualan las descomposiciones en terna móvil de ambas barras para despejar ω_AC y α_AC.
+
+- Sliders para ω_BO, la longitud del brazo L = CA y la posición del pivote O
+- Vectores en el pasador: v_arr/v_rel/v y a_arr/a_cor/a_rel/a, todos activables
+- Métricas en vivo de φ, θ, r, ṙ; tarjetas de respuesta para ω_AC y α_AC
+- Panel de ecuaciones con el enunciado, la teoría (incluyendo la inversión de roles respecto a `/oscillating-bar`), las proyecciones de forma cerrada, y los números exactos de referencia en el instante del enunciado
 
 ### `/polar` Coordenadas polares
 
