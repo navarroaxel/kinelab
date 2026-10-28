@@ -8,7 +8,8 @@ export type SimulatorGroup =
   | "core"
   | "particle-kinematics"
   | "particle-dynamics"
-  | "mechanical-vibrations";
+  | "mechanical-vibrations"
+  | "rigid-body-kinematics";
 
 export interface SimulatorEntry {
   id: string; // "pin-slot"
@@ -20,6 +21,7 @@ export interface SimulatorEntry {
   pk?: number; // exercise number, drives ordering inside the particle-kinematics section
   pd?: number; // exercise number, drives ordering inside the particle-dynamics section
   vib?: number; // exercise number, drives ordering inside the mechanical-vibrations section
+  rb?: number; // exercise number, drives ordering inside the rigid-body-kinematics section
   preset?: string; // e.g. "pk4" — appended as ?preset=
   disabled?: boolean; // exercise not implemented yet — shown as a non-clickable stub card
 }
@@ -40,14 +42,6 @@ export const SIMULATORS: SimulatorEntry[] = [
     navKey: "nav.quick_return",
     titleKey: "nav.quick_return",
     summaryKey: "home.summary.quick_return",
-    group: "core",
-  },
-  {
-    id: "fireman-ladder",
-    href: "/fireman-ladder",
-    navKey: "nav.fireman_ladder",
-    titleKey: "fl.title",
-    summaryKey: "home.summary.fireman_ladder",
     group: "core",
   },
   {
@@ -408,6 +402,98 @@ export const SIMULATORS: SimulatorEntry[] = [
     vib: 7,
     preset: "mv7",
   },
+
+  // Rigid Body Kinematics section — TP N°4, Cinemática del Cuerpo Rígido (UTN FRBA)
+  {
+    id: "box-diagonal",
+    href: "/rigid-body-kinematics/box-diagonal",
+    navKey: "rb.exercises.rb1.title",
+    titleKey: "rb.exercises.rb1.title",
+    summaryKey: "rb.exercises.rb1.summary",
+    group: "rigid-body-kinematics",
+    rb: 1,
+  },
+  {
+    id: "cube-rotations",
+    href: "/rigid-body-kinematics/cube-rotations",
+    navKey: "rb.exercises.rb2.title",
+    titleKey: "rb.exercises.rb2.title",
+    summaryKey: "rb.exercises.rb2.summary",
+    group: "rigid-body-kinematics",
+    rb: 2,
+  },
+  {
+    id: "three-bar-linkage",
+    href: "/rigid-body-kinematics/three-bar-linkage",
+    navKey: "rb.exercises.rb3.title",
+    titleKey: "rb.exercises.rb3.title",
+    summaryKey: "rb.exercises.rb3.summary",
+    group: "rigid-body-kinematics",
+    rb: 3,
+  },
+  {
+    id: "wheel-collar",
+    href: "/rigid-body-kinematics/wheel-collar",
+    navKey: "rb.exercises.rb4.title",
+    titleKey: "rb.exercises.rb4.title",
+    summaryKey: "rb.exercises.rb4.summary",
+    group: "rigid-body-kinematics",
+    rb: 4,
+  },
+  {
+    id: "four-bar",
+    href: "/rigid-body-kinematics/four-bar",
+    navKey: "rb.exercises.rb5.title",
+    titleKey: "rb.exercises.rb5.title",
+    summaryKey: "rb.exercises.rb5.summary",
+    group: "rigid-body-kinematics",
+    rb: 5,
+  },
+  {
+    id: "fireman-ladder",
+    href: "/rigid-body-kinematics/fireman-ladder",
+    navKey: "fl.title",
+    titleKey: "fl.title",
+    summaryKey: "rb.exercises.rb6.summary",
+    group: "rigid-body-kinematics",
+    rb: 6,
+  },
+  {
+    id: "planetary-reducer",
+    href: "/rigid-body-kinematics/planetary-reducer",
+    navKey: "rb.exercises.rb7.title",
+    titleKey: "rb.exercises.rb7.title",
+    summaryKey: "rb.exercises.rb7.summary",
+    group: "rigid-body-kinematics",
+    rb: 7,
+  },
+  {
+    id: "pin-slot-bar",
+    href: "/rigid-body-kinematics/pin-slot-bar",
+    navKey: "rb.exercises.rb8.title",
+    titleKey: "rb.exercises.rb8.title",
+    summaryKey: "rb.exercises.rb8.summary",
+    group: "rigid-body-kinematics",
+    rb: 8,
+  },
+  {
+    id: "liquid-ring",
+    href: "/rigid-body-kinematics/liquid-ring",
+    navKey: "rb.exercises.rb9.title",
+    titleKey: "rb.exercises.rb9.title",
+    summaryKey: "rb.exercises.rb9.summary",
+    group: "rigid-body-kinematics",
+    rb: 9,
+  },
+  {
+    id: "disc-on-arm",
+    href: "/rigid-body-kinematics/disc-on-arm",
+    navKey: "rb.exercises.rb10.title",
+    titleKey: "rb.exercises.rb10.title",
+    summaryKey: "rb.exercises.rb10.summary",
+    group: "rigid-body-kinematics",
+    rb: 10,
+  },
 ];
 
 export const coreSimulators = () =>
@@ -426,6 +512,11 @@ export const pdExercises = () =>
 export const vibExercises = () =>
   SIMULATORS.filter((s) => s.group === "mechanical-vibrations").sort(
     (a, b) => a.vib! - b.vib!,
+  );
+
+export const rbExercises = () =>
+  SIMULATORS.filter((s) => s.group === "rigid-body-kinematics").sort(
+    (a, b) => a.rb! - b.rb!,
   );
 
 export function findByHref(href: string): SimulatorEntry | undefined {

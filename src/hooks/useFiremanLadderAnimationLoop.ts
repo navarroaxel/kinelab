@@ -8,7 +8,6 @@ import {
 } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
-  drawArrow,
   drawDot,
   drawLabel,
   COLORS,
@@ -17,6 +16,7 @@ import {
 } from "@/lib/drawing";
 import {
   arcPoints,
+  drawAxisTriad,
   drawBox3D,
   drawVector3D,
   fillPolygon3D,
@@ -273,17 +273,7 @@ function render(
 
   // --- world axes and rotation arcs ---------------------------------------
   if (visibility.showAxes) {
-    const origin = project(vec(0, 0, 0), view);
-    const axes: [Vec3, string][] = [
-      [vec(AXIS_LENGTH, 0, 0), "x"],
-      [vec(0, AXIS_LENGTH, 0), "y"],
-      [vec(0, 0, AXIS_LENGTH), "z"],
-    ];
-    for (const [dir, name] of axes) {
-      const tip = project(dir, view);
-      drawArrow(ctx, origin.x, origin.y, tip.x, tip.y, colors.axes, 1.4, 7);
-      drawLabel(ctx, name, tip.x + 8, tip.y - 6, colors.axes);
-    }
+    drawAxisTriad(ctx, view, colors.axes, AXIS_LENGTH);
 
     // ω₁ — about the vertical axis, near the top of z.
     const spin1 = arcPoints(

@@ -9,7 +9,6 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/`](http://localhost:3000/) | **Home** | Landing page — a card index linking to every simulator below |
 | [`/polar`](http://localhost:3000/polar) | **Polar coordinates** | Cartesian ↔ polar decomposition of circular motion with a freely movable pole |
 | [`/quick-return`](http://localhost:3000/quick-return) | **Quick-return mechanism** | Crank AB drives an oscillating bar OQ and a tool slider P — the cutting and return strokes take unequal time |
-| [`/fireman-ladder`](http://localhost:3000/fireman-ladder) | **Fireman's ladder (3D)** | CCR N°14 — a ladder elevating, rotating about a vertical axis and extending at once; velocity and acceleration of the tip in an orbitable axonometric view, Coriolis and Euler terms included |
 | [`/cam-follower`](http://localhost:3000/cam-follower) | **Cam and roller follower (3D)** | Hibbeler 13-91 — a rod riding on a smooth contoured cam z = A·sin θ; the chain rule gives z̈ and Newton's second law, read backwards, gives the maximum and minimum force the cam exerts on the roller |
 | [`/banked-curve`](http://localhost:3000/banked-curve) | **Banked curve with friction (3D)** | Hibbeler 13-53 / 13-54 — the friction the road must supply, μ_req = f/N, sets a maximum and a minimum speed; neither depends on the mass of the car |
 | [`/parabolic-spring`](http://localhost:3000/parabolic-spring) | **Block on a parabolic path with a spring** | Hibbeler 13-74 — a smooth path decouples the two equations: the tangential axis gives the rate of increase of speed, the curvature gives the normal force |
@@ -22,6 +21,7 @@ A browser-based set of small, focused physics simulators built with Next.js + Ca
 | [`/particle-kinematics`](http://localhost:3000/particle-kinematics) | **Particle Kinematics (TP N°1)** | Ten exercises from Cinemática del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/particle-dynamics`](http://localhost:3000/particle-dynamics) | **Particle Dynamics (TP N°2)** | Fourteen exercises from Dinámica del Punto Material, Mecánica Técnica — UTN FRBA (see table below) |
 | [`/mechanical-vibrations`](http://localhost:3000/mechanical-vibrations) | **Mechanical Vibrations (TP N°3)** | Seven exercises from Vibraciones Mecánicas, Mecánica Técnica — UTN FRBA (see table below) |
+| [`/rigid-body-kinematics`](http://localhost:3000/rigid-body-kinematics) | **Rigid Body Kinematics (TP N°4)** | Ten exercises from Cinemática del Cuerpo Rígido, Mecánica Técnica — UTN FRBA (see table below) |
 
 Switch between them via the tab nav in the top-right of any page; on narrow screens it collapses into a menu button.
 
@@ -82,6 +82,34 @@ A browsable set of the seven exercises from TP N°3, same nav pattern as the oth
 | VIB 7 — Release of a hanging mass, overdamped | `/mechanical-vibrations/mass-release?preset=mv7` |
 
 All seven exercises are implemented — see `src/lib/simulators.ts` for the registry driving this table.
+
+### Rigid Body Kinematics section (`/rigid-body-kinematics`)
+
+A browsable set of the ten exercises from TP N°4, same nav pattern as the other three sections. RB 6 and RB 8 are implemented; the remaining eight are stub pages — the section, registry entries, and navigation exist for all ten, but their physics modules land in later phases.
+
+| Exercise | Route |
+|---|---|
+| RB 1 — Box rotating about a diagonal | `/rigid-body-kinematics/box-diagonal` |
+| RB 2 — Cube with four simultaneous rotations | `/rigid-body-kinematics/cube-rotations` |
+| RB 3 — Three-bar linkage | `/rigid-body-kinematics/three-bar-linkage` |
+| RB 4 — Collar, bar and rolling wheel | `/rigid-body-kinematics/wheel-collar` |
+| RB 5 — Four-bar linkage | `/rigid-body-kinematics/four-bar` |
+| RB 6 — Fireman's ladder (3D) | `/rigid-body-kinematics/fireman-ladder` |
+| RB 7 — Planetary gear reducer | `/rigid-body-kinematics/planetary-reducer` |
+| RB 8 — Pin sliding in a slotted bar | `/rigid-body-kinematics/pin-slot-bar` |
+| RB 9 — Liquid circulating in a rotating ring | `/rigid-body-kinematics/liquid-ring` |
+| RB 10 — Disc on an arm on a rotating shaft | `/rigid-body-kinematics/disc-on-arm` |
+
+See `src/lib/simulators.ts` for the registry driving this table.
+
+### `/rigid-body-kinematics/pin-slot-bar` Pin sliding in a slotted bar (RB 8)
+
+CCR N°16 — the planar twin of `/oscillating-bar`, with the driven/driving roles swapped: bar BO (pivoting at fixed O) is the constant-ω slotted member, and bar AC (pivoting at the other fixed point C) is the fixed-length arm carrying the pin. At each instant the pin is found from a line–circle intersection, then both bars' rotating-frame decompositions of the pin's velocity and acceleration are set equal to solve for ω_AC/α_AC.
+
+- Sliders for ω_BO, the arm length L = CA, and the pivot O's position
+- Vectors at the pin: v_arr/v_rel/v and a_arr/a_cor/a_rel/a, all toggleable
+- Live metrics for φ, θ, r, ṙ; the answer cards for ω_AC and α_AC
+- Equations panel with the statement, the theory (including the /oscillating-bar role swap), the closed-form projections, and the exact reference numbers at the statement instant
 
 ### `/polar` Polar coordinates
 

@@ -9,6 +9,7 @@ import {
   vibExercises,
   pdExercises,
   pkExercises,
+  rbExercises,
 } from "./simulators";
 
 describe("SIMULATORS registry", () => {
@@ -62,10 +63,17 @@ describe("SIMULATORS registry", () => {
         expect(typeof s.vib).toBe("number");
         expect(s.pk).toBeUndefined();
         expect(s.pd).toBeUndefined();
+        expect(s.rb).toBeUndefined();
+      } else if (s.group === "rigid-body-kinematics") {
+        expect(typeof s.rb).toBe("number");
+        expect(s.pk).toBeUndefined();
+        expect(s.pd).toBeUndefined();
+        expect(s.vib).toBeUndefined();
       } else {
         expect(s.pk).toBeUndefined();
         expect(s.pd).toBeUndefined();
         expect(s.vib).toBeUndefined();
+        expect(s.rb).toBeUndefined();
       }
     }
   });
@@ -87,7 +95,8 @@ describe("group selectors", () => {
       coreSimulators().length +
         pkExercises().length +
         pdExercises().length +
-        vibExercises().length,
+        vibExercises().length +
+        rbExercises().length,
     ).toBe(SIMULATORS.length);
   });
 
@@ -102,6 +111,9 @@ describe("group selectors", () => {
     expect(
       vibExercises().every((s) => s.group === "mechanical-vibrations"),
     ).toBe(true);
+    expect(
+      rbExercises().every((s) => s.group === "rigid-body-kinematics"),
+    ).toBe(true);
   });
 
   it("orders exercises by their contiguous 1..n numbering", () => {
@@ -114,6 +126,9 @@ describe("group selectors", () => {
     expect(vibExercises().map((s) => s.vib)).toEqual(
       Array.from({ length: vibExercises().length }, (_, i) => i + 1),
     );
+    expect(rbExercises().map((s) => s.rb)).toEqual(
+      Array.from({ length: rbExercises().length }, (_, i) => i + 1),
+    );
   });
 
   it("does not mutate SIMULATORS' order when sorting", () => {
@@ -121,6 +136,7 @@ describe("group selectors", () => {
     pkExercises();
     pdExercises();
     vibExercises();
+    rbExercises();
     expect(SIMULATORS.map((s) => s.id)).toEqual(before);
   });
 });
